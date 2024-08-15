@@ -1,0 +1,1804 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="Generator" content="Microsoft Word 97">
+  <meta name="GENERATOR"
+ content="Mozilla/4.7 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
+  <title>Optimization shell</title>
+</head>
+<body bgcolor="#ffffff" link="#0000ff" vlink="#800080">
+<a href="../../../invhome.html"><img src="../../../invlogo.gif"
+ nosave="" height="100" width="600"></a>
+<br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+<br>
+<center>
+<p><b><i><font face="Tahoma"><font color="#800000"><font size="+4">Quick
+Introduction to</font></font></font></i></b>
+</p>
+<p><b><i><font face="Tahoma"><font color="#800000"><font size="+4">Optimization
+Shell "Inverse"</font></font></font></i></b>
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><b><i>By Igor Gresovnik, June 1999</i></b>
+</p>
+<p><b>VERSION 1</b></p>
+</center>
+<p><br>
+<br>
+<br>
+<br>
+<br>
+</p>
+<p><b><font color="#ff0000"><font size="+1">Inverse: Basic Information</font></font></b>
+</p>
+<p><b><i>Inverse</i></b> is a general-purpose programme shell for <b>solving
+optimization and inverse problems in conjunction with a simulation
+programme</b>.
+Problems solved by <i>Inverse</i> can usually be formulated as
+constraint
+minimization problems of the form
+</p>
+<p><img src="Image11.gif" height="91" width="418"></p>
+<p>The simulation programme is used for evaluation of response of the
+system
+in question. This is a part of evaluation of the objective (<i>f</i>)
+and
+constraint functions (<i>g<sub>i</sub></i>) and their derivatives, if
+needed.
+The shell performs optimization algorithms and controls execution of
+the
+analysis programme.
+</p>
+<p><b>Problem definition:</b> User defines the problem in the shell <b>command
+file</b>. Shell interpreter interprets this file and executes its
+commands
+(functions) one by one. Each interpreter function invokes its
+corresponding
+shell function (scheme on the right). Shell functions are arranged in <b>modules</b>
+by their purpose. Modules provide a variety of optimization tools and
+tools
+for solution of individual sub-problems that can arise, e.g.
+optimization
+algorithms, interfacing utilities, basic matrix operations, variable
+manipulation,
+etc.
+</p>
+<p>Syntax of interpreter commands is simple:
+</p>
+<p><b><font face="Courier New">command</font> { arguments } command {
+arguments
+}...</b>
+</p>
+<p>Structure of argument blocks in curly brackets depends on the
+function.
+A special sub-system, the <b>expression evaluator</b> (or <b>calculator</b>)
+evaluates mathematical expressions, which can appear in argument
+blocks.
+A set of interpreter functions enables <b>flow control</b> by
+implementing
+branches and loops. A system of user defined variables of different
+types
+(vectors, matrices, files, etc.) enable data storage and exchange.
+</p>
+<p><b>Command file</b> usually consists of three parts. <b>Initialization
+part</b> includes additional definitions and data initialization. <b>Analysis
+block </b>defines the direct analysis, i.e. evaluation of optimization
+and constraint functions and their derivatives at a specific set of
+parameters.
+<b>Action
+part</b> includes commands that generate results. This includes running
+of optimization algorithms, test analyses and other tests like
+tabulation
+and numerical derivation tests.
+</p>
+<p><img src="Image4.gif" height="458" width="570"></p>
+<p><b>Analysis block</b> is argument block of the <b><font
+ color="#0000ff">analysis</font></b>
+command. It contains definition of direct analysis and is executed
+(i.e.
+interpreted) every time direct analysis is performed, typically on
+algorithm
+request. A built-in analysis function performs direct analyses and
+takes
+care of data transfer between algorithms and analysis definition. This
+is implemented through shell variables with pre-defined meaning.
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><b><font color="#ff0000"><font size="+1">Basic Modules</font></font></b>
+</p>
+<p><b>Optimization</b> module includes optimization algorithms and
+other
+tools (e.g. tabulating utilities, support for Monte Carlo simulations,
+etc.). It also includes utilities for definition of direct analysis,
+including
+organization of data transfer between analysis definition and
+optimization
+algorithms.
+</p>
+<p><b>File interpreter</b> represents shell user interface.
+</p>
+<p><b>Expression evaluator</b> (<b>calculator</b>) evaluates
+mathematical
+expressions, which appear in argument blocks of file interpreter
+functions.
+</p>
+<p><b>Variable handling</b> module includes basic operations on
+variables
+like creation and deleting, copying, initialization, etc.
+</p>
+<p><b>Flow control</b> module includes implementation of branches and
+loops,
+a function definition utility, and some other flow control utilities.
+</p>
+<p><b>Syntax checker</b> enables checking command file syntax before
+running
+it. Some troublesome errors like parenthesis mismatches are easily
+discovered
+by this tool. Arguments are also checked for some basic interpreter
+commands
+(e.g. for flow control commands).
+</p>
+<p><b>Debugger</b> allows step-by-step execution of commands, execution
+of arbitrary portions of code, checking and changing values of
+variables
+in the middle of execution, etc. This can be a valuable tool for error
+location and dismiss.
+</p>
+<p><b>General file interface</b> provides a set of functions for
+interfacing
+simulation and other programmes.
+</p>
+<p><b>Interfacing</b> modules provide tools for interfacing specific
+simulation
+programmes, which includes execution control and data exchange
+functions.
+An interface with a finite element programme <i>Elfen</i> has been
+implemented.
+</p>
+<p><b>Miscellaneous</b> <b>utilities</b> module includes various
+auxiliary
+utilities, for example utilities for interaction with the operating
+system.
+This module is poor at the moment and will be extended in the future.
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><b><font color="#ff0000"><font size="+1">File Interpreter</font></font></b>
+</p>
+<p><b>File interpreter</b> represents shell user interface. User
+defines
+the problem in the command file, which is interpreted by the
+interpreter
+when the shell is run. The command file name must be given as
+command-line
+argument at its invocation, e.g.
+</p>
+<p><font color="#008000">inverse test.cm</font>
+</p>
+<p>if <font color="#008000">inverse</font> is programme name and <font
+ color="#008000">test.cm</font>
+is command file name.
+</p>
+<p><b>Syntax:</b> File interpreter searches for commands (functions)
+and
+invokes shell functions, which correspond to them. Each command is
+followed
+by curly brackets, which contain its arguments. Commands and their
+arguments
+can be separated by spaces, newlines, or tabs:
+</p>
+<p><b>command1</b>{arg1 arg2 ?} <b>command2</b>{arg1 arg2 ? }
+</p>
+<p>An important syntax rule is that <i>all</i> brackets must match
+(i.e.
+each bracket must be closed within the first enclosing bracket) no
+matter
+where they occur and what their function is. Function and variable
+names
+are case sensitive.
+</p>
+<p><b>Flow Control:</b>
+</p>
+<p><b>If branch:</b>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">if</font></b> { (
+<i>condition
+</i>) [ <b>block1</b> ] <font color="#ff00ff">else</font> [ <b>block2</b>
+]}</font>
+</p>
+<p>- code block <b>block1</b> is interpreted (executed) if value of
+expression
+<i>condition</i>
+is not zero. If it is zero and <b>block2</b> is given, that block is
+is
+interpreted (<b>block2</b> is optional). Expression <i>condition</i>
+is
+evaluated in expression evaluator.
+</p>
+<p><b>While loop:</b>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">while</font></b> {
+( <i>condition </i>) [ <b>block</b> ] }</font>
+</p>
+<p>- code block <b>block</b> is repetitively executed while
+termination
+condition <i>condition</i> evaluates to a non-zero value. When <i>condition</i>
+becomes zero, <b>block</b> is not executed any more.
+</p>
+<p><b>Do loop:</b>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">do</font></b> { [
+<b>block</b>
+] <font color="#ff00ff">while</font> { <i>condition</i> } }</font>
+</p>
+<p>- executes code block <b>block</b> until the value of expression <i>condition</i>
+becomes zero. Differently from while loop, <b>block</b> is executed at
+least once because the termination condition is tested after its
+execution.
+</p>
+<p><b>Example:</b>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">=</font></b>{<font
+ color="#800000">i</font><font color="#ff00ff">:</font><i>1</i></font><i>}</i>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">while</font></b>{(<i><font
+ color="#800000">i</font>&lt;=5</i></font><i>)[
+</i><font face="Courier New"><b><font color="#0000ff">write</font></b>{<font
+ color="#ff00ff">$</font><font color="#800000">i</font>
+\n} <b><font color="#0000ff">=</font></b>{<font color="#800000">i</font><font
+ color="#ff00ff">:</font><i><font color="#800000">i</font>+1</i></font><i>}
+]}</i>
+</p>
+<p>-this code prints numbers from 1 to 5 separated by newlines on
+standard
+output.
+</p>
+<p><b>Interpretation of another file:</b>
+</p>
+<p><b>interpret</b> { filename }
+</p>
+<p>- file named filename is interpreted. Interpretation then continues
+after this command.
+</p>
+<p><b>Exiting interpretation of the current code block:</b>
+</p>
+<p><b>exit</b> { &lt; numlevels &gt; }
+</p>
+<p>- interpretation of the current code block stops, interpretation
+continues
+numlevels interpretation levels lower. Interpretation level increases
+by
+one every time a new code block is interpreted (e.g. in loops) and
+decreases
+back when interpretation of that block stops. numlevels is an optional
+numerical argument. If it is absent, all interpretation levels exit and
+interpretation stops.
+</p>
+<p><b>Definition of new interpreter functions:</b>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">function</font></b>
+{ funcname ( &lt; arg1 arg2 ? &gt; ) [ <b>defblock</b> ] }</font>
+</p>
+<p>- defines a new interpreter function named funcname. arg1, arg2,
+etc.
+are formal argument names. <b>defblock</b> is a definition block,
+which
+is interpreted every time so defined function is called. Marks that
+denote
+function arguments can appear in this block. They are replaced
+(literally
+as strings) by actual arguments before <b>defblock</b> is interpreted.
+Marks are of the form
+</p>
+<p><font face="Courier New"><font color="#ff00ff">#</font>argname</font>
+</p>
+<p>where argname is a formal argument name as it appears in round
+brackets
+of function definition.
+</p>
+<p>When function is called, actual arguments must be specified in its
+argument
+block (within curly brackets following function name) in the same order
+as the corresponding formal arguments are stated in function
+definition,
+separated by blank characters (spaces, tabs, newlines). If a specific
+argument
+includes blank characters, it must be contained in curly brackets which
+are omitted when the argument replaces the corresponding argument mark
+in function definition:
+</p>
+<p><font face="Courier New"><b><font color="#000080">funcname</font></b>
+{ act_arg_1 {act arg 2} ? }</font>
+</p>
+<p>Arguments can be referred to in <b>defblock</b> by sequential
+numbers
+instead of formal names. In this case the corresponding marks must be
+included
+in the argument block of the <b>update</b> function and are of the
+form:
+</p>
+<p><b><font face="Courier New">update</font> { code ? </b><font
+ face="Courier New"><font color="#ff00ff">#</font>{
+<i>expr
+</i>} ? <b>code</b> }</font>
+</p>
+<p>Value of expression <i>expr</i> represents a sequential number of
+actual
+arguments at function call. Function <b>update evaluates</b> such
+expressions,
+replaces argument marks by the corresponding actual arguments, and
+interprets
+its argument block. This can be used for definition of functions that
+take
+variable number of arguments. Calculator function numargs, which
+returns
+number of arguments passed at function call, is useful in this case.
+</p>
+<p><b>Example: implementation of for loop</b>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">function</font></b>
+{ <b><font color="#000080">for</font></b> ( begin condition end body )</font>
+</p>
+<p><font face="Courier New">[</font>
+</p>
+<p><b><font face="Courier New"><font color="#ff00ff">#</font>begin</font></b>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">while</font></b> {
+( <i>#condition</i> )</font>
+</p>
+<p><font face="Courier New">[</font>
+</p>
+<p><b><font face="Courier New"><font color="#ff00ff">#</font>body</font></b>
+</p>
+<p><b><font face="Courier New"><font color="#ff00ff">#</font>end</font></b>
+</p>
+<p><b>] }</b>
+</p>
+<p><b>] }</b>
+</p>
+<p>The following code then prints numbers from 1 to 5 to the standard
+output:
+</p>
+<p><font face="Courier New"><b><font color="#000080">for</font></b> { <font
+ color="#0000ff">=</font>{<font color="#800000">i</font><font
+ color="#ff00ff">:</font><i>1</i></font><i>}
+<font face="Courier New"><font color="#800000">i</font>&lt;=5</font>
+<b>=</b>{</i><font face="Courier New"><font color="#800000">i</font><font
+ color="#ff00ff">:</font><i><font color="#800000">i</font>+1</i></font><i>}</i>
+</p>
+<p><i>{ </i><font face="Courier New"><b><font color="#0000ff">write</font></b>
+{ <font color="#ff00ff">$</font><font color="#800000">i</font> "\n" } }</font>
+</p>
+<p><font face="Courier New">}</font>
+</p>
+<p>Note that the last argument (write { $i "\n" }) must be in curly
+brackets
+because it contains spaces. The <b><font color="#000080">for</font></b>
+function definition block is actually interpreted, which after
+replacement
+of argument marks by actual arguments looks like this:
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">=</font></b>{<font
+ color="#800000">i</font><font color="#ff00ff">:</font>1}</font>
+</p>
+<p><font face="Courier New"><font color="#0000ff">while</font> { ( <i><font
+ color="#800000">i</font>&lt;=5</i></font><i>
+)</i>
+</p>
+<p><i>[</i>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">write</font></b> {
+<font color="#ff00ff">$</font><font color="#800000">i</font>
+"\n" }</font>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">=</font></b>{<font
+ color="#800000">i</font><font color="#ff00ff">:</font><i><font
+ color="#800000">i</font>+1</i></font><i>}</i>
+</p>
+<p><i>] }</i>
+</p>
+<p><b>Comment:</b>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">*</font></b> {
+This
+is a comment. }</font>
+</p>
+<p>- this function does nothing; it enables comments between commands.
+</p>
+<p><b>Function Arguments:</b>
+</p>
+<p>Function arguments must be separated by blank characters (spaces,
+tabs,
+newlines) or commas.
+</p>
+<p><b>String arguments</b> may or may not be included in double quotes
+(must be if they contain blank characters). Special characters can be
+represented
+by escape sequences (\ followed by the corresponding character).
+Example:
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">write</font></b> {
+"This output include newlines\n\n" } }</font>
+</p>
+<p><b>Numerical arguments</b> can be given as decimal numbers or as
+calculator
+variables or expression. In this case variables or expressions are
+evaluated
+and replaced by their values. Numerical arguments specified by
+calculator
+variables have the form
+</p>
+<p><font face="Courier New"><b><font color="#ff00ff">$</font></b> <font
+ color="#800000">varname</font></font>
+</p>
+<p>while arguments specified by expressions have the form
+</p>
+<p><font face="Courier New"><font color="#ff00ff">$</font> { <i>expression</i>
+}</font>
+</p>
+<p><b>Mathematical expressions</b> are specified in usual way, e.g.
+</p>
+<p><i><font face="Courier New">3*<font color="#808080">sin</font>[5/(2+0.5*<font
+ color="#800000">x</font>)^(3/2)]</font></i>
+</p>
+<p><b>Shell variables</b> are specified by their names. <b>Variable
+elements</b>
+are specified by variable names followed by their indices in square
+brackets,
+which specify their position in the variable element table:
+</p>
+<p><font face="Courier New"><font color="#008080">varname</font> [ ind1
+ind2 ? ]</font>
+</p>
+<p>Indices are numerical arguments for which the above rules apply. For
+variables of zero rank there are no indices since they contain only one
+element of a specific type, and square brackets can also be omitted. In
+the same form as individual elements, variable element sub-tables are
+specified.
+</p>
+<p><b>Objects</b> of various types (e.g. matrices, vectors, files,
+scalars,
+etc.) have their own rules of representation (see "Shell Variables").
+Instead
+stating their contents, these objects can be represented by
+specification
+of a variable element of a given type in the following form:
+</p>
+<p><font face="Courier New"><font color="#ff00ff">#</font><font
+ color="#008080">varname</font>[index1
+index2 ? ]</font>
+</p>
+<p>A copy of the appropriate variable element is used in this case.
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><b><font color="#ff0000"><font size="+1">Expression Evaluator</font></font></b>
+</p>
+<p><b>Expression evaluator</b> or <b>calculator</b> evaluates
+mathematical
+expressions, which appear in argument blocks of interpreter functions.
+It contains a set of built-in functions and binary operators, which can
+be arbitrarily combined with variables and numbers to form expressions.
+Spaces and newness between entities that form expressions are ignored.
+Function arguments must be listed in square brackets and separated by
+commas.
+Names are case sensitive. Calculator variables differ from shell
+variables.
+</p>
+<p>File interpreter functions <b><font color="#0000ff">=</font></b>
+and
+<b><font color="#0000ff">$</font></b>
+are used for interaction with the calculator: Function <b><font
+ color="#0000ff">=</font></b>
+assigns a value to a calculator variable and creates it if necessary:
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">=</font></b> { <font
+ color="#800000">varname</font><font color="#ff00ff">:</font>
+<i>expression</i> }</font>
+</p>
+<p>The current value of <i>expression</i> is assigned to a calculator
+variable
+named <font color="#800000">varname</font>.
+</p>
+<p>Function <b>$</b> defines a calculator variable by a mathematical
+expression
+or defines a new expression evaluator function. The variable or
+function
+is created if it has not been existed yet:
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">$</font></b> { <font
+ color="#800000">varname</font><font color="#ff00ff">:</font>
+<i>expression</i> }</font>
+</p>
+<p>- the expression itself is assigned to the variable named varname
+rather
+than its value.
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">$</font></b> { <font
+ color="#800000">funcname</font>
+[ arg1, arg2, ? ] <font color="#ff00ff">:</font> <i>expr</i> }</font>
+</p>
+<p>- this defines a new calculator function named <font color="#800000">funcname</font>.
+arg1, arg2, etc. are formal argument names and <i>expr</i> is the
+mathematical
+expression that defines how function is evaluated. This expression can
+contain variables named as formal arguments, which are replaced by
+actual
+arguments at function evaluation. Arguments must be separated by
+commas.
+For example, with the following definition:
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">$</font></b>{ <font
+ color="#800000">cubesum</font>
+[x,y] <font color="#ff00ff">:</font> <i>(x+y)^3</i> }</font>
+</p>
+<p>a new calculator function of two variables <font color="#800000">cubesum</font>
+is defined and it evaluates to the third power of sum of its arguments,
+e.g. <font color="#800000">cubesum</font>[1,2] evlauates to 27.
+</p>
+<p>Mathematical expressions are used as conditions in branching and
+looping
+functions, for representation of numerical arguments to file
+interpreter
+functions, and for other purposes. In principle every numerical
+argument
+can be replaced by an expression evaluator variable in the form
+</p>
+<p><font face="Courier New"><b><font color="#ff00ff">$</font></b> <font
+ color="#800000">varname</font></font>
+</p>
+<p>or by an expression in the form
+</p>
+<p><font face="Courier New"><font color="#ff00ff">$</font> { <i>expression</i>
+}</font>
+</p>
+<p><b>Definition of expression evaluator functions using file
+interpreter:</b>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">definefunction</font></b>
+{ <font color="#ff00ff">funcname</font> [ <b>defblock</b> ] }</font>
+</p>
+<p>- defines a new calculator function named <font color="#ff00ff">funcname</font>.
+Block <b>defblock</b> is interpreted at every evaluation of this
+function.
+User must define the return value in this block using the <b><font
+ color="#0000ff">return</font></b>
+function, which requires one argument - a mathematical expression whose
+value will be returned by the newly defined function. The user can
+access
+values of actual arguments at function call by calculator function <font
+ color="#808080">argument</font>,
+which takes as argument the ordinary number of the required argument
+and
+returns its value. Another calculator function <font color="#808080">numargs</font>
+returns the number of arguments passed at function call. This function
+enables definition of functions with variable number of arguments.
+</p>
+<p><b>Example:</b> Definition of a calculator function that returns sum
+of its arguments:
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">definefunction</font></b>
+{ <font color="#ff00ff">Sumation</font></font>
+</p>
+<p><font face="Courier New">[</font>
+</p>
+<p><font face="Courier New"><font color="#0000ff">=</font>{<font
+ color="#800000">retsum</font>:<i>0</i>}</font>
+</p>
+<p><font face="Courier New"><font color="#0000ff">=</font>{<font
+ color="#800000">indsum</font>:<i>1</i>}</font>
+</p>
+<p><font face="Courier New"><font color="#0000ff">while</font> { (<i><font
+ color="#800000">indsum</font>&lt;=<u><font color="#808080">numargs</font></u>[
+]</i></font><i>)}</i>
+</p>
+<p><i>[</i>
+</p>
+<p><font face="Courier New"><i><font color="#0000ff">=</font></i>{<font
+ color="#800000">retsum</font>:
+<i><font color="#800000">retsum</font>+<u><font color="#808080">argument</font></u>[<font
+ color="#800000">indsum</font>]</i></font><i>
+}</i>
+</p>
+<p><font face="Courier New"><i><font color="#0000ff">=</font></i>{<font
+ color="#800000">indsum</font>:
+<i><font color="#800000">indsum</font>+1</i></font><i>
+}</i>
+</p>
+<p><i>] }</i>
+</p>
+<p><font face="Courier New"><i><u><font color="#0000ff">return</font></u></i>{<i><font
+ color="#800000">retsum</font></i>}</font>
+</p>
+<p><font face="Courier New">] }</font>
+</p>
+<p>After this definition, expression "<i><font color="#ff00ff">Sumation</font>[
+3,14,2 ]</i>" will evaluate to 19, for example.
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><b><font color="#ff0000"><font size="+1">Variables</font></font></b>
+</p>
+<p><b>Shell variables</b> can hold objects (elements) of different
+types
+- <b>options</b>, <b>counters</b>, <b>scalars</b> (decimal numbers),
+<b>vectors</b>,
+<b>matrices</b>,
+<b>fields</b>, <b>files</b>, and <b>strings</b>. Their function is
+data
+storage, data exchange between different functions, and support to
+specific
+operations like matrix operations, domain transformation or file
+operations.
+</p>
+<p>Each variable can hold a <b>multidimensional table of elements</b>
+of
+a specific type (see the figure below). Number of dimensions of this
+table
+is called variable <b>rank</b>. Variables of rank zero can hold a
+single
+object.
+</p>
+<p>For each type of variables there exists a set of operations for
+their
+manipulation, e.g. copying, moving, deleting, creation, initialization,
+etc.
+</p>
+<p><b>Example: Matrix Variables</b>
+</p>
+<p>Let us create a matrix variable <font color="#008080">m</font> with
+a 3*2*3-dimensional element table (18 elements) and initialize the
+1-2-2-th
+element to
+</p>
+<p><img src="Image5.gif" height="43" width="91"></p>
+<p>This is done by commands <b>newmatrix</b> and <b>setmatrix</b>:
+</p>
+<p><font face="Courier New"><b><font color="#0000ff"><u>new</u>matrix</font></b>
+{ <font color="#008080">m</font> [ 3 2 3 ] }</font>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff"><u>set</u>matrix</font></b><font
+ color="#800080">{</font>
+<font color="#008080">m</font> [ 1 2 2 ]</font>
+</p>
+<p><font face="Courier New">2 3 <font color="#008000">{</font> <font
+ color="#800000">{</font>
+1<font color="#ff00ff">:</font> 1.1 1.2 1.3 <font color="#800000">}{</font>
+2<font color="#ff00ff">:</font> 2.1 2.2 2.3 <font color="#800000">}</font>
+<font color="#008000">}</font> <font color="#800080">}</font></font>
+</p>
+<p>The first command creates a matrix variable <font color="#008080">m</font>
+with a 3*2*3 element table, and the second command creates its 1-2-2-th
+element set to the 2*3 matrix above. After these commands variable <font
+ color="#008080">m</font>
+looks like in figure below:
+</p>
+<p><img src="Image6.gif" height="462" width="429"></p>
+<p>If <b>rank</b> of matrix variable was <b>zero</b>, it would not be
+necessary
+to execute the <b><font color="#0000ff">newmatrix</font></b> command,
+since
+<b><font color="#0000ff">setmatrix</font></b>
+would create the variable itself. Square brackets following matrix name
+would not be necessary since there would not be any indices (although
+placing
+empty square brackets is also valid).
+</p>
+<p>Matrices can be stated in different <b>forms</b>. The above matrix
+could
+be specified in the following ways:
+</p>
+<p><font face="Courier New">2 3 <font color="#008000">{</font> <font
+ color="#800000">{</font>
+1 1<font color="#ff00ff">:</font> 1.1 <font color="#800000">}</font> <font
+ color="#800000">{</font>
+1 2<font color="#ff00ff">:</font> 1.2 <font color="#800000">}</font> <font
+ color="#800000">{</font>
+1 3<font color="#ff00ff">:</font> 1.3 <font color="#800000">}</font> <font
+ color="#800000">{</font>
+2 1<font color="#ff00ff">:</font> 2.1 <font color="#800000">}</font> <font
+ color="#800000">{</font>
+2 2<font color="#ff00ff">:</font> 2.2 <font color="#800000">}</font> <font
+ color="#800000">{</font>
+2 3<font color="#ff00ff">:</font> 2.3 <font color="#800000">}</font> <font
+ color="#008000">}</font></font>or
+</p>
+<p><font face="Courier New">2 3 <font color="#008000">{</font> <font
+ color="#800000">{</font>
+1.1 1.2 1.3 2.1 2.2 2.3 <font color="#800000">}</font> <font
+ color="#008000">}</font></font>
+</p>
+<p>If we just want to create a matrix with a given number of rows and
+columns
+without specifying components, only dimensions can be given followed by
+empty curly brackets, e.g.
+</p>
+<p><font face="Courier New">2 3 <font color="#008000">{</font> <font
+ color="#008000">}</font></font>
+</p>
+<p>If a matrix already exists, we can specify arbitrary number of its
+components
+without dimensions, e.g.
+</p>
+<p><font face="Courier New"><font color="#008000">{</font> <font
+ color="#800000">{</font>
+1 1<font color="#ff00ff">:</font> 1.1 <font color="#800000">}</font> <font
+ color="#800000">{</font>
+2 2<font color="#ff00ff">:</font> 2.2 <font color="#800000">}</font> <font
+ color="#800000">{</font>
+2 3<font color="#ff00ff">:</font> 2.3 <font color="#800000">}</font> <font
+ color="#008000">}</font></font>
+</p>
+<p>We can also point to an existent matrix element instead of
+specifying
+matrix contents, in this case a copy of that element is created:
+</p>
+<p><font face="Courier New"><font color="#ff00ff">#</font> { <font
+ color="#008080">mat1</font>
+[4 1] }</font>
+</p>
+<p>A number of other functions enable manipulation of matrix variables.
+Some of them can operate on sub-tables of elements, e.g. <b><u><font
+ color="#0000ff">copy</font>matrix</u></b>,
+which copies matrices from one element sub-table to the corresponding
+elements
+of another sub-table. Functions that operate on whole variables have
+the
+suffix "<b>var</b>", e.g. <b><u><font color="#0000ff">delete</font>matrixvar</u></b>.
+</p>
+<p>Individual matrix <b>components</b> can be accessed by the
+expression
+evaluator function <i><u><font color="#808080">get</font>matrix</u></i>.
+For example, <i><u><font color="#808080">get</font>matrix</u></i>
+["m",2,1,1,2,2]
+refers to the second row and the first column of matrix element 1-2-2
+of
+matrix variable <font color="#008080">m</font>, and evaluates to 2.1
+if
+<font color="#008080">m</font>
+is defined as in the figure. The first argument is variable name in
+double
+quotes, the second one is row number, the third one is column number,
+and
+the rest are indices of matrix element in variable element table. <b>Dimensions</b>
+of the variable element table can be obtained by the <i><u><font
+ color="#808080">get</font>matrixdim</u></i>
+function, e.g. <i><u><font color="#808080">get</font>matrixdim</u></i>
+["m",2] evaluates to the second dimension of the matrix variable
+element
+table, which is 2. If the second argument of <i><u><font
+ color="#808080">get</font>matrixdim</u></i>
+is 0, variable rank is returned.
+</p>
+<p>Other variable types have similar interpreter and calculator
+manipulation
+functions than matrices. Their names are derived simply by replacing
+the
+string "<b>matrix</b>" by the appropriate type name, e.g. "<b>scalar</b>",
+"<b>vector</b>", "<b>field</b>", "<b>file</b>", <b>etc</b>. For
+example,
+<b><u><font color="#0000ff">copy</font>scalar</u>
+</b>copies element sub-tables of scalar variables.
+</p>
+<p><b>scalars </b>are specified simply as numbers, <b>fields</b> are
+specified
+in the same way as matrices and <b>vectors</b> are specified in a
+similar
+form. For example, a zero rank vector variable <font color="#008080">v</font>
+containing vector
+</p>
+<p><img src="Image7.gif" height="23" width="103"></p>
+<p>can be created like this:
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">setvector</font></b>
+{ <font color="#008080">v</font> 3 { 1.1 2.2 3.3 } } </font>or
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">setvector</font></b><font
+ color="#800000">{</font>
+<font color="#008080">v</font> 3 <font color="#008000">{</font>
+{1:1.1}
+{2:2.2} {3:3.3} <font color="#008000">}</font> <font color="#800000">}</font></font>
+</p>
+<p>As is the case with matrices, only dimensions or individual
+components
+can be specified. We can use this to set components of vectors,
+matrices
+or fields according to some rule. For example, we can create a
+100-dimensional
+vector variable v1 with components 1.01, 2.02, 3.03, ?, 101, like this:
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">setvector</font></b>
+{ <font color="#008080">v1</font> 100 { } }</font>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">=</font></b> { <font
+ color="#800000">j</font><font color="#ff00ff">:</font>
+1 }</font>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">while</font></b> {
+(<i><font color="#800000">j</font>&lt;=100</i></font><i>) [</i>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">setvector</font></b><font
+ color="#800080">{</font>
+<font color="#008080">v1</font> <font color="#008000">{</font><font
+ color="#000080">{</font>
+<font color="#ff00ff">$</font> <font color="#800000">j</font><font
+ color="#ff00ff">:</font>
+<font color="#ff00ff">$</font> { <i><font color="#800000">j</font>+0.01*<font
+ color="#800000">j</font></i>
+} <font color="#000080">}</font> <font color="#008000">}</font> <font
+ color="#800080">}</font></font>
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">=</font></b> { <font
+ color="#800000">j</font>:
+<font color="#800000">j</font>+1
+}</font>
+</p>
+<p><font face="Courier New">]}</font>
+</p>
+<p>We exploited the possibility of replacing numbers by expression
+evaluator
+variables and mathematical expressions.
+</p>
+<p><b>File</b> variables deserve some additional attention. They carry
+<b>file</b>
+objects, which are logical representations of files on the computer
+file
+system. File manipulation functions (like functions of the general file
+interface) operate on such variables. In order to use these functions,
+file objects must be connected to files and files must be open. We can
+create a file object, connect it with an actual file, and open the file
+with function <b><font color="#0000ff">setfile</font></b>, e.g.
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">setfile</font></b>
+{ <font color="#008000">outfile</font> test.ct ab+ }</font>
+</p>
+<p>A file variable named <font color="#008000">outfile</font> is
+created
+and its only element is connected with the file "test.ct", which is
+opened
+at the same time. "a+" is the mode in which the file is open and can
+usually
+be omitted. In this case the shell determines opening mode. Basic <b>modes</b>
+are "<b>w</b>" (file open for writing), "<b>r</b>" (open for reading),
+"<b>a</b>" (open for appending), each of which can have suffices "<b>b</b>"
+(binary mode -does not have effect on Unix systems) and/or "<b>+</b>"
+(file
+open for both reading and writing).
+</p>
+<p>File variables are destroyed and the corresponding files closed by
+the
+<b><font color="#0000ff">deletefilevar</font></b>
+function, e.g.:
+</p>
+<p><b><font color="#0000ff">deletefilevar</font></b> { <font
+ color="#008000">outfile</font>
+}
+</p>
+<p>Four file variables have a <b>pre-defined meaning</b>, which are <font
+ color="#008000">infile</font>
+(shell input file), <font color="#008000">outfile</font> (shell output
+file - function <b><font color="#0000ff">fwrite</font></b> writes to
+this
+file), <font color="#008000">aninfile</font> (simulation input file)
+and
+<font color="#008000">anoutfile</font>
+(simulation output file).
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><b><font color="#ff0000"><font size="+1">Shell Output</font></font></b>
+</p>
+<p>Function <b><font color="#0000ff">write</font></b> is a basic
+output
+function of the shell. It prints to the programme standard output
+(usually
+a terminal window), but has equivalents <b><u><font color="#0000ff">f</font>write</u></b>
+that prints to the shell output file (<font color="#008080">outfile</font>)
+and <b><u><font color="#0000ff">d</font>write</u></b> that prints both
+to the standard output and the shell output file.
+</p>
+<p>Function simply prints its arguments one by one. Arguments can be <b>strings</b>
+in double quotes, e.g.
+</p>
+<p><font face="Courier New"><font color="#ff00ff">"</font>Normal
+termination.<font color="#ff00ff">\</font>n<font color="#ff00ff">"</font></font>
+</p>
+<p><b>special character</b> sequences, e.g.
+</p>
+<p><font face="Courier New"><font color="#ff00ff">\</font>n</font>
+</p>
+<p><b>expression evaluator variables</b>, e.g.
+</p>
+<p><font face="Courier New"><font color="#ff00ff">$</font> a1</font>
+</p>
+<p>or <b>mathematical expressions</b>, e.g.
+</p>
+<p><font face="Courier New"><font color="#ff00ff">$</font> <font
+ color="#ff00ff">{</font><i><font color="#800000">a</font>+3*<font
+ color="#808080">sin</font>[<font color="#808080">getvector</font>["parammom",2]]</i><font
+ color="#ff00ff">}</font></font>
+</p>
+<p><b>Strings</b> are output directly. They can eventually include
+special
+character sequences, which are replaced by the appropriate characters
+before
+the string is printed (e.g. \n in the example above is replaced by the
+newline character). Brackets that appear in strings must be stated by
+escape
+sequences if they are not closed, because of the file interpreter rule
+that all brackets must be closed no matter where they occur.
+</p>
+<p><b>Special character sequences</b> are replaced by the appropriate
+special
+characters and then printed. The most often used are <b>\q</b> for
+single
+quote ('), <b>\Q</b> or <b>\d</b> for double quote ("), <b>\\</b>
+for backslash
+(\), <b>\n</b> for newline character, <b>\r</b> for carriage return, <b>\t</b>
+for tab character, <b>\&lt;</b> or <b>\5</b> for {, <b>\&gt;</b> or <b>\6</b>
+for }, <b>\1</b> for (, <b>\2</b> for ), <b>\3</b> for [, <b>\4</b>
+for
+].
+</p>
+<p><b>Mathematical expressions</b> and <b>calculator variables</b> are
+evaluated by the expression evaluator and their values are printed.
+Variables
+are stated by the $ sign followed by variable name, while expressions
+are
+stated by the $ sign followed by curly brackets containing the
+expression.
+</p>
+<p>Expression evaluator functions for accessing contents of shell
+variables
+can be used in expressions. The <b><font color="#0000ff">write</font></b>
+function and its equivalents can therefore be used to output any
+information
+available at a specific moment in a desired format.
+</p>
+<p><b>Example:</b>
+</p>
+<p><font face="Courier New">Write{ <font color="#ff00ff">\</font>n<font
+ color="#ff00ff">\</font>n
+<font color="#ff00ff">$</font><font color="#800000">i</font>
+<font color="#ff00ff">"</font>th parameter: <font color="#ff00ff">"</font></font>
+</p>
+<p><font face="Courier New"><font color="#ff00ff">$</font>{<i><font
+ color="#808080">getvector</font>["<font color="#008080">parammom</font>",<font
+ color="#800000">i</font>]</i></font><i>}
+</i><font face="Courier New"><font color="#ff00ff">"</font>.\n<font
+ color="#ff00ff">"</font>
+}</font>
+</p>
+<p>For each type of <b>variable</b> there exist functions, which their
+contents. Typically there are two basic output functions for each type
+of variable, one that outputs contents of the whole variable and one
+that
+outputs individual elements or sub-tables of elements. For example, for
+matrix variable that contains 2*3 matrix elements,
+</p>
+<p><font face="Courier New"><b><font color="#0000ff"><u>print</u>matrix<u>var</u></font></b>
+{ <font color="#008080">m1</font> }</font>
+</p>
+<p>prints the whole matrix variable, which include information about
+element
+table dimensions and contents of individual matrix elements, while
+</p>
+<p><font face="Courier New"><b><font color="#0000ff"><u>print</u>matrix</font></b>
+{ <font color="#008080">m1 </font>[2] }</font>
+</p>
+<p>prints the contents of three matrices contained in variable
+sub-table
+<font color="#008080">m1
+</font>[2], i.e. matrices <font color="#008080">m1
+</font>[2,1], <font color="#008080">m1
+</font>[2,2] and<font color="#008080"> m1 </font>[2,3]. Command
+</p>
+<p><font face="Courier New"><b><font color="#0000ff"><u>print</u>matrix</font></b>
+{ <font color="#008080">m1 </font>[2 1] }</font>
+</p>
+<p>would print only one matrix since sub-table specification<font
+ color="#008080">
+m1 </font>[2 1] specifies a single element.
+</p>
+<p>Equivalent functions exist for other types of variables. Their names
+are derived by replacing parts of the above function names that are not
+underlined by the appropriate variable types (e.g. scalar, vector,
+file,
+etc.). Functions stated above print to the programme standard output.
+Their
+equivalents whose names are derived by adding a prefix <b><font
+ color="#0000ff">f</font></b>,
+e.g. <b><u><font color="#0000ff">fprint</font>matrixvar</u></b>, print
+to the shell output file (<font color="#008000">outfile</font>)
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><b><font color="#ff0000"><font size="+1">Expression Evaluator</font></font></b>
+</p>
+<p><b>Syntax checker</b> checks the command file for syntax errors and
+reports them. Identification of errors is limited; especially function
+arguments are not checked for all functions. This is partially a
+consequence
+of the interpreter concept itself since the meaning of arguments is
+many
+times known only during the runtime. Checking arguments for all
+commands
+would also require a tremendous overhead in the code, which would be
+hard
+to justify by the gained benefit. However, the syntax checker can
+discover
+some frequent and problematic errors like parenthesis mismatches and
+function
+names misspellings. The checker is run by
+</p>
+<p><font color="#008000">inverse test.cm -c</font>
+</p>
+<p>if <font color="#008000">inverse</font> is the programme
+(optimization
+shell) name and <font color="#008000">test.cm</font> is the name of
+the
+command file. Option <font color="#008000">-c</font> activates the
+checker.
+</p>
+<p><b>Debugger</b> is used for tracing code execution and facilitates
+error
+location. It allows step-by-step execution of arbitrary portions of
+code,
+checking and changing variable values in the middle of execution, etc.
+It is run e.g. by
+</p>
+<p><font color="#008000">inverse test.cm -d</font>
+</p>
+<p>Option <font color="#008000">-c</font> activates the debugger.
+</p>
+<p>Debugger Commands
+</p>
+<p><a name="_Toc449636795"></a><b>?</b> prints a short help.
+</p>
+<p><a name="_Toc449636796"></a><b>q</b> finishes the debugging process.
+</p>
+<p><b>s</b> executes the next file interpreter?s command.
+</p>
+<p><a name="_Toc449636798"></a><b>S</b> executes the next file
+interpreter?s
+command; commands that execute code blocks are executed as single
+commands.
+</p>
+<p><b>n</b> <i>num</i>. executes the next <i>num</i> commands.
+</p>
+<p><a name="_Toc449636800"></a><b>N</b> <i>num</i> executes the next <i>num</i>
+commands; functions that contain code blocks are executed as single
+commands.
+</p>
+<p><a name="_Toc449636801"></a><b>x <i>num</i></b> executes the code
+until
+<i>num</i>
+levels lower lever of execution is reached. Default value for
+<i>num</i>
+is 1.
+</p>
+<p><a name="_Toc449636802"></a><b>c </b>executes the code until the
+next
+active <b>break</b> command is reached.
+</p>
+<p><a name="_Toc449636803"></a><b>ab </b><i>id</i> activates all
+breaks
+with the identification number <i>id</i> ("*" means all identification
+numbers).
+</p>
+<p><a name="_Toc449636804"></a><b>sb <i>id</i></b> suspends all breaks
+with the identification number <i>id</i> ("*" means all identification
+numbers).
+</p>
+<p><a name="_Toc449636805"></a><b>pb</b> prints information about
+active
+breaks.
+</p>
+<p><a name="_Toc449636806"></a><b>tb <i>id</i></b> prints status of
+breaks
+with identification number <i>id</i>.
+</p>
+<p><a name="_Toc449636807"></a><b>v <i>shift</i></b> prints a segment
+of
+code around the current viewing position shifted for <i>shift</i>
+lines.
+</p>
+<p><a name="_Toc449636808"></a><b>vr <i>shift</i></b> prints a segment
+of code around the line of interpretation shifted for <i>shift</i>
+lines.
+</p>
+<p><a name="_Toc449636809"></a><b>va <i>linenum</i> </b>prints a
+segment
+of code in the interpreted file around the line <i>linenum</i>.
+</p>
+<p><a name="_Toc449636810"></a><b>nv <i>num1 num2</i></b> sets the
+number
+of printed lines before and after the centerline when the code is
+viewed.
+</p>
+<p><a name="_Toc449636811"></a><b>e<i> </i>expr</b> evaluates the
+expression
+<i>expr</i>
+by the expression evaluator.<a name="_Toc449636812"></a> If
+<i>expr</i>
+is not specified the user can input expression in several lines, ending
+with an empty line.
+</p>
+<p><b>w</b> <i>expr</i> adds expression e<i>xpr</i> to the watch
+table.
+Without the argument, values of all expressions in the watch table are
+printed.
+</p>
+<p><a name="_Toc449636813"></a><b>dw <i>num</i></b> removes the
+expression
+with serial number <i>num</i> from the watch table.
+</p>
+<p><a name="_Toc449636814"></a><b>aw <i>switch</i></b> with <i>switch</i>
+equal to zero turns automatic watching off; otherwise it turns it on.
+</p>
+<p><a name="_Toc449636815"></a><b>pw</b> prints all expressions in the
+watch table.
+</p>
+<p><a name="_Toc449636816"></a><b>r <i>comblock</i></b> interprets <i>comblock</i>
+by the file interpreter. If <i>comblock</i> is not specified the user
+can
+input commands in several lines, ending with an empty line.
+</p>
+<p><a name="_Toc449636817"></a><b>rd <i>com</i>block</b> does the same
+as <b><i>r</i></b>, except that the code is also debugged.
+</p>
+<p><a name="_Toc449636818"></a><b>rf <i>filename</i></b> sets the name
+of the file into which the user?s commands will be written, to <i>filename</i>.
+</p>
+<p><b>Breaks</b> are set in the command file by function <b>break</b>,
+whose argument (optional) is break identification number, e.g.
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">break</font></b> {
+3 }</font>
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><b><font color="#ff0000"><font size="+1">Variables with Pre-defined
+Meaning</font></font></b>
+</p>
+<p><b>Variables with pre-defined meaning</b> are variables designed for
+carrying specific data relevant for optimization. Some interpreter and
+calculator functions operate on specific variables with a pre-defined
+meaning,
+which therefore do not need to be specified as arguments. For example,
+there is a set of interfacing functions that operate only on a file
+variable
+<font color="#008000">infile</font>,
+which have a function of general input file.
+</p>
+<p>Of specific importance are variables that are responsible for data
+transfer
+between user definition of direct analysis (<b>analysis block</b> of
+the
+command file) and optimization algorithms. The table below lists these
+variables:
+<table border="1" cellpadding="9" width="815">
+  <tbody>
+    <tr>
+      <td valign="top" width="46%">
+      <center>
+      <p><b>Variable</b> name [ element table dim. ] ( element dim. )</p>
+      </center>
+      </td>
+      <td valign="top" width="54%">
+      <center>
+      <p><b>Meaning</b></p>
+      </center>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top">
+      <center>
+      <p><b>Scalar variables</b></p>
+      </center>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b>objective<u>mom</u></b> [] &lt;
+[numobjectives]
+&gt;</td>
+      <td valign="top" width="54%">Value(s) of the objective
+function(s) at the
+current parameter values.</td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b>constraint<u>mom</u></b>
+[numconstraints]</td>
+      <td valign="top" width="54%">Values of the constraint functions
+at the current
+parameter values.</td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top">
+      <center><b>Vector variables</b></center>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b>param<u>mom</u></b> [] (numparam)</td>
+      <td valign="top" width="54%">Current vaules of parameters.</td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b>meas<u>mom</u></b> [] (nummeas)</td>
+      <td valign="top" width="54%">Current values of simulated
+measurements.</td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b><u>grad</u>objective<u>mom</u></b>
+[] &lt;
+[numobjectives] &gt; (numparam)</td>
+      <td valign="top" width="54%">Gradient of objective function(s) at
+the current
+parameter vlues</td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b><u>grad</u>constraint<u>mom</u></b>
+[numconstraints]
+(numparm)</td>
+      <td valign="top" width="54%">Gradients of constraint functions at
+the current
+parameter values.</td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b><u>grad</u>meas<u>mom</u></b>
+[nummeas] (numparam)</td>
+      <td valign="top" width="54%">Gradients of the simulated
+measurements at the
+current parameter values.</td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top">
+      <center><b>Matrix variables</b></center>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b><u>der2</u>objective<u>mom</u></b>
+[] &lt;
+[numobjectives] &gt; (numparam,numparam)</td>
+      <td valign="top" width="54%">Second derivatives (Hessian) of the
+objective
+function(s) at the current parameter values.</td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b><u>der2</u>constraint<u>mom</u></b>
+[numconstraints]
+(numparam,numparam)</td>
+      <td valign="top" width="54%">Second derivatives (Hessian) of the
+constraint
+functions at the current parameter values.</td>
+    </tr>
+    <tr>
+      <td valign="top" width="46%"><b><u>der2</u>meas<u>mom</u></b>
+[nummeas] (numparam,numparam)</td>
+      <td valign="top" width="54%">Second derivatives (Hessian) of the
+simulated
+measurements at the current parameter values.</td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p>Within the <b>analysis block</b> user must assign values to those
+of
+the above listed variables that are needed by the optimization
+algorithm.
+In this block the user defines the direct analysis, i.e. the way in
+which
+these variables are evaluated at current parameter values. These reside
+in the vector <b>parammom</b> when the analysis block is interpreted.
+If,
+for example, we have a constraint optimization problem and run an
+algorithm
+that requires the first derivatives, variables <b>objectivemom</b>, <b>constraintmom</b>,
+<b>gradobjectivemom</b>
+and <b>gradconstraintmom</b> must be calculated and set within the
+analysis
+block.
+</p>
+<p>Each of the above variables has beside the <b>current</b> also its <b>initial</b>
+and <b>optimal</b> variant. The name of the initial variant is
+obtained
+by replacing suffix "<b>mom</b>" by "<b>0</b>" while the optimal
+variant
+is obtained by replacing the suffix with "<b>opt</b>". Optimal variants
+are used by some algorithms for storing results, while the initial
+variants
+are currently not used.
+</p>
+<p>In the above table, dimensions of variable element tables are stated
+in square brackets while dimensions of individual elements (i.e.
+vectors
+or matrices) are stated in round brackets. These are problem
+characteristic
+dimensions whose meaning is the following:
+<table border="1" cellpadding="9" width="447">
+  <tbody>
+    <tr>
+      <td valign="top" width="24%">
+      <center>Dimension</center>
+      </td>
+      <td valign="top" width="76%">
+      <center>Meaning</center>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="24%"><i>numparam</i></td>
+      <td valign="top" width="76%">Number of optimization parameters</td>
+    </tr>
+    <tr>
+      <td valign="top" width="24%"><i>numconstraints</i></td>
+      <td valign="top" width="76%">Number of constraint functions</td>
+    </tr>
+    <tr>
+      <td valign="top" width="24%"><i>numobjectives</i></td>
+      <td valign="top" width="76%">Number of objective functions
+(usually equals
+1)</td>
+    </tr>
+    <tr>
+      <td valign="top" width="24%"><i>nummeas</i></td>
+      <td valign="top" width="76%">Number of measurements (applicable
+for inverse
+problems)</td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p>The above listed dimensions are not stored in shell user defined
+variables,
+but have a special storage. Each of them is accessed by its own
+expression
+evaluator function, the name of which is the dimension name with prefix
+"<b>get</b>", e.g. <u><font color="#808080">get</font>numparam</u> [ ]
+returns number of optimization parameters. These dimensions are set
+when
+a pre-defined variable or its element, for which a specific dimension
+is
+relevant, is created. For example, the command
+</p>
+<p><font face="Courier New"><b><font color="#0000ff">setvector</font></b>
+{ <u><font color="#008000">grad</font></u></font><u>constraintmom</u><font
+ face="Courier New">
+[2] 3 { } }</font>
+</p>
+<p>will set <i>numparam</i> to 3 and <i>numconstraints</i> to 2.
+There
+is also an inverse effect on the <b><font color="#0000ff">setvector</font></b>
+function: if for example <i>numparam</i> is 4, we do not need to state
+this dimension when we create related pre-defined variables and their
+elements
+(vector <font color="#008000">param<u>mom</u></font>, for example):
+</p>
+<p><font face="Courier New">setvector { <font color="#008000">param<u>mom</u></font>
+{ 1.1 2.2 3.3 4.4 } }</font>
+</p>
+<p>For inverse problems, there are two more pre-defined variables used
+for storing input data for an inverse analysis, i.e. measurements and
+their
+deviations:
+<table border="1" cellpadding="9" width="362">
+  <tbody>
+    <tr>
+      <td valign="top" width="38%">
+      <center>Vector variable</center>
+      </td>
+      <td valign="top" width="62%">
+      <center>Meaning</center>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="38%"><b>meas</b> [] (nummeas)</td>
+      <td valign="top" width="62%">Vector of experimental measurements.</td>
+    </tr>
+    <tr>
+      <td valign="top" width="38%"><b>sigma</b> [] (nummeas)</td>
+      <td valign="top" width="62%">Vector of measurement errors.</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+</p>
+<p><b><font color="#ff0000"><font size="+1">A Short Example</font></font></b>
+</p>
+<p>Let us solve the following two-dimensional constraint optimization
+problem:
+</p>
+<p><img src="Image12.gif" height="35" width="333">,
+</p>
+<p>which implies that the objective and the two constraint functions
+are
+</p>
+<p><img src="Image13.gif" height="98" width="175"></p>
+<p>The shell run with the following command file solves the problem:
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<ol>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">setfile</font></b>{<font
+ color="#00ff00">outfile</font>
+quick.ct}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">*</font></b>{
+Objective
+and constraint functions: }</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">$</font></b>{<font
+ color="#800000">f</font>[x,y]<font color="#ff00ff">:</font><i>x^2+y^4</i>
+}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">$</font></b>{<font
+ color="#800000">g1</font>[x,y]<font color="#ff00ff">:</font><i>(x-3)^6-y</i>
+}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">$</font></b>{<font
+ color="#800000">g2</font>[x,y]<font color="#ff00ff">:</font><i>17-x^2-y</i>
+}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">*</font></b>{
+Objective
+function derivatives: }</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">$</font></b>{<font
+ color="#800000">dfdx</font>[x,y]<font color="#ff00ff">:</font><i>2*x</i>
+}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">$</font></b>{<font
+ color="#800000">dfdy</font>[x,y]<font color="#ff00ff">:</font><i>4*y^3</i>
+}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">*</font></b>{
+First constraint
+function derivatives: }</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">$</font></b>{<font
+ color="#800000">dg1dx</font>[x,y]<font color="#ff00ff">:</font><i>6*(x-3)^5</i>
+}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">$</font></b>{<font
+ color="#800000">dg1dy</font>[x,y]<font color="#ff00ff">:</font><i>-1</i>
+}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">*</font></b>{
+Second
+constraint function derivatives: }</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">$</font></b>{<font
+ color="#800000">dg2dx</font>[x,y]<font color="#ff00ff">:</font><i>-2*x</i>
+}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">$</font></b>{<font
+ color="#800000">dg2dy</font>[x,y]<font color="#ff00ff">:</font><i>-1</i>
+}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">setvector</font></b>{<font
+ color="#008000">parammom</font>
+2 {} }</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">newscalar</font></b>{<font
+ color="#008000">objectivemom</font>}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">newscalar</font></b>{<font
+ color="#008000">constraintmom</font>[2]}</font></li>
+  <li>
+    <b><font face="Courier New"><font color="#0000ff">analysis</font></font></b></li>
+  <li>
+    <font face="Courier New">{</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font><b><font
+ color="#0000ff">=</font></b>{<font color="#800000">x</font><font
+ color="#ff00ff">:</font><i><font color="#808080">getvector</font>["<font
+ color="#008000">parammom</font>",1]</i></font><i>}</i></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font><b><font
+ color="#0000ff">=</font></b>{<font color="#800000">y</font><font
+ color="#ff00ff">:</font><i><font color="#808080">getvector</font>["<font
+ color="#008000">parammom</font>",2]</i></font><i>}</i></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font><b><font
+ color="#0000ff">setscalar</font></b>{<font color="#008000">objectivemom</font><font
+ color="#ff00ff">$</font>{<i>f[x,y]</i>}
+}</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font><b><font
+ color="#0000ff">setvector</font></b>{
+    <font color="#008000">gradobjectivemom</font></font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">....</font>{<font
+ color="#ffffff">..</font><font color="#ff00ff">$</font>{<i><font
+ color="#800000">dfdx</font>[<font color="#800000">x</font>,<font
+ color="#800000">y</font>]</i></font><i>}</i><font face="Courier New"><font
+ color="#ffffff">..</font><font color="#ff00ff">$</font>{<i><font
+ color="#800000">dfdy</font>[<font color="#800000">x</font>,<font
+ color="#800000">y</font>]</i></font><i>}
+}</i></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font>}</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font><b><font
+ color="#0000ff">setscalar</font></b>{<font color="#008000">constraintmom</font>[1]
+    <font color="#ff00ff">$</font>{<i><font color="#800000">g1</font>[<font
+ color="#800000">x</font>,<font color="#800000">y</font>]</i></font><i>}
+}</i></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font><b><font
+ color="#0000ff">setvector</font></b>{
+    <font color="#008000">gradconstraintmom</font>[1]</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">....</font>{<font
+ color="#ffffff">..</font><font color="#ff00ff">$</font>{<i>dg1dx[x,y]</i>}
+    <font color="#ff00ff">$</font>{<i>dg1dy[x,y]</i>}<font
+ color="#ffffff">..</font>}</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font>}</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font><b><font
+ color="#0000ff">setscalar</font></b>{<font color="#008000">constraintmom</font>[2]
+    <font color="#ff00ff">$</font>{<i><font color="#800000">g2</font>[<font
+ color="#800000">x</font>,<font color="#800000">y</font>]</i></font><i>}
+}</i></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font><b><font
+ color="#0000ff">setvector</font></b>{
+    <font color="#008000">gradconstraintmom</font>[2]</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">....</font>{<font
+ color="#ffffff">..</font><font color="#ff00ff">$</font>{<i><font
+ color="#800000">dg2dx</font>[<font color="#800000">x</font>,<font
+ color="#800000">y</font>]</i></font><i>}
+    </i><font face="Courier New"><font color="#ff00ff">$</font>{<i><font
+ color="#800000">dg2dy</font>[<font color="#800000">x</font>,<font
+ color="#800000">y</font>]</i></font><i>}</i><font face="Courier New"><font
+ color="#ffffff">..</font>}</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font>}</font></li>
+  <li>
+    <font face="Courier New">}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">setvector</font></b>{<font
+ color="#008000">parammom</font>
+{ 0 0 } }</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">analyse</font></b>{}</font></li>
+  <li>
+    <font face="Courier New"><b><font color="#0000ff">optfsqp1</font></b>{
+1 2 0 0 0 0.00001 0.00001 300 1</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font>{ 2 2 { 15
+-3 }
+}</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font>{ 2 2 {} }</font></li>
+  <li>
+    <font face="Courier New"><font color="#ffffff">..</font>{ 2 2 {} }</font></li>
+  <li>
+    <font face="Courier New">}</font></li>
+</ol>
+<b>Legend for command file code:</b>
+<p><b><font face="Courier New"><font color="#0000ff"><font size="-1">pre-defined
+file interpreter function</font></font></font></b>
+</p>
+<p><b><font face="Courier New"><font color="#000080"><font size="-1">user-defined
+file interpreter function</font></font></font></b>
+</p>
+<p><i><font face="Courier New"><font size="-1">expression evaluator
+(calculator)
+expression</font></font></i>
+</p>
+<p><font face="Courier New"><font color="#800000"><font size="-1">user-defined
+calculator function or variable</font></font></font>
+</p>
+<p><font face="Courier New"><font color="#808080"><font size="-1">pre-defined
+calculator functions</font></font></font>
+</p>
+<p><font face="Courier New"><font size="-1"><font color="#ff00ff">calculator
+function defined via</font><font color="#808000"> </font><b><font
+ color="#0000ff">definefunction</font></b></font></font>
+</p>
+<p><font face="Courier New"><font color="#008080"><font size="-1">user-defined
+shell variable</font></font></font>
+</p>
+<p><font face="Courier New"><font color="#008000"><font size="-1">shell
+variable
+with a pre-defined meaning</font></font></font>
+</p>
+<p><font face="Courier New"><font color="#800080"><font size="-1">character
+or string with special meaning</font></font></font>
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p>With the <b><font color="#0000ff">setfile</font></b> command in
+line
+1 we create the shell output file <font color="#008000">outfile</font>
+where functions will write their reports and error reports, and connect
+it with the file "quick.ct".
+</p>
+<p>Lines 3 to 14 contain some preliminary definitions of new expression
+evaluator functions, which will be used later in the analysis block.
+Namely
+these are the objective (line 3) and both constraint functions (lines 4
+and 5), derivatives of the objective function with respect to the first
+(line 7) and the second (line 8) parameter, and derivatives of the
+first
+(lines 10 and 11) and the second (lines 13 and 14) constraint function
+with respect to both parameters. Note that <i>x</i> and <i>y</i> are
+just
+names of function arguments that refer to the first and the second
+optimization
+parameters, and can be chosen arbitrarily.
+</p>
+<p>In lines 15 to 16 we create variables with pre-defined meaning <font
+ color="#008000">parammom</font>,
+<font color="#008000">objectivemom</font>
+and <font color="#008000">constraintmom</font>. The aim of this is
+merely
+to specify the relevant characteristic dimensions of the problem. These
+are stored in internal variables of the shell and are used when
+creating
+pre-defined variables, whose dimensions are by definition equal to
+these
+characteristic dimensions. By creating vector <font color="#008000">parammom</font>,
+number of parameters <i>numparam</i> is defined, by creating scalar <font
+ color="#008000">objectivemom</font>
+number of objective functions <i>numobjectives</i> is defined and by
+creating
+scalar variable constraintmom number of constraints <i>numconstraints</i>
+is defined. Note that no values are assigned to these variables. The
+same
+effect as creating <font color="#008000">parammom</font> would have
+for
+example creating <font color="#008000">paramopt</font>, and creating
+vector
+<font color="#008000">gradconstraintmom</font>
+could replace both creating vector <font color="#008000">parammom</font>
+and scalar <font color="#008000">constraintmom</font>, since both <i>numconstraints</i>
+and <i>numparam</i> are relevant for this variable.
+</p>
+<p>Lines 20 to 33 form the <b>analysis block</b>, which is user
+definition
+of the direct analysis and is interpreted at every analysis run. This
+block
+specifies how relevant quantities like objective and constraint
+functions
+and their derivatives are evaluated at a specific set of optimization
+parameters.
+</p>
+<p>In lines 20 and 21 current values of parameters are stored in
+expression
+evaluator variables <font color="#800000">x</font> and <font
+ color="#800000">y</font>.
+These values are obtained from vector <font color="#008000">parammom</font>
+where they are stored by the algorithm that requested execution of a
+direct
+analysis.
+</p>
+<p>In lines 22 to 33 the relevant quantities are evaluated and stored
+into
+the appropriate pre-defined variables where the requesting algorithm
+can
+obtain them. Value of the objective function is stored into scalar <font
+ color="#008000">objectivemom</font>
+(line 22) its gradient is stored into vector <font color="#008000">gradobjectivemom</font>
+(lines 23 to 25), values of the constraint functions are stored into
+scalar
+variable <font color="#008000">constraintmom</font> (lines 26 and 30),
+and their gradients to vector variable <font color="#008000">gradconstraintmom</font>
+(lines 27 to 29 and 31 to 33) Auxiliary functions that were defined in
+lines 3 to 14 of the initialization part are used, called with the
+current
+parameters <font color="#800000">x</font> and <font color="#800000">y</font>.
+In more realistic case this part would include running some numerical
+simulation
+at the current parameters, the necessary interfacing with the
+simulation
+programme (for updating simulation parameters and reading results) and
+possibly some housekeeping for deriving final values from the
+simulation
+results.
+</p>
+<p>A test analysis at parameters&nbsp;<img src="Image14.gif" height="30"
+ width="51">
+is run in line 36 by the <b><font color="#0000ff">analyse</font></b>
+function.
+This function takes parameter values from vector <font color="#008000">parammom</font>;
+therefore this vector is set in line 35.
+</p>
+<p>Finally, the problem is solved using function <b><font
+ color="#0000ff">fsqp1</font></b>,
+which runs the feasible sequential quadratic programming optimization
+algorithm
+(lines 37 to 41). This function requires nine numerical arguments,
+namely
+number of objective functions, number of non-linear inequality
+constraints,
+number of linear inequality constraints, number of non-linear equality
+constraints, number of linear equality constraints, final norm
+requirement
+for the Newton direction, maximum allowed violation of nonlinear
+equality
+constraints at an optimal point, the maximum number of iterations, and
+information whether gradients are provided, and three vector arguments,
+namely initial guess and lower and upper parameter bounds.
+</p>
+<p>Let?s say that the above command file has been saved as "quick.cm"
+and
+that the shell programme is named "inverse". We can run the file by
+</p>
+<p><font face="Courier New"><font color="#008000">inverse quick.cm</font></font>
+</p>
+<p>which solves the problem. The report including final results can
+then
+be checked in the file "quick.ct".
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<p><b><font color="#ff0000"><font size="+1">Further Information &amp;
+Support</font></font></b>
+</p>
+<p><b><i>Inverse</i> mail:</b>
+</p>
+<p>igor@c3m.si
+</p>
+<p><b><i>Inverse</i> R&amp;Dhome page:</b>
+</p>
+<p>http://www.c3m.si/inverse/
+</p>
+<p><b>Unframed version of this page:</b>
+</p>
+<p>http://www.c3m.si/inverse/invhome.html
+</p>
+<p><b>Documents related to <i>Inverse</i>:</b>
+</p>
+<p>http://www.c3m.si/inverse/doc/
+</p>
+<p><b><i>Inverse</i> manuals (on-line &amp; downloadable):</b>
+</p>
+<p>http://www.c3m.si/inverse/doc/man/
+</p>
+<p><b>Examples:</b>
+</p>
+<p>http://www.c3m.si/inverse/examples/
+<br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+</body>
+</html>

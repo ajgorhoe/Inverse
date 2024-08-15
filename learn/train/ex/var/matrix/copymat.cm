@@ -1,0 +1,203 @@
+* {*********************************************************************
+
+File: var/matrix/copymat.cm
+
+  This file dmonstrates how the function for copying matrices "copymatrix"
+works.
+
+Author: Igor Gresovnik, May 1998
+
+************************************************************************}
+
+setfile{outfile copymat.ct}
+
+
+* {
+**************************  FUNCTION "copymatrix"  ***************************
+  Function "copymatrix" copies a matrix to another matrix or a group of
+matrices which are a part of the same matrix variable to another group of
+matrices. If the target matrices don't exist, they are created. The whole
+matrix variable (not only elements of the variable's value table) can also
+be created if necessary.
+
+  The general rules for unary operations on user defined variables with a
+result apply to "copymatrix". Brief summary of these rules:
+  - These functions have require two arguments: The operand specification and
+the result specification. Specifications must be given in a standard way for
+specifying variables: a variable name is followed (optionally) by indeces in
+a square bracket, e.g. "m1", "m1[2]", "mat[4 1]", "A[2,3]". if a specification
+does not contain indeces (there is no square bracket after the name or is
+empty), it referes to a whole variable. If there are less indeces as is the
+rank of a variable, the specification referes to a sub-table of objects which
+are iin the variable's value table. If there are as many indeces as is the
+rank of a variable, the specification refers to a single element of a variable.
+  - Both the operand and the result specification can refer to an individual
+object of a variable (a matrix in this case), a sub-table of a variable's
+value table, or a whole variable.
+  - An operand variable must exist, otherwise this is an error. Indeces in the
+operand specification must be in the range of the variable dimensions,
+otherwise this is an error.
+  - If the result variable does not exist, it is created anew with the same
+dimensions of its value table as are the dimensions of the operend's value
+table (or sub-table).
+  -If the result variable exists, but the dimensions of its value table don't
+match the dimensions of the operand's value table, it is first deleted and then
+created anew with right dimensions.
+*******************************************************************************
+}
+
+write{\n"************  EXAMPLES FOR copymatrix  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR copymatrix  ************"\n\n}
+
+
+write{\n"************ \Qcopymatrix\Q on a variable of rank 0:   ************"\n\n}
+fwrite{\n"************  \Qcopymatrix\Q on a variable of rank 0:  ************"\n\n}
+
+setmatrix{m1 2 2 {0.11 0.12 0.21 0.22} }
+printmatrix{m1} fprintmatrix{m1}
+
+write{"\nCopying matrix m1 to a non-existing matrix (matrix is created):\n"}
+fwrite{"\nCopying matrix m1 to a non-existing matrix (matrix is created):\n"}
+copymatrix{m1 res}
+printmatrix{res} fprintmatrix{res}
+
+newmatrix{res}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying matrix m1 to an existent NULL matrix :\n"}
+fwrite{"\nCopying matrix m1 to an existent NULL matrix :\n"}
+copymatrix{m1 res}
+printmatrix{res} fprintmatrix{res}
+
+setmatrix{res 2 3}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying matrix m1 to an existent matrix (matrix is overwritten):\n"}
+fwrite{"\nCopying matrix m1 to an existent matrix (matrix is overwritten):\n"}
+copymatrix{m1 res}
+printmatrix{res} fprintmatrix{res}
+
+
+newmatrix{res [3]}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying matrix m1 to an existent matrix with different dimensions:\n"
+      "  the whole matrix variable is overwritten and the dimensions changed.\n"}
+fwrite{"\nCopying matrix m1 to an existent matrix with different dimensions:\n"
+      "  the whole matrix variable is overwritten and the dimensions changed.\n"}
+copymatrix{m1 res}
+printmatrix{res} fprintmatrix{res}
+
+
+write{\n\n"************ \Qcopymatrix\Q on a variable of dimension 2:   ************"\n\n}
+fwrite{\n\n"************  \Qcopymatrix\Q on a variable of dimension 2:  ************"\n\n}
+
+
+newmatrix{m1[2]}
+setmatrix{m1[1] 2 2 {1.11 1.12 1.21 1.22} }
+setmatrix{m1[2] 2 2 {2.11 2.12 2.21 2.22} }
+printmatrix{m1} fprintmatrix{m1}
+
+write{"\nCopying the matrix m1[1] to a non-existing matrix:\n"}
+fwrite{"\nCopying the matrix m1[1] to a non-existing matrix:\n"}
+copymatrix{m1[1] res2}
+printmatrix{res2} fprintmatrix{res2}
+
+write{"\nCopying the whole matrix  variable m1 to a non-existing matrix:\n"}
+fwrite{"\nCopying the whole matrix  variable m1 to a non-existing matrix:\n"}
+copymatrix{m1 res1}
+printmatrix{res1} fprintmatrix{res1}
+
+newmatrix{res} setmatrix{res 3 4}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying the matrix m1[1] to an existing matrix (matrix is overwritten):\n"}
+fwrite{"\nCopying the matrix m1[1] to an existing matrix (matrix is overwritten):\n"}
+copymatrix{m1[1] res}
+printmatrix{res} fprintmatrix{res}
+
+write{"\nCopying the whole matrix variable m1 to an existing matrix of rank 0\n"
+      "  (matrix is overwritten and the variable dimensions are changed):\n"}
+fwrite{"\nCopying the whole matrix variable m1 to an existing matrix of rank 0\n"
+      "  (matrix is overwritten and the variable dimensions are changed):\n"}
+copymatrix{m1 res}
+printmatrix{res} fprintmatrix{res}
+
+
+write{"\n\nExamples where the result matrix variable has dimension 2:"}
+
+newmatrix{res[2]}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying the matrix m1[2] to the matrix res[1]:\n"}
+fwrite{"\nCopying the matrix m1[2] to the matrix res[1]:\n"}
+copymatrix{m1[2] res[1]}
+printmatrix{res} fprintmatrix{res}
+
+newmatrix{res[2]}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying the whole matrix variable m1 to the matrix variable res:\n"}
+fwrite{"\nCopying the whole matrix variable m1 to the matrix variable res:\n"}
+copymatrix{m1 res}
+printmatrix{res} fprintmatrix{res}
+
+newmatrix{res[2]}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying the matrix m1[2] to the matrix variable res\n"
+      "  (the dimension of the result matrix variable changes):\n"}
+fwrite{"\nCopying the matrix m1[2] to the matrix variable res\n"
+      "  (the dimension of the result matrix variable changes):\n"}
+copymatrix{m1[2] res}
+printmatrix{res} fprintmatrix{res}
+
+
+
+
+write{\n\n"************ \Qcopymatrix\Q on a variable of dimension 2x3:   ************"\n\n}
+fwrite{\n\n"************  \Qcopymatrix\Q on a variable of dimension 2x3:  ************"\n\n}
+
+newmatrix{m1[2 3]}
+setmatrix{m1[1 1] 2 2 {11.11 11.12 11.21 11.22} }
+setmatrix{m1[1 2] 2 2 {12.11 12.12 12.21 12.22} }
+setmatrix{m1[1 3] 2 2 {13.11 13.12 13.21 13.22} }
+setmatrix{m1[1 4] 2 2 {21.11 21.12 21.21 21.22} }
+setmatrix{m1[1 5] 2 2 {22.11 22.12 22.21 22.22} }
+setmatrix{m1[1 6] 2 2 {23.11 23.12 23.21 23.22} }
+printmatrix{m1} fprintmatrix{m1}
+newmatrix{res[3]}
+write{"\nMatrix variable res is of dimension 3:\n"}
+fwrite{"\nMatrix variable res is of dimension 3:\n"}
+printmatrix{res} fprintmatrix{res}
+
+
+write{"\nCopying one matrix m1[2 3] to one matrix (res[3]):\n"}
+fwrite{"\nCopying one matrix m1[2 3] to one matrix (res[3]):\n"}
+copymatrix{m1[2 3] res[3]}
+printmatrix{res} fprintmatrix{res}
+
+break{}
+
+newmatrix{res[3]}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying a subgroup of matrices m1[1] to a variable of dimension 3\n"
+      "(The result variable already has the same dimension as the subgroup):\n"}
+fwrite{"\nCopying a subgroup of matrices m1[1] to a variable of dimension 3\n"
+      "(The result variable already has the same dimension as the subgroup):\n"}
+copymatrix{m1[1] res}
+printmatrix{res} fprintmatrix{res}
+
+newmatrix{res[3]}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying the whole matrix variable m1 to matrix variable res\n"
+      "(the result variable is overwritten because it is not of the right dimension):\n"}
+fwrite{"\nCopying the whole matrix variable m1 to matrix variable res\n"
+      "(the result variable is overwritten because it is not of the right dimension):\n"}
+copymatrix{m1 res}
+printmatrix{res} fprintmatrix{res}
+
+newmatrix{res[3]}
+printmatrix{res} fprintmatrix{res}
+write{"\nCopying one matrix m1[2 3] to a variable of dimension 3\n"
+      "(the result variable is overwritten because it is not of the right dimension):\n"}
+fwrite{"\nCopying one matrix m1[2 3] to a variable of dimension 3\n"
+      "(the result variable is overwritten because it is not of the right dimension):\n"}
+copymatrix{m1[2 3] res}
+printmatrix{res} fprintmatrix{res}
+
+
+

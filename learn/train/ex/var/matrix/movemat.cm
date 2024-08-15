@@ -1,0 +1,161 @@
+* {*********************************************************************
+
+File: var/matrix/movemat.cm
+
+  This file dmonstrates how the functions for moving matrices "movematrixvar"
+and "movematrix" works.
+
+Author: Igor Gresovnik, May 1998
+
+************************************************************************}
+
+setfile{outfile movemat.ct}
+
+
+
+* {
+ ************************  FUNCTION "movematrixvar"  *************************
+  Functions "movematrixvar" moves a vhole matrix variable to another matrix
+variable. If the result matrix variable already exists, it is overwritten.
+A variable with the first name (the operand) does not exist anymore after the
+operation.
+  Function "movematrixvar" requires two arguments - the first one is the name
+of the variable which will be moved. The second arguent is the new name of
+the variable.
+*******************************************************************************
+}
+
+write{\n"************  EXAMPLES FOR movematrixvar  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR movematrixvar  ************"\n\n}
+
+
+newmatrix{m1[2 2]}
+setmatrix{m1[1 1] 2 2 { 11.11 11.12 11.21 11.22 } }
+setmatrix{m1[1 2] 2 2 { 12.11 12.12 12.21 12.22 } }
+setmatrix{m1[2 1] 2 2 { 21.11 21.12 21.21 21.22 } }
+setmatrix{m1[2 2] 2 2 { 22.11 22.12 22.21 22.22 } }
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+write{"\nMoving matrix variable m1 to a non-existing matrix variable m2:\n"}
+fwrite{"\nMoving matrix variable m1 to a non-existing matrix variable m2:\n"}
+movematrixvar{m1 m2}
+write{"\nMatrix variable m1 no longer exists so we can not print it:\n"}
+fwrite{"\nMatrix variable m1 no longer exists so we can not print it:\n"}
+printmatrixvar{m1} fprintmatrixvar{m1}
+write{"\nMatrix variable m2 becomes previous m1:\n"}
+fwrite{"\nMatrix variable m2 becomes previous m1:\n"}
+printmatrixvar{m2} fprintmatrixvar{m2}
+
+newmatrix{m3[2 3]}
+printmatrixvar{m3} fprintmatrixvar{m3}
+write{"\nMoving matrix variable m2 to an existing matrix variable m3:\n"}
+fwrite{"\nMoving matrix variable m2 to an existing matrix variable m3:\n"}
+movematrixvar{m2 m3}
+write{"\nMatrix variable m2 no longer exists so we can not print it:\n"}
+fwrite{"\nMatrix variable m2 no longer exists so we can not print it:\n"}
+*{ printmatrixvar{m2} fprintmatrixvar{m2} }
+write{"\nMatrix variable m3 becomes previous m2, old variable is overwritten:\n"}
+write{"\nMatrix variable m3 becomes previous m2, old variable is overwritten:\n"}
+printmatrix{m3} fprintmatrix{m3}
+
+
+
+
+
+* {
+**************************  FUNCTION "movematrix"  ***************************
+  Function "movematrix" moves a matrix to another matrix or a group of
+matrices which are a part of the same matrix variable to another group of
+matrices. If the target matrix variable doesn't exist, it is created. If the
+target matrices exist before the operation, they are replaced by the moved
+matrices.
+
+  For the function "movematrix" the same rules apply as for "copymatrix".
+An esseintial difference between these two functions is that "copymatrix"
+doesn't affect the operand variable while the "movematrix" does.
+
+  The main difference between the "movematrixvar" and "movematrix" is that
+"movematrix" can move only elements (matrices) of the matrix variables, not
+matrix variables themselves. Therefore, a matrix variable always remains
+defined after the "movematrix" function is performed on it, only one or more
+its elements are moved away.
+
+  The general rules for unary operations on user defined variables with a
+result apply to "movematrixmatrix" as well as to copymatrix. A brief summary
+of these rules:
+  - These functions have require two arguments: The operand specification and
+the result specification. Specifications must be given in a standard way for
+specifying variables: a variable name is followed (optionally) by indeces in
+a square bracket, e.g. "m1", "m1[2]", "mat[4 1]", "A[2,3]". if a specification
+does not contain indeces (there is no square bracket after the name or is
+empty), it referes to a whole variable. If there are less indeces as is the
+rank of a variable, the specification referes to a sub-table of objects which
+are iin the variable's value table. If there are as many indeces as is the
+rank of a variable, the specification refers to a single element of a variable.
+  - Both the operand and the result specification can refer to an individual
+object of a variable (a matrix in this case), a sub-table of a variable's
+value table, or a whole variable.
+  - An operand variable must exist, otherwise this is an error. Indeces in the
+operand specification must be in the range of the variable dimensions,
+otherwise this is an error.
+  - If the result variable does not exist, it is created anew with the same
+dimensions of its value table as are the dimensions of the operend's value
+table (or sub-table).
+  -If the result variable exists, but the dimensions of its value table don't
+match the dimensions of the operand's value table, it is first deleted and then
+created anew with right dimensions.
+*******************************************************************************
+}
+
+
+write{\n"************  EXAMPLES FOR movematrix  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR movematrix  ************"\n\n}
+
+newmatrix{m1}
+setmatrix{m1 2 3 { 0.11 0.12 0.13 0.21 0.22 0.23 } }
+printmatrixvar{m1} fprintmatrixvar{m1} 
+write{"\nMoving matrix m1[] to m2[]; Matrix variable m2 is created anew.\n"}
+write{"Matrix variable m1 remains defined, but it doesn't have any elements:\n"}
+fwrite{"\nMoving matrix m1[] to m2[]; Matrix variable m2 is created anew.\n"}
+fwrite{"Matrix variable m1 remains defined, but it doesn't have any elements:\n"}
+movematrix{m1 m2}
+printmatrixvar{m1} fprintmatrixvar{m1}
+printmatrixvar{m2} fprintmatrixvar{m2}
+
+
+newmatrix{m0 [2 2]}
+printmatrixvar{m0} fprintmatrixvar{m0}
+write{"\nMoving matrix m2 to m0; Matrix variable m2 is overwritten because\n"
+      "  it has different dimension than the operand:\n"}
+fwrite{"\nMoving matrix m2 to m0; Matrix variable m2 is overwritten because\n"
+      "  it has different dimension than the operand:\n"}
+movematrix{m2 m0}
+printmatrixvar{m0} fprintmatrixvar{m0}
+
+
+newmatrix{m1[2 2]}
+setmatrix{m1[1 1] 2 2 { 11.11 11.12 11.21 11.22 } }
+setmatrix{m1[1 2] 2 2 { 12.11 12.12 12.21 12.22 } }
+setmatrix{m1[2 1] 2 2 { 21.11 21.12 21.21 21.22 } }
+setmatrix{m1[2 2] 2 2 { 22.11 22.12 22.21 22.22 } }
+printmatrixvar{m1} fprintmatrixvar{m1}
+newmatrix{res[3 2]}
+printmatrixvar{res} fprintmatrixvar{res}
+
+write{"\nMoving a table of matrices m1[2] to res[3] (table dimensions match):\n"}
+fwrite{"\nMoving a table of matrices m1[2] to res[3] (table dimensions match):\n"}
+movematrix{m1[2] res[3]}
+printmatrixvar{res} fprintmatrixvar{res}
+write{"\nMatrix variable m1 after the operation:\n"}
+fwrite{"\nMatrix variable m1 after the operation:\n"}
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+write{"\nMoving a table of matrices m2[] to res[] (table dimensions don't match):\n"}
+fwrite{"\nMoving a table of matrices m2[] to res[] (table dimensions don't match):\n"}
+movematrix{m1 res}
+printmatrixvar{res} fprintmatrixvar{res}
+write{"\nMatrix variable m1 after the operation:\n"}
+fwrite{"\nMatrix variable m1 after the operation:\n"}
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+

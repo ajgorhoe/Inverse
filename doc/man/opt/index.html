@@ -1,0 +1,127 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>1 NASLOV 1</TITLE>		    <!-- Google Analitics - account Documents, 	property Documents - all -->	<script>	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');	  ga('create', 'UA-96832295-1', 'auto');	  ga('send', 'pageview');	</script>	
+</HEAD>
+<BODY>
+
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<B><I><FONT SIZE=5><P ALIGN="CENTER">Solving Optimisation Problems</P>
+<P ALIGN="CENTER">by the Optimisation Shell Inverse</P>
+</B></I></FONT><P ALIGN="JUSTIFY">&nbsp;</P>
+<B><FONT SIZE=4><P ALIGN="CENTER">Version 0</P>
+</B></FONT><P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<I><P ALIGN="CENTER">Igor Grešovnik</P>
+<P ALIGN="CENTER">&nbsp;</P>
+<FONT SIZE=2><P ALIGN="CENTER">Ljubljana, the 20<SUP> th</SUP> of December 1998</P>
+</I></FONT><P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<B><I><FONT SIZE=4><P ALIGN="JUSTIFY">Contents:</P>
+</B></I></FONT><P ALIGN="JUSTIFY">&nbsp;</P>
+<B><I><P ALIGN="JUSTIFY">1.&#9;Optimisation And Inverse Analyses&#9;</B></I><A HREF="#_Toc442157865">*</A><DIR>
+
+<B><FONT SIZE=3><P>1.1&#9;Defining the Direct Analysis&#9;</B></FONT><A HREF="#_Toc442157866">*</A></P>
+<B><FONT SIZE=3><P>1.2&#9;Optimization algorithms&#9;</B></FONT><A HREF="#_Toc442157867">*</A></P><dir>
+<FONT SIZE=2><P>1.2.1&#9;inverse<I> { methodspec params }</I>&#9;</FONT><A HREF="#_Toc442157868">*</A></P><DIR>
+
+<FONT SIZE=2><P>1.2.1.1&#9;inverse<I> { 1d  parabolic  x0 step0 tol maxitbrac maxit }</I>&#9;</FONT><A HREF="#_Toc442157869">*</A></P>
+<FONT SIZE=2><P>1.2.1.2&#9;inverse<I> { nd  simplex  tol maxit startguess }</I>&#9;</FONT><A HREF="#_Toc442157870">*</A></P></DIR></DIR>
+
+<B><FONT SIZE=3><P>1.3&#9;Auxiliary tools&#9;</B></FONT><A HREF="#_Toc442157871">*</A></P><dir>
+<FONT SIZE=2><P>1.3.1&#9;Testing the Direct Analysis&#9;</FONT><A HREF="#_Toc442157872">*</A></P><DIR>
+
+<FONT SIZE=2><P>1.3.1.1&#9;analyse<I> { }</I>&#9;</FONT><A HREF="#_Toc442157873">*</A></P></DIR>
+
+<FONT SIZE=2><P>1.3.2&#9;Tabulating Functions&#9;</FONT><A HREF="#_Toc442157874">*</A></P><DIR>
+
+<FONT SIZE=2><P>1.3.2.1&#9;tab1d0<I> { which val1 val2 numpt pobjective pmeas }</I>&#9;</FONT><A HREF="#_Toc442157875">*</A></P>
+<FONT SIZE=2><P>1.3.2.2&#9;tab2d0<I> { whichx x1 x2 numptx whichy y1 y2 numpty pobjective pmeas }</I>&#9;</FONT><A HREF="#_Toc442157876">*</A></P>
+<FONT SIZE=2><P>1.3.2.3&#9;tabline0<I> { kindspec args }</I>&#9;</FONT><A HREF="#_Toc442157877">*</A></P>
+<P ALIGN="JUSTIFY">&nbsp;</P></DIR>
+</DIR></DIR>
+</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<OL>
+
+<P ALIGN="CENTER"><A NAME="_Toc442157865"><B><FONT SIZE=5><LI>Optimisation And Inverse Analyses</A></LI></P>
+<OL>
+
+<P ALIGN="CENTER"><LI><A NAME="_Toc442157866"></FONT><I><FONT SIZE=5>Defining the Direct Analysis</A></LI></P>
+</B></I></FONT><P ALIGN="JUSTIFY">As the direct analysis we understand the evaluation of the objective and constraint functions and possibly their gradients.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+
+<P ALIGN="CENTER"><A NAME="_Toc442157867"><B><I><FONT SIZE=5><LI>Optimization algorithms</A></LI></P>
+</B></I></FONT><P ALIGN="JUSTIFY"></P>
+<OL>
+
+<A NAME="_Toc442157868"><B><FONT SIZE=4><LI>inverse</B><I> { methodspec params }</A></LI>
+</I></FONT><P ALIGN="JUSTIFY">This function performs different types of optimisation algorithm. <I>methodspec</I> determines which optimisation algorithm is used. It is followed by parameter specifications <I>params</I>, which are dependent on the type of algorithm used.</P>
+
+<P ALIGN="JUSTIFY">&#9;<I>methodspec</I> begins either with string <I>1d</I> or <I>nd</I>, indicating whether we will solve one-dimensional (one parameter) or multi-dimensional problems, respectively. The second part of <I>methodspec</I> is a string that specifies the method more precisely. Method and parameter specifications for different methods are described below.</P>
+<P ALIGN="JUSTIFY"></P>
+<OL>
+
+<P ALIGN="JUSTIFY"><A NAME="_Toc442157869"><B><FONT SIZE=4><LI>inverse</B><I> { <B>1d  parabolic</B>  x0 step0 tol maxitbrac maxit }</A></LI></P>
+</I></FONT><P ALIGN="JUSTIFY">Performs minimisation of the objective function of one parameter. Successive three points quadratic approximations of the objective function are used where possible. The minimisation is performed in two steps.</P>
+<P ALIGN="JUSTIFY">In the first step, the interval containing a local minimum is searched for. This is achieved by searching for combination of three points such that the middle point has the lowest value of the objective function. The first point is given by the user (<I>x0</I>), and the second two points are obtained by adding the initial bracketing step (<I>step0</I>) to that point once and twice, respectively. Then the three points are moved, if necessary, until the bracketing condition is reached (i.e. the middle point has the lowest value of the objective function).</P>
+<P ALIGN="JUSTIFY">In the second step, the bracketing interval that contains the three bracketing points is shrinked in such a way that the bracketing condition remains satisfied. In each iteration a new point is added in the larger of the two intervals defined by the three bracketing points. Among four points we obtain this way, those three which satisfy the bracketing condition and define the smallest interval are kept for the next iteration. The point that is added is usually chosen by finding the minimum of quadratic parabola that through the current bracketing points. This is not done if one of the two intervals becomes much smaller, since in such cases successive quadratic approximations can converge slowly.</P>
+<I><P ALIGN="JUSTIFY">x0</I> is the initial point, and <I>step0</I> is the initial step of the bracketing stage. The second and the third point of the initial bracketing triple are obtained by adding <I>step0</I> to <I>x0</I> once and twice, respectively. <I>tol</I> is the tolerance for function minimum. The algorithm terminates when the difference between the highest and the lowest value of the objective function in the current three bracketing points is below <I>tol</I>. <I>maxitbrac</I> is the maximal allowed number of iterations at searching for bracketing triple. If the algorithm fails to find the three points satisfying the bracketing condition in <I>maxitbrac</I> iterations, it terminates and reports an error. <I>maxit</I> is the maximal allowed number of iterations in the second stage.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY"><A NAME="_Toc442157870"><B><FONT SIZE=4><LI>inverse</B><I> { <B>nd  simplex</B>  tol maxit startguess }</A></LI></P>
+
+</I></FONT><P ALIGN="JUSTIFY">Performs minimisation of the objective function by simplex method. Apeces of a simplex is successively moved in such a way that the simplex moves and shrinks toward function minimum. Simplex is a geometrical body in a n-dimensional space that has n+1 dimensions.</P>
+<I><P ALIGN="JUSTIFY">tol</I> is tolerance for function minimum. The algorithm terminates when the difference between the greatest and the least value of the objective function in simplex apeces becomes less than <I>tol</I>. <I>maxit</I> is the maximal allowed number of iterations. If the minimum is no reached in <I>maxit</I> iterations, the algorithm terminates and reports an error. <I>startguess</I> is the starting guess, containing the initial simplex. This must be a matrix of dimensions <I>numparam+1 </I>x<I> numparam</I>. Rows of this matrix represent apeces of the initial simplex.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P></ol></ol>
+<P ALIGN="CENTER"><A NAME="_Toc442157871"><B><I><FONT SIZE=5><LI>Auxiliary tools</A></LI></P>
+</B></I></FONT><P ALIGN="JUSTIFY"></P>
+<OL>
+
+<A NAME="_Toc442157872"><B><FONT SIZE=4><LI>Testing the Direct Analysis</A></LI>
+</B></FONT><P ALIGN="JUSTIFY"></P>
+<OL>
+
+<P ALIGN="JUSTIFY"><A NAME="_Toc442157873"><B><FONT SIZE=4><LI>analyse</B><I> { }</A></LI></P>
+
+</I></FONT><P ALIGN="JUSTIFY">Performs the direct analysis at parameters <I>parammom</I>. The pre-defined vector <I>parammom</I> must therefore be set before this function is called. The values of the pre-defined global variables that hold analysis results are printed to the programme's standard output and output file.</P>&nbsp;
+</ol>
+<P ALIGN="JUSTIFY"></P>
+<A NAME="_Toc442157874"><B><FONT SIZE=4><LI>Tabulating Functions</A></LI>
+</B></FONT><P ALIGN="JUSTIFY"></P>
+<OL>
+
+<P ALIGN="JUSTIFY"><A NAME="_Toc442157875"><B><FONT SIZE=4><LI>tab1d0</B><I> { which val1 val2 numpt pobjective pmeas }</A></LI></P>
+</I></FONT><P ALIGN="JUSTIFY">Runs a set of <I>numpt</I> direct analyses so that parameter <I>which</I> is varied between <I>val1</I> and <I>val2</I> with a constant step. <I>pobjective</I> and <I>pmeas</I> specify if the objective function and measurements should be printed, respectively (values different than zero indicate that the appropriate quantities should be printed).</P>
+<P ALIGN="JUSTIFY">At the sampling points, parameters other than <I>which</I> are taken from the pre-defined vector <I>parammom</I>.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY"><A NAME="_Toc442157876"><B><FONT SIZE=4><LI>tab2d0</B><I> { whichx x1 x2 numptx whichy y1 y2 numpty pobjective pmeas }</A></LI></P>
+</I></FONT><P ALIGN="JUSTIFY">Runs a set of <I>numptx*numpty</I> direct analyses organised in a two-dimensional table so that parameters <I>whichx</I> and <I>whichy</I> are changed. Parameter <I>whichx</I> is varied between <I>x1</I> and <I>x2</I> with <I>numptx</I> equidistant sampling values, and parameter <I>whichy</I> is varied between <I>y1</I> and <I>y2</I> with <I>numpty</I> equidistant sampling values. <I>pobjective</I> and <I>pmeas</I> specify if the objective function and measurements should be printed, respectively (values different than zero indicate that the appropriate quantities should be printed).</P>
+<P ALIGN="JUSTIFY">At the sampling points, parameters other than <I>which</I> are taken from the pre-defined vector <I>parammom</I>.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY"><A NAME="_Toc442157877"><B><FONT SIZE=4><LI>tabline0</B><I> { kindspec args }</A></LI></P>
+</I></FONT><P ALIGN="JUSTIFY">Runs a set of direct analyses along a line in the parameter space and prints the requested results to the programme's standard output and output file. <I>kindspec</I> is a string that specifies what kind of table of direct analyses should be made. The remaining arguments <I>args</I> specify the line along which the table is made, number of points, etc. <I>kindspec</I> can be either <I>lin</I> or <I>exp</I>. The meaning of the remaining arguments for both possibilities is explained below.</P>
+<OL>
+
+<B><P ALIGN="JUSTIFY"><LI>tabline0</B> <I>{ <B>lin</B> numpt pobjective pmeas point1 point21 }</LI></P>
+</I><P ALIGN="JUSTIFY">Runs <I>numpt</I> direct analyses with sampling points equidistantly distributed along the straight line between <I>point1</I> and <I>point2</I>. <I>pobjective</I> and <I>pmeas</I> specify if the objective function and measurements should be printed, respectively (values different than zero indicate that the appropriate quantities should be printed).</P>
+<B><P ALIGN="JUSTIFY"><LI>tabline0</B><I> { <B>exp</B> numpt factor pobjective pmeas  point1 point2 }</LI></P>
+</I><P ALIGN="JUSTIFY">Runs <I>numpt</I> direct analyses with sampling points non-equidistantly distributed along the straight line between <I>point1</I> and <I>point2</I>. <I>pobjective</I> and <I>pmeas</I> specify if the objective function and measurements should be printed, respectively (values different than zero indicate that the appropriate quantities should be printed). <I>factor</I> is the factor for which the distance between the length of the following sampling interval is extended.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P></BODY>
+</HTML>

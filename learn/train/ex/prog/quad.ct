@@ -1,0 +1,194 @@
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||   INVERSE version 2.11 (Nov. 1997)    ||
+               ||                                       ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+A SIMPLE PROGRAM FOR SOLVING QUADRATIC EQUATIONS.
+
+
+Equation: 23*x^2+53*x+0=0.
+D2 is positive.
+Real solutions of the quadratic equation are:
+     -2.30435
+and
+     0.
+
+
+Equation: 532*x^2+0*x+523=0.
+D2 is negative.
+Complex solutions of the quadratic equation are:
+     0 + 0.991505 i
+and
+     0 - 0.991505 i.
+
+
+Equation: 53*x^2+754*x+452=0.
+D2 is positive.
+Real solutions of the quadratic equation are:
+     -13.5993
+and
+     -0.627113.
+
+
+Equation: 432*x^2+976*x+32=0.
+D2 is positive.
+Real solutions of the quadratic equation are:
+     -2.22598
+and
+     -0.033277.
+
+
+Equation: 532*x^2+0*x+52636=0.
+D2 is negative.
+Complex solutions of the quadratic equation are:
+     0 + 9.94685 i
+and
+     0 - 9.94685 i.
+
+
+Equation: 5423*x^2+65346*x+0=0.
+D2 is positive.
+Real solutions of the quadratic equation are:
+     -12.0498
+and
+     0.
+
+
+Equation: 532*x^2+0*x+0=0.
+D2 equals 0.
+The only solution of the quadratic equation is:
+             0.
+
+
+Equation: 5*x^2+976*x+-7645=0.
+D2 is positive.
+Real solutions of the quadratic equation are:
+     -202.742
+and
+     7.54162.
+
+
+Equation: -5432*x^2+-54*x+53256=0.
+D2 is positive.
+Real solutions of the quadratic equation are:
+     3.12619
+and
+     -3.13613.
+
+
+Equation: -5423*x^2+523*x+-543256=0.
+D2 is negative.
+Complex solutions of the quadratic equation are:
+     0.0482205 + -10.0087 i
+and
+     0.0482205 - -10.0087 i.
+
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 2.12  (Dec. 1997)    ||
+               ||                                       ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+A SIMPLE PROGRAM FOR SOLVING QUADRATIC EQUATIONS.
+
+
+Equation: 432*x^2+432*x+54=0.
+D2 is positive.
+Real solutions of the quadratic equation are:
+     -0.853553
+and
+     -0.146447.
+
+
+Equation: 4532*x^2+3*x+4=0.
+D2 is negative.
+Complex solutions of the quadratic equation are:
+     -0.00033098 + 0.029707 i
+and
+     -0.00033098 - 0.029707 i.
+
+
+
+
+
+
+END.

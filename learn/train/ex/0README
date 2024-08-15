@@ -1,0 +1,32 @@
+
+
+	*** INTRODUCTION
+
+  This directory contains examples of command files for optimization shell
+INVERSE. Different groups of examples are put to subdirectories. Each command
+file contains a brief description of what it does and what does it demonstrate.
+All command have extensions ".cm". Running each command file generates an
+appropriate control file with the extension ".ct". All the results are written
+to this file.
+
+  To run any of the examples, open a terminal window in the appropriate
+directory and type first the name of the shell program and then the name of the
+command file separated by space. 
+
+
+
+	*** SUBDIRECTORIES FOR DIFFERENT KINDS OF EXAMLES
+
+
+	** Subdirectory prog
+  
+  Contains examples of programming with the shell.
+
+
+  Files:
+
+quad.cm:  A program which solves a quadratic equation and prints the
+          solutions. Coefficients of the equation a x^2 + b x + c = 0 are input
+          by the user and the solutions are printed to standard output. Example
+          shows usage of loops and the system for evaluation of mathematical
+          expressions.

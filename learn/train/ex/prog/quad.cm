@@ -1,0 +1,106 @@
+* {*********************************************************************
+
+File: prog/quad.cm
+
+  This file contains a simple program for solving a quadratic equation
+	a x^2 + b x + c = 0 
+User is asked to input coefficients of the equation and the solutions
+are written to the standard output and to the control file ("quad.cm"
+in the same directory).
+  The purpuse of this example is to show how loops can be used when
+programming a shell. It also shows some functionality of the system for
+evaluation of mathematical expressions.
+
+Author: Igor Gresovnik, January 1998
+
+************************************************************************}
+
+
+
+
+
+*{ BEGINNING OF THE PROGRAM: }
+
+setfile{outfile quad.ct}  *{ The definition of the result file }
+*{ Preparation of some definitions within the system for evaluation of
+   mathematical ecpressions: }
+${D2:sqr(b)-4*a*c}
+${R1:(-b)/(2*a)}
+*{ With the above definition, expressions D2 and R1 are defined in terms of
+   variables a, b and c; it is not necessary to define these variables at
+   this stage. }
+write{\n"A SIMPLE PROGRAM FOR SOLVING QUADRATIC EQUATIONS."\n}
+fwrite{\n"A SIMPLE PROGRAM FOR SOLVING QUADRATIC EQUATIONS."\n}
+do{
+[
+  *{ The body of a do loop. It repeats until user specifies that he wants to
+  exit. First, coefficients are read: }
+  write{\n\n"Input coefficients of the equation !"\n}
+  write{"The first coefficient (a) must be  non-zero!"\n\n}
+  write{"Quadratic coefficient  (a):  "}
+  read{a}
+  write{\n"Linear coefficient    (b):  "}
+  read{b}
+  write{\n"Constant coefficient  (c):  "}
+  read{c}
+  write{\n\n}
+  write{"Equation: " $ a "*x^2+" $ b "*x+" $ c "=0."\n}
+  fwrite{\n}
+  fwrite{\n"Equation: " $ a "*x^2+" $ b "*x+" $ c "=0."\n}
+  *{ After a, b and c are read, expressions D2 and R1 have defined values since
+  all the terms of which they are composed have defined values. An if statement
+  branches according to different values of D2 so that the approppriate
+  algorithms for calculating solutions are performed: }
+  if{(D2<0)
+  [
+    *{ Negative D2, we have two complex solutions: }
+    ={R2:sqrt(-D2)/(2*a)}  *{ Auxiliary definition of R2 with assigned value }
+    *{ Output of the results to the standard output: }
+    write{"D2 is negative."\n}
+    write{"Complex solutions of the quadratic equation are:" \n}
+    write{"     " $ R1 " + " $ R2 " i" \n "and" \n}
+    write{"     " $ R1 " - " $ R2 " i." \n }
+    *{ Output of the results to the control file: }
+    fwrite{"D2 is negative."\n}
+    fwrite{"Complex solutions of the quadratic equation are:" \n}
+    fwrite{"     " $ R1 " + " $ R2 " i" \n "and" \n}
+    fwrite{"     " $ R1 " - " $ R2 " i." \n }
+  ] else
+  [
+    if{(D2==0)
+    [
+      *{ D2 equals zero, we have a double real zero: }
+      *{ Output of the results to the standard output: }
+      write{"D2 equals 0."\n}
+      write{"The only solution of the quadratic equation is:"\n 
+            "             " $ R1 "." \n}
+      *{ Output of the results to the control file: }
+      fwrite{"D2 equals 0."\n}
+      fwrite{"The only solution of the quadratic equation is:"\n 
+            "             " $ R1 "." \n}
+    ] else
+    [
+      *{ Positive D2, we have two real solutions: }
+      ={R2:sqrt(D2)/(2*a)}
+      ={a1:R1-R2}
+      ={a2:R1+R2}
+      *{ Output of the results to the standard output: }
+      write{"D2 is positive."\n}
+      write{"Real solutions of the quadratic equation are:" \n}
+      write{"     " $ a1 \n "and" \n}
+      write{"     " $ a2 "." \n }
+      *{ Output of the results to the control file: }
+      fwrite{"D2 is positive."\n}
+      fwrite{"Real solutions of the quadratic equation are:" \n}
+      fwrite{"     " $ a1 \n "and" \n}
+      fwrite{"     " $ a2 "." \n }
+    ]}
+  ]}
+  write{\n\n"Do you want to continue (0/1)? "}
+  read{continue}  *{ Read user's decision }
+  write{\n\n}
+  *{ Condition for do loop is user's decision: }
+] while (continue)
+}
+
+

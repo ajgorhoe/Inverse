@@ -1,0 +1,360 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Generator" content="Microsoft Word 97">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; HP-UX B.10.20 9000/712) [Netscape]">
+   <title>Optimisation of heating parameters for hot forming operation</title>
+</head>
+<body bgcolor="#FFFFFF" text="Black">
+<h1><b><font size=+2>Optimization of Heating Parameters for Hot Forming Operation</font></b> 
+</h1>
+<h1> </h1>
+<h2><i>Test Case Description</i> </h2>
+<p><br>In this example a two-stage processing of an axisymmetric billet
+with length <i>L=30 mm</i> and radius <i>r=10 mm</i> is considered:
+<ul>
+<li>
+<b><i>Heating: </i></b>In the first stage the billet at initial temperature
+<i>20<font face="Symbol">&deg;</font> C</i> is heated at <i>x=L</i> with
+a heat flux <i>F<sub>o</sub></i> for time <i>t<sub>h</sub></i> while the
+surface at <i>x=0</i> is kept at initial temperature. Other surfaces are
+isolated.</li>
+
+<li>
+<b><i>Forming:</i> </b>In the second stage the billet is deformed in such
+a way that prescribed displacement at <i>x=L</i> is <i>u<sub>x</sub>=-2
+mm</i> and at <i>x=0</i> is <i>u<sub>x</sub>=0</i>. Other surfaces are
+free. The deformation is modeled by an ideal elasto-plastic material model
+where flow stress depends on temperature. No heat transfer is assumed in
+the second stage. Material properties are summarized in Tables 1 and 2.</li>
+</ul>
+The discretized configurations of the specimen before and after heating
+and forming are illustrated in Figure 1 and 2, respectively. Only half
+of the domain is represented due to the symmetry condition. <br>&nbsp;
+<center><table WIDTH="85%" >
+<tr>
+<td WIDTH="20%"><img SRC="Image22.gif" height=276 width=131></td>
+
+<td WIDTH="5%">&nbsp;</td>
+
+<td WIDTH="75%"><img SRC="billet0.jpg" NOSAVE height=162 width=484></td>
+</tr>
+</table></center>
+
+<p>
+<center><b>Figure 1:</b> Temperature distribution after heating. The heat flux
+<br>F<sub>o</sub>=3.500 W/m<sup>2</sup> is applied for t<sub>h</sub>=10
+s.</center>
+
+<br>&nbsp;
+<br>&nbsp;
+<center><table WIDTH="85%" >
+<tr>
+<td WIDTH="20%"><img SRC="Image24.gif" height=275 width=137></td>
+
+<td WIDTH="5%">&nbsp;</td>
+
+<td WIDTH="75%"><img SRC="billet1.gif" NOSAVE height=211 width=452></td>
+</tr>
+</table></center>
+
+<center>
+<p>&nbsp;<b>Figure 2:</b> Effective stress distribution in the deformed
+specimen after forming. The heat flux
+<br>F<sub>o</sub>=3.500 W/m<sup>2</sup> is applied for t<sub>h</sub>=10
+s. Displacement of the right surface u<sub>x</sub>=-2 mm.
+<br>&nbsp;
+</center><p><center>
+    <p><b>Table 1:</b> Material properties</p>
+    </center>
+
+<center>
+  <table BORDER=1 CELLPADDING=9 WIDTH="370" >
+    <tr> 
+      <td VALIGN=TOP WIDTH="54%">Thermal conductivity (K)</td>
+      <td VALIGN=TOP WIDTH="16%"> 
+        <div align=right>30</div>
+      </td>
+      <td VALIGN=TOP WIDTH="30%"> 
+        <div align="center">[W/mK]</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="54%">Heat capacity (C)</td>
+      <td VALIGN=TOP WIDTH="16%"> 
+        <div align=right>500</div>
+      </td>
+      <td VALIGN=TOP WIDTH="30%"> 
+        <div align="center">[J/kg K]</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="54%">Density (<font face="Symbol">r</font>)</td>
+      <td VALIGN=TOP WIDTH="16%"> 
+        <div align=right>7850</div>
+      </td>
+      <td VALIGN=TOP WIDTH="30%"> 
+        <div align="center">[kg/m<sup>3</sup>]</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="54%">Youngs module (E)&nbsp;</td>
+      <td VALIGN=TOP WIDTH="16%"> 
+        <div align=right>210000</div>
+      </td>
+      <td VALIGN=TOP WIDTH="30%"> 
+        <div align="center">[MPa]</div>
+      </td>
+    </tr>
+    <tr ALIGN=CENTER NOSAVE> 
+      <td VALIGN=TOP WIDTH="54%"> 
+        <div align="left">Poissons ratio (<font face="Symbol">n</font>)</div>
+      </td>
+      <td VALIGN=TOP WIDTH="16%"> 
+        <div align=right>0.3</div>
+      </td>
+      <td VALIGN=TOP WIDTH="30%" NOSAVE> 
+        <div align="center">[/]</div>
+      </td>
+    </tr>
+  </table>
+</center>
+
+<br>&nbsp;
+<p> 
+  <center>
+    <b>Table 2:</b> Yield stress as a function of temperature 
+  </center>
+<br>&nbsp;
+<center>
+  <table BORDER=1 CELLPADDING=9 WIDTH="370" >
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%" height="32"> 
+        <div align="center">Temperature [<sup>o</sup>C]</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%" height="32"> 
+        <div align="center">Yield stress [MPa]</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%" HEIGHT="35"> 
+        <div align="center">20</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%" HEIGHT="30"> 
+        <div align="center">700&nbsp;</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">100</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">620</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">200</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">560</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">300</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">540</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">400</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">510</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">500</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">500</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">600</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">390</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">700</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">200</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">800</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">180</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%" HEIGHT="32"> 
+        <div align="center">900</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%" HEIGHT="32"> 
+        <div align="center">150</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">1000</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">120</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">1100</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">90</div>
+      </td>
+    </tr>
+    <tr> 
+      <td VALIGN=TOP WIDTH="49%"> 
+        <div align="center">1200</div>
+      </td>
+      <td VALIGN=TOP WIDTH="51%"> 
+        <div align="center">60</div>
+      </td>
+    </tr>
+  </table>
+</center>
+
+<h2><br>
+  &nbsp; <br>
+  &nbsp; <i>Definition of the Optimization Problem</i> </h2>
+<p><br>Find optimal heating parameters defined by heat flux <i>F<sub>o</sub></i>
+and heating time <i>t<sub>h</sub></i> so that the difference between required
+and computed shapes of the specimen after forming is minimum. The objective
+function to be minimised is expressed in terms of differences of the required
+and computed node coordinates in the interval <i>20mm <font face="Symbol">&pound;</font>
+x <font face="Symbol">&pound;</font> 28mm. </i>The choice of heating parameters
+is constrained by maximum permissible temperature of the specimen T<sub>max</sub>=1200<sup>o</sup>C.
+The constraint is presented in Figure 3.
+<br>&nbsp;
+<p><br>
+<center>
+<p><img SRC="F-t.gif">
+<br><b>Figure 3:</b> Constraint imposed on the choice of heating parameters.
+Contours show maximum temperature of the specimen as a function of applied
+heat flux and heating time. Spacing between contours is 100<sup>o</sup>C</center>
+
+<p><br>
+<br>
+<p>We introduce the constrain to the objective function by adding the temperature
+term, which increases rapidly when the maximum temperature of the billet
+is coming near to the permissible temperature. The objective function for
+this case is:
+<center>
+<p><img SRC="Image27.gif" height=56 width=355> (1)</center>
+
+<p>The parameter vector (<i>F, t<sub>h</sub></i>) is denoted by&nbsp;<img SRC="Image28.gif" height=25 width=20 align=ABSBOTTOM>.
+Prescribed node coordinates are denoted by upper index <i>p</i> and the
+measured node coordinates are denoted by upper index <i>m</i>. Maximum
+temperature at the right end of the billet after the heating is denoted
+by&nbsp;<img SRC="Image29.gif" height=26 width=46 align=ABSBOTTOM>.
+<p>Heat flux and heating time can only have positive values. To assure
+that during the optimization algorithm a transformation function that maps
+the parameters from [-<font face="Symbol">&yen;,&yen;</font>] to [0<font face="Symbol">,&yen;</font>]
+must be applied.
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><img SRC="Image30.gif" height=30 width=235> (2)
+<p><img SRC="Image31.gif" height=26 width=181> (3)</center>
+
+<p>The billet deformation after the forming depends on the billet temperature
+distribution that can be calculated by the following equation:
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><img SRC="Image32.gif" height=63 width=615> (4)</center>
+
+<p>Temperature distributions for three different heating regimes are presented
+in figure 4.
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><img SRC="T(x).jpg" >
+<br><b>Figure 4:</b> Temperature distributions along x-axis for three different
+heating regimes</center>
+
+<p><br>
+<br>
+<p>Different temperature distributions result in different shapes of the
+billet after the forming. Shapes for the temperature distributions from
+the figure 4 are presented in figure 5.
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><img SRC="r-x.gif" >
+<br><b>Figure 5: </b>Deformed shapes of the specimen after forming for
+three different heating regimes</center>
+
+<p><br>
+<br>
+<p>The required shape of the billet after both stages of forming is prescribed
+by the following sigmoidal function:
+<p> 
+  <center>
+    <img SRC="Image35.gif" height=55 width=315> (5)
+  </center>
+<h2><i>Results</i> </h2>
+<p><br>The optimization was done by the inverse shell using the nonlinear
+simplex method. Optimal solution was found in 34 iterations. The required
+shape and shape at the optimal parameters is presented in figure 6.
+<center>
+<p><img SRC="r-x-opt.gif" >
+<br><b>Figure 6: </b>Required<i> </i>and optimal shape of the billet at
+the optimal solution
+<br><i>F<sub>opt </sub></i>= 3628674.9 W/m<sup>2</sup>, <i>t<sub>opt </sub></i>=
+7.99 s, D(<img SRC="Image28.gif" height=25 width=20><sub>opt</sub>) = 0.1448.</center>
+
+<p><br>
+<br>
+<p>The shell also includes functions for tabelating. Since the case only
+has two parameters it is possible to plot the objective function in the
+finite domain of the parameter space. Figure 7 shows 19x17 points diagram
+of the objective function. The temperature constrain term is ommited.
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><img SRC="objective.gif" >
+<br><b>Figure 7: </b>Objective function on the finite domain of the parameter
+space (19x17 points). The temperature constrain term is omitted.
+<br>&nbsp;
+<p><img SRC="optimum.gif" >
+<p><b>Figure 8: </b>Conture of the objective function with maximal temperature
+constraint (blue), maximal force constraint (black) and optimal solution (red path starting in blue point and ending in green point) included.</center>
+
+</body>
+</html>

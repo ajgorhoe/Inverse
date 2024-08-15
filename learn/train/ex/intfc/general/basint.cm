@@ -1,0 +1,89 @@
+* {*********************************************************************
+
+File: intfc/general/basint.cm
+
+  This training example shows how to use the general file interface of the
+optimizatmost of the basic principles of how the interface works should be
+evident from the example.
+
+Author: Igor Gresovnik, July 1998
+
+************************************************************************}
+
+setfile{outfile basint.ct}
+
+
+* {
+****************  THE FIRST STEP: DEFINING THE INTERFACE FILE  ****************
+  First we must define the interface files and connect them with physical files
+on the disk. If we use the pre-defined file variable "infile" we can use
+functions at which the file specification is not necessary in their argument
+because it is automatically assumed that the operations will be performed on
+the fie "infile":
+*******************************************************************************
+}
+
+setfile{infile basint.dat}
+
+
+* {
+*******************  CONTROLLING THE POSITION IN THE FILE  *******************
+  Different functions enable the user to set and examine the current position
+in interface files. File interpreter's functions "setpos" and "increasepos"
+change the current position in the file infile. Functions "printfpos" and
+"fprintfpos" print a report about the current file position, and function
+"fmarkpos" assigns the current position in the file infile to an expression
+evaluators variable. Functions "printfpart", "fprintfpart", "writefpart" and
+"fwritefpart" print a part of a file so that the user can check if the specific
+part of a file contains the expected data.
+  The expression evaluator's function "getfpos" returns the current position
+in the file infile.
+  File positions are counted from one, not from zero as in some programming
+languages.
+*******************************************************************************
+}
+
+write{\n\n"**********  Functions for controlling the current file position:  **********"\n\n}
+fwrite{\n\n"**********  Functions for controlling the current file position:  **********"\n\n}
+
+*{ We set the current position to a desired place: }
+fsetpos{10}
+
+*{ Functions "printfpart" and "fprintfpart" can take one or two arguments. If
+one argument is given, a specific number of characters from the current
+position are printed, otherwise a part of file from the first to the second
+argument is printed: }
+position }
+printfpart{100}
+fprintfpart{100}
+printfpart{15 110}
+fprintfpart{15 110}
+
+*{Functions "writefpart" and "fwritefpart" are similar except that they do
+not print the accompanying report, but only the file part:}
+write{"\n\n$"} fwrite{"\n\n$"}
+writefpart{100} fwritefpart{100}
+write{"$\n\n"} fwrite{"\n\n$"}
+
+*{ A report about the current position in the file infile can be printed by
+functions "printfpos" and "fprintfpos": }
+printfpos{} fprintfpos{}
+
+*{ The current position can be stored into an expression evaluator's variable: }
+fmarkpos{p1}
+write{\n\n"The position is currently " $p1 ".\n\n"}
+fwrite{\n\n"The position is currently " $p1 ".\n\n"}
+
+*{ This information can also be obtained using the expression evaluator's
+function "fgetpos": }
+write{\n\n"The position \1" ${getfpos[]} "\2 can also be obtained bu function getfpos.\n\n"}
+fwrite{\n\n"The position is currently " $p1 ".\n\n"}
+
+
+
+* {
+****************************  SEARCHING FOR DATA  ****************************
+*******************************************************************************
+}
+
+

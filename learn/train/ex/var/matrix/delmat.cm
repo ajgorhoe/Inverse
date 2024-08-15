@@ -1,0 +1,96 @@
+* {*********************************************************************
+
+File: var/matrix/delemat.cm
+
+  This file dmonstrates how the functions for deleting matrices "deletematrix"
+and "deletematrixvar" work.
+
+Author: Igor Gresovnik, May 1998
+
+************************************************************************}
+
+setfile{outfile delmat.ct}
+
+
+
+* {
+ ************************  FUNCTION "deletematrixvar"  *************************
+  Functions "deletematrixvar" deletes a vhole matrix variable. A variable with
+the name specified as an argument of this function does not exist anymore after
+the operation.
+  Function "deletematrixvar" requires one arguments - the name of the variable
+which will be deleted.
+*******************************************************************************
+}
+
+write{\n"************  EXAMPLES FOR deletematrixvar  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR deletematrixvar  ************"\n\n}
+
+
+newmatrix{m1[2]}
+setmatrix{m1[1] 2 2 { 1.11 1.12 1.21 1.22 } }
+setmatrix{m1[2] 2 2 { 2.11 2.12 2.21 2.22 } }
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+write{"\nDeleting matrix variable m1:\n"}
+fwrite{"\nDeleting matrix variable m1:\n"}
+deletematrixvar{m1}
+write{"\nMatrix m1 after the execution of deletematrixvar does not exist:\n"}
+fwrite{"\nMatrix m1 after the execution of deletematrixvar does not exist:\n"}
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+
+* {
+**************************  FUNCTION "deletematrix"  ***************************
+  Function "deletematrix" delets elements of a matrix variable. It can delete
+a matrix or a subgroup of matrices in the matrix variable's value table.
+  Function "deletematrix" requires one argument - the specification of the
+matrix or matrix table the elements of which should be deleted. This
+specification consists of the matrix name and indeces (optional) which specify
+the sub-table of a matrix variable's value table.
+*******************************************************************************
+}
+
+
+write{\n"************  EXAMPLES FOR deletematrix  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR deletematrix  ************"\n\n}
+
+newmatrix{m1}
+setmatrix{m1 2 3 { 0.11 0.12 0.13 0.21 0.22 0.23 } }
+printmatrix{m1} fprintmatrixvar{m1} 
+write{"\nDeleting matrix m1[]:\n"}
+fwrite{"\nDeleting matrix m1[]:\n"}
+deletematrix{m1}
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+newmatrix{m1[2 3]}
+setmatrix{m1[1 1] 2 2 { 11.11 11.12 11.21 11.22 } }
+setmatrix{m1[1 2] 2 2 { 12.11 12.12 12.21 12.22 } }
+setmatrix{m1[2 1] 2 2 { 21.11 21.12 21.21 21.22 } }
+setmatrix{m1[2 2] 2 2 { 22.11 22.12 22.21 22.22 } }
+setmatrix{m1[3 1] 2 2 { 31.11 31.12 31.21 31.22 } }
+setmatrix{m1[3 2] 2 2 { 32.11 32.12 32.21 32.22 } }
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+
+printmatrix{m1} fprintmatrixvar{m1} 
+
+write{"\nDeleting matrix m1[3 2]:\n"}
+fwrite{"\nDeleting matrix m1[3 2]:\n"}
+deletematrix{m1[3 2]}
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+write{"\nDeleting table of matrices m1[1]:\n"}
+fwrite{"\nDeleting table of matrices m1[1]:\n"}
+deletematrix{m1[1]}
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+write{"\nDeleting all matrices contained in the matrix variable m1:\n"}
+fwrite{"\nDeleting all matrices contained in the matrix variable m1:\n"}
+deletematrix{m1}
+printmatrixvar{m1} fprintmatrixvar{m1}
+
+
+
+
+

@@ -1,0 +1,349 @@
+* {*********************************************************************
+
+File: var/matrix/setmat.cm
+
+  This file shows how we can create matrix variables and set their values.
+
+Author: Igor Gresovnik, May 1998
+
+************************************************************************}
+
+setfile{outfile setmat.ct}
+
+
+* {
+*****************  CREATING  A MATRIX: FUNCTION "newmatrix"  ******************
+  This function creates a new matrix variable. As an arguent it requires a
+specification of matrix varible, i.e. its name and dimensions of the table
+which holds matrices. Each matrix variable can hold a whole multi-dimensional
+table of matrices. We call number of dymensions of this table the rank of
+matrix variabe (it has nothing to do with matrix rank in the mathematical
+sense). For example, specification "m1 [2,5,4]" denotes a matrix variable m1,
+which holds a  2x5x4 -dimensional table of matrices (this says nothing about
+the dimension of matrices on the table).
+  If a matrix variable with a given name already exists, the "newmatrix"
+function deletes it together with its contents and makes a new variable.
+*******************************************************************************
+}
+
+
+write{\n"************  EXAMPLES FOR newmatrix  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR newmatrix  ************"\n\n}
+
+*{Creating matrix variables mat1, mat2 and mat3 using newmatrix:}
+
+newmatrix{mat1[2,3]}
+newmatrix{mat2}
+={a:2}
+newmatrix{ mat3 [${5-3},$a] }
+setmatrix{mat2 2 3 {1: 11 12 13} {2: 21 22 23} }
+write{"Matrix variables which were created by function newmatrix:"\n\n}
+fwrite{"Matrix variables which were created by function newmatrix:"\n\n}
+
+printmatrixvar{mat1} printmatrixvar{mat2} printmatrixvar{mat3}
+fprintmatrixvar{mat1} fprintmatrixvar{mat2} fprintmatrixvar{mat3}
+
+write{\n"Overwriting existing matrix variable mat2:"\n\n}
+fwrite{\n"Overwriting existing matrix variable mat2:"\n\n}
+
+newmatrix{mat2}
+
+printmatrixvar{mat2}
+fprintmatrixvar{mat2}
+
+
+* {
+*****************  CREATING  A MATRIX: FUNCTION "dimmatrix"  ******************
+  This function can be used for creating matrix variables instead of the
+"newmatrix" function. The functions are similar, only that "dimmatrix" does
+not overwrite variables which already exist if it is not necessary, i.e. if
+the dimensions of the existing variable's value table match the dimensions
+specified by the arguments of the function. If the variable with a given name
+doesn't exist before this function is called or if the value table dimensions
+of the existing variable with such name don't match the specification given
+by function arguments, this function behaves the sam as "newmatrix".
+*******************************************************************************
+}
+
+
+write{\n"************  EXAMPLES FOR dimmatrix  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR dimmatrix  ************"\n\n}
+
+*{Creating a new matrix variable mat4, destroying and creating a new matrix
+variable mat2, and leaving mat3 untouched (because the value table dimensions
+match the specification):}
+
+newmatrix{mat2}  newmatrix{mat3[3]}
+setmatrix{mat3[3] 2 2 {1.1 1.2 2.1 2.2} }
+
+write{"Matrix variables mat4, mat2 and mat3 before the use of dimmatrix calls:"\n\n}
+fwrite{"Matrix variables mat4, mat2 and mat3 before the use of dimmatrix calls:"\n\n}
+
+printmatrixvar{mat4} printmatrixvar{mat2} printmatrixvar{mat3}
+fprintmatrixvar{mat4} fprintmatrixvar{mat2} fprintmatrixvar{mat3}
+
+dimmatrix{mat4[2]}
+dimmatrix{mat2[2,2]}
+dimmatrix{mat3[3]}
+
+write{"Matrix variables mat4, mat2 and mat3 after the use of dimmatrix calls:"
+       " Matrix variable mat3 is not overwritten."\n\n}
+fwrite{"Matrix variables mat4, mat2 and mat3 after the use of dimmatrix calls:"
+       " Matrix variable mat3 is not overwritten."\n\n}
+
+printmatrixvar{mat4} printmatrixvar{mat2} printmatrixvar{mat3}
+fprintmatrixvar{mat4} fprintmatrixvar{mat2} fprintmatrixvar{mat3}
+
+
+* {
+************  CREATING  AND SETTING A MATRIX: FUNCTION "setmatrix"  ***********
+  We can create a new matrix and set its dimensions and components by the
+function "setmatrix". The first argument of this function is matrix
+specification after which the dimensions and components follow. The
+specification consists of the variable name and (optional) indeces in square
+brackets which specify the element of the value table of the matrix variable.
+This function will create a matrix if it hasen't been created yet but it can
+be used only for creation of matrix variables of rank zero (i.e. variables
+which can hold only one matrix).
+  If one or more indeces are given, the number of indeces must equal the number
+of dimensions of the variable's value table and all indeces must be in range
+(not greater than these dimensions). In this case, the name must be a name of
+an xisting matrix variable.
+  Matrix dimension and components can be specified in various formats. Only
+dimens can be specified. If a specific matrix already exists, then only
+components can be specified.
+*******************************************************************************
+}
+
+write{\n"************  EXAMPLES FOR setmatrix  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR setmatrix  ************"\n\n}
+
+*{Creating new matrices "m1" and "m2" by the "setmatrix" function:}
+
+setmatrix{m1} *{ m1 is only created, but its values are not set. }
+
+setmatrix{m2 2 3
+  
+  { 1 1: 1.1 }
+  { 1 2: 1.2 }
+  { 1 3: 1.3 }
+  
+  { 2 1: 2.1 }
+  { 2 2: 2.2 }
+  { 2 3: 2.3 }
+  
+} *{ m2 is created and its values are set.}
+
+write{"Matrices m1 and m2 after creation with setmatrix:"\n\n}
+fwrite{"Matrices m1 and m2 after creation with setmatrix:"\n\n}
+printmatrixvar{m1} printmatrixvar{m2}
+fprintmatrixvar{m1} fprintmatrixvar{m2}
+
+*{ Matrix values can be given in various FORMATS: }
+
+*{Basc format:}
+setmatrix{ m1 2 2 { {1 1: 1.1} {1 2: 1.2} {2 1: 2.1} {2 2: 2.2} } }
+
+*{We can omit outer brackets for components:}
+setmatrix{ m2 2 2 {1 1: 1.1} {1 2: 1.2} {2 1: 2.1} {2 2: 2.2} }
+
+*{Instead of individual components, we can write lines. Elements of each line
+must follow in the right order: }
+setmatrix{ m3 2 2 {{1: 1.1 1.2} {2 : 2.1 2.2}} }
+
+*{ We can also omit outer brackets for lines in this case: }
+setmatrix{ m4 2 2 {1: 1.1 1.2} {2 : 2.1 2.2} }
+
+*{We may not omit line numbers:}
+setmatrix{ m5 2 2 {{1.1 1.2} {2.1 2.2}} }  *{ WRONG!! }
+setmatrix{ m6 2 2 {1.1 1.2} {2.1 2.2} }    *{ WRONG!! }
+
+*{We can simply count the components in successive order:}
+setmatrix{ m7 2 2 {1.1 1.2 2.1 2.2} }
+
+*{ ... but we may not omit the brackets in this case: }
+setmatrix{ m8 2 2 1.1 1.2 2.1 2.2 }        *{ WRONG!! }
+
+*{ It is not necessary that we specify all components: }
+setmatrix{ m8 2 2 {2 1: 2.1} {1 2: 1.2} } 
+
+write{"Matrices m1 ... m8 after they vere set by setmatrix in different formats:"\n\n}
+fwrite{"Matrices m1 ... m8 after they vere set by setmatrix in different formats:"\n\n}
+printmatrixvar{m1} printmatrixvar{m2} printmatrixvar{m3}
+printmatrixvar{m4} printmatrixvar{m5} printmatrixvar{m6} 
+printmatrixvar{m7} printmatrixvar{m8}
+fprintmatrixvar{m1} fprintmatrixvar{m2} fprintmatrixvar{m3}
+fprintmatrixvar{m4} fprintmatrixvar{m5} fprintmatrixvar{m6} 
+fprintmatrixvar{m7} fprintmatrixvar{m8}
+
+write{\n"******  setmatrix: specifying only dimensions or components  ******"\n\n}
+fwrite{\n"******  setmatrix: specifying only dimensions or components  ******"\n\n}
+
+
+
+*{We can specify only dimensions. Componenets then have unspecified values:}
+
+setmatrix{a1 2 3}
+write{"Matrix a1 after setting its dimensions:"\n}
+printmatrix{a1}
+fwrite{"Matrix a1 after setting its dimensions:"\n}
+fprintmatrix{a1}
+
+*{If a matrix already exists and is of right dimension, we can specify only
+its components:}
+
+setmatrix{a1 {2 2: 2.2} {1 3: 1.3}}
+write{"Matrix a1 after setting some of its components:"\n}
+printmatrix{a1}
+fwrite{"Matrix a1 after setting some of its components:"\n}
+fprintmatrix{a1}
+
+
+
+
+*{ The possibility of specifying matrix dimensions and components separately
+can be used for setting components according to some rule. For this purpose,
+we can use the expression evaluator' functions which can acces the information
+about matrix variables. In the example below, components of a 3*3 matrix are 
+set according to some rule. The expression evaluator's function getmatrix
+returns the value of a required component of a matrix. The component is
+specified by the second and the third arhument. If the second argument is
+zero, then this function returns the number of rows, if the third argument
+is 1, or the number of columns of the matrix, the third argument is 2. }
+
+setmatrix{b1 3 3}
+={i:1}
+while{ (i<=getmatrix["b1",0,1])
+[
+  ={j:0}
+  while{ (j<=getmatrix["b1",0,2])
+  [
+    setmatrix{b1 { $i $j : ${10*i+j+0.2*(j+i/2)} }}
+    ={j:j+1}
+  ]}
+  ={i:i+1}
+]}
+
+write{"Matrix b1 after setting its dimensions and components:"\n}
+printmatrix{b1}
+fwrite{"Matrix b1 after setting its dimensions and components:"\n}
+fprintmatrix{b1}
+
+
+
+
+*{ In function setmatrix we can always use mathematical expressions or
+expression evaluator variables instead of numbers: }
+
+={aa:2}
+setmatrix{b2 ${1+1} $aa {${aa-1} : 1.1 ${1+0.1*aa} } {2: 2.1 ${aa+0.2} } }
+
+write{"Matrix b2 after setting its dimensions and components:"\n}
+printmatrix{b2}
+fwrite{"Matrix b2 after setting its dimensions and components:"\n}
+fprintmatrix{b2}
+
+
+
+
+write{\n"******  setmatrix: variables which hold multiple matrices  ******"\n\n}
+fwrite{\n"******  setmatrix: variables which hold multiple matrices  ******"\n\n}
+
+*{ We can not create matrix variables which hold multiple matrices by the
+"setmatrix" function. We must use the "newmatrix" or "dimmatrix" function
+to create such variable, and then we can use the "setmatrix" function to
+set its components: }
+
+newmatrix{mc[2 3]}
+setmatrix{mc[1,1] 2 2 {11.11, 11.12, 11.21, 11.22} }
+setmatrix{mc[1,2] 2 2 {12.11, 12.12, 12.21, 12.22} }
+setmatrix{mc[1,3] 2 2 {13.11, 13.12, 13.21, 13.22} }
+setmatrix{mc[2,1] 2 2 {21.11, 21.12, 21.21, 21.22} }
+setmatrix{mc[2,2] 2 2 {22.11, 22.12, 22.21, 22.22} }
+setmatrix{mc[2,3] 2 2 {23.11, 23.12, 23.21, 23.22} }
+
+write{"Matrix variable mc after setting its dimensions and components:"\n}
+printmatrix{mc}
+fwrite{"Matrix variable mc after setting its dimensions and components:"\n}
+fprintmatrix{mc}
+
+
+
+* {
+************  SETTING COMPONENTS BY THE "setmatrixcomponents"  ***********
+  We can efficiently set components of matrix variables by the function
+"setmatrixcomponents". The first argument of this function is matrix
+specification which tells which matrices to set, and the second argument
+is a mathematical expression which tells to which values the components should
+be set. In this expressions we can use the expression evaluator functions
+which return the indeces of the matrix which is currently being set and the
+row and column of the component which is currently being set. So we can set
+the components to values dependent on row and column numbers and on the
+indeces which specify a matrix on the value table of a matrix variable.
+  The expression evaluator's function varindex returns a specific index of the
+matrix which is being set on the value table of the appropriate matrix 
+variable. It requires one argument - a successive number of the index which
+it must return. If the number is zero, the function returns rank of the
+matrix variable.
+  The expression evaluator's function varcomponent returns a specific
+component number of the matrix element which is currently being set. It takes
+one argument which must equal either 1 (in this case the function returns the
+row number) or 2 (in this case function returns the column number).
+  WARNING:
+If we want to use the "setmatrixcomponents" function, the matrix variable
+which will be affected must already be created and all its elements (matrices)
+which will be set must be of the appropriate dimension.
+*******************************************************************************
+}
+
+write{\n"******  SETTING COMPONENTS BY THE setmatrixcomponents  ******"\n\n}
+fwrite{\n"******  SETTING COMPONENTS BY THE setmatrixcomponents  ******"\n\n}
+
+newmatrix{v2 [2 3]}     *{ We first take care of initialization. }
+setmatrix{v2 [1 1] 2 2}
+setmatrix{v2 [1 2] 2 2}
+setmatrix{v2 [1 3] 2 2}
+setmatrix{v2 [2 1] 2 2}
+setmatrix{v2 [2 2] 2 2}
+setmatrix{v2 [2 3] 2 2}
+
+setmatrixcomponents{v2[] 1000*varindex[1]+10*varindex[2]+
+                       0.1*varcomponent[1]+0.01*varcomponent[2]}
+
+write{"Matrix variable v2 after setting its dimensions and components:"\n}
+printmatrix{v2}
+fwrite{"Matrix variable v2 after setting its dimensions and components:"\n}
+fprintmatrix{v2}
+
+
+
+*{ If we have a matrix variable which holds more than one matrix in its value
+table, we can set components of individual matrices or subgroups of matrices
+on the value table: }
+
+newmatrix{v3 [2 3]}
+setmatrix{v3 [1 1] 2 2}
+setmatrix{v3 [1 2] 2 2}
+setmatrix{v3 [1 3] 2 2}
+setmatrix{v3 [2 1] 2 2}
+setmatrix{v3 [2 2] 2 2}
+setmatrix{v3 [2 3] 2 2}
+
+*{ Here we set components of matrices v3[2,1], v3[2,2] and v2[2,3]: }
+
+setmatrixcomponents{v3[2] 1000*varindex[1]+10*varindex[2]+
+                       0.1*varcomponent[1]+0.01*varcomponent[2]}
+
+
+*{ Here we set components of matrix v3[1,1]: }
+
+setmatrixcomponents{v3[1 1] 10*varindex[1]+varindex[2]+
+                       0.1*varcomponent[1]+0.01*varcomponent[2]}
+
+write{"Matrix variable v3 after setting its dimensions and components:"\n}
+printmatrix{v3}
+fwrite{"Matrix variable v3 after setting its dimensions and components:"\n}
+fprintmatrix{v3}
+
+
+

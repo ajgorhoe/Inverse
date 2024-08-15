@@ -1,0 +1,181 @@
+
+/* This is a test CSS (cascading style sheet). */ 
+
+
+/* Define some common classes that can override the normal definitions:
+NOTE: only one class can be assigned to each HTML element!! */
+.left {text-align: left}
+.right {text-align: right}
+.center {text-align: center}
+.justify {text-align: justify}
+.highlight {background-color: yellow}
+.red {color:red}
+
+
+/* Define default properties for the body of the documents: */
+body {
+  background-color:  #E6E6E6;
+  color: black;
+  margin-left: 0.1cm;
+  margin-right: 0.1cm;
+  margin-top: 0.2cm;
+  margin-bottom:0.2cm;
+  text-align:left;
+  font-family:times;
+}
+
+
+/* Define the table styles: */
+td {
+  padding-left: 0.2cm; padding-right:0.2cm;
+  padding-top:0.1cm; padding-bottom: 0.1cm;
+}
+
+/* Define the paragraph style: */
+p 
+{
+  text-align: justify;
+  text-indent: 0.4cm;
+  color: black;
+  font-family:times;
+}
+
+/* Define special paragraph classes: */
+p.noindent {text-indent: 0cm; }
+p.l { text-align: left; }
+p.special {
+  color: yellow;
+  background-color: blue;
+  font-family: script;
+  text-indent: 0cm;
+  margin-left: 3cm;
+  margin-right: 1cm;
+}
+p.myclass {
+  margin-left: 3cm;
+  margin-right: 1cm; 
+}
+
+/* Define properties for headings (in this case- colors for headings): */
+h1, h2, h3, h4, h5, h6 {
+  color: #cc0000;   /* dark red */
+  font-family:times;
+}
+h1 {
+  font-size: 200%;
+  font-weight:bold;
+  font-style: italic;
+  text-align: center;
+  text-indent: 0.0cm;
+  margin-left: 2cm;
+  margin-right: 2cm;
+}
+h2 {
+  font-size: 160%;
+  font-weight:bold;
+  text-align: left;
+  text-indent: 1.5cm;
+  margin-left: 0.5cm;
+  margin-right: 0.5cm;
+}
+h3 {
+  font-size: 140%;
+  font-weight:bold;
+  text-align: left;
+  text-indent: 1.0cm;
+  margin-left: 0.5cm;
+  margin-right: 0.5cm;
+}
+h4 {
+  font-size: 120%;
+  font-weight:bold;
+  text-align: left;
+  text-indent: 0.6cm;
+  margin-left: 0.4cm;
+  margin-right: 0.4cm;
+}
+h5 {
+  color: #ee0000;   /* red */
+  font-size: 110%;
+  font-weight:bold;
+  text-align: left;
+  text-indent: 0.3cm;
+  margin-left: 0.4cm;
+  margin-right: 0.4cm;
+}
+h6 {
+  color: #ee0000;   /* red */
+  font-size: 100%;
+  font-weight:bold;
+  text-align: left;
+  text-indent: 0.2cm;
+  margin-left: 0.2cm;
+  margin-right: 0.2cm;
+}
+
+
+/* ID selectors: define styles for entities with specific ID */
+p#green { color:green }
+#blue { color:blue }
+
+
+
+
+
+/* SPECIAL POSSIBILITIES: */
+
+/* Define LINK Styles: */
+
+a:link {color: #0000FF}
+a:visited {color: #9900FF}
+a:hover {color: #FF00BB}
+a:active {color: #FF0000}
+
+
+a.one:link {color: #ff0000}
+a.one:visited {color: #0000ff}
+a.one:hover {color: #ffcc00}
+a.one:active {color: #0000FF}
+
+a.two:link {color: #ff0000}
+a.two:visited {color: #0000ff}
+a.two:hover {font-size: 150%}
+a.two:active {color: #0000FF}
+
+a.three:link {color: #ff0000}
+a.three:visited {color: #0000ff}
+a.three:hover {background: #66ff66}
+a.three:active {color: #0000FF}
+
+/* Pseodo-elements: making first letters or first lines special */
+
+/* Class p.art with the first letter different: */
+p.art:first-letter {
+  color: #ff0000;
+  font-size:xx-large
+} 
+
+/* Class p.art1 with the first line different: */
+p.art1:first-line {
+  color: #0000FF
+} 
+
+/* Class p.art2 with both the first letter and the first line different: */
+p.art2:first-letter {
+  /* 
+  font-family:script;
+  font-style: italic;
+  */
+  font-weight:bold;
+  color: #ff0000;
+  font-size:300%
+} 
+p.art2:first-line {
+  color: #0000FF
+} 
+
+
+
+
+
+

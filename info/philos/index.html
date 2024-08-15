@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.7 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
+  <meta name="Author" content="Igor Gresovnik">
+  <meta name="Classification"
+ content="computers/software/engineering/applied_mathematics">
+  <meta name="Keywords"
+ content="optimization, inverse problems, software, Inverse, shell">
+  <title>Optimization shell Inverse: Programme Philosophy</title>
+</head>
+<body alink="#fe0000" bgcolor="#e6e6e6" link="#0000ee" text="#000000"
+ vlink="#006600">
+<a href="../../invhome.html"><img src="../../invlogo.gif"
+ alt="INVERSE logo - click to load Inverse home" nosave="" border="0"
+ height="60" width="468"></a>
+<br>
+&nbsp;
+<center>
+<h1><b><i><font color="#cc0000">INVERSE Philosophy</font></i></b></h1>
+</center>
+<p><br>
+&nbsp;&nbsp;&nbsp; Inverse is a general-purpose shell for solving
+inverse and optimization problems. It is designed for solving practical
+industrial problems as well as for academic use (i.e. for development
+and
+experimentation with various optimization and auxiliary tools within a
+general optimization environment). In general it is supposed to be used
+in conjunction with simulation programmes, although stand-alone use is
+possible.
+</p>
+<p>&nbsp;&nbsp;&nbsp; <b>Openness</b>, <b>flexibility</b> and <b>portability</b>
+it the basic guidance followed at <i>Inverse</i> development.
+</p>
+<p><b>&nbsp;&nbsp;&nbsp; Openness</b> means that the programme is
+easily
+integrated or interfaced with other programmes that accomplish
+performing
+specific functions not available in Inverse. It also means that
+different
+modules of the programme can be developed independently at different
+locations
+and then merged together at any time. Things which are not dependent
+one
+upon another are also implemented this way, therefore implementation
+and
+development of certain functionality does not affect already
+implemented
+functions. As a result, for example, someone who develops an interface
+with a specific simulation programme does not need to care about how
+optimization
+algorithms are implemented in the shell.
+</p>
+<p>&nbsp;&nbsp;&nbsp; <b>Flexibility</b> means that the shell is
+capable
+of solving a great variety of problems that have very little in common.
+A flexible user interface implemented as file interpreter plays the
+main
+role here. User of the shell has a great freedom at defining the
+problem
+and solution strategy. The shell is structured in several layers where
+the most basic layers form a framework characterized by means common
+more
+or less to all optimization problems. For example, the fact that one or
+more objective functions are defined and that the solution procedure of
+optimization problems consists of repetitive evaluations of the
+objective
+and possibly some other functions define this framework. A minimum
+amount
+of standard conventions are defined at this level, e.g. the place where
+the objective function value is stored. These conventions form the only
+rules which user is usually obliged to keep.
+<br>
+&nbsp;&nbsp;&nbsp; Above the basic layer there are various tools of
+different levels and complexity. The user can use these tools within
+the
+basic framework. By combining the existent tools it is possible to
+solve
+a great variety of optimization problems . Several high level and
+specialized
+tools can be added to ease solving of several specific classes of
+problems.
+Use of these tools is left to user choice.
+</p>
+<p>&nbsp;&nbsp;&nbsp; <b>Portability</b> means that the programme can
+be
+easily ported to different computer environments. The basic framework
+of
+the programme is coded in ANSI C which is available on almost all
+platforms.
+Use of other higher level&nbsp; or less standard development tools and
+libraries is avoided within the <i>Inverse</i> development group.
+System
+requirements of the programme are also low. Programme is a terminal
+application
+and can therefore be used on any system from this point of view. It is
+possible that specific parts of the programme or upgrades of the user
+interface
+will not meet these requirements. However, in this case these parts
+will
+be implemented at a higher level so that they can be simply omitted on
+platforms which would not provide sufficient support for them.
+</p>
+<p>&nbsp;&nbsp;&nbsp; Solution of practical optimization problems
+usually
+induces a number of sub problems that must be solved. This is
+especially
+true when definition of optimization objective includes response of a
+complex
+physical system, which is calculated by an appropriate mathematical
+model
+- and this is exactly the scenario for which the shell has been
+primarily
+designed.&nbsp;&nbsp; <i>Inverse</i> provides a number of tools for
+various
+kinds of sub problems related to different areas of optimization. They
+are implemented as file interpreter and expression evaluator functions
+organized in so called <b>modules</b>. These are sets of functions
+oriented
+towards solving problems of specific areas. The tendency is that
+organization
+of modules follow <b>simple and clear mathematical logic</b> where
+provided
+functionality is closely related with nature of the problems and
+adapted
+to user's way of thinking at the same time. Provided functions should
+clearly
+reflect basic feature of the problems they solve as are seen by user,
+but
+must hide from user solution details that are not essential for problem
+understanding.
+<br>
+&nbsp;
+</p>
+<p></p>
+<hr>&nbsp;
+<div align="right">
+<table nosave="" bgcolor="#ffffff" border="3" cellpadding="2">
+  <tbody>
+    <tr nosave="">
+      <td nosave="" align="left" valign="top"><font size="-1"><a
+ href="../index.html">Upper
+Level</a></font>
+      <div align="right"><font size="-1"><a href="../../invhome.html">INVERSE
+home</a></font></div>
+      <font size="-1"><a href="http://www.c3m.si">C3M home</a></font></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<center>
+<div style="text-align: left;"><br>
+<br>
+</div>
+</center>
+</body>
+</html>

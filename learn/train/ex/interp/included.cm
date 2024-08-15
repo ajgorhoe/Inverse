@@ -1,0 +1,9 @@
+* {*********************************************************************
+
+  This is an example file which is interpreted during the interpretation
+of another file, namely "flow.cm".
+
+************************************************************************}
+
+write{\n"Hello there!" \n "This text was written in the interpreted file." \n\n}
+fwrite{\n"Hello there!" \n "This text was written in the interpreted file." \n\n}

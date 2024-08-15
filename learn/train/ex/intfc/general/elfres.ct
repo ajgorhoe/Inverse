@@ -1,0 +1,89 @@
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+Position of 1. increment: 116709.
+Position of 2. increment: 123461.
+Position of 3. increment: 130289.
+Position of 4. increment: 1.83321e+06.
+
+File length: 3.53091e+06 bytes.
+
+
+Nodal displacement; increment 3, node 38, component y: -0.0637416.
+Nodal displacement; increment 3, node 1, component x: -0.0192386.
+Nodal displacement; increment 3, node 915, component y: -0.0579246.
+
+Nodal reaction; increment 4, node 32, component y: 45191.5.
+Nodal reaction; increment 4, node 23, component y: -45191.5.
+
+Nodal contact force; increment 4, slideline 3, node 23, component y: -1114.57.
+Nodal contact force; increment 4, slideline 3, node 210, component y: -8277.28.
+Nodal contact force; increment 4, slideline 3, node 211, component y: -7331.46.
+Nodal contact force; increment 4, slideline 3, node 212, component y: -4655.89.
+Nodal contact force; increment 4, slideline 3, node 213, component y: -194.605.
+
+
+Nodal stress; increment 4, node 1, component yy: -950.511.
+
+
+Nodal stress; increment 3, node 142, component xy: -113.52.
+
+Nodal stress; increment 3, node 143, component xx: -309.91.
+
+Nodal stress; increment 3, node 144, component xy: -334.464.
+
+
+Nodal strain; increment 4, node 1, component yy: -0.0017831.
+
+Nodal strain; increment 4, node 143, component xy: -0.0024831.
+
+Node coordinate; node 1, component x: 9.36825.
+
+Node coordinate; node 863, component x: 18.5358.
+
+Node coordinate; node 914, component y: 14.7891.
+
+
+
+
+
+
+END.

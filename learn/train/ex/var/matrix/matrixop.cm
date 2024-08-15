@@ -1,0 +1,116 @@
+* {*********************************************************************
+
+File: var/matrix/matrixop.cm
+
+  This example file demonstrates how the function "matop" works. This
+function enables the user to perform mathematical operations on matrices
+and vectors.
+
+Author: Igor Gresovnik, May 1998
+
+************************************************************************}
+
+setfile{outfile matrixop.ct}
+
+
+* {
+***************************  FUNCTION "matp"  ****************************
+  Function "matop" is capable of performs some mathematical operations on
+matrices and vectors. It always performs one operation at a time. The
+operation which is performed is specified in function's argument blocks and
+consists of operators and operand specificatios. Operand specification must
+represent a single vector or matrix (not a variable which can contain a whole
+table of matrices or vectors). Scalar operands are taken from the expresison
+evaluator. The function is also installed as "matrixop".
+  Operand specifications consist of a string which defines the type of the 
+operand, the name of the operand (the name of variable on the value table of 
+which the poerand can be found) and possibly indeces of the operand in the
+value table of the appropriate variable.
+  Type specifications are "m_" (matrix), "v_" (vector) and "s_" (variable of
+the expression evaluator). The type specification and the name of the variable
+must be written together without any space character between them.
+  The following operations can be performed by the function "matop":
+
+matop{m_m0 = m_m1 + m_m2} : matrix m0 becomes sum of matrices m1 and m2
+matop{m_m0 = m_m1 - m_m2} : matrix m0 becomes difference of matrices m1 and m2
+matop{v_v0 = v_v1 + v_v2} : vector v0 becomes sum of vectors v1 and v2
+matop{v_v0 = v_v1 - v_v2} : vector v0 becomes differens between vectors v1 and v2
+matop{m_m0 = m_m1 * m_m2} : matrix m0 becomes product of matrices m1 and m2
+matop{v_v0 = m_m1 * v_v2} : vector v0 becomes product of matrix m1 and
+   vector v1.
+matop{s_s0 = v_v1 * v_v2} : variable s0 becomes scalar product of v1 and v2
+matop{m_m0 = m_m1 * {expr}} : m0 becomes m1 multiplied by the value of 
+   expression expr
+matop{v_v0 = v_v1 * {expr}} : v0 becomes v1 multiplied by the value of expr
+matop{v_x = m_A solve v_b} : x solution of matrix equation A x = b
+matop{m_m0 = transpose m_m1} : m0 becomes transpose of m1
+matop{m_m0 = transpose v_v1} : m0 transpose of vector v1
+matop{m_m0 = invert m_m1} : m0 becomes inverse matrix of m1
+matop{s_s0 = norm m_m1} : s0 becomes norm of matrix m1
+matop{s_s0 = norm v_v1} : s1 becomes norm of vector v1
+matop{m_m0 = normalize m_m1} : m0 becomes normed matrix m1
+matop{v_v0 = normalize v_v1} : v0 postane normiran vektor v1
+matop{m_m0 = identitymatrix {expr}} m0 becomes identity matrix of
+   dimension expr
+matop{m_m0 = zeromatrix {expr1} {expr2}} : m0 becomes a zero matrix. The values
+   of expressions expr1 and expr2 specify its dimensions, if there is only one
+   expression, the matrix is square.
+matop{m_m0 = randommatrix {expr1} {expr2}} : m0 becomes a matrix of dimension
+   expr1*expr1 (square matrix if there is only one expression) with random
+   values of components between  0 and 1.
+matop{v_v0 = zerovector {expr}} : v becomes zero vector of dimension expr
+matop{v_v0 = randomvector {expr}} : v0 becomes a vector with random components
+   between 0 and 1 of dimension expr.
+
+*******************************************************************************
+}
+
+*{ We set some matrices of dimension 3 by 3: */
+
+newmatrix{mat1[2 3 2]}
+={i:1}
+while{(i<=2)
+[
+  ={j:1}
+  while{(j<=3)
+  [
+    ={k:1}
+    while{(k<=2)
+    [
+      setmatrix{mat1[$i,$j,$k] 3 3}
+      ={k:k+1}
+    ]}
+    ={j:j+1}
+  ]}
+  ={i:i+1}
+]}
+setmatrixcomponents{mat1 100*varindex[1]+10*varindex[2]+varindex[3]
+                        0.1*varcomponent[1]+0.01*varcomponent[2]}
+
+
+setmatrix{mat2 3 3 {0.00001 0.00002 0.00003 0.00004 0.00005
+                    0.00006 0.00007 0.00008 0.00009 } }
+
+setvector{vec1 3 { 10000 20000 30000 } }
+
+
+write{"Matrices before the operations were performed:"\n\n}
+fwrite{"Matrices before the operations were performed:"\n\n}
+printmatrix{mat1}  fprintmatrix{mat1}
+printmatrix{mat2} fprintmatrix{mat2}
+printvector{vec1} fprintmatrix{vec2}
+
+matrixop{m_mat1[2 3 2] = normalize m_mat2}
+
+
+
+write{"Matrices after the operations were performed:"\n\n}
+fwrite{"Matrices after the operations were performed:"\n\n}
+printmatrix{mat1}  fprintmatrix{mat1}
+printmatrix{mat2} fprintmatrix{mat2}
+printvector{vec1} fprintmatrix{vec2}
+
+
+
+
+

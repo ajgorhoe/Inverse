@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="generator"
+ content="Mozilla/4.04 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
+  <meta name="Author" content="Igor Gresovnik">
+  <meta name="Classification"
+ content="computers/software/engineering/applied_mathematics">
+  <meta name="Keywords"
+ content="optimization, inverse problems, software, Inverse, shell">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
+  <title>inverse download</title>
+  <link rel="File-List" href="index_filelist.xml">
+  <link rel="Edit-Time-Data" href="index_editdata.mso">
+  <style>
+  </style>
+</head>
+<body style="" alink="#fe0000" bgcolor="#e6e6e6" lang="EN-US"
+ link="#03405c" vlink="#c54202">
+<div class="Section1">
+<div class="MsoNormalIndent"><span
+ style="color: rgb(0, 0, 238); text-decoration: none;"><a
+ href="../invhome.html" target="_blank"><img src="../invlogo.gif"
+ alt="INVERSE logo - click to load Inverse home" nosave="" border="0"
+ height="60" width="468"></a></span></div>
+<div class="MsoNormalIndent"><o:p></o:p></div>
+<big><big><big><big><span style="font-size: 18pt;" lang="EN-GB"><br>
+<br>
+<big><span style="font-weight: bold;">Download (older versions of <span
+ style="font-style: italic;">Inverse</span>)</span></big></span></big></big></big></big><span
+ style="font-size: 18pt; color: rgb(0, 0, 0);" lang="EN-GB"><span
+ style="font-style: italic;"></span></span>
+<h1 style="margin-left: 14.2pt;"><br>
+<span style="font-size: 18pt; color: rgb(0, 0, 0);" lang="EN-GB"><span
+ style="font-style: italic;"></span></span></h1>
+<h1 style="margin-left: 14.2pt;"><span
+ style="font-size: 18pt; color: rgb(0, 0, 0);" lang="EN-GB"><span
+ style="font-style: italic;">INVERSE</span></span><span
+ style="font-size: 18pt;" lang="EN-GB"><span
+ style="color: rgb(0, 0, 0);"> </span>Demo (version 3.11)</span><span
+ style="font-size: 18pt; color: rgb(197, 66, 2);" lang="EN-GB"><o:p></o:p></span></h1>
+<div class="MsoNormalIndent"><o:p></o:p></div>
+<div class="MsoNormalIndent"><span
+ style="font-size: 14pt; color: rgb(197, 66, 2);"></span><span
+ style="font-size: 14pt; color: rgb(197, 66, 2);"><b><span
+ style="font-weight: bold;">Installation instructions:</span><br>
+</b></span><font color="#000000"></font><font color="#000000"><br>
+</font>
+<ol>
+  <li><font color="#000000"><span style="font-weight: bold;">Download
+file</span> "<a href="demo/3.11/windows/inverse_3_11_windows.zip">inverse_3_11_windows.zip</a>".
+To download it, click right mouse button and then choose "Save link
+target as..."</font><font color="#000000"></font><font color="#000000"><br>
+    </font></li>
+  <li><font color="#000000"><span style="font-weight: bold;">Unpack the
+directory</span> "<span style="font-style: italic;">ighome</span>"
+contained in the downloaded file to a desired location. It is
+recommendable that the directory where you put "ighome" in does not
+contain spaces. Do not change the directory structure, delete its
+contents or rename its files!<br>
+    </font></li>
+  <li><font color="#000000"><span style="font-weight: bold;">Set the
+environment variable IGHOME</span> to hold the directory path of the
+unpacked <span style="font-style: italic;">ighome</span> directory
+(e.g. if you have unpacked the directory to "C:\users\all\" and kept
+its original name, the value of the variable IGHOME must be </font><font
+ color="#000000">"C:\users\all\ighome"</font><font color="#000000">).
+On MS Windows you can usually set the environment variables by invoking
+the Control Panel (Windows menu Start/Settings/Control Panel) and
+double-clicking the System icon. In the window which appears, you
+choose the Environment box. In the Variable entry at the bottom you
+input IGHOME and in the Value entry the appropriate directory path
+(note that if the directory name contains spaces, it must be in double
+quotes).</font></li>
+  <li><font color="#000000">Now you can run <span
+ style="font-weight: bold;">Inverse executable</span>, which is located
+in the <span style="font-style: italic;">bin</span> sub-directory of
+ighome, namely <span style="font-weight: bold; font-style: italic;">%IGHOME%\bin\invmath.exe</span>.
+It is recommended to update the <span style="font-weight: bold;">PATH</span>
+environment variable to include the directory "</font><font
+ color="#000000"><span style="font-weight: bold; font-style: italic;">%IGHOME%\bin\</span></font><font
+ color="#000000">". Executable can also be copied to another location
+(e.g. into your personal program directory that is included in system
+PATH).</font></li>
+  <li><font color="#000000">Now you can <span
+ style="font-weight: bold;">run </span><span
+ style="font-style: italic; font-weight: bold;">Inverse</span>. In the
+most simple form, the progam is run with one command-line argument
+defining its <span style="font-style: italic;"><span
+ style="font-weight: bold;">command file</span>, e.g.</span></font></li>
+</ol>
+<div style="margin-left: 80px;"><span style="font-style: italic;">invmath
+test.cm</span><br>
+</div>
+<font color="#000000"><br>
+<br>
+<span style="font-weight: bold;">Where to start:</span><br>
+&nbsp;<br>
+&nbsp; You should first run some <span
+ style="font-weight: bold; font-style: italic;">test examples</span>,
+e.g. from the directory </font><font color="#000000"><a
+ href="demo/3.11/windows/test_case.zip">test_case.zip</a></font><font
+ color="#000000">.&nbsp; The file <span style="font-style: italic;">testinv.cm</span>
+contained in this directory can be run directly and contains
+instructions for solution of a simple nonlinear constraint optimization
+problem. The problem and its solution procedure are entirely defined in
+the command file. Command file <span style="font-style: italic;">testinvmath.cm</span>
+is intended for running from the</font><font color="#000000"> attached <span
+ style="font-style: italic;">Mathematica</span> notebook <span
+ style="font-style: italic;">test.nb</span>, which is an example of use
+of interface between <span style="font-style: italic;">Inverse</span>
+and <span style="font-style: italic;">Mathematica</span>.</font><font
+ color="#000000"> <br>
+<br>
+</font><font color="#000000"></font><span
+ style="font-size: 14pt; color: rgb(197, 66, 2);"><b><span
+ style="font-weight: bold;">Documentation and examples:</span></b></span><br>
+<font color="#000000"><br>
+<span style="font-weight: bold;"><span style="font-style: italic;">&nbsp;
+Inverse</span></span> is normally run with a <span
+ style="font-style: italic;">command file</span> (usually with
+extension <span style="font-style: italic;">.cm</span>) that contains
+instructions for the program. The program interprets this file and
+performs actions according to instructions in the command file,
+therefore all functionality of the program is accessible through
+functions installed in the interpreter. <br>
+&nbsp; For first impression about <span style="font-style: italic;">Inverse</span>,
+it is advisable to read the <a href="../doc/man/3.11/invquick2.pdf"><span
+ style="font-style: italic;">Quick introduction</span></a> (<a
+ href="../doc/other/quick/index.html"><small>html version</small></a>).
+Manuals are available <a href="../doc/man/index.html#3.11">here</a>.
+The most relevant ones for running the <a
+ href="demo/3.11/windows/test_case.zip">test case</a> included below
+are "<a href="../doc/man/3.11/invopt.pdf">Solving optimization problems</a>"
+and "<a href="../doc/man/3.11/invmath.pdf">Interface between Inverse
+and Mathematica</a>".<br>
+&nbsp; You can test how program works by running <span
+ style="font-weight: bold;">test examples</span>. You can find these in
+<span style="font-weight: bold; font-style: italic;">%IGHOME%\inverse\ex\</span>,
+where %IGHOME% is the path at which you have stored the downloaded <span
+ style="font-style: italic;">ighome</span> directory. This directory
+contains demonstrations for different specific modules of <span
+ style="font-style: italic;">Inverse</span>. More instructive examples
+for somebody who wants to run something as quickly as possible are in
+the test case directory, especially in its subdirectory <span
+ style="font-style: italic;">igor</span>. This directory contains a
+simple optimization example that is defined and solved entirely by <span
+ style="font-style: italic;">Inverse</span> (i.e. no external
+simulation modules are used), and demonstration of&nbsp; how the
+interface with <span style="font-style: italic;">Mathematica</span> is
+used. Interface with mathematica enables definition of optimization
+problems in <span style="font-style: italic;">Mathematica </span>and
+solution of these problems in <span style="font-style: italic;">Inverse</span>,
+or use of simulation software controlled by <span
+ style="font-style: italic;">Mathematica</span>, such as&nbsp; the
+system of Jože Korelc</font><font color="#000000">, in combination with
+<span style="font-style: italic;">Inverse</span>. <br>
+&nbsp; In order to provide limited <span style="font-style: italic;">debugging
+capabilities</span>, the <a href="demo/3.11/windows/c_source.zip">source
+files</a> for utility library <span style="font-style: italic;">iglib</span>
+on which <span style="font-style: italic;">Inverse</span> is based are
+provided. This makes possible to find and correct bugs that appear in
+the basic utility library, but not in the core <span
+ style="font-style: italic;">Inverse</span> sources because these are
+not publically available. After downloading and unpacking the sources,
+read the c/readme.txt file for instructions. T</font><font
+ color="#000000">he core </font><font color="#000000"><span
+ style="font-style: italic;">Inverse</span> sources can still
+eventually be provided (by special agreement) to our project partners
+and potential contributors. Please <a
+ href="mailto:igor_@c3m.si?Cc=igor.gresovnik_@guest.arnes.si&amp;subject=%20%20%3Cfrom%20Inverse%20download%20page%3E&amp;Body=Delete%20this%20line%20and%20underscores%20in%20addresses%20before%20sending%21&amp;Priority=Normal">contact
+us</a> if you are interested in obtaining them. <br>
+<br>
+&nbsp; For <span style="font-weight: bold;">editing command files</span>
+it is convenient to use editors with syntax highlighting such as
+EditPlus. You can download Inverse syntax file for EditPlus <a
+ href="editplus/inverse.stx">here</a>. File <a
+ href="editplus/setting.ini">setting.ini</a> shows how to sadd <span
+ style="font-style: italic;">Inverse</span> syntax definitions to
+EditPlus. It is recommendable not to overwrite the original file in the
+Editplus directrory, but to add Inverse section in the file manually.<br>
+<br>
+&nbsp; An extension of interface with <span style="font-style: italic;">Mathematica</span>
+is available in the notebook <a href="demo/3.11/windows/opt_inverse.nb">opt_inverse.nb</a>.
+<br>
+<br>
+<br>
+</font><font color="#000000"><br>
+</font><span style="font-size: 14pt; color: rgb(197, 66, 2);"><b>Version
+3.11 download<br>
+</b></span></div>
+<font color="#000000"></font>
+<div class="MsoNormalIndent"><font color="#000000"><br>
+</font>
+<table style="text-align: left; width: 692px; height: 113px;" border="1"
+ cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; font-weight: bold;"><br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(255, 204, 102);">MS
+DOS, Win 9x, Win NT, Win XP<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(255, 204, 102);">Linux<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(255, 204, 102);">HP
+Station<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Program (packed directory):</td>
+      <td style="vertical-align: top;"><a
+ href="demo/3.11/windows/inverse_3_11_windows.zip">inverse_3_11_windows.zip</a></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Sources (bas. lib)<br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="demo/3.11/windows/c_source.zip">c_source.zip</a> <br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font color="#000000">Test case
+(zipped directory):</font></td>
+      <td style="vertical-align: top;"><font color="#000000"><a
+ href="demo/3.11/windows/test_case.zip">test_case.zip<br>
+      </a></font></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font color="#000000">EditPlus <span
+ style="font-weight: bold;">syntax highlighting</span> <br>
+      </font></td>
+      <td style="vertical-align: top;"><font color="#000000"><a
+ href="editplus/inverse.stx">inverse.stx<br>
+      </a></font></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Notebook for extension of <span
+ style="font-weight: bold;">Mathematica interface</span>&nbsp; <br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="demo/3.11/windows/opt_inverse.nb">opt_inverse.nb</a> <br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Example and template for using <span
+ style="font-weight: bold; font-style: italic;">uniform file interface</span>&nbsp;
+      <br>
+      </td>
+      <td style="vertical-align: top;"><a
+ href="demo/3.11/windows/filean.zip">filean.zip</a> <br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<span style="font-size: 14pt; color: rgb(197, 66, 2);"><b><span
+ style="font-weight: bold;"></span></b></span><font color="#000000"><br>
+<br>
+<br>
+<br>
+</font><span style="font-size: 14pt; color: rgb(197, 66, 2);"><b>Version
+3.6<br>
+</b></span></div>
+<font color="#000000">Click the link for desired
+version and save it to your local disk. In order to unzip the windows
+version
+just run a</font><font color="#000000"> self-extracting archive file in
+a desired folder. Linux and
+HP-UNIX versions can be uncompressed by the standard 'uncompress'
+command.
+Add a location of the executable file to your $path system variable.</font>
+<p class="MsoNormalIndent"></p>
+<font color="#000000">Execute the selected command
+file by running 'inverse &lt;-options&gt; file' from the command prompt.<br>
+</font>
+<p class="MsoNormalIndent"></p>
+<p class="MsoNormalIndent">
+<table
+ style="background: rgb(245, 191, 16) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-left: 14.2pt; border-collapse: collapse;"
+ bgcolor="#f5bf10" border="0" cellpadding="0" cellspacing="0"
+ height="24">
+  <tbody>
+    <tr style="height: 24pt;">
+      <td style="padding: 0cm 5.4pt; width: 138.5pt;" width="231">
+      <center><a href="demo/3.6/windows/invSE.exe">MS DOS, Windows 9x,
+NT</a></center>
+      </td>
+      <td style="padding: 0cm 5.4pt; width: 54pt; height: 24pt;"
+ width="90">
+      <center><a href="demo/3.6/linux/inverse.Z">Linux</a></center>
+      </td>
+      <td style="padding: 0cm 5.4pt; width: 117pt; height: 24pt;"
+ width="195">
+      <center><a href="demo/3.6/hp/inverse.Z">HP Workstation</a></center>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p class="MsoNormalIndent"><br>
+<span style="font-size: 14pt; color: rgb(197, 66, 2);"></span></p>
+<p class="MsoNormalIndent"><span
+ style="font-size: 14pt; color: rgb(197, 66, 2);"><b><font
+ color="#000000">Manuals</font></b><o:p></o:p></span>
+</p>
+<a href="../doc/man/3.11/invquick2.pdf">First reading (short
+introduction to INVERSE).pdf</a>.<br>
+<font color="#000000"><a href="../doc/man/index.html">Complete manuals</a>.</font><br>
+<br>
+<p class="MsoNormalIndent"><span
+ style="font-size: 14pt; color: rgb(197, 66, 2);"><b><font
+ color="#000000">Sample
+command files</font></b><o:p></o:p></span>
+</p>
+<p class="MsoNormalIndent"><font color="#000000">You can download the
+whole
+collection of compressed sample command files:</font>
+&nbsp;&nbsp;<br>
+<table
+ style="background: rgb(245, 191, 16) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-left: 14.2pt; border-collapse: collapse;"
+ bgcolor="#f5bf10" border="0" cellpadding="0" cellspacing="0"
+ height="24">
+  <tbody>
+    <tr style="height: 24pt;">
+      <td style="padding: 0cm 5.4pt; width: 156.5pt; height: 24pt;"
+ width="261">
+      <center><a href="samples.exe">Windows (samples.exe)</a></center>
+      </td>
+      <td style="padding: 0cm 5.4pt; width: 153pt; height: 24pt;"
+ width="255">
+      <center><a href="samples.tar.Z">Unix/Linux (samples.tar.z)</a></center>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p class="MsoNormalIndent"><font color="#000000">Widows version is a
+self
+extracting archive file. Run it in a desired folder<span
+ style="color: black;" lang="EN-GB"><o:p>.</o:p></span></font><br>
+<span style="color: black;" lang="EN-GB"><font color="#000000">Linux
+and HP-UNIX versions can be uncompressed by the standard 'uncompress'
+and
+'untar' commands.<br>
+</font></span></p>
+<p class="MsoNormalIndent"><span style="color: black;" lang="EN-GB"><font
+ color="#000000"><br>
+</font></span></p>
+<br>
+<p class="MsoNormalIndent"><span style="color: black;" lang="EN-GB"><o:p></o:p></span><span
+ style="color: black;" lang="EN-GB"><o:p></o:p></span>
+</p>
+<div class="MsoNormal" style="text-align: center;">
+<center><span style="" lang="EN-GB">
+<hr align="center" size="3" width="100%"></span></center>
+</div>
+<div class="MsoNormal"><br>
+<br>
+</div>
+<p class="MsoNormalIndent"><o:p></o:p></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<CENTER><PRE><I><FONT FACE="Times New Roman,Times">Visits since May 1999:&nbsp;&nbsp;</FONT></I><IMG SRC="/cgi-bin/Count.cgi?df=inverse.dat"  ALIGN=ABSCENTER></PRE></CENTER>
+
+
+
+Ce hoces, da ti nove strani odpre v posebej okvirju, dodaj naslednjo vrstico:
+
+   <BASE TARGET="main">
+
+V invindex.html ta vrstica MORA biti prisotna!

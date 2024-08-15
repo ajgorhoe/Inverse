@@ -1,0 +1,949 @@
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+Functions for controlling the current file position:
+
+********************************************************************
+  This is a sample file on whic
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+Functions for controlling the current file position:
+
+********************************************************************
+  This is a sample file on whic
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+Functions for controlling the current file position:
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+************  Functions for controlling the current file position:  ************
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+**********  Functions for controlling the current file position:  **********
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+**********  Functions for controlling the current file position:  **********
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+  Contents of the file "basint.dat" (infile):
+"***************************************************************
+  This is a sample file on which"
+(section from position 15 to position 110)
+
+
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+**********  Functions for controlling the current file position:  **********
+
+
+
+FILE INTERPRETER: Error: Unknown function "position".
+
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+  Contents of the file "basint.dat" (infile):
+"***************************************************************
+  This is a sample file on which"
+(section from position 15 to position 110)
+
+
+
+Error in function fi_write1: " is missing at the end of string.
+
+
+
+Error in function fi_write1: " is missing at the end of string.
+
+
+
+$********************************************************************
+  This is a sample file on whic
+
+Error in function fi_write1: " is missing at the end of string.
+
+
+
+Error in function fi_write1: " is missing at the end of string.
+
+
+
+$
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+**********  Functions for controlling the current file position:  **********
+
+
+
+FILE INTERPRETER: Error: Unknown function "position".
+
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+  Contents of the file "basint.dat" (infile):
+"***************************************************************
+  This is a sample file on which"
+(section from position 15 to position 110)
+
+
+
+$********************************************************************
+  This is a sample file on whic
+
+Error in function fi_write1: " is missing at the end of string.
+
+
+
+Error in function fi_write1: " is missing at the end of string.
+
+
+
+$
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+**********  Functions for controlling the current file position:  **********
+
+
+
+FILE INTERPRETER: Error: Unknown function "position".
+
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+  Contents of the file "basint.dat" (infile):
+"***************************************************************
+  This is a sample file on which"
+(section from position 15 to position 110)
+
+
+
+$********************************************************************
+  This is a sample file on whic
+
+$
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+**********  Functions for controlling the current file position:  **********
+
+
+
+FILE INTERPRETER: Error: Unknown function "position".
+
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+  Contents of the file "basint.dat" (infile):
+"***************************************************************
+  This is a sample file on which"
+(section from position 15 to position 110)
+
+
+
+$********************************************************************
+  This is a sample file on whic
+
+$
+Current position in the file basint.dat (infile) is 10.
+
+
+
+Error in function fi_write1: " is missing at the end of string.
+
+
+
+The position is currently 10
+
+Error in function fi_write1: " is missing at the end of string.
+
+.
+
+
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+**********  Functions for controlling the current file position:  **********
+
+
+
+FILE INTERPRETER: Error: Unknown function "position".
+
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+  Contents of the file "basint.dat" (infile):
+"***************************************************************
+  This is a sample file on which"
+(section from position 15 to position 110)
+
+
+
+$********************************************************************
+  This is a sample file on whic
+
+$
+Current position in the file basint.dat (infile) is 10.
+
+
+
+The position is currently 10.
+
+
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+**********  Functions for controlling the current file position:  **********
+
+
+
+FILE INTERPRETER: Error: Unknown function "position".
+
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+  Contents of the file "basint.dat" (infile):
+"***************************************************************
+  This is a sample file on which"
+(section from position 15 to position 110)
+
+
+
+$********************************************************************
+  This is a sample file on whic
+
+$
+Current position in the file basint.dat (infile) is 10.
+
+
+
+The position is currently 10.
+
+
+
+The position is currently 10.
+
+
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+
+**********  Functions for controlling the current file position:  **********
+
+
+
+FILE INTERPRETER: Error: Unknown function "position".
+
+
+
+
+  Contents of the file "basint.dat" (infile):
+"********************************************************************
+  This is a sample file on whic"
+(section from position 10 to position 109)
+
+
+
+  Contents of the file "basint.dat" (infile):
+"***************************************************************
+  This is a sample file on which"
+(section from position 15 to position 110)
+
+
+
+$********************************************************************
+  This is a sample file on whic
+
+$
+Current position in the file basint.dat (infile) is 10.
+
+
+
+The position is currently 10.
+
+
+
+The position is currently 10.
+
+
+
+
+
+
+
+END.

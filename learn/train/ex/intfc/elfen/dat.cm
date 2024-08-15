@@ -1,0 +1,41 @@
+* {*********************************************************************
+
+File: intfc/elf/dat.cm
+
+  This file shows how the optimisation shell can change data in Elfen's
+input file.
+
+Author: Igor Gresovnik, March 1998
+
+************************************************************************}
+
+setfile{outfile dat.ct}
+
+*{  }
+
+setfile{aninfile spike.dat}
+
+initinput{}
+
+setvector{parammom 2 { 0.123 0.321 } }
+
+setparam{}
+
+do {
+[
+  write{\n"Input parameters!"\n}
+  write{"  Parameter No. 1: "}
+  read{k1}
+  write{"  Parameter No. 2: "}
+  read{k2}
+  setvector{parammom { $ k1  $ k2 } }
+  write{"Setting parameter values in the file spike.dat  to "
+        $ k1 " and " $ k2 "." \n}
+  setparam{}
+  write{"Look in the file spike.dat for changes!"\n\n"}
+  write{"Do you wish to continue (0/1)? "}
+  read{continue}
+] while (continue) }
+
+
+

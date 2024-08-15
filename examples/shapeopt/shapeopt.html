@@ -1,0 +1,407 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Generator" content="Microsoft Word 97">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; HP-UX B.10.20 9000/712) [Netscape]">
+   <title>Shape Optimization of a Simple Two-stage Forging Process</title>
+</head>
+<body bgcolor="#FFFFFF" text="Black">
+
+<h1> <b><font size="+2">Shape Optimization of a Tool for a Two-stage Forging</font></b></h1>
+
+<h2> <i>Test Case Description</i></h2>
+
+In this example we want to reduce the height of the axisymmetrical workpiece
+(metallic cylinder) by 40% by applying a two-stage cold forging process
+to it. Our aim is to design the process in such a way that the workpiece
+cross-section will remain rectangular after the forming. We presume that
+this can be achieved by using the following forming sequence:
+<ul>
+<li>
+<b><i>Stage 1: </i></b>The workpiece is forged by the tool with curvy contact
+surface. The stroke of the tool can be prescribed or variable.</li>
+</ul>
+
+<ul>
+<li>
+<b><i>Stage 2:</i></b> The workpiece is forged by the tool with flat contact
+surface. The stroke of the tool is prescribed because the height reduction
+of the workpiece depends on it</li>
+</ul>
+
+<center>
+  <table WIDTH="71%" height="363" >
+    <tr>
+      <td WIDTH="34%"><img SRC="Image44.gif" height=316 width=216></td>
+
+      <td WIDTH="8%"></td>
+
+      <td width="58%">Measures: 
+        <p>cylinder radius: r=50 mm
+<p>cylinder height: h=50 mm
+<p>tools radius : R=75 mm
+<p>optimization zone: <font face="Symbol">D</font>p=15 mm
+<p>u<sub>i</sub>: contact surface control p. coordinates
+<p>v<sub>i</sub>: free surface control p. coordinates
+<p>p<sub>i</sub>: tool 1 control p. y-coordinates
+<p>&nbsp;</td>
+</tr>
+</table></center>
+
+<center>
+<p><b>Figure 1:</b> Tools and workpiece(cylinder) geometry</center>
+
+<p><br>
+<br>
+<br>
+<p>The deformation is modeled by Von Mises elasto-plastic material model.
+The contact friction is modeled by Coloumb's law. Material properties of
+the workpiece are summarised in Table 1.
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><b>Table 1:</b> Material properties</center>
+
+<p><br>
+<center><table BORDER CELLPADDING=9 WIDTH="348" >
+<tr>
+<td VALIGN=TOP WIDTH="45%">Density&nbsp;</td>
+
+<td VALIGN=TOP WIDTH="27%">2710</td>
+
+<td VALIGN=TOP WIDTH="28%">[kg/m<sup>3</sup>]</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="45%">Young's module&nbsp;</td>
+
+<td VALIGN=TOP WIDTH="27%">71000</td>
+
+<td VALIGN=TOP WIDTH="28%">[MPa]</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="45%" HEIGHT="30">Plastic yield</td>
+
+<td VALIGN=TOP WIDTH="27%" HEIGHT="30">100</td>
+
+<td VALIGN=TOP WIDTH="28%" HEIGHT="30">[MPa]</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="45%" HEIGHT="30">Poisson's ratio</td>
+
+<td VALIGN=TOP WIDTH="27%" HEIGHT="30">0.34</td>
+
+<td VALIGN=TOP WIDTH="28%" HEIGHT="30">[/]</td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<h2> <i>Definition of the Optimisation Problem</i></h2>
+Find the optimal shape of the tool for the first stage so that the difference
+between required and computed final shape of the workpiece after forming
+is minimum.
+<p>The criterion for the efficiency of the forming process is defined by
+the following objective function:
+<center>
+<p><img SRC="Image45.gif" height=58 width=388> (1)</center>
+
+<p><i>u<sub>i</sub></i> are the coordinates of the control points on the
+contact surface of the workpiece, <i>v<sub>i</sub></i> are the coordinates
+of the control points on the free surface of the workpiece. The average
+values of these coordinates are&nbsp;<img SRC="Image46.gif" height=21 width=18>
+and&nbsp;<img SRC="Image47.gif" height=21 width=16 align=RIGHT>.
+<center>
+<p><img SRC="Image48.gif" height=60 width=238> (2)</center>
+
+<p>In our case the shape of the tool is defined by five control points.
+The contact surface of the tool between the control points is interpolated
+by splines of the 3<sup>rd</sup> order. Shape parameters <i>p<sub>i</sub></i>
+are y-coordinates of the control points in the local coordinate system
+of the tool. The optimization zone has a finite width so we must introduce
+a transformation function that maps parameter values from the interval
+[-<font face="Symbol">&yen;,&yen;</font>] to a finite interval [<i>p<sub>min</sub></i><font face="Symbol">
+, </font><i>p<sub>max</sub></i>].
+<center>
+<p><img SRC="Image49.gif" height=31 width=276> (3)
+<p><img SRC="Image50.gif" height=30 width=418> (4)</center>
+
+<p>The value of the objective function depends on the workpiece surface
+control points coordinates <i>u<sub>i </sub></i>and <i>v<sub>i</sub></i>.
+Presumably these coordinates depend on the optimization parameters <i>p<sub>i</sub></i>.
+We don't know the explicit dependence, but in spite of that we can intuitively
+establish that the objective function is an implicit function of the optimization
+parameters <i>p<sub>i</sub></i>.
+<center>
+<p><img SRC="Image51.gif" height=26 width=258> (5)</center>
+
+<p>With the optimization algorithm we try to find the global minimum of
+the objective function <i>D</i> with respect to shape parameters <i>p<sub>i</sub>.</i>
+Optimization is an iterative process. It consists of successive simulations
+of the forming at the parameters calculated from the results of the previous
+simulations.
+<center>
+<p><img SRC="flowchart.gif" height=460 width=620>
+<p><b>Figure 2</b>: Optimization scheme</center>
+
+<p><br>
+<h2> <i>Results</i></h2>
+The results are presented in the table 1. In the columns <i>p<sub>1</sub></i>
+to <i>p<sub>5</sub></i> shape parameters of the tool for the first stage
+are stored, p6 is a stroke of the same tool. In the following columns <i>D<sub>u</sub></i>,
+<i>D<sub>v</sub></i>
+and <i>D</i> the values of the objective function are stored. In the first
+two rows there are the results for forging with non-optimized tool. In
+the third row there are results for forging with the tool optimized for
+prescribed stroke (20 mm). In the fourth row there are results for forging
+with tool with optimized shape and stroke. All the parameters are formatted
+in dimensionless form with respect to the starting tool height (<i>h<sub>1</sub></i>=30mm).
+<br>&nbsp;
+<center><table BORDER=2 CELLPADDING=9 WIDTH="767" NOSAVE >
+<tr ALIGN=CENTER NOSAVE>
+<td VALIGN=TOP WIDTH="3%" NOSAVE>&nbsp;</td>
+
+<td VALIGN=TOP WIDTH="9%"><i>p<sub>1</sub></i></td>
+
+<td VALIGN=TOP WIDTH="9%"><i>p<sub>2</sub></i></td>
+
+<td VALIGN=TOP WIDTH="9%"><i>p<sub>3</sub></i></td>
+
+<td VALIGN=TOP WIDTH="9%"><i>p<sub>4</sub></i></td>
+
+<td VALIGN=TOP WIDTH="9%"><i>p<sub>5</sub></i></td>
+
+<td VALIGN=TOP WIDTH="9%"><i>p<sub>6</sub></i></td>
+
+<td VALIGN=TOP WIDTH="11%"><i>D<sub>u</sub></i></td>
+
+<td VALIGN=TOP WIDTH="11%"><i>D<sub>v</sub></i></td>
+
+<td VALIGN=TOP WIDTH="11%"><i>D</i></td>
+
+<td VALIGN=TOP WIDTH="9%"><i>Iter.</i></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="3%"><font size=-2>a</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>1</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>1</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>1</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>1</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>1</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>2/3</font></td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>1.063E-04</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>7.927E-03</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>8.033E-03</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>-</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="3%"><font size=-2>b</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>1</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.93</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.75</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.57</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.5</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>2/3</font></td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>9.331E-05</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>3.821E-03</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>3.914E-03</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>-</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="3%"><font size=-2>c</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.50665</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.99284</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.99170</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.53944</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.5090</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>2/3</font></td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>1.67E-04</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>2.61E-04</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>4.28E-04</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>61/145</font></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="3%"><font size=-2>d</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.50686</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.99197</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.99225</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.83228</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.51019</font></td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>0.8326</font></td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>1.30E-04</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>1.49E-05</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="11%">
+<div align=right><font size=-2>1.44E-04</font></div>
+</td>
+
+<td VALIGN=TOP WIDTH="9%"><font size=-2>95/237</font></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<p>a)
+<center><table COLS=5 WIDTH="100%" >
+<tr ALIGN=CENTER VALIGN=BOTTOM>
+<td ALIGN=CENTER VALIGN=BOTTOM><img SRC="00.gif" height=342 width=286></td>
+
+<td WIDTH="2%"></td>
+
+<td><img SRC="01.gif" height=274 width=286></td>
+
+<td WIDTH="2%"></td>
+
+<td><img SRC="02.gif" height=160 width=286></td>
+</tr>
+</table></center>
+
+<center>
+<p><b>Figure 3</b>: forging with flat tools</center>
+
+<p>Mean value of the final radius: <i>r</i> = 64.06 mm
+<br>Mean value of the final height: <i>h</i> = 30.306 mm
+<br>The value of the objective fn.: <i>D</i> = 8.033 10<sup>-3</sup>
+<br>&nbsp;
+<p>b)
+<br>&nbsp;
+<center><table COLS=5 WIDTH="100%" >
+<tr ALIGN=CENTER VALIGN=BOTTOM>
+<td><img SRC="10.gif" height=342 width=286></td>
+
+<td WIDTH="2%"></td>
+
+<td><img SRC="11.gif" height=274 width=286></td>
+
+<td WIDTH="2%"></td>
+
+<td><img SRC="12.gif" height=160 width=286></td>
+</tr>
+</table></center>
+
+<center>
+<p><b>Figure 4</b>: forging with intuitively set shape of the tool (tool
+stroke 20 mm)</center>
+
+<p><br>
+<p>Mean value of the final radius: <i>r</i> = 63.883 mm
+<br>Mean value of the final height: <i>h</i> = 30.518 mm
+<br>The value of the objective fn.: <i>D</i> = 3.91 10<sup>-3</sup>
+<br>&nbsp;
+<p>c)
+<br>&nbsp;
+<center><table COLS=5 WIDTH="100%" >
+<tr ALIGN=CENTER VALIGN=BOTTOM>
+<td><img SRC="20.gif" height=342 width=286></td>
+
+<td WIDTH="2%"></td>
+
+<td><img SRC="21.gif" height=274 width=286></td>
+
+<td WIDTH="2%"></td>
+
+<td><img SRC="22.gif" height=160 width=286></td>
+</tr>
+</table></center>
+
+<center>
+<p><b>Figure 5</b>: forging with optimized shape of the tool at prescribed
+tool stroke (20 mm)</center>
+
+<p><br>
+<p>Mean value of the final radius: <i>r</i> = 63.991 mm
+<br>Mean value of the final height: <i>h</i> = 30.472 mm
+<br>The value of the objective fn.: <i>D</i> = 4.28 10<sup>-4</sup>
+<br>&nbsp;
+<p>d)
+<br>&nbsp;
+<center><table COLS=5 WIDTH="100%" >
+<tr ALIGN=CENTER VALIGN=BOTTOM>
+<td><img SRC="30.gif" height=342 width=286></td>
+
+<td WIDTH="2%"></td>
+
+<td><img SRC="31.gif" height=255 width=286></td>
+
+<td WIDTH="2%"></td>
+
+<td><img SRC="32.gif" height=160 width=286></td>
+</tr>
+</table></center>
+
+<center>
+<p><b>Figure 6</b>: forging with optimized shape and stroke of the tool</center>
+
+<p><br>
+<p>Mean value of the final radius: <i>r</i> = 64.372 mm
+<br>Mean value of the final height: <i>h</i> = 30.127 mm
+<br>The value of the objective fn.: <i>D</i> = 1.44 10<sup>-4</sup>
+<br>Optimal stroke : s= 24.978 mm
+</body>
+</html>

@@ -1,0 +1,225 @@
+* {*********************************************************************
+
+File: interp/flow.cm
+
+  This file shows the flow control capabilities of the file interpreter.
+Branches, loops and function definitions are demonstrated.
+
+Author: Igor Gresovnik, April 1998
+
+************************************************************************}
+
+setfile{outfile flow.ct}
+
+write{\n"**************  if/else conditional statement  **************"\n\n}
+fwrite{\n"**************  if/else conditional statement  **************"\n\n}
+
+if { (10^3.5<3000)
+[
+  write{"10^3.5 is less than 3000."\n}
+  fwrite{"10^3.5 is less than 3000."\n}
+] else
+[
+  write{"10^3.5 is more than 3000."\n}
+  fwrite{"10^3.5 is more than 3000."\n}
+  if { (10^3.5>3100)
+  [
+    write{"10^3.5 is also more than 3100."\n}
+    fwrite{"10^3.5 is also more than 3100."\n}
+  ]}
+]}
+write{\n}  fwrite{\n}
+
+write{\n"************************  while loop  ************************"\n\n}
+fwrite{\n"************************  while loop  ************************"\n\n}
+
+={i:0}
+={x:0}
+while{ (i<=10)
+[
+  write{"i = "$ i ", x = " $  x "."\n}
+  fwrite{"i = "$ i ", x = " $  x "."\n}
+  ={i:i+1}
+  ={x:x+i}
+]}
+write{\n}  fwrite{\n}
+
+
+write{\n"************************  do loop  ************************"\n\n}
+fwrite{\n"************************  do loop  ************************"\n\n}
+
+do{
+[
+  write{"i = "$ i ", x = " $ x "."\n}
+  fwrite{"i = "$ i ", x = " $ x "."\n}
+  ={x:x/i}
+  ={i:i-1}
+] while (i>0) }
+write{\n}  fwrite{\n}
+
+
+
+write{\n"**************  Definition of a new function  **************"\n\n}
+fwrite{\n"**************  Definition of a new function  **************"\n\n}
+
+function{ increment(x) [ ={$x:$x+1} ] }
+
+
+={a:3}
+while{(a<=10)
+[
+  increment{ a }
+  write{"a = "$a"."\n}
+  fwrite{"a = "$a"."\n}
+]}
+write{\n}  fwrite{\n}
+
+
+function{ writenew(x)
+[
+  write{$x}
+] }
+
+function{ fwritenew(x)
+[
+  fwrite{$x}
+] }
+
+
+writenew{${3+2}}
+fwritenew{${3+2}}
+write{\n}  fwrite{\n}
+
+writenew{"5/6="${5/6}\n}
+fwritenew{"5/6="${5/6}\n}
+write{\n}  fwrite{\n}
+
+={a:15}
+writenew{ {"  Expression " \" "3*a/2" \" " has value " ${3*a/2} "." \n } }
+fwritenew{ {"  Expression " \" "3*a/2" \" " has value " ${3*a/2} "." \n } }
+write{\n}  fwrite{\n}
+
+
+write{"Definition of for:"\n}
+
+function { for (begin condition end block)
+[
+  $begin
+  while{ ($condition)
+  [
+    $block
+    $end
+  ]}
+]}
+
+write{"Usage of for:"\n}
+
+for{ ={i:1} i<=10 ={i:i+1} {write{$i "  "} fwrite{$i "  "}} }
+write{\n}  fwrite{\n}
+
+
+
+write{\n"*******  Argument passing without names at user-defined functions  *******"\n\n}
+fwrite{\n"*******  Argument passing without names at user-defined functions  *******"\n\n}
+
+*{ Example: function which tabulates an arbitraru number of function. The
+   first argument is the argument at which functions will be evaluated, all
+   other atrguments are names functions of the expression evaluator which 
+   will be evaluated at this point. }  
+   
+   
+function { evalfunctions (x)
+[
+  ={i:2}
+  while{(i<=numfuncargs[])
+  [
+    update
+    {
+      write{"#{i}[" ${$x} "] = " ${ #{i}[$x] } \n}
+      fwrite{"#{i}[" ${$x} "] = " ${ #{i}[$x] } \n}
+    }
+    ={i:i+1}
+  ]}
+  write{\n}
+  fwrite{\n}
+]}
+
+
+break{}
+
+
+evalfunctions{1.23 sin cos}
+evalfunctions{10.9 sin cos}
+
+
+write{\n"**************  The goto function  **************"\n\n}
+fwrite{\n"**************  The goto function  **************"\n\n}
+
+={i:1}
+write{"This is written before the goto loop."\n}
+fwrite{"This is written before the goto loop."\n}
+label{begin_loop}
+={i:i+1}
+write{"i = "$i\n}
+fwrite{"i = "$i\n}
+if { (i>=5)  [ goto{out_of_loop} ]   }
+goto{begin_loop}
+label{out_of_loop}
+exit{}
+
+write{\n"**************  Interpretation of another file  **************"\n\n}
+fwrite{\n"**************  Interpretation of another file  **************"\n\n}
+
+write{"This was writen before the interpretation of the included file."\n}
+fwrite{"This was writen before the interpretation of the included file."\n}
+
+interpret{included.cm}
+
+write{"This was writen after the interpretation of the included file."\n}
+fwrite{"This was writen after the interpretation of the included file."\n}
+
+
+write{\n"**************  Exiting one or more levels  **************"\n\n}
+fwrite{\n"**************  Exiting one or more levels  **************"\n\n}
+
+
+*{ To exit one or more levels of interpretation, call exit with a numerical
+argument which specifies the number of levels to exit: }
+
+while{ (1)
+[
+  write{"This is written inside the infinite while loop which we want to exit."\n}
+  fwrite{"This is written inside the infinite while loop which we want to exit."\n}
+  if { (1)
+  [
+    write{"This is written inside the if branch."\n}
+    fwrite{"This is written inside the if branch."\n}
+    
+    exit{10} 
+    *{ The first level is the if execution block and the second one is while
+    execution block. }
+    
+    write{"This should never be written because of the exit function."\n}
+    fwrite{"This should never be written because of the exit function."\n}
+    
+  ]}
+]}
+
+
+
+*{ To exit the whole interpretation, call the exit function without arguments: }
+
+
+if { (1)
+[
+  write{"This is written inside the if branch."\n}
+  fwrite{"This is written inside the if branch."\n}
+  
+  exit{}
+  
+  write{"This should never be written because of the exit function."\n}
+  fwrite{"This should never be written because of the exit function."\n}
+]}
+
+
+

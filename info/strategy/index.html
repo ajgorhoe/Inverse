@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.7 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
+  <meta name="Author" content="Igor Gresovnik">
+  <meta name="Classification"
+ content="computers/software/engineering/applied_mathematics">
+  <meta name="Keywords"
+ content="optimization, inverse problems, software, Inverse, shell">
+  <title>Optimization shell Inverse: Development Strategy</title>
+</head>
+<body alink="#fe0000" bgcolor="#e6e6e6" link="#0000ee" text="#000000"
+ vlink="#006600">
+<a href="../../invhome.html"><img src="../../invlogo.gif"
+ alt="INVERSE logo - click to load Inverse home" nosave="" border="0"
+ height="60" width="468"></a>
+<br>
+&nbsp;
+<center>
+<h1><b><i><font color="#3366ff">Future </font><font color="#cc0000">Development
+Strategy</font><font color="#3366ff"> for INVERSE</font></i></b></h1>
+</center>
+<p><br>
+&nbsp;&nbsp;&nbsp; Optimization shell <i>Inverse</i> has undergone
+the first development stage where the basic framework for
+implementation
+tools have been developed. It is now in the stage where algorithms and
+tools for performing different tasks and solving various kinds of sub
+problems
+are added and improved. New tools will be mostly responsible for
+changing
+the programme look, although some conceptual things will be the subject
+of change and upgrade, too.
+</p>
+<p>&nbsp;&nbsp;&nbsp; There are many things we would like to do in the
+future. <i>Inverse</i> tends to be a programme offering <b>tools for
+various
+optimization areas</b> such as shape optimization, optimization of
+systems
+with noisy response, etc.&nbsp; We would not like to limit <i>Inverse</i>
+to the use with a single simulation programme or to solution of a
+specific
+type of problems. One of the basic ideas of the shell is generality. It
+should in the first place provide general tools commonly needed for
+solution
+of optimization problems, e.g. optimization algorithms or functions for
+matrix manipulation. On the top of this it should provide a framework
+for
+implementation of tools for solution of specific sub problems (e.g.
+domain
+transformation for shape optimization problems and interfacing routines
+for utilization of simulation programmes).
+</p>
+<p>&nbsp;&nbsp;&nbsp; One of the objectives for the future is to
+provide
+<i>Inverse</i>
+as an <b>open library</b>.&nbsp; Different research groups will then
+be
+able to implement their own tools in <i>Inverse</i> independently on
+the
+<i>Inverse</i>
+development team. Modules developed in different research and
+development
+groups can this way be distributed without interference of <i>Inverse</i>
+development team. We hope that gradually this would create variety of
+tools
+that users could obtain from different sources and plug into <i>Inverse</i>.
+The <i>Inverse</i> team will however still develop its own tools which
+will be a part of the shell by default. We want to provide a set of
+most
+basic tools to cover common needs, but also leave peak experts in
+individual
+areas to offer their more advanced and specialized solutions as a
+supplement
+to the basic scheme.
+</p>
+<p>&nbsp;&nbsp;&nbsp; In a similar way we would like to spread a circle
+of simulation codes that would provide a <b>close interface</b> with <i>Inverse</i>.
+All users of these codes would have, regardless to the simulation code
+they use, opportunity to take the advantage of what <i>Inverse</i>
+offers,
+essentially of a variety of tools developed not only by the <i>Inverse</i>
+team. <i>Inverse</i> comes with a general file interface, which
+enables
+use of <i>Inverse</i> with practically every code that uses text input
+and output. However, direct interface between the shell and a
+simulation
+programme is more elegant, efficient and easy to use. Besides, the
+structure
+of many simulation programme is not suited wery well for optimization.
+Creation of a direct interface with <i>Inverse</i> can improve that. <i>Inverse</i>
+team will provide assistance to the simulation code developers who
+would
+like to provide a direct interface with <i>Inverse</i>. The <b>expertise
+of the whole <a href="http://www.c3m.si">C3M</a> group</b>, a part of
+which
+is doing research in advanced finite element code concepts, can be
+employed
+here.
+</p>
+<p>&nbsp;&nbsp;&nbsp; <b>Development tasks</b> that currently have the
+highest priority are the following:
+</p>
+<ul>
+  <li>
+    <b>Optimization algorithms</b><font size="-1"> - the FSQP
+represents the
+strongest optimization engine of the shell. It serves wery well for
+identification
+of local minima when the objective function is enough smooth and the
+level
+of noise is not too high. In the future the shell will have to provides
+efficient algorithms for problems for which standard algorithms don't
+perform
+well, e.g. statistical optimization methods. Implementation of such
+algorithms
+can generate additional demands on shell concepts which <i>Inverse</i>
+development team will have to meet. The beginning stage of
+incorporating
+new kinds of algorithms will be crucial for identifying such demands.</font></li>
+  <li>
+    <b>Open library</b><font size="-1"> - this will enable independent
+development
+of additional modules outside the <i>Inverse</i> development team.
+Basic
+task will be development of library functions which will support
+complete
+integration of newly developed modules with the existent shell
+functionality.</font></li>
+  <li>
+    <b>Parallelisation</b><font size="-1"> - the parallel interface
+will provide
+the framework for implementation of&nbsp; parallel optimization
+algorithms.</font></li>
+  <li>
+    <b>Facilities for processing results, including graphics</b><font
+ size="-1">
+- standard data formats will be provided for representation of
+optimization
+results, which include not only the optimal parameter set and function
+values, but also optimization path. These structures will be generated
+by optimization algorithms, while the user will be able to customize
+the
+structures and output the data in various formats which will enable
+additional
+processing by external programmes. A graphic module will provide
+graphical
+interpretation of data in the standard format.</font></li>
+  <li>
+    <b>Auxiliary tools</b><font size="-1">, e.g. matrix manipulation or
+supporting
+tools for shape optimization, will be continuously developed.</font></li>
+  <li>
+    <b>Integration with simulation programmes<font size="-1"> </font></b><font
+ size="-1">will
+not only make use of <i>Inverse</i> with specific simulation
+programmes
+easier, but will also accumulate knowledge about demands on the
+structure
+of simulation software from different areas that arise from
+optimization.</font></li>
+</ul>
+<p><br>
+&nbsp;&nbsp;&nbsp; <i>Inverse</i> development has depended much
+on <b>funding</b> granted for research. This source will not suffice
+in
+the future, therefore we will send the programme to <b>market</b>.
+With
+the additional source of income generated by commercial distribution we
+will try to build a research and development team which will be up to
+meeting
+the most demanding user needs.
+<br>
+&nbsp;
+</p>
+<p></p>
+<hr>&nbsp;
+<div align="right">
+<table nosave="" bgcolor="#ffffff" border="3" cellpadding="2">
+  <tbody>
+    <tr nosave="">
+      <td nosave="" align="left" valign="top"><font size="-1"><a
+ href="../index.html">Upper
+Level</a></font>
+      <div align="right"><font size="-1"><a href="../../invhome.html">INVERSE
+home</a></font></div>
+      <font size="-1"><a href="http://www.c3m.si">C3M home</a></font></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+</body>
+</html>

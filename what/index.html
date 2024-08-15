@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="GENERATOR"
+ content="Mozilla/4.7 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
+  <meta name="Author" content="Igor Gresovnik">
+  <meta name="Classification"
+ content="computers/software/engineering/applied_mathematics">
+  <meta name="Keywords"
+ content="optimization, inverse problems, software, Inverse, shell">
+  <title>Optimization shell Inverse: What Inverse is</title>
+</head>
+<body alink="#fe0000" bgcolor="#e6e6e6" link="#0000ee" text="#000000"
+ vlink="#006600">
+<a href="../invhome.html"><img src="../invlogo.gif"
+ alt="INVERSE logo - click to load Inverse home" nosave="" border="0"></a>
+<br>
+&nbsp;
+<ul>
+  <li>
+    <font size="-1"><a href="#idea">Basic Idea</a></font></li>
+  <li>
+    <font size="-1"><a href="#specific">What is specific for <i>Inverse</i></a></font></li>
+  <li>
+    <font size="-1"><a href="#features">Features of <i>Inverse</i></a></font></li>
+</ul>
+<center>
+<h1><b><i><font color="#cc0000">What Is INVERSE</font></i></b></h1>
+</center>
+<ul>
+  <h2>
+  <a name="idea"></a><font color="#cc0000">Basic idea</font></h2>
+</ul>
+&nbsp;&nbsp;&nbsp; The purpose of <i>Inverse</i> is to have a
+programme
+suitable for solving a wide range of optimization and inverse problems
+in different environments. The programme should have a flexible
+structure
+and user interface so that it could be utilised for solving a great
+variety
+of problems. It should be easily connected with different simulation
+programmes
+and other external programmes specialised for solving individual
+subproblems.
+It should provide a basic scheme for definition of optimization
+problems
+and specification of the solution strategy. In this framework there
+should
+be a growing set of algorithms and tools, which could be employed in
+problem
+solution.
+<br>
+&nbsp;
+<ul>
+  <h2>
+  <a name="specific"></a><font color="#cc0000">What is specific for <i>Inverse</i></font></h2>
+</ul>
+&nbsp;&nbsp;&nbsp; <i>Inverse</i> is a programming shell designed for
+solving
+optimization and inverse problems in connection with an analysis
+programme.
+The analysis programme must be capable of simulating the behaviour of
+structures
+or parts under operating conditions, the course of processes or
+experiments,
+etc., which are to be optimized. The shell and the analysis programme
+together
+form an optimization system such as shown in <i>Figure 1.</i> The <a
+ href="http://www.isr.umd.edu/Labs/CACSE/FSQP/fsqp.html"><i>FSQP</i>
+algorithm</a> is used as the shell's basic optimization engine.
+<p>&nbsp;&nbsp;&nbsp; Main interaction points between user and the
+system
+are shell's command file and output file. User defines the problem and
+its solution procedure by writing the command file which is interpreted
+by shell's file interpreter. When the problem is being solved, the
+shell
+prints reports about its actions to its output file.
+<br>
+&nbsp;
+<table nosave="" cellpadding="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="" align="left" valign="CENTER" width="10"><a
+ href="optsys1.gif"><img src="optsys1.gif" nosave="" border="0"
+ height="183" hspace="5" width="200"></a></td>
+      <td nosave="" valign="bottom" width="100%"><b><font size="-1"><a
+ href="optsys1.gif">(click
+on image to enlarge it!)</a></font></b>
+      <p><i>Figure 1:</i> <font size="-1">Scheme of the optimization
+system which
+consists of the shell and a simulation programme. It is assumed that a
+finite element method (FEM) based programme is used for simulation.
+Basic
+interactions between user and the system and between the parts of the
+system
+are shown.</font></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p>&nbsp;&nbsp;&nbsp; User of the system typically defines a skeleton
+of
+the direct problems that are successively solved during the
+optimization
+process by the simulation programme. The optimization problem and the
+solution
+strategy are defined through the shell's command file. To ensure high
+flexibility
+at defining various problems, the command file syntax resembles a high
+level programming language. All necessary supporting utilities like
+optimization
+algorithms, function definition facilities, mathematical tools
+(function
+approximation, matrix operations, etc.) and interfacing with the direct
+simulation, are provided through the pre-defined shell interpreter
+functions.
+</p>
+<p>&nbsp;&nbsp;&nbsp; During the optimization procedure, simulations
+are
+successively run at different values of parameters (design parameters
+in
+the case of optimization or model parameters in the case of inverse
+problems)
+to evaluate values and derivatives of the objective functions and
+constraints
+and eventually some other necessary data. The exact way how an
+individual
+analysis is performed is also defined in the command file, in an
+argument
+block of the "analysis" function. Each time the optimization algorithm
+(or some other supporting algorithm) requires evaluation of the
+objective
+function (or some other data bound by direct analysis), this block is
+interpreted.
+All functionality of the shell is available to the user for defining
+the
+way how the simulation is performed and how the connected data required
+by optimization algorithms is evaluated. Typically function of the
+interface
+between the shell and the simulation programme are used for this
+purpose,
+as well as some data manipulation and mathematical functions.
+</p>
+<p>&nbsp;&nbsp;&nbsp; Structure of the optimization system is shown in
+<i>Figure</i>
+2. Solution procedure is controlled by the command file interpreted by
+shell's interpreter. Commands (or functions) in this file trigger
+appropriate
+actions associated with them. Command arguments determine exactly how
+these
+actions will be performed.
+</p>
+<p>&nbsp;&nbsp;&nbsp; The most important functions are those associated
+with built-in optimization and other algorithms. Common to these
+algorithms
+is that they require successive evaluation of objective functions and
+other
+data bound with the simulation at different values of parameters. This
+is always performed by a special function which is built in the shell.
+This function among the other triggers the interpretation of the
+"analysis"
+command argument block where user defines how the direct analysis is
+performed.
+This includes the way how input data for a simulation is set or updated
+according to parameter values, how the simulation is performed and how
+the data required by algorithms is evaluated using the simulation data.
+<br>
+&nbsp;
+<table nosave="" border="0" cellpadding="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="" align="left" valign="CENTER" width="10"><a
+ href="shell1.gif"><img src="shell1.gif" nosave="" border="0"
+ height="222" hspace="5" width="200"></a></td>
+      <td nosave="" valign="bottom" width="100%"><b><font size="-1"><a
+ href="shell1.gif">(click
+on image to enlarge it!)</a></font></b>
+      <p><i>Figure 2:</i> <font size="-1">Structure of the
+optimization system.
+Invocation relations (white arrows) and data exchange between the shell
+and the simulation programme (blue arrow) are shown.</font></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p>&nbsp;&nbsp;&nbsp; Beside file interpreter's functions which perform
+run algorithms and interface functions there are a lot of other
+functions
+which help the user to define the problem and its solution strategy.
+These
+functions enable the shell to interact with system environment, keep
+results
+of performed algorithms and use them as input data for other
+algorithms,
+perform various operations on the data, including basic mathematical
+operations,&nbsp;
+etc. All this is controlled through the interpretation of the command
+file
+written by user. Syntax of the command file enables not only sequential
+execution of built-in tools, but also flow control. All the data which
+at a given moment exists in the shell (i.e. was generated by shell's
+actions)
+can be used in loop and branching conditions or as arguments to
+interpreter's
+functions. This gives great flexibility to the system because there is
+unlimited exchange of the data between different functional units of
+the
+shell.
+</p>
+<p>&nbsp;&nbsp;&nbsp; <i>Figure 3</i> is a simple presentation of the
+main
+data flows in the optimization system. Data exchange between the shell
+and the simulation programme can be performed through the simulation
+input
+and output files, however this arrangement can be replaced by a direct
+interface. In this case, the shell and the simulation programme are
+typically
+integrated in one programme and exchange date directly by accessing
+each
+other's memory (sketched by the two sided arrow in the figure). The
+shell
+incorporates a general file interface by which it can interface any
+simulation
+programme which can use text file input and output. Of course, direct
+interface
+is more convenient because it is faster and because what happens in the
+simulation programme can be better controlled by the shell.
+<br>
+&nbsp;
+<table nosave="" border="0" cellpadding="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="" align="left" valign="CENTER" width="10"><a
+ href="sh_sim1.gif"><img src="sh_sim1.gif" nosave="" border="0"
+ height="165" hspace="5" width="200"></a></td>
+      <td nosave="" valign="bottom" width="100%"><b><font size="-1"><a
+ href="sh_sim1.gif">(click
+on image to enlarge it!)</a></font></b>
+      <p><i>Figure 3:</i> Data exchange between parts of the
+optimization system
+and user of the system.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+<br>
+&nbsp;
+</p>
+<ul>
+  <h2>
+  <a name="features"></a><font color="#cc0000">Features of <i>Inverse</i></font></h2>
+</ul>
+<ul>
+  <li>
+Flexible user interface implemented as a file interpreter</li>
+  <ul>
+    <li>
+      <font size="-1">expression evaluator and file interpreter with
+nested command
+syntax enable flow control in a similar manner than do the high level
+programming
+languages.</font></li>
+    <li>
+      <font size="-1">high level commands enable simple use without
+necessity for
+flow control.</font></li>
+  </ul>
+  <li>
+A collection of various optimization algorithms</li>
+  <ul>
+    <li>
+      <font size="-1">The powerful <a
+ href="http://www.isr.umd.edu/Labs/CACSE/FSQP/fsqp.html"><i>FSQP</i>
+algorithm</a> is the basic optimization engine of the shell.</font></li>
+    <li>
+      <font size="-1">Unconstrained minimization of non-linear functions</font></li>
+    <li>
+      <font size="-1">Constraint minimization: variable bounds, linear
+and non-linear
+inequality and equality constraints</font></li>
+  </ul>
+  <li>
+A collection of auxiliary tools</li>
+  <ul>
+    <li>
+      <font size="-1">A palette of tabulating utilities for examining
+topology
+of the objective functions</font></li>
+    <li>
+      <font size="-1">Monte Carlo simulations for examination of nature
+of inverse
+solutions</font></li>
+  </ul>
+  <li>
+User defined variables for storing different types of data</li>
+  <ul>
+    <li>
+      <font size="-1">Matrix, vector and scalar variables</font></li>
+    <li>
+      <font size="-1">Fields for storing discrete representations of
+continuum
+data (e.g. finite element meshes, scalar, vector &amp; other fields)</font></li>
+  </ul>
+  <li>
+Common operations on basic types of variables</li>
+  <ul>
+    <li>
+      <font size="-1">Basic matrix and vector operations</font></li>
+    <li>
+      <font size="-1">Basic mathematical operations</font></li>
+    <li>
+      <font size="-1">Possibility of defining new operations</font></li>
+  </ul>
+  <li>
+A general file interface for interfacing arbitrary simulation
+programmes
+through files</li>
+  <li>
+Built-in interfacing functions for data exchange between specific
+simulation
+programmes <font size="-1">(presently applies only to <i><a
+ href="http://rsazure.swan.ac.uk/products/elfen/elfen.html">Elfen</a></i>)</font></li>
+  <li>
+Unlimited data transfer between different modules of the shell</li>
+  <ul>
+    <li>
+      <font size="-1">All data is usable everywhere, results of one
+operation are
+accessible to following operations</font></li>
+  </ul>
+  <li>
+Readily available reports about solution procedures</li>
+  <ul>
+    <li>
+      <font size="-1">Output to terminal and to a file</font></li>
+    <li>
+      <font size="-1">All output except specially formatted data for
+further&nbsp;
+processing</font></li>
+    <li>
+      <font size="-1">Possibility of outputting virtually every
+information that
+exists in the shell</font></li>
+  </ul>
+  <li>
+Different levels of use</li>
+  <ul>
+    <li>
+      <font size="-1">Semi descriptive level</font></li>
+    <li>
+      <font size="-1">High level where some features of solution
+algorithm are
+controlled by the users</font></li>
+    <li>
+      <font size="-1">The highest level where also some basic
+algorithms are programmed
+by the user; in this case the shell can serve for providing a portion
+of
+algorithms, auxiliary utilities and utilities for interfacing system
+environment
+and simulation programme.</font></li>
+  </ul>
+  <li>
+&nbsp;Openness</li>
+  <ul>
+    <li>
+      <font size="-1">Easy adaptation for use with different simulation
+programmes</font></li>
+    <li>
+      <font size="-1">Possibility of using external modules for partial
+tasks (e.g.
+for interfacing the simulation programme)</font></li>
+  </ul>
+  <li>
+&nbsp;Syntax checker and Debugger</li>
+  <ul>
+    <li>
+      <font size="-1">Syntax checker enables the user to discover
+syntax errors
+before running the projects which in many cases saves considerable
+amount
+of time.</font></li>
+    <li>
+      <font size="-1">Debugger facilitates location of tricky errors
+which the
+user makes at the construction of solution procedure. It enables
+step-by-step
+execution of the solution procedure. The user can on-line monitor
+values
+of all shell variables, assign different values to them and executes
+additional
+shell commands.</font></li>
+  </ul>
+</ul>
+<hr>&nbsp;
+<div align="right">
+<table nosave="" bgcolor="#ffffff" border="3" cellpadding="2">
+  <tbody>
+    <tr nosave="">
+      <td nosave="" align="left" valign="top">
+      <div align="right"><font size="-1"><a href="../invhome.html">INVERSE
+home</a></font></div>
+      <font size="-1"><a href="http://www.c3m.si">C3M home</a></font></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<br>
+</body>
+</html>

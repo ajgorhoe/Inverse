@@ -1,0 +1,136 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+   <meta name="Author" content="Igor Gresovnik">
+   <meta name="Description" content="Inverse is a general-purpose software for solving optimization and inverse problems in science and engineering. It is designed for research purposes in various fields of optimization as well as for solving practical problems.">
+   <meta name="Keywords" content="optimization, inverse problems, software, Inverse, shell">
+   <meta name="Classification" content="computers/software/engineering/applied_mathematics">
+   <meta name="CREATOR" content="Igor Gresovnik">
+   <meta name="SUBJECT" content="Optimization">
+   <meta name="MAIN SUBJECT" content="Optimization software">
+   <meta name="SUBJECT 1" content="Optimization utilising numerical simulation">
+   <meta name="PURPOSE" content="Optimization of industrial processes using numerical simulation">
+   <meta name="PURPOSE 1" content="Development of optimization techniques">
+   <title>Optimization shell Inverse: Main Page</title>
+</head>
+<body text="#000000" bgcolor="#E6E6E6" link="#0000EE" vlink="#006600" alink="#FE0000">
+&nbsp;
+<center>
+<h1>
+<b><i><font color="#3366FF">Inverse Demo</font></i></b></h1></center>
+
+<p><br><b><font size=+1>&nbsp;&nbsp;&nbsp; <font color="#CC0000">Dear Lionel
+Juillen,</font></font></b>
+<p>please click on <a href="ighome.zip">this link</a> to download your
+<i>Inverse</i> demo. It is valid till 20th of March 2003.
+<p><b><font size=+1>&nbsp;&nbsp;&nbsp; Answers to your questions:</font></b>
+<br><b>Q:</b>
+<br><i><font face="Arial,Helvetica"><font size=-1>I am interested in getting
+a Windows demo version.</font></font></i>
+<br><i><font face="Arial,Helvetica"><font size=-1>At that time, I don't
+need the FSQP algorithm from Andre Tits.</font></font></i>
+<br><i><font face="Arial,Helvetica"><font size=-1>I just want to test the
+parameterizing functionnalities because we</font></font></i>
+<br><i><font face="Arial,Helvetica"><font size=-1>waste too much time on
+that task.</font></font></i>
+<br><i><font face="Arial,Helvetica"><font size=-1>Do you plan to make a
+version of INVERSE, where it would be possible to</font></font></i>
+<br><i><font face="Arial,Helvetica"><font size=-1>plug its own optimization
+algorithm ?</font></font></i>
+<br><i><font face="Arial,Helvetica"><font size=-1>It would make your software
+more opened to the world !!!!!</font></font></i>
+<br><i><font face="Arial,Helvetica"><font size=-1>I read your Phd thesis,
+and found it very interesting and well written.</font></font></i>
+<br><b>A:</b>
+<br>It is already possible to plug in own optimisatin algorithms, but unfortunately
+the instructions for using the relevant library have not been written yet.
+<i>Inverse</i> is designed as an open code where all basic functionality
+can be accessed through appropriate library functions and any kind of functionality
+can be added, too. Because of insufficient development resources, manuals
+have been written only for using the program as-is, and not yet for using
+the <i>Inverse</i> library. In my current projects there is not much space
+for writing these manuals, so I can not forecast when they will actually
+be written. When there exists a strong enough interest on the side of some
+of our partners, the priority list can also be accommodated and specific
+things can be done earlier. Within our group I currently teach people how
+to link other code with <i>Inverse</i> by myself.
+<br>Parametrization ability is limited on what is offered by programme
+interfaces and on processing abilities which enable definition of more
+complex functionals on basis of data obtained from the direct analysis
+(e.g. using the expression evaluator or matrix and vector utilities). More
+elaborated interface is currently available only for <i>Elfen</i> (a FEM
+simulation program developed by <i>Rockfield Software</i>). For interfacing
+other programs the general file interface can be used.
+<br>Shape parametrisation utilities are not yet included, except some splines
+manipulation functions, which can be useful for 2D shape optimisation (instructions
+for using&nbsp; this are not contained in the latest web manuals, but you
+can download the PostScript version by clicking on <a href="invshape.ps">this
+link</a>).
+<br>I am currently developing a 2D and 3D shape parametrisation approach,
+which would be quite general and also compatible with sensitivity analysis
+requirements. I expect that 2D shpe parametrisatin module will be built
+in the shell by the end of this year. 3D modul should be available in a
+year and a half. You can find some basic ideas of the approach in the following
+article (<a href="esa01c.pdf">click here to download it</a> in the pdf
+format - 200 kB):
+<ul>
+<li>
+&nbsp;13. I. Gresovnik, T. Rodic and D. Jelovsek (2001). <b><i>Simple Two
+Stage Transforms Designed for Optimisation of Shape in Forming Processes</i></b>,
+in A.M. Habraken (ed.): Proceedings of the 4th International ESAFORM Conference
+on Material Forming held in Liege, Belgium, vol. 2, pp. 831-834. University
+of Liege.</li>
+</ul>
+
+<p><br><b><font size=+1>&nbsp;&nbsp;&nbsp; Installation and running instructions:</font></b>
+<br>&nbsp;
+<ol>
+<li>
+Unpack the directory contained in the zip file which you have downloaded
+by clicking on the link. The unpacked directory&nbsp; is named <i>ighome</i>.
+You can put this directory anywhere you want or rename it, but do not change
+its structure or delete files contained in it.</li>
+
+<li>
+After unpacking the directory, set the environment variable <i>IGHOME</i>
+to hold the directory path (e.g. if you have unpacked the directory to
+"C:\Program Files\ighome", then this must be the value of the variable
+<i>IGHOME</i>).&nbsp; On MS Windows you can usually set the environment
+variables by invoking the Control Panel (Windows menu <i>Start/Settings/Control
+Panel</i>) and double-clicking the <i>System</i> icon. In the window which
+appears, you choose the <i>Environment</i> box. In the <i>Variable</i>
+entry at the bottom you input <i>IGHOME</i> and in the <i>Value</i> entry
+the appropriate directory name (note that if the directory name contains
+spaces, it must be in double quotes).</li>
+
+<li>
+If you want to run the program from any directory, you can add the <i>bin</i>
+subdirectory of the unpacked directory to the <i>Path</i> variable. You
+can do this by choosing the <i>Path</i> variable in the <i>System variables</i>
+menu in the same <i>Environment</i> box where you have set the <i>IGHOME</i>
+variable. You can also copy the program <i>inverse.exe</i> from the bin
+directory to any directory which is already contained in the <i>Path</i>
+variable or run the program every time by using the complete path of the
+executable. The location of executable doesn't matter, but for proper function
+there must exist a program resource directory with appropriate structure
+and its name must be the value of the environment variable <i>IGHOME</i>.</li>
+</ol>
+You can <b>run the program</b> e.g. by typing
+<blockquote><i>inverse com_filename</i></blockquote>
+where <i>com_filename</i> is the name of the command file in which you
+give the program instructins what to do. Syntax and available commands
+for the command file are described in <a href="http://www.c3m.si/inverse/doc/man/index.html"><i>Inverse</i>
+manuals</a> and in <a href="http://www.c3m.si/inverse/doc/other/index.html">other
+documentation</a> , e.g. the <i>Quick Introduction to Inverse</i>. You
+can first try to run some <a href="http://www.c3m.si/inverse/learn/train/ex/exind.html">training
+examples</a>.
+<p>&nbsp;&nbsp;&nbsp; You will get some help by invoking the program by
+<blockquote><i>inverse -h</i></blockquote>
+This will not be of much use, however, because the help system is not yet
+elaborated. If you don't get help in this way, you should set a valid path
+to a html browser (e.g. <i>Netscape</i>) in the file $<i>IGHOME\scripts\browse.bat</i>
+and a path to a text editor (e.g. <i>Notepad</i>) in the file $<i>IGHOME\scripts\edit.bat</i>
+</body>
+</html>

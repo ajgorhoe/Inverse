@@ -1,0 +1,373 @@
+* {*********************************************************************
+
+File: inout/out.cm
+
+  This file shows how the basic output functions work. Most of the
+interpreter's functions generate some output which is written to both standard
+output of the shell and to the shell's control file. This output helps the
+user to keep track on what was going on during the execution of the shell. The
+functions presented here are made for writing the data which the user wants to
+output additionally.
+
+Author: Igor Gresovnik, May 1998
+
+************************************************************************}
+
+
+* {
+*********************  SPECIFYING THE OUTPUT FILE:  ***********************
+  We must specify the output file Before we use the functions for printing the
+data into a file. Otherwise, we can only use functions which write to the
+standard output. We specify the output file by the "initoutput" function
+where the first argument must be the "outfile" keyword:
+***************************************************************************
+}
+
+setfile{outfile out.ct}  *{ The definition of the result file }
+
+* {
+*******************  FUNCTIONS "write" and "fwrite":  ********************
+  Functions "write" and "fwrite" are designed for generating output in
+arbitrary format. The only difference between these two functions is that
+"write" prints to the standard output while "fwrite" prints to the shell's
+output file. Their syntaks is identical. They can print strings, special
+characters, values of variables defined in the expression evaluator and
+values of mathematical expressions which can be evaluated in the expression
+evaluator.
+  Arguments tell the functions what to print. Strings to be printed must be
+in double quotes.
+  Printing of special characters is forced by the specification
+which follow the backslach ('\'). So we can print a backslash (\\), a double
+quote (\"), a single quote (\'), a zero character (\0), a carriage return
+(\r), a newline (\n), a tab (\t), and different kinds of brackets (\1 stands
+for '(', \2 for ')', \3 for '[', \4 for ']', \5 for '{', \6 and for '}'; we
+can also use \< for '{' and \> for '}'. For a double quote (") we can also use
+\d or \Q and for single quote we can use \q.
+We can also put specifications of special characters into a string which is in
+double quotes. When the string is printed, the special character specifications
+are replaced by the appropriate special characters. Within the string we may
+not use the sequence \" for double quotes (because the " character
+automatically terminates the string), but must use the \Q or \d sequence
+instead.
+  We print the value of a variable defined in the expression evaluator by
+the '$' sign which is followed by the variable name. Spaces are allowed
+between the '$' sign and the name.
+  If we want to print a value of an expression, we must put the expression
+into curled brackets which follow the '$' sign.
+  Different units of output should be separated by spaces in the arguent blocks
+of the "write" and "fwrite" commands. This is not necessary in unambiguous
+situations.
+***************************************************************************
+}
+
+write{\n"************  EXAMPLES FOR write and fwrite  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR write and fwrite  ************"\n\n}
+
+*{ Printing a string... }
+
+write{"This is a string."}
+fwrite{"This is a string."}
+
+*{ ... and some newlines: }
+
+write{\n\n\n}
+fwrite{\n\n\n}
+
+={a:11.22}
+
+*{ Printing value of a variable defined in the expression evaluator: }
+
+write {$a}
+fwrite{$a}
+
+*{ Printing some spaces ... }
+
+write {"    "}
+fwrite{"    "}
+
+*{ ... and then a value of an expresion: }
+
+write {${a*3+0.0099}}
+fwrite{${a*3+0.0099}}
+
+*{ Then we print some special charactes; note that all brackets also have
+theit codes for printing as special characters. This is because writing
+brackets can spoil the syntax in the shell (the syntax requires that all the
+brackets are closed): }
+
+write{ \t\"\'\r\1\2\3\4\5\6\<\> \n }
+fwrite{ \t\"\'\r\1\2\3\4\5\6\<\> \n }
+
+*{ Now let us combine different kinds of information into a single output: }
+
+write{\n\n "The value of variable a is " $a ", therefore the value of the "
+      \n "expression a*3+0.0099 is " ${a*3+0.0099} "." \n \t "End of this output."
+      \n \n\n}
+fwrite{\n\n "The value of variable a is " $a ", therefore the value of the "
+       \n"expression a*3+0.0099 is " ${a*3+0.0099} "." \n \t "End of this output."
+       \n \n\n}
+
+
+
+* {
+*******************  FUNCTIONS FOR PRINTING VARIABLES:  *******************
+  Each type of user defined variables (scalars, vectors, matrices) has its
+own output functions which print variables of this types in specific format.
+As an example, functions for printing matrix variables are shown below:
+***************************************************************************
+}
+
+write{\n"************  EXAMPLES FOR PRINTING MATRICES  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR PRINTING MATRICES  ************"\n\n}
+
+newmatrix{mat[2,3] }
+setmatrix{mat[1,1] 3 2 { 2 4 78 23 65 32 } }
+setmatrix{mat[1,2] 3 2 { 65 54 3 564 43 2 } }
+setmatrix{mat[1,3] 3 2 { 987 45 23 4 54 2 } }
+setmatrix{mat[2,1] 3 2 { 2.3 6.3 2.1 8.65 5.4 9.2 } }
+setmatrix{mat[2,2] 3 2 { 32 34 876 2 54 0 } }
+setmatrix{mat[2,3] 3 2 { 43 7 1 0 7 3 } }
+
+write{"Printing a matrix using function printmatrixdata:"\n\n}
+fwrite{"Printing a matrix using function printmatrixdata:"\n\n}
+printmatrixdata{mat}
+fprintmatrixdata{mat}
+
+write{"Printing a matrix using function printmatrix:"\n\n}
+fwrite{"Printing a matrix using function printmatrix:"\n\n}
+printmatrix{mat}
+fprintmatrx{mat}
+
+printmatrix{mat[2]}
+fprintmatrix{mat[2]}
+
+printmatrix{mat[1,3]}
+fprintmatrix{mat[1,3]}
+
+
+
+* {
+************  DEFINING NEW FUNCTIONS FOR PRINTING VARIABLES:  **************
+  Since with the built-in functions of calculator we have access to all user
+defined variables and since we can print values of expressions with functions
+"write" and "fwrite", we can use these functions to print variables in any
+format. As an example, let's make functions which print matrix variables in
+three different formats:
+***************************************************************************
+}
+
+
+*{Functions for printing matrices in different formats to a file:}
+
+function { fwritematrixbrac (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  fwrite{"Matrix $matrixname, dimension: "${getmatrix["matrixbuf",0,1]}
+         "x"${getmatrix["matrixbuf",0,2]}", elements:"\n}
+  ={rowcount:1}
+  * { fwrite{"rowcount: " ${rowcount}\n} }
+  fwrite{\<}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    fwrite{\<}
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+
+      *{ fwrite{"rowcount="${rowcount}", columcount="${columncount}\n} }
+
+      fwrite{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2]) [ fwrite{","} ] }
+      ={columncount:columncount+1}
+    ]}
+    fwrite{\>}
+    if{(rowcount<getmatrix["matrixbuf",0,1])  [ fwrite{","} ] }
+    ={rowcount:rowcount+1}
+  ]}
+  fwrite{\>}
+  fwrite{\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+
+function { fwritematrixrow (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  fwrite{"Matrix $matrixname, dimension: "${getmatrix["matrixbuf",0,1]}
+         "x"${getmatrix["matrixbuf",0,2]}", elements:"\n}
+  ={rowcount:1}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+      fwrite{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2])
+      [
+        fwrite{" "}
+      ] else
+      [
+        fwrite{\n}
+      ] }
+      ={columncount:columncount+1}
+    ]}
+    ={rowcount:rowcount+1}
+  ]}
+  fwrite{\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+
+function { fwritematrixinv (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  fwrite{ \< " $matrixname " ${getmatrix["matrixbuf",0,1]} " "
+          ${getmatrix["matrixbuf",0,2]} \n }
+  ={rowcount:1}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    fwrite{"  " \< " " ${rowcount} " : "}
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+      fwrite{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2])
+      [
+        fwrite{" "}
+      ] }
+      ={columncount:columncount+1}
+    ]}
+    fwrite{\>\n}
+    ={rowcount:rowcount+1}
+  ]}
+  fwrite{\>\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+*{Functions for printing matrices in different formats to standard output:}
+
+
+
+function { writematrixbrac (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  write{"Matrix $matrixname, dimension: "${getmatrix["matrixbuf",0,1]}
+        "x"${getmatrix["matrixbuf",0,2]}", elements:"\n}
+  ={rowcount:1}
+  * { write{"rowcount: " ${rowcount}\n} }
+  write{\<}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    write{\<}
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+
+      *{ write{"rowcount="${rowcount}", columcount="${columncount}\n} }
+
+      write{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2]) [ write{","} ] }
+      ={columncount:columncount+1}
+    ]}
+    write{\>}
+    if{(rowcount<getmatrix["matrixbuf",0,1])  [ write{","} ] }
+    ={rowcount:rowcount+1}
+  ]}
+  write{\>}
+  write{\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+function { writematrixrow (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  write{"Matrix $matrixname, dimension: "${getmatrix["matrixbuf",0,1]}
+        "x"${getmatrix["matrixbuf",0,2]}", elements:"\n}
+  ={rowcount:1}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+      write{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2])
+      [
+        write{" "}
+      ] else
+      [
+        write{\n}
+      ] }
+      ={columncount:columncount+1}
+    ]}
+    ={rowcount:rowcount+1}
+  ]}
+  write{\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+
+function { writematrixinv (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  write{ \< " $matrixname " ${getmatrix["matrixbuf",0,1]} " "
+         ${getmatrix["matrixbuf",0,2]} \n }
+  ={rowcount:1}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    write{"  " \< " " ${rowcount} " : "}
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+      write{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2])
+      [
+        write{" "}
+      ] }
+      ={columncount:columncount+1}
+    ]}
+    write{\>\n}
+    ={rowcount:rowcount+1}
+  ]}
+  write{\>\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+write{\n"******** PRINTING MATRICES WITH USER DEFINED FUNCTIONS:  ********"\n\n\n}
+fwrite{\n"******** PRINTING MATRICES WITH USER DEFINED FUNCTIONS:  ********"\n\n\n}
+
+
+
+write{"Using writematrixbrac:"\n\n}
+writematrixbrac{ {mat[1,1]} }
+write{"Using writematrixrow:"\n\n}
+writematrixrow{ {mat[2,3]} }
+write{"Using writematrixinv:"\n\n}
+writematrixinv{ {mat[1,2]} }
+
+fwrite{"Using fwritematrixbrac:"\n\n}
+fwritematrixbrac{ {mat[1,1]} }
+fwrite{"Using fwritematrixrow:"\n\n}
+fwritematrixrow{ {mat[2,3]} }
+fwrite{"Using fwritematrixinv:"\n\n}
+fwritematrixinv{ {mat[1,2]} }
+
+
+
+
+
+
+
+
+

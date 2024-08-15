@@ -1,0 +1,113 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
+   <meta name="Author" content="Igor Gresovnik">
+   <meta name="Classification" content="computers/software/engineering/applied_mathematics">
+   <meta name="Keywords" content="optimization, inverse problems, software, Inverse, shell">
+   <title>Optimization shell Inverse: History</title>
+</head>
+<body text="#000000" bgcolor="#E6E6E6" link="#0000EE" vlink="#006600" alink="#FE0000">
+<a href="../../invhome.html"><img SRC="../../invlogo.gif" ALT="INVERSE logo - click to load Inverse home" NOSAVE height=100 width=600></a>
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h1>
+<b><i><font color="#CC0000">Short History of </font><font color="#3366FF">INVERSE</font></i></b></h1></center>
+
+<p><br><b><i><a href="http://www.c3m.si/staff/gresovnik.html">Igor Gresovnik</a></i></b>
+began to develop <i>Inverse</i> in spring 1994 while finishing his final
+degree at C3M and <a href="http://www.fmf.uni-lj.si/indexa.html">Faculty
+of Mathematics and Physics</a>, <a href="http://www.uni-lj.si/DefaultA.asp">University
+of Ljubljana</a>. His idea was to gather various tools and algorithms for
+solving optimization and <i>Inverse</i> problems in an organised environment,
+which would provide methods for interaction with simulation programmes
+and a flexible user interface.
+<p>The first version of the programme was completed in May 1994. It included
+a small collection of optimization algorithms and a line file interpreter,
+which served as a user interface. The programme communicated with a simulation
+programme through simple files with pre-defined syntax. <a href="http://rsazure.swan.ac.uk/">Rockfield
+Software's</a> finite element based programme <i><a href="http://rsazure.swan.ac.uk/products/elfen/elfen.html">Elfen</a></i>
+was used for simulations. It was adapted case-to-case for use with the
+shell so that it printed the required final data in a specified format
+to the interface files. Since then <i>Inverse</i> have been intensively
+used on
+<a href="http://www.c3m.si">C3M</a> <a href="http://www.c3m.si/projects.html">research
+projects</a> such as COST 512 - MMSP, BRITE/EURAM - PREDWEAR, BRITE/EURAM
+- SOFT, BRITE/EURAM - FATLIFE, COPERNICUS - WEAR, as well as for solution
+of industrial problems. Experience gained on these applications has strongly
+inspired the course of <i>Inverse</i> development.
+<p>The following development period was mostly devoted to improvement of
+the user interface and interface with the simulation programme. In November
+1994 version 1.0 was finished. A system for evaluation of mathematical
+expressions (also referred to as "expression evaluator" or simply "calculator")
+was developed and more flexible command interpreter, which allowed flow
+control, replaced line interpreter. Initially awkward framework so developed
+into a programme that fitted the basic idea quite well.
+<p>In April 1995 version 2.0 was finished. This was an improved version
+1.0, which included a complete file interface with the simulation programme
+Elfen. This suppressed the need to interfere with Elfen source code at
+the solution of specific cases.
+<p>In October 1996 version 2.5 was finished. Basic gain was a set of functions
+for accessing global pre-defined variables of the shell. Typical interlaced
+structure with unlimited data exchange between individual modules was established.
+Such structure became more obvious in version 2.7 (finished in July 1997)
+in which the concept of user-defined global variables (vectors and matrices
+at that time) was introduced. In version 2.7, the user-defined functions
+of the interpreter and calculator through file interpreter were also enabled.
+<p>Novelties have been introduced regularly since summer 1997. The basis
+for parallelization was built by October 1997. Syntax checker and debugger
+were developed by April 1998. The system of user-defined variables was
+changed so that every variable could hold a whole table of elements with
+arbitrary dimensions. Status of pre-defined variables has also changed
+in the sense that their treatment became more similar to the treatment
+of user-defined variables. Scalar variables were introduced and took over
+a part of the function of calculator variables. Treatment of files was
+unified with the treatment of other user-defined global variables.
+<p>Summer 1998 was partially spent in adapting parts of the programme to
+conceptual changes, which accumulated in the last year. Beside that, a
+general file interface was developed by July. This interface on principle
+enables connection of the shell with any simulation programme without adapting
+the shell's source code.
+<p>By August 1998, an interface for reading and replacing fields in Elfen
+input and output files was constructed. Primary function of this was to
+support shape optimization. In the rest of 1998 additional functionality
+in variable handling has been gradually added, which finished by version
+3.0 in February 1999.
+<p>In the first part of 1999 the development was concentrated to fit requirements
+of current practical applications and many utilities were developed for
+this aim. Among the others, string manipulation was added and the general
+file interface was improved. This ended in September 1999 with version
+3.5. In this period many activities were undertaken in the scope of preparation
+for wider use of <i>Inverse</i>. Manuals as well as demonstration and training
+examples were supplemented, and the programme home page was extended to
+carry out user support.
+<p>Extensive code cleaning was accomplished in September and October. Some
+bugs and awkwardness fixations and some simplifications and unification
+were carried out. After that, utilities for manipulating the file system
+and for time handling were added, following common needs arising from specific
+applications. This led into version 3.6 prepared in October.
+<br>&nbsp;
+<p>
+<hr>&nbsp;
+<div ALIGN=right><table BORDER=3 CELLPADDING=2 BGCOLOR="#FFFFFF" NOSAVE >
+<tr NOSAVE>
+<td ALIGN=LEFT VALIGN=TOP NOSAVE><font size=-1><a href="../index.html">Upper
+Level</a></font>
+<div align=right><font size=-1><a href="../../invhome.html">INVERSE home</a></font></div>
+<font size=-1><a href="http://www.c3m.si">C3M home</a></font></td>
+</tr>
+</table></div>
+
+<center><table BORDER=3 CELLPADDING=2 NOSAVE >
+<tr NOSAVE>
+<td ALIGN=LEFT VALIGN=TOP NOSAVE><i>Updated in October 1999</i></td>
+</tr>
+</table></center>
+
+<ul><img SRC="../../work.gif" NOSAVE height=38 width=38><i>&nbsp;&nbsp;
+This page is still under construction. Thank you for understanding.</i></ul>
+
+</body>
+</html>

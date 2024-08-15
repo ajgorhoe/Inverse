@@ -1,0 +1,215 @@
+* {*********************************************************************
+
+File: opt/inv.cm
+
+  This file shows a very simple example of solution of an inverse problem
+with the shell. We have an experiment in which we measure a set of data and
+we have a model with which we describe this experiment mathematically. Some
+parameters of this model are unknown and we would like to estimate them.
+  Imagine a particle which moves in one dimension. We for example know that
+we can describe its motion by x(t)=a+b*t+c*sin(d*t), but we don't know exactly
+which are the values of the coefficients a, b, c and d. We simply measure
+something (in our case we decide to measre positions of the particle at
+specific times) and then try to fit the unknown coefficients so that the
+deviation between the measurements and the appropriate quantities calculated
+with the model will be as small as possible.
+  We don't have real measurements for this example. Instead, we will generate
+imaginary measurements by adding stohastic errors to the values which would
+be exact for our model with pre-assumed values of model parameters.
+
+Author: Igor Gresovnik, April 1998
+
+************************************************************************}
+
+setfile{outfile inv.ct}
+
+*{ We define an expression evaluator's function which describes the assumed
+model. It will be useful later on: }
+
+${position[t,a,b,c,d]:a+b*t+c*sin(d*t)}
+
+*{ We generate an imaginary set of measurements. First we assume some values
+of model parameters: }
+
+={a:4} ={b:1} ={c:4} ={d:0.5}
+
+write{"$$$ before definition of times"\n}
+
+*{ We define vector of times at which the positions will be measured... }
+
+setvector{times 20}
+={i:1}
+while{ (i<=getvector["times",0])
+[
+  setvector
+  { times 
+    { ${i}:${0.5*(i-1)} }
+  }
+  ={i:i+1}
+]}
+printvector{times}
+fprintvector{times}
+write{\n} fwrite{\n}
+
+*{ ... and then form a vector of the exact measurements; dimension is the same
+as for vector "times": }
+
+setvector{measexact ${getvector["times",0]} } 
+
+*{ Components are calculated according to our model: }
+
+={i:1}
+while{ (i<=getvector["measexact",0])
+[
+  setvector
+  { measexact
+    { ${i}:${position[getvector["times",i],a,b,c,d]} }
+  }
+  ={i:i+1}
+]}
+printvector{measexact}
+fprintvector{measexact}
+write{\n} fwrite{\n}
+
+*{ Next we define a vector of standard deviations of measurements "sigma": }
+
+={error:0.05}
+setvector{sigma ${getvector["times",0]} } 
+={i:1}
+while{ (i<=getvector["sigma",0])
+[
+  setvector
+  { sigma 
+    { ${i}:$ error }
+  }
+  ={i:i+1}
+]}
+printvector{sigma}
+fprintvector{sigma}
+write{\n} fwrite{\n}
+
+simmeas{}
+printvector{meas}
+fprintvector{meas}
+write{\n} fwrite{\n}
+
+setoption{chi2spec} *{ Automatic evaluation of chi square }
+setvector{measmom ${getvector["times",0]}}
+setvector{parammom 4}
+
+*{ Analysis block. This block  is interpreted each time chi square is
+evaluated. It contains the actual definition of chi square: }
+
+analysis
+{
+  *{ Within the analysis block we must perform sumulation and calculate
+  simulated measurements. Normally, a program for simulation of the experiment
+  would be run and its results would be picked to obtain simulated measurements
+  at a specific set of the unknown parameters. In ous case, measurements at
+  a specific set of parameters are simply evaluated using function "position",
+  which we have defined to replace the simulation. Values of parameters are
+  passed to this bloch through vector "parammom" from functions which require
+  evaluation of chi square, e.g. optimization algoritms or tabulating
+  functions. Function "meas" which will be called in a loop assignes values to
+  components of the "measmom" vector: }
+  ={pa:getvector["parammom",1]}
+  ={pb:getvector["parammom",2]}
+  ={pc:getvector["parammom",3]}
+  ={pd:getvector["parammom",4]}
+  ={i:1}
+  while{ (i<=getvector["times",0])
+  [
+    meas{ ${i} ${position[getvector["times",i],pa,pb,pc,pd]} }
+    ={i:i+1}
+  ]}
+  
+  ={chi2buf:0}  *{ Temporary storage for the value of chi square will  }
+  *{ Evaluation procedure for chi square: }
+  ={i:1}
+  while{ (i<=getvector["times",0])
+  [
+    ={chi2buf:chi2buf+
+      sqr[getvector["measmom",i]-getvector["meas",i]]/sqr[getvector["sigma",i]]}
+    *{ We have added a square of the difference between a component of the
+    vector of simulated measurements and the appropriate component of the
+    vector of measurements, divided by the appropriate component of the vector
+    of measurement errors, to variable chi2buf. }
+    ={i:i+1}
+  ]}
+
+  *{ With function chi2 we specify the value of chi square which will be
+  returned to optimization algorithm. If option chi2spec would not be set,
+  this function would be ignored and chi square would be automatically
+  calculated vrom vectors "measmom", "meas" and "sigma" according to the
+  least squares formula. }
+  chi2{chi2buf}
+}
+
+
+write{"After analysis."\n}
+
+
+*{ To test basic parts of the command file, we run analysis at specific
+parameters. Function "analyse" runs the analysis at the parameters which are
+in the vector "parammom". }
+
+setvector{parammom 4 { $a  $b  $c  $d }}
+analyse{}
+
+*{ When everything looks O.K., we can run inverse analysis. In this case we
+run the simplex algorithm which will minimize the value of chi square. The
+algorithm successively changes the parameters, runs the argument block of the
+"analysis" function and decides which values to take for the next guess
+according to the obtained value of chi square and its values obtaines obtained
+a few steps before. The first two arguments of function "inverse" are
+specifications which specify the algorithm which will be used, the third
+algorithm is a tolerance for the value of chi square in the minimum, the fourth
+argument is maximum allowed number of iterations and the last parameter is
+a matrix of five starting guesses: }
+
+inverse{nd simplex 0.0001 500
+  5 4
+  { 1 1 : 6 }
+  { 1 2 : 0 }
+  { 1 3 : 7 }
+  { 1 4 : 1 }
+  
+  { 2 1 : 2.1 }
+  { 2 2 : 0 }
+  { 2 3 : 7 }
+  { 2 4 : 1 }
+  
+  { 3 1 : 6 }
+  { 3 2 : 3.3 }
+  { 3 3 : 7 }
+  { 3 4 : 1 }
+  
+  { 4 1 : 6 }
+  { 4 2 : 0 }
+  { 4 3 : 0.2 }
+  { 4 4 : 1 }
+  
+  { 5 1 : 6 }
+  { 5 2 : 0 }
+  { 5 3 : 7 }
+  { 5 4 : 0.24 }
+}
+
+*{ We can evaluate different types of tebles, e.g. a table on a line between
+two points; In the example below we make a table between the calculated
+optimum ("param0") and a point which was used as a starting guess for inverse
+analysis: }
+
+printvector{paramopt}
+fprintvector{paramopt}
+
+tabline{lin 40 1 1
+  { 4 
+    {   ${getvector["paramopt",1]} ${getvector["paramopt",2]}
+        ${getvector["paramopt",3]} ${getvector["paramopt",4]}
+    }
+  }
+  { 4 { 6 0 7 1 } }
+}
+
+

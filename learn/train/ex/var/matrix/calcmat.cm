@@ -1,0 +1,113 @@
+* {*********************************************************************
+
+File: var/matrix/calcmat.cm
+
+  This file describes the functions of the expression evaluator which give
+informatio about matrix variables or are helpful at performing operations on
+matrix variables.
+
+Author: Igor Gresovnik, May 1998
+
+************************************************************************}
+
+setfile{outfile calcmat.ct}
+
+* {
+***************  ACCESSING MATRIX DATA: FUNCTION "getmatrix"  *****************
+  Expression evaluator's function "getmatrix" is a basic function for accessing
+matrix variables. It returns a specific component of a specific matrix.
+  The function requires at least 3 arguments. The first argument is matrix
+name (it must be in double quotes because this is a calculator function), the
+second is the row number and the third component is the column number of the
+required component.
+  If the second component is zero, function "getmatrix" will return the number
+of rows of the matrix if the third argument is 1, or the number of columns of
+the matrix if the third argument is 2. It is an error if in this case the third
+argumenti is different than 1 or 2. 
+  If we want to access matrix variables which hold a whole table of matrices,
+the indeces which specify an element of the table must be specified after the
+third argument. For example, "getmatrix["mm",4,15,3,2] returns the component
+with row number 4 and column number 15 of the matrix mm[3,2].
+*******************************************************************************
+}
+
+
+write{\n"************  EXAMPLES FOR getmatrix  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR getmatrix  ************"\n\n}
+
+dimmatrix{m1[3 2]}
+setmatrix{m1[1 1] 2 2 } setmatrix{m1[1 2] 2 2 }
+setmatrix{m1[2 1] 2 2 } setmatrix{m1[2 2] 2 2 }
+setmatrix{m1[3 1] 2 2 } setmatrix{m1[3 2] 2 2 }
+setmatrixcomponents{m1 10*varindex[1]+varindex[2]+0.1*
+                       varcomponent[1]+0.01*varcomponent[2]}
+
+*{ Some tests of function getmatrix: }
+
+write{"getmatrix[\Qm1\Q,1,1,2,1] = " ${getmatrix["m1",1,1,2,1]} 
+      " (component [1,1] of matrix m1[2,1])"\n }
+write{"getmatrix[\Qm1\Q,2,2,1,1] = " ${getmatrix["m1",2,2,1,1]} 
+      " (component [2,2] of matrix m1[1,1])"\n }
+write{"getmatrix[\Qm1\Q,0,1,1,3] = " ${getmatrix["m1",0,1,1,3]} 
+      " (number of rows of matrix m1[1,3])"\n }
+write{"getmatrix[\Qm1\Q,0,2,2,2] = " ${getmatrix["m1",0,2,2,2]} 
+      " (number of columns of matrix m1[2,2])"\n }
+write{\n\n}
+fwrite{"getmatrix[\Qm1\Q,1,1,2,1] = " ${getmatrix["m1",1,1,2,1]} 
+      " (component [1,1] of matrix m1[2,1])"\n }
+fwrite{"getmatrix[\Qm1\Q,2,2,1,1] = " ${getmatrix["m1",2,2,1,1]} 
+      " (component [2,2] of matrix m1[1,1])"\n }
+fwrite{"getmatrix[\Qm1\Q,0,1,1,3] = " ${getmatrix["m1",0,1,1,3]} 
+      " (number of rows of matrix m1[1,3])"\n }
+fwrite{"getmatrix[\Qm1\Q,0,2,2,2] = " ${getmatrix["m1",0,2,2,2]} 
+      " (number of columns of matrix m1[2,2])"\n }
+fwrite{\n\n}
+
+
+* {
+*************  ACCESSING MATRIX DATA: FUNCTION "getmatrixdim"  ***************
+  Expression evaluator's function "getmatrixdim" returns a requested dimension
+of the value table of a specific matrix variable. The first argument must be
+the name of the matrix variable, and the second argument must be the number of
+the requested dimension. If this argument is zero, the function returns a rank
+of the value table, i.e. the number of dimensions. If, for example, a matrix
+variable vas created as "m[4,3,5]", it has rank 3, its first dimension is 4,
+its second dimension is 3 and its third dimension is 5.
+*******************************************************************************
+}
+
+write{\n"************  EXAMPLES FOR getmatrixdim  ************"\n\n}
+fwrite{\n"************  EXAMPLES FOR getmatrixdim  ************"\n\n}
+
+dimmatrix{m2[4 3 5]}
+
+*{ Some tests of function getmatrix: }
+
+write{"getmatrixdim[\Qm2\Q,0] = " ${getmatrixdim["m2",0]} 
+      " (the rank of matrix variable m2)"\n }
+write{"getmatrixdim[\Qm2\Q,1] = " ${getmatrixdim["m2",1]} 
+      " (the first dimension of matrix variable m2)"\n }
+write{"getmatrixdim[\Qm2\Q,2] = " ${getmatrixdim["m2",2]} 
+      " (the second dimension of matrix variable m2)"\n }
+write{"getmatrixdim[\Qm2\Q,3] = " ${getmatrixdim["m2",3]} 
+      " (the third dimension of matrix variable m2)"\n }
+write{"getmatrixdim[\Qm2\Q,4] = " ${getmatrixdim["m2",4]} 
+      " (the third dimension - shuld be less than 1.)"\n }
+write{\n\n}
+fwrite{"getmatrixdim[\Qm2\Q,0] = " ${getmatrixdim["m2",0]} 
+      " (the rank of matrix variable m2)"\n }
+fwrite{"getmatrixdim[\Qm2\Q,1] = " ${getmatrixdim["m2",1]} 
+      " (the first dimension of matrix variable m2)"\n }
+fwrite{"getmatrixdim[\Qm2\Q,2] = " ${getmatrixdim["m2",2]} 
+      " (the second dimension of matrix variable m2)"\n }
+fwrite{"getmatrixdim[\Qm2\Q,3] = " ${getmatrixdim["m2",3]} 
+      " (the third dimension of matrix variable m2)"\n }
+fwrite{"getmatrixdim[\Qm2\Q,4] = " ${getmatrixdim["m2",4]} 
+      " (the third dimension - shuld be less than 1.)"\n }
+fwrite{\n\n}
+
+
+
+
+
+

@@ -1,0 +1,342 @@
+* {*********************************************************************
+
+File: lib/matout.cm
+
+  This file shows basic features of the system for evaluation of mathematic
+expressions, also referred to as calculator.
+
+Author: Igor Gresovnik, April 1998
+
+************************************************************************}
+
+
+*
+{
+========================================================================
+
+       OUTPUT OF VECTORS IN DIFFERENT FORMATS TO STANDARD OUTPUT
+
+========================================================================
+}
+
+function { writevectorbrac (vectorname)
+[
+  movevector{$vectorname vectorbuf}
+  write{"Vector $vectorname, dimension: "${getvector["vectorbuf",0]}
+        ", elements:"\n}
+  ={rowcount:1}
+  write{\<}
+  while{ (rowcount<=getvector["vectorbuf",0])
+  [
+    write{${getvector["vectorbuf",rowcount]}}
+    if { (rowcount<getvector["vectorbuf",0]) [ write{","} ] }
+    ={rowcount:rowcount+1}
+  ]}
+  write{\>}
+  write{\n\n\n}
+  movevector{vectorbuf $vectorname}
+] }
+
+
+
+function { writevectorrow (vectorname)
+[
+  movevector{$vectorname vectorbuf}
+  write{"Vector $vectorname, dimension: "${getvector["vectorbuf",0]}
+        ", elements:"\n}
+  ={rowcount:1}
+  while{ (rowcount<=getvector["vectorbuf",0])
+  [
+    write{${getvector["vectorbuf",rowcount]}}
+    if { (rowcount<getvector["vectorbuf",0])   [ write{" "} ]  }
+    ={rowcount:rowcount+1}
+  ]}
+  write{\n\n\n\n}
+  movevector{vectorbuf $vectorname}
+] }
+
+
+
+
+function { writevectorinv (vectorname)
+[
+  movevector{$vectorname vectorbuf}
+  write{ \< " $vectorname " ${getvector["vectorbuf",0]} \n "  " \< }
+  ={rowcount:1}
+  while{ (rowcount<=getvector["vectorbuf",0,1])
+  [
+    write{${getvector["vectorbuf",rowcount]}}
+    if { (rowcount<getvector["vectorbuf",0])   [ write{" "} ]  }
+    ={rowcount:rowcount+1}
+  ]}
+  write{\>\n\>\n\n\n}
+  movevector{vectorbuf $vectorname}
+] }
+
+
+
+*
+{
+========================================================================
+
+          OUTPUT OF VECTORS IN DIFFERENT FORMATS TO A FILE
+
+========================================================================
+}
+
+function { fwritevectorbrac (vectorname)
+[
+  movevector{$vectorname vectorbuf}
+  fwrite{"Vector $vectorname, dimension: "${getvector["vectorbuf",0]}
+        ", elements:"\n}
+  ={rowcount:1}
+  fwrite{\<}
+  while{ (rowcount<=getvector["vectorbuf",0])
+  [
+    fwrite{${getvector["vectorbuf",rowcount]}}
+    if { (rowcount<getvector["vectorbuf",0]) [ fwrite{","} ] }
+    ={rowcount:rowcount+1}
+  ]}
+  fwrite{\>}
+  fwrite{\n\n\n}
+  movevector{vectorbuf $vectorname}
+] }
+
+
+
+function { fwritevectorrow (vectorname)
+[
+  movevector{$vectorname vectorbuf}
+  fwrite{"Vector $vectorname, dimension: "${getvector["vectorbuf",0]}
+        ", elements:"\n}
+  ={rowcount:1}
+  while{ (rowcount<=getvector["vectorbuf",0])
+  [
+    fwrite{${getvector["vectorbuf",rowcount]}}
+    if { (rowcount<getvector["vectorbuf",0])   [ fwrite{" "} ]  }
+    ={rowcount:rowcount+1}
+  ]}
+  fwrite{\n\n\n\n}
+  movevector{vectorbuf $vectorname}
+] }
+
+
+
+
+function { fwritevectorinv (vectorname)
+[
+  movevector{$vectorname vectorbuf}
+  fwrite{ \< " $vectorname " ${getvector["vectorbuf",0]} \n "  " \< }
+  ={rowcount:1}
+  while{ (rowcount<=getvector["vectorbuf",0,1])
+  [
+    fwrite{${getvector["vectorbuf",rowcount]}}
+    if { (rowcount<getvector["vectorbuf",0])   [ fwrite{" "} ]  }
+    ={rowcount:rowcount+1}
+  ]}
+  fwrite{\>\n\>\n\n\n}
+  movevector{vectorbuf $vectorname}
+] }
+
+
+
+*
+{
+========================================================================
+
+       OUTPUT OF MATRICES IN DIFFERENT FORMATS TO STANDARD OUTPUT
+
+========================================================================
+}
+
+function { writematrixbrac (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  write{"Matrix $matrixname, dimension: "${getmatrix["matrixbuf",0,1]}
+        "x"${getmatrix["matrixbuf",0,2]}", elements:"\n}
+  ={rowcount:1}
+  * { write{"rowcount: " ${rowcount}\n} }
+  write{\<}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    write{\<}
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+
+      *{ write{"rowcount="${rowcount}", columcount="${columncount}\n} }
+
+      write{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2]) [ write{","} ] }
+      ={columncount:columncount+1}
+    ]}
+    write{\>}
+    if{(rowcount<getmatrix["matrixbuf",0,1])  [ write{","} ] }
+    ={rowcount:rowcount+1}
+  ]}
+  write{\>}
+  write{\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+function { writematrixrow (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  write{"Matrix $matrixname, dimension: "${getmatrix["matrixbuf",0,1]}
+        "x"${getmatrix["matrixbuf",0,2]}", elements:"\n}
+  ={rowcount:1}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+      write{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2])
+      [
+        write{" "}
+      ] else
+      [
+        write{\n}
+      ] }
+      ={columncount:columncount+1}
+    ]}
+    ={rowcount:rowcount+1}
+  ]}
+  write{\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+
+function { writematrixinv (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  write{ \< " $matrixname " ${getmatrix["matrixbuf",0,1]} " "
+         ${getmatrix["matrixbuf",0,2]} \n }
+  ={rowcount:1}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    write{"  " \< " " ${rowcount} " : "}
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+      write{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2])
+      [
+        write{" "}
+      ] }
+      ={columncount:columncount+1}
+    ]}
+    write{\>\n}
+    ={rowcount:rowcount+1}
+  ]}
+  write{\>\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+*
+{
+========================================================================
+
+          OUTPUT OF MATRICES IN DIFFERENT FORMATS TO A FILE
+
+========================================================================
+}
+
+
+function { fwritematrixbrac (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  fwrite{"Matrix $matrixname, dimension: "${getmatrix["matrixbuf",0,1]}
+         "x"${getmatrix["matrixbuf",0,2]}", elements:"\n}
+  ={rowcount:1}
+  * { fwrite{"rowcount: " ${rowcount}\n} }
+  fwrite{\<}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    fwrite{\<}
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+
+      *{ fwrite{"rowcount="${rowcount}", columcount="${columncount}\n} }
+
+      fwrite{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2]) [ fwrite{","} ] }
+      ={columncount:columncount+1}
+    ]}
+    fwrite{\>}
+    if{(rowcount<getmatrix["matrixbuf",0,1])  [ fwrite{","} ] }
+    ={rowcount:rowcount+1}
+  ]}
+  fwrite{\>}
+  fwrite{\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+function { fwritematrixrow (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  fwrite{"Matrix $matrixname, dimension: "${getmatrix["matrixbuf",0,1]}
+         "x"${getmatrix["matrixbuf",0,2]}", elements:"\n}
+  ={rowcount:1}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+      fwrite{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2])
+      [
+        fwrite{" "}
+      ] else
+      [
+        fwrite{\n}
+      ] }
+      ={columncount:columncount+1}
+    ]}
+    ={rowcount:rowcount+1}
+  ]}
+  fwrite{\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+
+function { fwritematrixinv (matrixname)
+[
+  movematrix{$matrixname matrixbuf}
+  fwrite{ \< " $matrixname " ${getmatrix["matrixbuf",0,1]} " "
+          ${getmatrix["matrixbuf",0,2]} \n }
+  ={rowcount:1}
+  while{ (rowcount<=getmatrix["matrixbuf",0,1])
+  [
+    fwrite{"  " \< " " ${rowcount} " : "}
+    ={columncount:1}
+    while{ (columncount<=getmatrix["matrixbuf",0,2])
+    [
+      fwrite{${getmatrix["matrixbuf",rowcount,columncount]}}
+      if { (columncount<getmatrix["matrixbuf",0,2])
+      [
+        fwrite{" "}
+      ] }
+      ={columncount:columncount+1}
+    ]}
+    fwrite{\>\n}
+    ={rowcount:rowcount+1}
+  ]}
+  fwrite{\>\n\n\n}
+  movematrix{matrixbuf $matrixname}
+] }
+
+
+
+
+

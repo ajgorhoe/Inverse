@@ -1,0 +1,288 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Generator" content="Microsoft Word 97">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
+   <title>1 NASLOV 1</title>
+   		
+    <!-- Google Analitics - account Documents, 
+	property Documents - all -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-96832295-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+	
+
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FE0000">
+<a href="http://www.c3m.si/inverse/invhome.html"><img SRC="http://www.c3m.si/inverse/invlogo.gif" NOSAVE height=100 width=600></a>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER=3 BGCOLOR="#99FFCC" NOSAVE >
+<tr NOSAVE>
+<td NOSAVE><font size=-1><a href="../index.html">MANUALS:</a></font>
+<blockquote>
+<li>
+<font size=-1><a href="../short/index.html">Short Guide to INVERSE</a></font></li>
+
+<li>
+<font size=-1><a href="../flow/index.html">Flow Control</a></font></li>
+
+<li>
+<font size=-1><a href="index.html">Expression evaluator</a></font></li>
+
+<li>
+<font size=-1><a href="../var/index.html">User defined variables</a></font></li>
+
+<li>
+<font size=-1><a href="../int/index.html">General file interface</a></font></li>
+
+<li>
+<font size=-1><a href="../debug/index.html">Syntax checker &amp; debugger</a></font></li>
+
+<li>
+<b><font size=-1><a href="index.html">Interfaces with simulation programmes</a></font></b></li>
+
+<blockquote>
+<li>
+<b><font size=-1><a href="#_Toc442237071">Elfen's Interface</a></font></b></li>
+</blockquote>
+</blockquote>
+</td>
+</tr>
+</table>
+
+<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
+<tr VALIGN=TOP NOSAVE>
+<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
+
+<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
+list &amp; contents</a></font></b></td>
+
+<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
+</tr>
+</table>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<p><b><i><font size=+2>Interfaces between the Optimisation Shell INVERSE</font></i></b>
+<p><b><i><font size=+2>and Simulation Programmes</font></i></b>
+<br>&nbsp;
+<br>&nbsp;
+<p><b><font size=+1>Version 0</font></b>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p><i>Igor Gresovnik</i>
+<br>&nbsp;
+<br>&nbsp;
+<p><i><font size=-1>Ljubljana, the 30<sup> th</sup> of November 1998</font></i></center>
+
+<p><br>
+<br>
+<br>
+<br>
+<p><a NAME="contents"></a>
+<br>&nbsp;
+<p><b><font color="#FF0000"><font size=+1>Table of contents:</font></font></b>
+<br>&nbsp;
+<br>&nbsp;
+<p><b><i>1. Shell-Simulation Interfaces </i></b><a href="#_Toc442237070">*</a>
+<dir><b><font size=+0>1.1 Elfen's Interface </font></b><a href="#_Toc442237071">*</a>
+<dir>&nbsp;
+<br><font size=-1>1.1.1 The expression evaluator's functions that return
+Elfen's result data from the output file </font><a href="#_Toc442237072">*</a>
+<br>&nbsp;</dir>
+</dir>
+
+<ol>
+<center><a NAME="_Toc442237070"></a></center>
+
+<li>
+<b><font size=+2>Shell-Simulation Interfaces</font></b></li>
+
+<ol>
+<center><a NAME="_Toc442237071"></a></center>
+
+<p><br>
+<li>
+<b><i><font size=+2>Elfen's Interface</font></i></b></li>
+
+<br>&nbsp;
+<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
+<tr VALIGN=TOP NOSAVE>
+<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
+
+<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
+list &amp; contents</a></font></b></td>
+
+<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
+</tr>
+</table>
+
+<p><i>Elfen</i> is a general purpose finite element programme for solution
+of thermo-mechanical problems in solid mechanics. It is capable of solving
+nonlinear problems involving large strains and deformations, different
+material models, thermo-mechanical coupling and contact phenomena. It is
+therefore convenient for simulation of a large range of forming processes
+or product behavior in operating conditions.
+<p>At the current stage, a file interface between the shell Inverse and
+Elfen is available. The interfacing utilities include reading individual
+results or result fields from Elfen's output files, and replacing fields
+in the Elfen's input files. It is usually much more comfortable to use
+these interfacing utilities than to use the general file interface.
+<p>A set of expression evaluator's functions that read individual results
+from the analysis output file is available. These functions can be used
+in mathematical expressions evaluated by the expression evaluator. This
+way, the analysis results can be grabbed and used at in the evaluation
+of the objective and constraint functions and their derivatives. An example
+is the expression evaluator's function <b>noddisp</b> that returns a specific
+component of specific nodal displacement after a specific increment.
+<p>Before the appropriate expression evaluator's functions are used, the
+analysis result file must be connected with the pre-defined file variable
+<i>anoutfile</i>
+and the <b>initoutput</b> command must be executed.
+<p>There is a set of file interpreter's functions that read whole fields
+from analysis result files and store them in field variables. These functions
+can be used when a lot of individual field components are involved in calculation
+of the functions derived from analysis result. Reading whole fields into
+field variables and then operating with components of these variables can
+in such cases be quicker than using expression evaluator's functions that
+return individual components of the result fields. Sometimes whole result
+fields are used as an input for another analysis. For example, at shape
+optimisation the parametrised mesh, which depends on optimisation (shape)
+parameters, is often obtained by elastic deformation of a reference mesh.
+The initial mesh at specific parameters is obtained by adding displacements
+from the elastic analysis to the reference mesh.
+<br>&nbsp;
+<br>&nbsp;
+<ol><a NAME="_Toc442237072"></a>
+<li>
+<b><font size=+1>The expression evaluator's functions that return Elfen's
+result data from the output file</font></b></li>
+</ol>
+
+<br>&nbsp;
+<ol>
+<ol><a NAME="_Toc408913269"></a>
+<li>
+<font size=+1><b>anerror </b><i>[ ]</i></font></li>
+
+<br>Returns 1 if error at analysis occurred according to what is written
+in the analysis output file. Otherwise it returns 0.
+<br>&nbsp;
+<p><a NAME="_Toc408913270"></a>
+<li>
+<b><font size=+1>ansuccess</font></b><i> [ ]</i></li>
+
+<br>Returns 1 if analysis has successfully completed according to what
+is written in the analysis output file. Otherwise it returns 0.
+<br>&nbsp;
+<p><a NAME="_Toc404403740"></a><a NAME="_Toc404428311"></a><a NAME="_Toc404428453"></a><a NAME="_Toc408913271"></a>
+<li>
+<b><font size=+1>nodcoord </font><i>[node,coord</i></b>]</li>
+
+<br>Returns the coordinate <i>coord</i> of the initial position of the
+node <i>node</i>.
+<br>&nbsp;
+<p><a NAME="_Toc384395305"></a><a NAME="_Toc384395422"></a><a NAME="_Toc404403741"></a><a NAME="_Toc404428312"></a><a NAME="_Toc404428454"></a><a NAME="_Toc408913272"></a>
+<li>
+<b><font size=+1>nodtemp </font><i>[inc,nod,1</i></b>]</li>
+
+<br>Returns the temperature of the node node <i>nod</i> after the increment
+<i>inc</i>.
+The third argument must be specified, even if it does not have any meaning.
+It is usually set to 1.
+<br>&nbsp;
+<p><a NAME="_Toc384395306"></a><a NAME="_Toc384395423"></a><a NAME="_Toc404403742"></a><a NAME="_Toc404428313"></a><a NAME="_Toc404428455"></a><a NAME="_Toc408913273"></a>
+<li>
+<b><font size=+1>noddisp</font><i> [inc,nod,comp</i></b>]</li>
+
+<br>Returns the component <i>comp</i> of the nodal displacement of the
+node <i>nod</i> after the increment <i>inc</i>.
+<br>&nbsp;
+<p><a NAME="_Toc384395307"></a><a NAME="_Toc384395424"></a><a NAME="_Toc404403743"></a><a NAME="_Toc404428314"></a><a NAME="_Toc404428456"></a><a NAME="_Toc408913274"></a>
+<li>
+<b><font size=+1>locnoddisp</font><i> [inc,nod,comp</i></b>]</li>
+
+<br>Returns the component <i>comp</i> of the nodal displacement of the
+node <i>nod</i> after the increment <i>inc</i> in the local coordinate
+system.
+<br>&nbsp;
+<p><a NAME="_Toc384395308"></a><a NAME="_Toc384395425"></a><a NAME="_Toc404403744"></a><a NAME="_Toc404428315"></a><a NAME="_Toc404428457"></a><a NAME="_Toc408913275"></a>
+<li>
+<b><font size=+1>nodreac</font><i> [inc,nod,comp</i></b>]</li>
+
+<br>Returns the component <i>comp</i> of the nodal reaction of the node
+<i>nod</i>
+after the increment <i>inc</i>.
+<br>&nbsp;
+<p><a NAME="_Toc384395309"></a><a NAME="_Toc384395426"></a><a NAME="_Toc404403745"></a><a NAME="_Toc404428316"></a><a NAME="_Toc404428458"></a><a NAME="_Toc408913276"></a>
+<li>
+<b><font size=+1>locnodreac</font><i> [inc,nod,comp</i></b>]</li>
+
+<br>Returns the component <i>comp</i> of the nodal reaction of the node
+<i>nod</i>
+after the increment <i>inc</i> in the local coordinate system.
+<br>&nbsp;
+<p><a NAME="_Toc384395310"></a><a NAME="_Toc384395427"></a><a NAME="_Toc404403746"></a><a NAME="_Toc404428317"></a><a NAME="_Toc404428459"></a><a NAME="_Toc408913277"></a>
+<li>
+<b><font size=+1>nodstrain</font><i> [inc,nod,i,j</i></b>]</li>
+
+<br>Returns the <i>i,j</i>-th component of the nodal strain in the node
+<i>nod</i>
+after the increment <i>inc</i>.
+<br>&nbsp;
+<p><a NAME="_Toc384395311"></a><a NAME="_Toc384395428"></a><a NAME="_Toc404403747"></a><a NAME="_Toc404428318"></a><a NAME="_Toc404428460"></a><a NAME="_Toc408913278"></a>
+<li>
+<b><font size=+1>nodstress</font><i> [inc,nod,i,j</i></b>]</li>
+
+<br>Returns the <i>i,j</i>-th component of the nodal stress in the node
+<i>nod</i>
+after the increment <i>inc</i>.
+<br>&nbsp;
+<p><a NAME="_Toc384395312"></a><a NAME="_Toc384395429"></a><a NAME="_Toc404403748"></a><a NAME="_Toc404428319"></a><a NAME="_Toc404428461"></a><a NAME="_Toc408913279"></a>
+<li>
+<b><font size=+1>nodcontforc</font><i> [inc,nod,comp</i></b>]</li>
+
+<br>Returns the component <i>comp</i> of the contact nodal force in the
+node <i>nod</i> after the increment <i>inc</i>.
+<br>&nbsp;
+<p><a NAME="_Toc384395313"></a><a NAME="_Toc384395430"></a><a NAME="_Toc404403749"></a><a NAME="_Toc404428320"></a><a NAME="_Toc404428462"></a><a NAME="_Toc408913280"></a>
+<li>
+<b><font size=+1>nodloccontforc</font><i> [inc,nod,comp</i></b>]</li>
+
+<br>Returns the component <i>comp</i> of the contact nodal force in the
+node <i>nod</i> after the increment <i>inc</i> in the local coordinate
+system.
+<br>&nbsp;
+<p><a NAME="_Toc384395314"></a><a NAME="_Toc384395431"></a><a NAME="_Toc404403750"></a><a NAME="_Toc404428321"></a><a NAME="_Toc404428463"></a><a NAME="_Toc408913281"></a>
+<li>
+<b><font size=+1>nodwear</font><i> [inc,nod,comp</i></b>]</li>
+
+<br>Returns specific parameters of wear in the node <i>nod</i> after the
+increment <i>inc</i>. The Stanislava Stupkiewicz's friction and wear model
+is used. <i>comp</i> specifies which data is to be returned.
+<br>&nbsp;</ol>
+</ol>
+</ol>
+</ol>
+
+</body>
+</html>

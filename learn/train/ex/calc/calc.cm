@@ -1,0 +1,210 @@
+* {*********************************************************************
+
+File: calc/calc.cm
+
+  This file shows basic features of the system for evaluation of mathematic
+expressions, also referred to as calculator.
+
+Author: Igor Gresovnik, April 1998
+
+************************************************************************}
+
+
+
+setfile{outfile calc.ct}  *{ The definition of the result file }
+
+*{
+  USEFUL REMARK:
+  Values of mathematical expresisons and variables defined in the expression
+evaluator can be output by the "write" and "fwrite" functions. If in the
+argument block of these functions an expression is written oudside the
+quotes in curled brackets immediately following the '$' sign, then the value
+of the expression in the moment of execution is output, for example in 
+"write{ ${2/3*(a+b)} }". If the '$' sign is folloved by name (space can be
+between), then the value of the appropriate variable is output, for example
+in "write{ $a1 }" or "write{ $ b }".
+}
+
+* {
+*************************  FUNCTIONS "=" and "$"  ***************************
+  File interpreter knows two basic functions for accessing the calculator:
+"=" and "$".
+  With "=" command we can assign a value of a mathematic expression to a
+variable defined in the calculator. The expression is evaluated at the moment
+when the function is called.
+  With "$" command we can assign an expression to a variable of the calculator
+or define a new calculator function. The expression which is assigned to the
+variable is not immediately evaluated at a call to the "$" function.
+  Functions has similar syntacs. They require two arguments separated with a
+colon. The first one is the name of a variable to which a value or expression
+will be assigned and the secnd one is an expression which (or the value of
+which in the case of "=") is assigned to a variable. Only "$" can have a
+function name at the left side of the colon instead of a variable name. In
+this case, function name must be folloved by a list of formal arguments in a
+square brackets, separated by commas.
+  Any variables or functions which appear in expressions which are arguments
+of the calls to "=" or "$", which are not yet defined, are created and defined
+after a call to these functions.
+  Useful definition: A value of any expression is defined when the values of
+any of its subexpressions are defined.
+*****************************************************************************
+}
+write{\n"************  FUNCTIONS = and $  ************"\n\n}
+fwrite{\n"************  FUNCTIONS = and $  ************"\n\n}
+
+
+*{Value of expression is assigned to var. a which is created and set to
+that value:}
+={a:(3+5)/2} 
+write{"Value of variable a: " ${a} \n\n}
+fwrite{"Value of variable a: " ${a} \n\n}
+
+*{An expression is assigned to variable c; value of c is not yet defined since
+the value of b is not yet defined.}
+${c:a+b}
+
+*{In order to define the value of c, we must first assign a value to b.}
+={b:3}
+write{"a = "$ a", b = "$ b", c = "$ c"."\n}
+fwrite{"a = "$ a", b = "$ b", c = "$ c"."\n}
+
+*{We don't need to directly assign a value to b, but can also assign to it an
+expression which have a defined value:}
+${b:2*a*a}
+write{"a = "$ a", b = "$ b", c = "$ c"."\n}
+fwrite{"a = "$ a", b = "$ b", c = "$ c"."\n}
+
+*{We can define a new function in the expression evaluator which is then
+used as the pre-defined functions:}
+${prod[x,y]:x*y}
+write{"a = "$ a", b = "$ b", prod[a,b] = "${prod[a,b]}"."\n}
+fwrite{"a = "$ a", b = "$ b", prod[a,b] = "${prod[a,b]}"."\n}
+
+
+* {
+**********  CALCULATOR FUNCTIONS VIA INTERPRETER - "definefunctin"  *********
+  We can use the file interpreter's capabilities for defining new functions of
+the expression evaluator. This is enabled by the function "definefunction". 
+The name of a newly defined function must be specified at the beginning of the
+argument block in round brackets. Its definition block in square brackets
+follows. Each time the newly defined function is evaluated, the definition
+block in square brackets is interpreted.
+  Two functions of the expression evaluator and one function of the file
+interpreter are defined specially for use within the definition block of the
+"definefunction" function. The evaluator's function "numargs" returns the
+number of arguments which were actually passed to a function defined by
+"definefunction". It doesn't require any arguments. Function "argument" returns
+a value of a specific argument which was passed to such function. This function
+requires one argument which determines which argument of the function defined
+by "definefunction" to return (i.e. its successive number). Any number of
+arguments can be passed to a function defined by "definefunction", but in the
+definition block we specify thet the function reports error if not an
+appropriate number of arguments are passed.
+  The file interpreter's function return specifies what the function defined
+by "definefunction" returns. Its only argument is an expression the value of
+which is then returned by the defined function.
+*****************************************************************************
+}
+
+write{\n "************  FUNCTION definefunction  ************" \n\n}
+fwrite{\n "************  FUNCTION definefunction  ************" \n\n}
+
+*{ Example of the definition of an expression evaluator's function using the
+file interpreter's capabilities: }
+
+definefunction{ (sumation)
+[
+  ={i:1} ={ret:0}
+  while { (i<=numargs[]) *{ numargs returns the number of actual arguments}
+  [
+    ={ret:ret+argument[i]} ={i:i+1} *{ argument[i] returns i-th argument }
+  ]}
+  return {ret}
+]}
+
+*{ Test of the newly defined function: }
+
+write{"Test: sumation[6,2,2^3] = " ${sumation[6,2,2^3]} \n\n}
+fwrite{"Test: sumation[6,2,2^3] = " ${sumation[6,2,2^3]} \n\n}
+
+*{ Example of the definition of a function which requires exactly two
+arguments:}
+
+definefunction{ (sinesum)
+[
+  *{ This function returns a sine of a sum of the two arguments. }
+  if {(numargs[]!=2)
+  [
+    write{\n "Error: function sinesum requires two arguments, now called with "
+           ${numargs[]} "."\n}
+    fwrite{\n "Error: function sinesum requires two arguments, now called with "
+           ${numargs[]} "."\n}
+    return{ 0 }
+  ] else
+  [
+    ={retval:sin[argument[1]+argument[2]]}
+    return{ retval }
+  ]}
+]}
+
+write{"Test: sinesum[6,2,2^3] = " ${sinesum[16,2,2^3]} \n\n}
+write{"Test: sinesum[6,2] = " ${sinesum[6,2]} \n\n}
+fwrite{"Test: sinesum[6,2] = " ${sinesum[6,2]} \n\n}
+
+
+
+* {
+**********************  USE OF THE EXPRESSION EVALUATOR  ********************
+  The expression evaluator is used in the file interpreter for evaluation of
+branching and looping conditions in flow control command like "while" and "if".
+This adds a considerable ammount of flexibility to the optimization shell
+because the evaluator's pre-built functions can access any piece of the
+shell's global data.
+  The expression evaluator also contributes flexibility to the use of the
+file interpreter's functions. In many functions, their numerical arguments
+may be replaced by expressions or expression evaluator's variables.
+  Some illustrative examples of use of the expression evaluator are shown
+below:
+*****************************************************************************
+}
+
+write{\n "************  USE OF THE EXPRESSION EVALUATOR: ************" \n\n}
+fwrite{\n "************  USE OF THE EXPRESSION EVALUATOR:  ************" \n\n}
+
+*{ Let's define a three dimensional vector variable: }
+
+setvector{v1 3 {1.1 1.2 1.3}}
+printvector{v1}
+fprintvector{v1}
+
+*{ We can access the values of components of this variable by expression
+evaluator's function "getvector". The first argument of this function is
+vector name in double quotes and the second one is the required component
+number. If this argument is zero then function returns vector dimension: }
+
+={i:1}
+while{ (i<=getvector["v1",0])
+[
+  write{$ i "th component of vector v1 is " ${getvector["v1",i]} "." \n}
+  fwrite{$ i "th component of vector v1 is " ${getvector["v1",i]} "." \n}
+  ={i:i+1}
+]}
+write{\n} fwrite{\n}
+
+*{ We can on the other hand use the evaluator with the file interpreter's
+functions so that numerical arguments are replaced by expressions which are
+evaluated by the evaluator. We have two possibilities: we can write an
+expression instead of a number (the expresison must be in curled brackets
+immediately following the '$' sign, e.g. "${a+b}") or we can write the
+expression evaluator's variable instead of a number (variable name must in
+this case follow a '$' sign and a space, e.g. "$ a"). }
+
+setvector { v2 3
+  { ${getvector["v1",3]} $ a $ b}
+}
+printvector{v2}
+fprintvector{v2}
+
+
+
+

@@ -1,0 +1,309 @@
+* {*********************************************************************
+
+File: intfc/general/misc.cm
+
+  This file shows how the general file interface of the shell can be used to
+extract various data from a text file. The file in which we search for data
+and from which we read data is connected with the pre-defined file "infile".
+So we can use the simpler set of function where the file on which operations
+are performed does not need to be specified in argument blocks of the
+appropriate interface functions.
+
+Author: Igor Gresovnik, July 1998
+
+************************************************************************}
+
+
+setfile{outfile misc.ct}
+
+*{We connect the file variable "infile" by the physical file "misc.dat" on
+which the operations will be performed:}
+setfile{infile misc.dat}
+
+
+*{First we perform some checking in the input file:}
+
+fskipstring{"Part"}
+if {(![fileoperror[]])
+[
+  ffindcharacter{:}
+  if {(![fileoperror[]])
+  [
+    fincreasepos{1} fskipblanks{pos}
+    if {(fcheckstring["Flags"])
+    [
+      write{"\n\nName of part 1 is O.K. (\QFlags\Q).\n\n"}
+      fwrite{"\n\nName of part 2 is O.K. (\QFlags\Q).\n\n"}
+    ] else
+    [
+      ffindblank{pos1}
+      write{"\n\nError: Name of part1 is wrong \1\Q"}
+      writefpart{$pos ${pos1-1}}
+      write{"\Q\2.\n\n"}
+      fwrite{"\n\nError: Name of part1 is wrong \1\Q"}
+      fwritefpart{$pos ${pos1-1}}
+      fwrite{"\Q\2.\n\n"}
+    ]}
+  ]}
+]}
+fnextline{}
+
+writefpart{30}
+
+
+if {(fcheckcharacter["*"])
+[
+  write{"\n\nSo far, so good. The first character in the current line is *.\n\n"}
+  fwrite{"\n\nSo far, so good. The first character in the current line is *.\n\n"}
+] else
+[
+  fmarkpos{pos}
+  ffindcharacter{ \n\r pos1 }
+  write{"\n\nUnexpected contents of the current line:\n\Q"}
+  writefpart{$pos ${pos1-1}}
+  write{\Q"."\n\n}
+  fwrite{"\n\nUnexpected contents of the current line:\n\Q"}
+  fwritefpart{$pos ${pos1-1}}
+  fwrite{\Q"."\n\n}
+]}
+fnextline{}
+
+exit{}
+
+
+*{Reading flags:}
+fskipstring{"\\beginflags"}
+={end:fileoperror[]}
+printfileoperror{}
+fprintfileoperror{}
+={numerrors:0}
+={numwarnings:0}
+={success:0}
+while{(![end])
+[
+  fmultskipstring{{"\endflags" error warning success} which next pos}
+  if {(which==1)
+  [
+    ={end:1}
+  ] else
+  [
+    if {(which==2)
+    [
+      ={numerrors:numerrors+1}
+    ]}
+    if {(which==3)
+    [
+      ={numwarnings:numwarnings+1}
+    ]}
+    if {(which==4)
+    [
+      ={success:1}
+    ]}
+    ffindbrac{"{}" pos1 pos2}
+    if {(pos2>pos1+1 && ![fileoperror[]])
+    [
+      freadnumber{num}
+      if {(fileoperror[])
+      [
+        write{"\n\nError: option "}
+        writefpart{$pos ${next-1}}
+        write{" not specified properly.\n\n"}
+        fwrite{"\n\nError: option "}
+        fwritefpart{$pos ${next-1}}
+        fwrite{" not specified properly.\n\n"}
+      ] else
+      [
+        write{"Flag \Q"}
+        writefpart{$pos ${next-1}}
+        write{"\Q is set to " $num ".\n"}
+        fwrite{"Flag \Q"}
+        fwritefpart{$pos ${next-1}}
+        fwrite{"\Q is set to " $num ".\n"}
+      ]
+      }
+    ] else
+    [
+      write{"\n\nError: option "}
+      writefpart{$pos ${next-1}}
+      write{" not specified properly.\n\n"}
+      fwrite{"\n\nError: option "}
+      fwritefpart{$pos ${next-1}}
+      fwrite{" not specified properly.\n\n"}
+    ]}
+    if {(pos2>0) [ fsetpos{$pos2} ]}
+  ]}
+]}
+write{\n\n$numerrors " errors and " $numwarnings " warnings were indicated.\n"}
+fwrite{\n\n$numerrors " errors and " $numwarnings " warnings were indicated.\n"}
+if {(success && numerrors==0)
+[
+  write{"Analysis was completed successfully.\n\n\n"}
+  fwrite{"Analysis was completed successfully.\n\n\n"}
+] else
+[
+  write{"Analysis was not completed successfully.\n\n\n"}
+  fwrite{"Analysis was not completed successfully.\n\n\n"}
+]}
+
+
+write{\n\n\n}  fwrite{\n\n\n}
+={end:0}
+={strnum:0}
+while{(![end])
+[
+  fskipstring{"Searched string"}
+  ={end:fileoperror[]}
+  if {(![end])
+  [
+    ={strnum:strnum+1}
+    fmarkpos{basicpos}
+    ffindcharacter{":"}
+    ={end:fileoperror[]}
+    if {(![end])
+    [
+      fmarkpos{columnpos}
+      fsetpos{$basicpos}
+      fskipcharacters{"\n\r\t "}
+      fmarkpos{numpos}
+      freadnumber{num}
+      ={end:fileoperror[]}
+      if {(![end])
+      [
+        fsetpos{${columnpos+1}}
+        *{We check if string is in double quotes:}
+        ffindcharacter{"\Q" quotepos}
+        *{We go back to the position after the colon:}
+        fsetpos{${columnpos+1}}
+        fskipcharacters{"\n\r\t " beginpos}
+        ={end:fileoperror[]}
+        if {(![end])
+        [
+          if {(num!=strnum)
+          [
+            write{"Warning: Serial number \1"$strnum"\2 and control number \1"
+                  $num "\2 of the\nnext string don't match:\n"}
+            fwrite{"Warning: Serial number \1"$strnum"\2 and control number \1"
+                  $num "\2 of the\nnext string don't match:\n"}
+          ]}
+          if {(quotepos==beginpos)
+          [
+            *{The string we search for is in double quotes, therefore we
+            search for another double quote to specify the end of the string:}
+            fsetpos{${quotepos+1}}
+            ffindcharacter{"\Q" endpos}
+            ={end:fileoperror[]}
+            if {(![end])
+            [
+              fwrite{"String No. " $num " is \Q"}
+              fwritefpart{${quotepos+1} ${endpos-1}}
+              fwrite{"\Q.\n\n"}
+              write{"String No. " $num " is \Q"}
+              writefpart{${quotepos+1} ${endpos-1}}
+              write{"\Q.\n\n"}
+              fsetpos{${endpos+2}}
+            ]}
+          ] else
+          [
+            *{The strinh we search for is not in double quotes, therefore the
+            string is terminated by a blank character:}
+            fsetpos{${beginpos}}
+            ffindcharacter{"\n\r\t " endpos}
+            ={end:fileoperror[]}
+            if {(![end])
+            [
+              fwrite{"String No. " $num " is \Q"}
+              fwritefpart{${beginpos} ${endpos-1}}
+              fwrite{"\Q.\n\n"}
+              write{"String No. " $num " is \Q"}
+              writefpart{${beginpos} ${endpos-1}}
+              write{"\Q.\n\n"}
+              fsetpos{${endpos+1}}
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+    if {(end)
+    [
+      *{If we find the characteristic string but then somesing goes wrong,
+      a warning is output:}
+    ]}
+  ]}
+]}
+
+
+={error:0}
+*{Control output: We output the string which follows the "!!!" mark.}
+fskipstring{ !!! beginstring }
+={error:error || fileoperror[]}
+if {(error) [ printfileoperror{} fprintfileoperror{} ]}
+ffindcharacter{ "\n\r" endstring }
+={error:error || fileoperror[]}
+if {(error) [ printfileoperror{} fprintfileoperror{} ]}
+if { (![error])
+[
+  printfpart{${beginstring+1} ${endstring-1}}
+  fprintfpart{${beginstring+1} ${endstring-1}}
+] else
+[
+  write{"\n\n\nError: Could not find the comment after \Q!!!\Q!\n\n\n"}
+  fwrite{"\n\n\nError: Could not find the comment after \Q!!!\Q!\n\n\n"}
+]}
+
+
+*{Now we will read the data:}
+={error:0}
+ *{We search for the beginning of data and mark it}
+fskipstring{"\\begindata" begindata}
+
+*{We check for possible errors:}
+={error:error || fileoperror[]}
+if {(error) [ printfileoperror{} fprintfileoperror{} ]}
+
+*{First we read the value of the objective function:}
+fsetpos{$begindata}
+fskipstring{"objective function"}
+={error:error || fileoperror[]}
+ffindcharacter{:}
+fincreasepos{1}
+={error:error || fileoperror[]}
+freadscalar{objectivemom}
+={error:error || fileoperror[]}
+if {(![error])
+[
+  write{"\nValue of the objective function: "${getscalar["objectivemom"]}\n\n}
+  fwrite{"\nValue of the objective function: "${getscalar["objectivemom"]}\n\n}
+] else
+[
+  write{"\n\nFATAL ERROR: could not read the value of the objective function!\n\n"}
+  fwrite{"\n\nFATAL ERROR: could not read the value of the objective function!\n\n"}
+  ={error:0}
+]}
+
+*{Then we read the vector of sumulated measurements:}
+fsetpos{$begindata}
+fskipstring{"simulated measurements"}
+={error:error || fileoperror[]}
+ffindcharacter{:}
+fincreasepos{1}
+={error:error || fileoperror[]}
+freadvector{measmom}
+={error:error || fileoperror[]}
+if {(![error])
+[
+  write{"\nValues of simulated measurements: \n"}
+  printvector{measmom} write{\n\n}
+  fwrite{"\nValues of simulated measurements: \n"}
+  fprintvector{measmom} fwrite{\n\n}
+] else
+[
+  write{"\n\nFATAL ERROR: could not read the vector of simulated measurements!\n\n"}
+  fwrite{"\n\nFATAL ERROR: could not read the value of the simulated measurements!\n\n"}
+  ={error:0}
+]}
+
+
+
+
+
+

@@ -1,0 +1,1048 @@
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+************  EXAMPLES FOR movematrixvar  ************
+
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {11} }
+
+Elements:
+{ {
+  m1[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  m1[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  m1[2,1]:
+m[1][1]=21.11, m[1][2]=21.12
+
+m[2][1]=21.21, m[2][2]=21.22
+
+
+  m1[2,2]:
+m[1][1]=22.11, m[1][2]=22.12
+
+m[2][1]=22.21, m[2][2]=22.22
+
+} }
+
+
+
+
+Moving matrix variable m1 to a non-existing matrix variable m2:
+
+Matrix variable m1 no longer exists so we can not print it:
+
+
+Error in function printmatrixvar: Matrix "m1" does not exist.
+
+
+
+Error in function fprintmatrixvar: matrix "m1" does not exist.
+
+
+Matrix variable m2 becomes previous m1:
+
+
+Matrix variable "m2":
+
+Name: "m2"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {11} }
+
+Elements:
+{ {
+  m2[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  m2[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  m2[2,1]:
+m[1][1]=21.11, m[1][2]=21.12
+
+m[2][1]=21.21, m[2][2]=21.22
+
+
+  m2[2,2]:
+m[1][1]=22.11, m[1][2]=22.12
+
+m[2][1]=22.21, m[2][2]=22.22
+
+} }
+
+
+
+
+
+Matrix variable "m3":
+
+Name: "m3"
+Rank: 2
+Dimension: 2x3
+Whole dimension: 6
+Value table: { {000} {000} }
+
+Elements:
+{ {
+  m3[1,1]:
+NULL MATRIX
+  m3[1,2]:
+NULL MATRIX
+  m3[1,3]:
+NULL MATRIX} {
+  m3[2,1]:
+NULL MATRIX
+  m3[2,2]:
+NULL MATRIX
+  m3[2,3]:
+NULL MATRIX} }
+
+
+
+
+Moving matrix variable m2 to an existing matrix variable m3:
+
+Matrix variable m2 no longer exists so we can not print it:
+
+
+Matrix m3[1,1]:
+Dimension: 2*2
+Elements:
+
+m[1,1]= 11.11
+m[1,2]= 11.12
+
+m[2,1]= 11.21
+m[2,2]= 11.22
+
+
+
+
+
+Matrix m3[1,2]:
+Dimension: 2*2
+Elements:
+
+m[1,1]= 12.11
+m[1,2]= 12.12
+
+m[2,1]= 12.21
+m[2,2]= 12.22
+
+
+
+
+
+Matrix m3[2,1]:
+Dimension: 2*2
+Elements:
+
+m[1,1]= 21.11
+m[1,2]= 21.12
+
+m[2,1]= 21.21
+m[2,2]= 21.22
+
+
+
+
+
+Matrix m3[2,2]:
+Dimension: 2*2
+Elements:
+
+m[1,1]= 22.11
+m[1,2]= 22.12
+
+m[2,1]= 22.21
+m[2,2]= 22.22
+
+
+
+
+************  EXAMPLES FOR movematrix  ************
+
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 0
+Whole dimension: 1
+Value table: { 1 }
+Element:
+
+  m1:
+m[1][1]=0.11, m[1][2]=0.12, m[1][3]=0.13
+
+m[2][1]=0.21, m[2][2]=0.22, m[2][3]=0.23
+
+
+
+
+
+Moving matrix m1[] to m2[]; Matrix variable m2 is created anew.
+Matrix variable m1 remains defined, but it doesn't have any elements:
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 0
+Whole dimension: 1
+Value table: { 0 }
+Element:
+
+  m1:
+NULL MATRIX
+
+
+
+
+Matrix variable "m2":
+
+Name: "m2"
+Rank: 0
+Whole dimension: 1
+Value table: { 1 }
+Element:
+
+  m2:
+m[1][1]=0.11, m[1][2]=0.12, m[1][3]=0.13
+
+m[2][1]=0.21, m[2][2]=0.22, m[2][3]=0.23
+
+
+
+
+
+
+Matrix variable "m0":
+
+Name: "m0"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {00} {00} }
+
+Elements:
+{ {
+  m0[1,1]:
+NULL MATRIX
+  m0[1,2]:
+NULL MATRIX} {
+  m0[2,1]:
+NULL MATRIX
+  m0[2,2]:
+NULL MATRIX} }
+
+
+
+
+Moving matrix m2 to m0; Matrix variable m2 is overwritten because
+  it has different dimension than the operand:
+
+
+Matrix variable "m0":
+
+Name: "m0"
+Rank: 0
+Whole dimension: 1
+Value table: { 1 }
+Element:
+
+  m0:
+m[1][1]=0.11, m[1][2]=0.12, m[1][3]=0.13
+
+m[2][1]=0.21, m[2][2]=0.22, m[2][3]=0.23
+
+
+
+
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {11} }
+
+Elements:
+{ {
+  m1[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  m1[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  m1[2,1]:
+m[1][1]=21.11, m[1][2]=21.12
+
+m[2][1]=21.21, m[2][2]=21.22
+
+
+  m1[2,2]:
+m[1][1]=22.11, m[1][2]=22.12
+
+m[2][1]=22.21, m[2][2]=22.22
+
+} }
+
+
+
+
+
+Matrix variable "res":
+
+Name: "res"
+Rank: 2
+Dimension: 3x2
+Whole dimension: 6
+Value table: { {00} {00} {00} }
+
+Elements:
+{ {
+  res[1,1]:
+NULL MATRIX
+  res[1,2]:
+NULL MATRIX} {
+  res[2,1]:
+NULL MATRIX
+  res[2,2]:
+NULL MATRIX} {
+  res[3,1]:
+NULL MATRIX
+  res[3,2]:
+NULL MATRIX} }
+
+
+
+
+Moving a table of matrices m1[2] to res[3] (table dimensions match):
+
+
+Matrix variable "res":
+
+Name: "res"
+Rank: 2
+Dimension: 3x2
+Whole dimension: 6
+Value table: { {00} {00} {11} }
+
+Elements:
+{ {
+  res[1,1]:
+NULL MATRIX
+  res[1,2]:
+NULL MATRIX} {
+  res[2,1]:
+NULL MATRIX
+  res[2,2]:
+NULL MATRIX} {
+  res[3,1]:
+m[1][1]=21.11, m[1][2]=21.12
+
+m[2][1]=21.21, m[2][2]=21.22
+
+
+  res[3,2]:
+m[1][1]=22.11, m[1][2]=22.12
+
+m[2][1]=22.21, m[2][2]=22.22
+
+} }
+
+
+
+
+Matrix variable m1 after the operation:
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {00} }
+
+Elements:
+{ {
+  m1[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  m1[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  m1[2,1]:
+NULL MATRIX
+  m1[2,2]:
+NULL MATRIX} }
+
+
+
+
+Moving a table of matrices m2[] to res[] (table dimensions don't match):
+
+
+Matrix variable "res":
+
+Name: "res"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {00} }
+
+Elements:
+{ {
+  res[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  res[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  res[2,1]:
+NULL MATRIX
+  res[2,2]:
+NULL MATRIX} }
+
+
+
+
+Matrix variable m1 after the operation:
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {00} {00} }
+
+Elements:
+{ {
+  m1[1,1]:
+NULL MATRIX
+  m1[1,2]:
+NULL MATRIX} {
+  m1[2,1]:
+NULL MATRIX
+  m1[2,2]:
+NULL MATRIX} }
+
+
+
+
+
+
+
+
+
+END.
+               -----------------------------------------------------
+               ||-------------------------------------------------||
+               ||  http://www.c3m.si                              ||
+               ||                                                 ||
+               ||    *****           *****         ***    ***     ||
+               ||   *******         *******        ****  ****     ||
+               ||  **     **       **     **       ** **** **     ||
+               ||  **                    ***       **  **  **     ||
+               ||  **                   ***        **      **     ||
+               ||  **                    ***       **      **     ||
+               ||  **     **       **     **       **      **     ||
+               ||   *******         *******        **      **     ||
+               ||    *****           *****         **      **     ||
+               ||                                                 ||
+               || CENTRE FOR COMPUTATIONAL CONTINUUM MECHANICS    ||
+               || Address:                                        ||
+               ||   Vandotova 55,  1000 Ljubljana, Slovenia       ||
+               || Tel/Fax:                                        ||
+               ||   +386-61-1271747                               ||
+               || Director:                                       ||
+               ||   Dr. Tomaz RODIC, dipl. ing.                   ||
+               ||-------------------------------------------------||
+               -----------------------------------------------------
+               -------------------------------------------
+               ||---------------------------------------||
+               ||                                       ||
+               ||  INVERSE version 3.0 T  (Feb. 1998)   ||
+               ||                     TEST VERSION!     ||
+               ||      Developed by:                    ||
+               ||                                       ||
+               ||        Igor Gresovnik  (igor@c3m.si)  ||
+               ||        Crnece 147                     ||
+               ||        2370 Dravograd                 ||
+               ||                                       ||
+               || http://www.c3m.si                     ||
+               ||---------------------------------------||
+               -------------------------------------------
+
+
+
+
+
+************  EXAMPLES FOR movematrixvar  ************
+
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {11} }
+
+Elements:
+{ {
+  m1[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  m1[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  m1[2,1]:
+m[1][1]=21.11, m[1][2]=21.12
+
+m[2][1]=21.21, m[2][2]=21.22
+
+
+  m1[2,2]:
+m[1][1]=22.11, m[1][2]=22.12
+
+m[2][1]=22.21, m[2][2]=22.22
+
+} }
+
+
+
+
+Moving matrix variable m1 to a non-existing matrix variable m2:
+
+Matrix variable m1 no longer exists so we can not print it:
+
+
+Error in function printmatrixvar: Matrix "m1" does not exist.
+
+
+
+Error in function fprintmatrixvar: matrix "m1" does not exist.
+
+
+Matrix variable m2 becomes previous m1:
+
+
+Matrix variable "m2":
+
+Name: "m2"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {11} }
+
+Elements:
+{ {
+  m2[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  m2[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  m2[2,1]:
+m[1][1]=21.11, m[1][2]=21.12
+
+m[2][1]=21.21, m[2][2]=21.22
+
+
+  m2[2,2]:
+m[1][1]=22.11, m[1][2]=22.12
+
+m[2][1]=22.21, m[2][2]=22.22
+
+} }
+
+
+
+
+
+Matrix variable "m3":
+
+Name: "m3"
+Rank: 2
+Dimension: 2x3
+Whole dimension: 6
+Value table: { {000} {000} }
+
+Elements:
+{ {
+  m3[1,1]:
+NULL MATRIX
+  m3[1,2]:
+NULL MATRIX
+  m3[1,3]:
+NULL MATRIX} {
+  m3[2,1]:
+NULL MATRIX
+  m3[2,2]:
+NULL MATRIX
+  m3[2,3]:
+NULL MATRIX} }
+
+
+
+
+Moving matrix variable m2 to an existing matrix variable m3:
+
+Matrix variable m2 no longer exists so we can not print it:
+
+
+Matrix m3[1,1]:
+Dimension: 2*2
+Elements:
+
+m[1,1]= 11.11
+m[1,2]= 11.12
+
+m[2,1]= 11.21
+m[2,2]= 11.22
+
+
+
+
+
+Matrix m3[1,2]:
+Dimension: 2*2
+Elements:
+
+m[1,1]= 12.11
+m[1,2]= 12.12
+
+m[2,1]= 12.21
+m[2,2]= 12.22
+
+
+
+
+
+Matrix m3[2,1]:
+Dimension: 2*2
+Elements:
+
+m[1,1]= 21.11
+m[1,2]= 21.12
+
+m[2,1]= 21.21
+m[2,2]= 21.22
+
+
+
+
+
+Matrix m3[2,2]:
+Dimension: 2*2
+Elements:
+
+m[1,1]= 22.11
+m[1,2]= 22.12
+
+m[2,1]= 22.21
+m[2,2]= 22.22
+
+
+
+
+************  EXAMPLES FOR movematrix  ************
+
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 0
+Whole dimension: 1
+Value table: { 1 }
+Element:
+
+  m1:
+m[1][1]=0.11, m[1][2]=0.12, m[1][3]=0.13
+
+m[2][1]=0.21, m[2][2]=0.22, m[2][3]=0.23
+
+
+
+
+
+Moving matrix m1[] to m2[]; Matrix variable m2 is created anew.
+Matrix variable m1 remains defined, but it doesn't have any elements:
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 0
+Whole dimension: 1
+Value table: { 0 }
+Element:
+
+  m1:
+NULL MATRIX
+
+
+
+
+Matrix variable "m2":
+
+Name: "m2"
+Rank: 0
+Whole dimension: 1
+Value table: { 1 }
+Element:
+
+  m2:
+m[1][1]=0.11, m[1][2]=0.12, m[1][3]=0.13
+
+m[2][1]=0.21, m[2][2]=0.22, m[2][3]=0.23
+
+
+
+
+
+
+Matrix variable "m0":
+
+Name: "m0"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {00} {00} }
+
+Elements:
+{ {
+  m0[1,1]:
+NULL MATRIX
+  m0[1,2]:
+NULL MATRIX} {
+  m0[2,1]:
+NULL MATRIX
+  m0[2,2]:
+NULL MATRIX} }
+
+
+
+
+Moving matrix m2 to m0; Matrix variable m2 is overwritten because
+  it has different dimension than the operand:
+
+
+Matrix variable "m0":
+
+Name: "m0"
+Rank: 0
+Whole dimension: 1
+Value table: { 1 }
+Element:
+
+  m0:
+m[1][1]=0.11, m[1][2]=0.12, m[1][3]=0.13
+
+m[2][1]=0.21, m[2][2]=0.22, m[2][3]=0.23
+
+
+
+
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {11} }
+
+Elements:
+{ {
+  m1[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  m1[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  m1[2,1]:
+m[1][1]=21.11, m[1][2]=21.12
+
+m[2][1]=21.21, m[2][2]=21.22
+
+
+  m1[2,2]:
+m[1][1]=22.11, m[1][2]=22.12
+
+m[2][1]=22.21, m[2][2]=22.22
+
+} }
+
+
+
+
+
+Matrix variable "res":
+
+Name: "res"
+Rank: 2
+Dimension: 3x2
+Whole dimension: 6
+Value table: { {00} {00} {00} }
+
+Elements:
+{ {
+  res[1,1]:
+NULL MATRIX
+  res[1,2]:
+NULL MATRIX} {
+  res[2,1]:
+NULL MATRIX
+  res[2,2]:
+NULL MATRIX} {
+  res[3,1]:
+NULL MATRIX
+  res[3,2]:
+NULL MATRIX} }
+
+
+
+
+Moving a table of matrices m1[2] to res[3] (table dimensions match):
+
+
+Matrix variable "res":
+
+Name: "res"
+Rank: 2
+Dimension: 3x2
+Whole dimension: 6
+Value table: { {00} {00} {11} }
+
+Elements:
+{ {
+  res[1,1]:
+NULL MATRIX
+  res[1,2]:
+NULL MATRIX} {
+  res[2,1]:
+NULL MATRIX
+  res[2,2]:
+NULL MATRIX} {
+  res[3,1]:
+m[1][1]=21.11, m[1][2]=21.12
+
+m[2][1]=21.21, m[2][2]=21.22
+
+
+  res[3,2]:
+m[1][1]=22.11, m[1][2]=22.12
+
+m[2][1]=22.21, m[2][2]=22.22
+
+} }
+
+
+
+
+Matrix variable m1 after the operation:
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {00} }
+
+Elements:
+{ {
+  m1[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  m1[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  m1[2,1]:
+NULL MATRIX
+  m1[2,2]:
+NULL MATRIX} }
+
+
+
+
+Moving a table of matrices m2[] to res[] (table dimensions don't match):
+
+
+Matrix variable "res":
+
+Name: "res"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {11} {00} }
+
+Elements:
+{ {
+  res[1,1]:
+m[1][1]=11.11, m[1][2]=11.12
+
+m[2][1]=11.21, m[2][2]=11.22
+
+
+  res[1,2]:
+m[1][1]=12.11, m[1][2]=12.12
+
+m[2][1]=12.21, m[2][2]=12.22
+
+} {
+  res[2,1]:
+NULL MATRIX
+  res[2,2]:
+NULL MATRIX} }
+
+
+
+
+Matrix variable m1 after the operation:
+
+
+Matrix variable "m1":
+
+Name: "m1"
+Rank: 2
+Dimension: 2x2
+Whole dimension: 4
+Value table: { {00} {00} }
+
+Elements:
+{ {
+  m1[1,1]:
+NULL MATRIX
+  m1[1,2]:
+NULL MATRIX} {
+  m1[2,1]:
+NULL MATRIX
+  m1[2,2]:
+NULL MATRIX} }
+
+
+
+
+
+
+
+
+
+END.

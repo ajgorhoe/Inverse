@@ -1,0 +1,231 @@
+* {*********************************************************************
+
+File: intfc/elf/res.cm
+
+  This file shows how the optimisation shell can access data in Elfen's
+output file.
+
+Author: Igor Gresovnik, March 1998
+
+************************************************************************}
+
+setfile{outfile res.ct}
+
+
+setfile{anoutfile prestr.res}
+
+initoutput{}
+
+write{\n"Begin"\n}
+
+*{
+************************ FUNCTION noddisp: ******************************
+}
+
+write{"Nodal displacement; increment 3, node 38, component y: " }
+fwrite{"Nodal displacement; increment 3, node 38, component y: " }
+={x:noddisp[3,38,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal displacement; increment 3, node 1, component x: " }
+fwrite{"Nodal displacement; increment 3, node 1, component x: " }
+={x:noddisp[3,1,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal displacement; increment 3, node 915, component y: " }
+fwrite{"Nodal displacement; increment 3, node 915, component y: " }
+={x:noddisp[3,915,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+*{
+************************ FUNCTION nodreac: ******************************
+}
+
+write{\n}  fwrite{\n}
+write{"Nodal reaction; increment 4, node 32, component y: " }
+fwrite{"Nodal reaction; increment 4, node 32, component y: " }
+={x:nodreac[4,32,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal reaction; increment 4, node 23, component y: " }
+fwrite{"Nodal reaction; increment 4, node 23, component y: " }
+={x:nodreac[4,23,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+*{
+************************ FUNCTION nodcontforc: ******************************
+}
+
+write{\n}  fwrite{\n}
+write{"Nodal contact force; increment 4, slideline 3, node 23, component y: " }
+fwrite{"Nodal contact force; increment 4, slideline 3, node 23, component y: " }
+={x:nodcontforc[4,3,23,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal contact force; increment 4, slideline 3, node 210, component y: " }
+fwrite{"Nodal contact force; increment 4, slideline 3, node 210, component y: " }
+={x:nodcontforc[4,3,210,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal contact force; increment 4, slideline 3, node 211, component y: " }
+fwrite{"Nodal contact force; increment 4, slideline 3, node 211, component y: " }
+={x:nodcontforc[4,3,211,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal contact force; increment 4, slideline 3, node 212, component y: " }
+fwrite{"Nodal contact force; increment 4, slideline 3, node 212, component y: " }
+={x:nodcontforc[4,3,212,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal contact force; increment 4, slideline 3, node 213, component y: " }
+fwrite{"Nodal contact force; increment 4, slideline 3, node 213, component y: " }
+={x:nodcontforc[4,3,213,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+*{
+************************ FUNCTION nodstress: ******************************
+}
+
+write{\n}  fwrite{\n}
+write{"Nodal stress; increment 4, node 1, component yy: " }
+fwrite{"Nodal stress; increment 4, node 1, component yy: " }
+={x:nodstress[4,1,2,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal stress; increment 3, node 142, component xy: " }
+fwrite{"Nodal stress; increment 3, node 142, component xy: " }
+={x:nodstress[3,142,1,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal stress; increment 3, node 143, component xx: " }
+fwrite{"Nodal stress; increment 3, node 143, component xx: " }
+={x:nodstress[3,143,1,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal stress; increment 3, node 144, component xy: " }
+fwrite{"Nodal stress; increment 3, node 144, component xy: " }
+={x:nodstress[3,144,1,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+*{
+************************ FUNCTION nodstrain: ******************************
+}
+
+write{\n}  fwrite{\n}
+write{"Nodal strain; increment 4, node 1, component yy: " }
+fwrite{"Nodal strain; increment 4, node 1, component yy: " }
+={x:nodstrain[4,1,2,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal strain; increment 4, node 143, component xy: " }
+fwrite{"Nodal strain; increment 4, node 143, component xy: " }
+={x:nodstrain[4,143,1,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+*{
+************************ FUNCTION nodcoord: ******************************
+}
+
+write{\n}  fwrite{\n}
+write{"Node coordinate; node 1, component x: " }
+fwrite{"Node coordinate; node 1, component x: " }
+={x:nodcoord[1,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{\n}  fwrite{\n}
+write{"Node coordinate; node 863, component x: " }
+fwrite{"Node coordinate; node 863, component x: " }
+={x:nodcoord[863,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{\n}  fwrite{\n}
+write{"Node coordinate; node 914, component y: " }
+fwrite{"Node coordinate; node 914, component y: " }
+={x:nodcoord[914,2]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+
+exit{}
+
+*{
+************ EFFECT OF POSITION INFORMATION STORAGE ON SPEED: **************
+}
+
+write{\n\n}  fwrite{\n\n}
+
+write{"BEFORE the reset of the position information storage:"\n}
+fwrite{"BEFORE the reset of the position information storage:"\n}
+
+write{"Nodal displacement; increment 3, node 50, component x: " }
+fwrite{"Nodal displacement; increment 3, node 50, component x: " }
+={x:noddisp[3,50,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal displacement; increment 3, node 51, component x: " }
+fwrite{"Nodal displacement; increment 3, node 51, component x: " }
+={x:noddisp[3,51,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"Nodal displacement; increment 3, node 52, component x: " }
+fwrite{"Nodal displacement; increment 3, node 52, component x: " }
+={x:noddisp[3,52,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+initoutput{}
+
+write{"AFTER the reset of the position information storage:"\n}
+fwrite{"AFTER the reset of the position information storage:"\n}
+
+write{"Nodal displacement; increment 3, node 53, component x: " }
+fwrite{"Nodal displacement; increment 3, node 53, component x: " }
+={x:noddisp[3,53,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+
+*{
+*********************** SPECIAL INCREMENT NUMBERS: *************************
+}
+
+write{\n\n}  fwrite{\n\n}
+
+write{"The last increment:"\n}
+fwrite{"The last increment:"\n}
+write{"Nodal displacement; LAST increment, node 100, component x: " }
+fwrite{"Nodal displacement;  LAST increment, node 100, component x: " }
+={x:noddisp[0,100,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+write{"One before the last increment:"\n}
+fwrite{"Last increment:"\n}
+write{"Nodal displacement; PRE-LAST increment, node 100, component x: " }
+fwrite{"Nodal displacement;  PRE-LAST increment, node 100, component x: " }
+={x:noddisp[-1,100,1]}
+write{$ x "."\n}
+fwrite{$ x "."\n}
+
+
+

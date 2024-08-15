@@ -1,0 +1,79 @@
+* {*********************************************************************
+
+File: intfc/general/speed.cm
+
+  The general purpose of this file is to check how quick the general interface
+is. By its help, a user of the shell can determine if this kind of interface
+would satisfy his needs as regards the speed. The adequacy an be estimated
+for the cases where the user can control the output of the programme with which
+the optimization shell would exchange data through files. In such cases the
+interfacing files can be short and this example can give a good feeling about
+the adequacy of the interface concerning specific types of problems with
+respect to the speed.
+
+Author: Igor Gresovnik, July 1998
+
+************************************************************************}
+
+
+setfile{outfile speed.ct}
+
+
+={numiters:50}
+write{\n\n"Iterative reading from the input file \1 " $numiters
+      " identical iterations \n  will be performed\2:"\n\n}
+fwrite{\n\n"Iterative reading from the input file \1 " $numiters
+      " identical iterations \n  will be performed\2:"\n\n}
+
+={error:0}
+={i:1}
+while{(i<=numiters)
+[
+  setfile{infile speed.dat}
+  fskipstring{"Analysis error"}
+  ffindbrac{ {} brac1 brac2}
+  freadnumber{nexterror}
+  ={error:error||nexterror}
+  fsetpos{${brac2+1}}
+  
+  fskipstring{"Simulated measurements"}
+  ffindcharacter{":"}
+  fincreasepos{1}
+  freadvector{measmom}
+  
+  fskipstring{"Gradient of simulated measurements with respect to parameters"}
+  ffindcharacter{":"}
+  fincreasepos{1}
+  freadmatrix{gradmeasmom}
+ 
+  *{In every iteration we check for errors and then restart the error
+  storage: }
+  
+  if {(fileoperror[0])
+  [
+    *{ We print a report about all errors at file operations in the current
+    iteration: }
+    printfileoperror{0}  fprintfileoperror{0}
+    clearfileoperrors{}
+  ]}
+  
+  ={i:i+1}
+]}
+
+
+*{ At the end we output the read data: }
+printvector{measmom}
+fprintvector{measmom}
+
+fprintmatrix{gradmeasmom}
+
+if {(error)
+[
+  write{"\n\nWarning: analysis was not completed successfully!\n\n"}
+  fwrite{"\n\nWarning: analysis was not completed successfully!\n\n"}
+] else
+[
+  write{"\n\nAnalysis was completed successfully.\n\n"}
+  fwrite{"Analysis was completed successfully.\n\n"}
+]}
+

@@ -1,0 +1,48 @@
+*****************************************************************************
+  This is a sample file on which functioning of the general file interface of
+the optimization shell is shown. Different kinds of data are searched for and
+extracted from this file using the interface.
+*****************************************************************************
+
+*****************************************************************************
+  Part 1: Fslags
+A*****************************************************************************
+
+\beginflags
+
+warning{23}  warning{ } warning{167}  warning{115}
+success{1}
+
+\endflags
+
+*****************************************************************************
+  Part 2: Strings
+*****************************************************************************
+
+Searching for a string; we extract the string length:
+
+Searched string 1 : "This is a test file."
+
+Searched string 4:  "INVERSE"
+
+Searched string 3:  general_file_interface
+
+!!! Strings end here
+
+*****************************************************************************
+  Part 3: Data
+*****************************************************************************
+
+\begindata
+
+Vector of parameters:
+6
+0.1 0.3 3.24 1.434e-6 2.84e-6 4,18e-6
+
+Value of the objective function: 1243.5465
+
+Vector of simulated measurements:
+10
+1.3 2.5 5.3 9.5 7.7 6.47 5.98 5.11 4.53 3.22
+
+
