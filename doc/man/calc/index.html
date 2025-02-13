@@ -1,14 +1,16 @@
-<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
-<head>
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="Generator" content="Microsoft Word 97">
-   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
-   <title>1 NASLOV 1</title>
-   		
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+    <meta name="Generator" content="Microsoft Word 97">
+    <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; HP-UX
+      B.10.20 9000/780) [Netscape]">
+    <title>Inverse manual: The Expression Evaluator of the Optimisation
+      Shell INVERSE</title>
     <!-- Google Analitics - account Documents, 
 	property Documents - all -->
-	<script>
+    <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -16,898 +18,847 @@
 	  ga('create', 'UA-96832295-1', 'auto');
 	  ga('send', 'pageview');
 	</script>
-	
-
-</head>
-<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FE0000">
-<a href="http://www.c3m.si/inverse/invhome.html"><img SRC="http://www.c3m.si/inverse/invlogo.gif" NOSAVE height=100 width=600></a>
-<p><a NAME="list"></a>
-<br>&nbsp;
-<table BORDER=3 BGCOLOR="#99FFCC" NOSAVE >
-<tr NOSAVE>
-<td NOSAVE><font size=-1><a href="../index.html">MANUALS:</a></font>
-<blockquote>
-<li>
-<font size=-1><a href="../short/index.html">Short Guide to INVERSE</a></font></li>
-
-<li>
-<font size=-1><a href="../flow/index.html">Flow Control</a></font></li>
-
-<li>
-<b><font size=-1><a href="index.html">Expression evaluator</a></font></b></li>
-
-<blockquote>
-<li>
-<b><font size=-1><a href="#_Toc442157694">Basic Properties of the Expression
-Evaluator</a></font></b></li>
-
-<li>
-<b><font size=-1><a href="#_Toc442157695">Expression Evaluator's Operators</a></font></b></li>
-
-<li>
-<b><font size=-1><a href="#_Toc442157698">Pre-defined Functions of the
-Expression Evaluator</a></font></b></li>
-
-<li>
-<b><font size=-1><a href="#_Toc442157708">File Interpreter's Functions
-which Affect the Expression Evaluator</a></font></b></li>
-</blockquote>
-
-<li>
-<font size=-1><a href="../var/index.html">User defined variables</a></font></li>
-
-<li>
-<font size=-1><a href="../int/index.html">General file interface</a></font></li>
-
-<li>
-<font size=-1><a href="../debug/index.html">Syntax checker &amp; debugger</a></font></li>
-
-<li>
-<font size=-1><a href="../sim/index.html">Interfaces with simulation programmes</a></font></li>
-</blockquote>
-</td>
-</tr>
-</table>
-
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<center>
-<p><b><i><font size=+2>The Expression Evaluator of the</font></i></b>
-<p><b><i><font size=+2>Optimisation Shell INVERSE</font></i></b>
-<br>&nbsp;
-<br>&nbsp;
-<p><b><font size=+1>Version 0</font></b>
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<p><i>Igor Gresovnik</i>
-<br>&nbsp;
-<br>&nbsp;
-<p><i><font size=-1>Ljubljana, the 30<sup> th</sup> of November 1998</font></i></center>
-
-<p><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<p><a NAME="contents"></a>
-<br>&nbsp;
-<p><b><font color="#FF0000"><font size=+1>Table of contents:</font></font></b>
-<br>&nbsp;
-<p><b><i>1. Expression Evaluator </i></b><a href="#_Toc442157693">*</a>
-<dir><b><font size=+0>1.1 Basic Properties of the Expression Evaluator
-</font></b><a href="#_Toc442157694">*</a>
-<p><b><font size=+0>1.2 Expression Evaluator's Operators </font></b><a href="#_Toc442157695">*</a>
-<dir>&nbsp;
-<br><font size=-1>1.2.1 Expression Evaluator?'s Binary Operators </font><a href="#_Toc442157696">*</a>
-<p><font size=-1>1.2.2 Expression Evaluator's Unary Operators (functions)
-</font><a href="#_Toc442157697">*</a></dir>
-
-<p><br><b><font size=+0>1.3 Pre-defined Functions of the Expression Evaluator
-</font></b><a href="#_Toc442157698">*</a>
-<dir>&nbsp;
-<br><font size=-1>1.3.1 random<i> [ ]</i> </font><a href="#_Toc442157699">*</a>
-<p><font size=-1>1.3.2 If<i> [ cond, exp ]</i> </font><a href="#_Toc442157700">*</a>
-<p><font size=-1>1.3.3 Else<i> [ cond, exp1, exp2 ]</i> </font><a href="#_Toc442157701">*</a>
-<p><font size=-1>1.3.4 Case<i> [ ]</i> </font><a href="#_Toc442157702">*</a>
-<p><font size=-1>1.3.5 Min<i> [ arg1, arg2, arg3, ... ]</i> </font><a href="#_Toc442157703">*</a>
-<p><font size=-1>1.3.6 Max<i> [ arg1, arg2, arg3, ... ]</i> </font><a href="#_Toc442157704">*</a>
-<p><font size=-1>1.3.7 Sum<i> [ arg1, arg2, arg3, ... ]</i> </font><a href="#_Toc442157705">*</a>
-<p><font size=-1>1.3.8 Prod<i> [ arg1, arg2, arg3, ... ]</i> </font><a href="#_Toc442157706">*</a>
-<p><font size=-1>1.3.9 Trapint<i> [ func[ 0.0 ], left, right, numsteps
-]</i> </font><a href="#_Toc442157707">*</a></dir>
-
-<p><br><b><font size=+0>1.4 File Interpreter's Functions which Affect the
-Expression Evaluator </font></b><a href="#_Toc442157708">*</a>
-<dir>&nbsp;
-<br><font size=-1>1.4.1 =<i> { var : expr }</i> </font><a href="#_Toc442157709">*</a>
-<p><font size=-1>1.4.2 $<i> { var : expr }</i>, $ <i>{ func[ arg1, arg2,
-... ] : expr }</i> </font><a href="#_Toc442157710">*</a>
-<p><font size=-1>1.4.3 definefunction<i> { funcname [ defblock ] }</i></font><a href="#_Toc442157711">*</a>
-<p><font size=-1>1.4.4 return<i> { expr }</i> </font><a href="#_Toc442157712">*</a>
-<p><font size=-1>1.4.5 argument<i> [ num ]</i> </font><a href="#_Toc442157713">*</a>
-<p><font size=-1>1.4.6 numargs<i> [ ]</i> </font><a href="#_Toc442157714">*</a>
-<br>&nbsp;
-<br>&nbsp;</dir>
-</dir>
-
-<br>&nbsp;
-<br>&nbsp;
-<ol><a NAME="_Toc442157693"></a>
-<li>
-<b><font size=+2>Expression Evaluator</font></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<br>&nbsp;
-<ol><a NAME="_Toc442157694"></a>
-<li>
-<b><i><font size=+2>Basic Properties of the Expression Evaluator</font></i></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<p>The expression evaluator, also referred to as calculator, is a system
-which evaluate mathematical expressions. These expressions consist of <i>numbers</i>,
-<i>operators</i>
-(unary and binary), <i>parentheses</i>, and <i>symbols</i>. Spaces are
-allowed between these expression parts, but they have no meaning in expressions.
-Symbols can be <i>variable or function names</i>. There are some pre-defined
-functions of the expression evaluator, but its functions can be also defined
-anew, either by the file interpreter or the expression evaluator itself.
-There are no pre-defined variables. The expression evaluator's variables
-differ from the user-defined variables of the shell.
-<p>Expressions can be formed in conventional way. When there are several
-binary operator in the expression, operators with lower priority number
-take effect first. When there are several binary operators with the same
-priority, the operators which appear before take effect first. The order
-of operations can be changed by round parentheses which group sub-expressions.
-<p>Variable and function names consist of letters and numbers. The first
-character of the name must be a letter. Difference is made between capital
-and small letters.
-<p>The expression evaluator's functions can take one or more arguments.
-They must be listed in square brackets which follow the function name,
-and must be separated by commas. Arguments can be expressions which can
-be evaluated in the expression evaluator. Of course, these expressions
-can consist of a single variable or number.
-<p>Some expression evaluator's functions can also take string arguments.
-This feature was actually added to support functions which access the shell's
-user defined variables. The use of strings as arguments is limited due
-to the fact that any mathematical expression evaluated in the expression
-evaluator can evaluate only to a real number, not to a string. Therefore,
-the expression evaluator's functions defined by the <b>definefunction</b>
-command can not take string arguments.
-<br>&nbsp;
-<br>&nbsp;
-<p><a NAME="_Toc442157695"></a>
-<li>
-<b><i><font size=+2>Expression Evaluator's Operators</font></i></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<br>&nbsp;
-<ol><a NAME="_Toc442157696"></a>
-<li>
-<b><font size=+1>Expression Evaluator's Binary Operators</font></b></li>
-
-<br>&nbsp;
-<table BORDER CELLPADDING=9 WIDTH="484" >
-<tr>
-<td VALIGN=TOP WIDTH="22%">
-<center><b>Operator</b></center>
-</td>
-
-<td VALIGN=TOP WIDTH="59%">
-<center><b>Meaning</b></center>
-</td>
-
-<td VALIGN=TOP WIDTH="20%">
-<center><b>Priority number</b></center>
-</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b><font face="SL Dutch">+</font></b></td>
-
-<td VALIGN=TOP WIDTH="59%">addition</td>
-
-<td VALIGN=TOP WIDTH="20%"><font face="SL Dutch">4</font></td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b><font face="SL Dutch">-</font></b></td>
-
-<td VALIGN=TOP WIDTH="59%">substraction</td>
-
-<td VALIGN=TOP WIDTH="20%"><font face="SL Dutch">4</font></td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>*</b></td>
-
-<td VALIGN=TOP WIDTH="59%">multiplication</td>
-
-<td VALIGN=TOP WIDTH="20%">3</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>/</b></td>
-
-<td VALIGN=TOP WIDTH="59%">division</td>
-
-<td VALIGN=TOP WIDTH="20%">3</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>^</b></td>
-
-<td VALIGN=TOP WIDTH="59%">power</td>
-
-<td VALIGN=TOP WIDTH="20%">2</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>P</b></td>
-
-<td VALIGN=TOP WIDTH="59%">power</td>
-
-<td VALIGN=TOP WIDTH="20%">2</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>CP</b></td>
-
-<td VALIGN=TOP WIDTH="59%">power with integer exponent</td>
-
-<td VALIGN=TOP WIDTH="20%">2</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>LOG</b></td>
-
-<td VALIGN=TOP WIDTH="59%">logarithm with arbitrary basis</td>
-
-<td VALIGN=TOP WIDTH="20%">2</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>MIN</b></td>
-
-<td VALIGN=TOP WIDTH="59%">lesser of both arguments</td>
-
-<td VALIGN=TOP WIDTH="20%">2</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>MAX</b></td>
-
-<td VALIGN=TOP WIDTH="59%">greater of both arguments</td>
-
-<td VALIGN=TOP WIDTH="20%">2</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>&lt;</b></td>
-
-<td VALIGN=TOP WIDTH="59%">is lesser than</td>
-
-<td VALIGN=TOP WIDTH="20%">5</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>></b></td>
-
-<td VALIGN=TOP WIDTH="59%">is greater than</td>
-
-<td VALIGN=TOP WIDTH="20%">5</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>!=</b></td>
-
-<td VALIGN=TOP WIDTH="59%">is not equal</td>
-
-<td VALIGN=TOP WIDTH="20%">5</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>&lt;=</b></td>
-
-<td VALIGN=TOP WIDTH="59%">is lesser or equal</td>
-
-<td VALIGN=TOP WIDTH="20%">5</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>>=</b></td>
-
-<td VALIGN=TOP WIDTH="59%">is greater or qqual</td>
-
-<td VALIGN=TOP WIDTH="20%">5</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>==</b></td>
-
-<td VALIGN=TOP WIDTH="59%">is equal</td>
-
-<td VALIGN=TOP WIDTH="20%">5</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>&amp;&amp;</b></td>
-
-<td VALIGN=TOP WIDTH="59%">and</td>
-
-<td VALIGN=TOP WIDTH="20%">6</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>||</b></td>
-
-<td VALIGN=TOP WIDTH="59%">or</td>
-
-<td VALIGN=TOP WIDTH="20%">6</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>:</b></td>
-
-<td VALIGN=TOP WIDTH="59%">definition</td>
-
-<td VALIGN=TOP WIDTH="20%">10</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>,</b></td>
-
-<td VALIGN=TOP WIDTH="59%">enumeration</td>
-
-<td VALIGN=TOP WIDTH="20%">9</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="22%"><b>=</b></td>
-
-<td VALIGN=TOP WIDTH="59%">assignment</td>
-
-<td VALIGN=TOP WIDTH="20%">10</td>
-</tr>
-</table>
-
-<br>&nbsp;
-<p><a NAME="_Toc442157697"></a>
-<li>
-<b><font size=+1>Expression Evaluator's Unary Operators (functions)</font></b></li>
-</ol>
-
-<br>&nbsp;
-<ol>&nbsp; All unary operators of the expression evaluator have the priority
-1.</ol>
-
-<ol>&nbsp;
-<table BORDER CELLPADDING=9 WIDTH="472" >
-<tr>
-<td VALIGN=TOP WIDTH="40%">
-<center><b>Operator name</b></center>
-</td>
-
-<td VALIGN=TOP WIDTH="60%">
-<center><b>Meaning</b></center>
-</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>EQ</b></td>
-
-<td VALIGN=TOP WIDTH="60%">equality</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>-</b></td>
-
-<td VALIGN=TOP WIDTH="60%">negative value</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>NEGV</b></td>
-
-<td VALIGN=TOP WIDTH="60%">negative value</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>exp</b></td>
-
-<td VALIGN=TOP WIDTH="60%">exponential function</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>ln</b></td>
-
-<td VALIGN=TOP WIDTH="60%">natural logarithm</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>sqr</b></td>
-
-<td VALIGN=TOP WIDTH="60%">square</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>sqrt</b></td>
-
-<td VALIGN=TOP WIDTH="60%">square root</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>abs</b></td>
-
-<td VALIGN=TOP WIDTH="60%">absolute value</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>sin</b></td>
-
-<td VALIGN=TOP WIDTH="60%">sine</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>cos</b></td>
-
-<td VALIGN=TOP WIDTH="60%">cosine</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>tg</b></td>
-
-<td VALIGN=TOP WIDTH="60%">tangent</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>ctg</b></td>
-
-<td VALIGN=TOP WIDTH="60%">cotangent</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>arcsin</b></td>
-
-<td VALIGN=TOP WIDTH="60%">inverse sine</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>arccos</b></td>
-
-<td VALIGN=TOP WIDTH="60%">inverse cosine</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>arctg</b></td>
-
-<td VALIGN=TOP WIDTH="60%">inverse tangent</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>arcctg</b></td>
-
-<td VALIGN=TOP WIDTH="60%">inverse cotangent</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>sh</b></td>
-
-<td VALIGN=TOP WIDTH="60%">hyperbolic sine</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>ch</b></td>
-
-<td VALIGN=TOP WIDTH="60%">hyperbolic cosine</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>th</b></td>
-
-<td VALIGN=TOP WIDTH="60%">hyperbolic tangent</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>cth</b></td>
-
-<td VALIGN=TOP WIDTH="60%">hyperbolic cotangent</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>arsh</b></td>
-
-<td VALIGN=TOP WIDTH="60%">inverse hyperbolic sine</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>arch</b></td>
-
-<td VALIGN=TOP WIDTH="60%">inverse hyperbolic cosine</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>arth</b></td>
-
-<td VALIGN=TOP WIDTH="60%">inverse hyperbolic tangent</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>arcth</b></td>
-
-<td VALIGN=TOP WIDTH="60%">inverse hyperbolic cotangent</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>st</b></td>
-
-<td VALIGN=TOP WIDTH="60%">converts radians to degrees</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>deg</b></td>
-
-<td VALIGN=TOP WIDTH="60%">converts radians to degrees</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>rad</b></td>
-
-<td VALIGN=TOP WIDTH="60%">converts degrees to radians</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>round</b></td>
-
-<td VALIGN=TOP WIDTH="60%">rounds its argument to the nearest integer</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>trunc</b></td>
-
-<td VALIGN=TOP WIDTH="60%">truncates its argument to the nearest integer
-below</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>floor</b></td>
-
-<td VALIGN=TOP WIDTH="60%">truncates its argument to the nearest integer
-below</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>int</b></td>
-
-<td VALIGN=TOP WIDTH="60%">truncates its argument to the nearest integer
-below</td>
-</tr>
-
-<tr>
-<td VALIGN=TOP WIDTH="40%"><b>frac</b></td>
-
-<td VALIGN=TOP WIDTH="60%">returns the fractional part of the argument</td>
-</tr>
-</table>
-
-<br>&nbsp;
-<br>&nbsp;</ol>
-<a NAME="_Toc442157698"></a>
-<li>
-<b><i><font size=+2>Pre-defined Functions of the Expression Evaluator</font></i></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<p>Expression evaluator functions can have more than one argument. Their
-arguments must be in square brackets and separated by commas. The expression
-evaluator has some basic pre/defined functions:
-<br>&nbsp;
-<ol>
-<li>
-<a NAME="_Toc442157699"></a><b><font size=+1>random</font><i> [ ]</i></b></li>
-
-<br>Returns a random number between 0 and 1.
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157700"></a><b><font size=+1>If</font><i> [ cond, exp ]</i></b></li>
-
-<br>Returns the value of <i>exp</i> if the value of <i>cond</i> is not
-0, else it returns 0.
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157701"></a><b><font size=+1>Else</font><i> [ cond, exp1,
-exp2 ]</i></b></li>
-
-<br>If the value of <i>cond</i> is not 0, it returns the value of <i>exp1</i>,
-else it returns the value of <i>exp2</i>.
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157702"></a><b><font size=+1>Case</font><i> [ ]</i></b></li>
-
-<br>&nbsp;
-<p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157703"></a><b><font size=+1>Min</font><i> [ arg1, arg2,
-arg3, ... ]</i></b></li>
-
-<br>Returns the value of the least of its arguments <i>arg1</i>, <i>arg2</i>,
-etc. It requires at least one argument and can take unlimited number of
-arguments.
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157704"></a><b><font size=+1>Max</font><i> [ arg1, arg2,
-arg3, ... ]</i></b></li>
-
-<br>Returns the value of the least of its arguments <i>arg1</i>, <i>arg2</i>,
-etc. It requires at least one argument and can take unlimited number of
-arguments.
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157705"></a><b><font size=+1>Sum</font><i> [ arg1, arg2,
-arg3, ... ]</i></b></li>
-
-<br>Returns the sum of its arguments <i>arg1</i>, <i>arg2</i>, etc. It
-requires at least one argument and can take unlimited number of arguments.
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157706"></a><b><font size=+1>Prod</font><i> [ arg1, arg2,
-arg3, ... ]</i></b></li>
-
-<br>Returns the product of its arguments <i>arg1</i>, <i>arg2</i>, etc.
-It requires at least one argument and can take unlimited number of arguments.
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157707"></a><b><font size=+1>Trapint</font><i> [ func[
-0.0 ], left, right, numsteps ]</i></b></li>
-
-<br>Returns the integral of function <i>func</i> between <i>left</i> and
-<i>right</i>
-calculated by the trapezoidal rule with <i>numsteps</i> steps. The first
-argument must be a function call with an argument which is a real number.
-Such arrangement speeds up the calculation. <i>func</i> can be a pre-defined
-function of one argument, a function defined with the expression evaluator,
-or a function defined by the <b>definefunction</b> command.
-<p><b>Example of function use:</b>
-<p><font size=+0>= { b : Trapint[ sin[0.0 ], 0, 1, 100 }</font>
-<p><font size=+0><b>write</b> { "Integral of the sine function between
-0 and 1 is " $b ".\n\n" }</font>
-<br>&nbsp;
-<br>&nbsp;
-<p><a NAME="_Toc442157708"></a>
-<li>
-<b><i><font size=+2>File Interpreter's Functions which Affect the Expression
-Evaluator</font></i></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<br>&nbsp;
-<ol>
-<li>
-<a NAME="_Toc442157709"></a><b><font size=+1>=</font><i><font size=+0>
-{ var : expr }</font></i></b></li>
-
-<br>The <b>=</b> function assigns the value of the expression <i>expr</i>
-to the expression evaluator's variable <i>var</i>. If a variable named
-<i>var</i>
-does not yet exist, it is created.
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157710"></a><b><font size=+1>$</font><i> { var : expr }</i>,
-$ <i>{ func[ arg1, arg2, ... ] : expr }</i></b></li>
-
-<br>The <b>$</b> function assigns the expression <i>expr</i> to the expression
-evaluator's variable <i>var</i>. After the execution of this function,
-the value of variable named <i>var</i> changes if the values of variables
-or definitions of functions which are included in the expression
-<i>expr</i>
-change. If a variable named <i>var</i> does not yet exist, it is created.
-<p>The <b>$</b> function can also be used for the definition of new expression
-evaluator's functions. In this case, <i>func</i> is the name of the newly
-defined function, <i>arg1</i>, <i>arg2</i>, etc. are the names of function
-arguments which must be listed in square brackets and separated by commas,
-and <i>expr</i> is the expression which defines how the newly defined function
-will be evaluated. The expression <i>exp</i> usually contains objects named
-as formal arguments listed in the square brackets. At the function evaluation,
-these objects are replaced by the actual arguments with which function
-is called.
-<p>The expression <i>expr</i> can also contain other variables and functions
-of the expression evaluator. If the definitions of these variables or functions
-are changed later, the definition of the variable or function defined by
-the <b>$</b> function changes accordingly.
-<p><b>Example:</b>
-<p><b><font size=+0>$</font><i> { powsum[x,y,z]:x^[y*z] }</i></b>
-<p>defines a new function of the expression evaluator named <i>powsum</i>,
-which takes three arguments and returns the first argument raised to the
-power of the sum of the second and the third argument.
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157711"></a><b><font size=+1>definefunction</font><i> {
-funcname [ defblock ] }</i></b></li>
-
-<br>The file interpreter's function <b>definefunction</b> defines a new
-expression evaluator's function. <i>funcname</i> is the name of the function
-and the <i>defblock</i> is the definition block of the function. At every
-evaluation of the function after this definition, this block is interpreted.
-<p>Calculator's functions defined by the <b>definefunction</b> command
-can be called with arbitrary number of arguments. These can be accessed
-by the expression evaluator's function <b>argument</b>. This function returns
-the value of a specific argument which was passed to the expression evaluator's
-function defined by the <b>definefunction</b> command. Therefore, the <b>argument</b>
-function can be evaluated only within the definition block of an expression
-evaluator function defined by the file interpreter's command <b>definefunction</b>.
-The only argument of the <b>argument</b> function is the sequential number
-of argument the value of which should be returned. Since expression evaluator's
-functions can only return (i.e. evaluate to) real numbers, the expression
-evaluator's functions defined by the <b>definefunction</b> command can
-not take string arguments. Such arguments could not be accessed in the
-<i>defblock</i>
-block because the only way of accessing arguments in this block is through
-the calculator's function <b>argument</b>. Arguments must therefore be
-expressions which evaluate to real numbers.
-<p>The number of arguments which have been passed to the function defined
-by the <b>definefunction</b> command can be accessed by the expression
-evaluator's function <b>numargs</b>. This functin takes no arguments and
-and can also be evaluated only within the definition block of the <b>definefunction</b>
-command.
-<p>The value which is returned by a function defined by the <b>definefunction</b>
-command must be specified by the file interpreter's function <b>return</b>.
-The only argument of this function must be a mathematical expression which
-can be evaluated in the expression evaluator. The value of this expression
-is what the function defined by the <b>definefunction</b> command returns.
-<p><b>Example:</b>
-<p>The following portion of code defines an expression evaluator's function
-<i>Summation</i>
-which takes an arbitrary number of arguments and returns their sum:
-<p><b><font size=+0>definefunction</font> { ( Summation )</b>
-<p><b>[</b>
-<p><b>={retsum:0}</b>
-<p><b>={indsum:0}</b>
-<p><b>while { (isum&lt;=<u>numargs[ ]</u>)</b>
-<p><b>[</b>
-<br>&nbsp;
-<ol><b>={retsum:retsum+<u>argument</u>[indsum]}</b>
-<p><b>={indsum:indsum+1}</b></ol>
-] }
-<p><b><u>return</u>{retsum}</b>
-<p><b>] }</b>
-<p>After the function is defined, it can be used in mathematical expressions.
-For example, the expression "Summation[3,2*4,5]" will evaluate to 16 (=3+2*4+5).
-<p><b>Warning:</b>
-<p>At the definition of new expression evaluator's functions we must be
-careful at choosing names for auxiliary variables used as counters or for
-carrying intermediate results. A concept of local variables is not implemented
-in the file interpreter, therefore all variables are global. The variables
-used locally in the definition block of the <b>definefunction</b> command
-can therefore interfere with global variables if we accidentally chose
-the same name for them.
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157712"></a><b><font size=+1>return</font><i> { expr }</i></b></li>
-
-<br>The file interpreter's function <b>return</b> is used for setting the
-value which is returned by user defined functions of the expression evaluator
-which are defined by the <b>definefunction</b> command. <i>expr</i> is
-a mathematical expression which defines the value which will be returned
-by such function. The <b>return</b> function can be used only in the definition
-block of the <b>definefunction</b> command.
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157713"></a><b><font size=+1>argument</font><i> [ num ]</i></b></li>
-
-<br>The expression evaluator-s function <b>argument</b> returns the value
-of <i>num</i>-th argument passed to the expression evaluator's function
-which is currently being evaluated. Therefore, this function can be evaluated
-only within the definition block of the <b>definefunction</b> command.
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc442157714"></a><b><font size=+1>numargs</font><i> [ ]</i></b></li>
-
-<br>The expression evaluator-s function <b>numargs</b> returns the number
-of arguments that were passed to the expression evaluator-s function which
-is currently being evaluated. This function can therefore be evaluated
-only within the definition block of the <b>definefunction</b> function.</ol>
-</ol>
-</ol>
-</ol>
-
-</body>
+    <meta name="author" content="Igor Grešovnik">
+    <meta name="description" content="Inverse manual: The Expression
+      Evaluator of the Optimisation Shell INVERSE">
+  </head>
+  <body vlink="#551A8B" text="#000000" link="#0000EE" bgcolor="#FFFFFF"
+    alink="#FE0000">
+    <a href="../../../invhome.html"><img src="../../../invlogo.gif"
+        nosave="" moz-do-not-send="true" title="Inverse Home"
+        alt="Inverse Logo" width="600" height="100" border="0"></a>
+    <p><a name="list"></a> <br>
+      &nbsp;
+      <table nosave="" border="3" bgcolor="#99FFCC">
+        <tbody>
+          <tr nosave="">
+            <td nosave=""><font size="-1"><a href="../index.html">MANUALS:</a></font>
+              <blockquote>
+                <li> <font size="-1"><a href="../short/index.html">Short
+
+                      Guide to INVERSE</a></font></li>
+                <li> <font size="-1"><a href="../flow/index.html">Flow
+                      Control</a></font></li>
+                <li> <b><font size="-1"><a href="index.html">Expression
+                        evaluator</a></font></b></li>
+                <blockquote>
+                  <li> <b><font size="-1"><a href="#_Toc442157694">Basic
+
+                          Properties of the Expression Evaluator</a></font></b></li>
+                  <li> <b><font size="-1"><a href="#_Toc442157695">Expression
+
+                          Evaluator's Operators</a></font></b></li>
+                  <li> <b><font size="-1"><a href="#_Toc442157698">Pre-defined
+
+                          Functions of the Expression Evaluator</a></font></b></li>
+                  <li> <b><font size="-1"><a href="#_Toc442157708">File
+                          Interpreter's Functions which Affect the
+                          Expression Evaluator</a></font></b></li>
+                </blockquote>
+                <li> <font size="-1"><a href="../var/index.html">User
+                      defined variables</a></font></li>
+                <li> <font size="-1"><a href="../int/index.html">General
+
+                      file interface</a></font></li>
+                <li> <font size="-1"><a href="../debug/index.html">Syntax
+
+                      checker &amp; debugger</a></font></li>
+                <li> <font size="-1"><a href="../sim/index.html">Interfaces
+
+                      with simulation programmes</a></font></li>
+              </blockquote>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+        <tbody>
+          <tr nosave="" valign="TOP">
+            <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a
+                    href="../manlist/index.html#list">Manuals list &amp;
+                    contents</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a href="#contents">Table
+                    of contents&nbsp;</a></font></b></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      &nbsp; <br>
+      &nbsp; <br>
+      &nbsp; <br>
+      &nbsp; </p>
+    <center>
+      <p><b><i><font size="+2">The Expression Evaluator of the</font></i></b>
+      </p>
+      <p><b><i><font size="+2">Optimisation Shell INVERSE</font></i></b>
+        <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <p><b><font size="+1">Version 0</font></b> <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <p><i>Igor Gresovnik</i> <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <p><i><font size="-1">Ljubljana, the 30<sup> th</sup> of November
+            1998</font></i></p>
+    </center>
+    <p><br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </p>
+    <p><a name="contents"></a> <br>
+      &nbsp; </p>
+    <p><b><font color="#FF0000"><font size="+1">Table of contents:</font></font></b>
+      <br>
+      &nbsp; </p>
+    <p><b><i>1. Expression Evaluator </i></b><a href="#_Toc442157693">*</a>
+    </p>
+    <dir><b><font size="+0">1.1 Basic Properties of the Expression
+          Evaluator </font></b><a href="#_Toc442157694">*</a>
+      <p><b><font size="+0">1.2 Expression Evaluator's Operators </font></b><a
+          href="#_Toc442157695">*</a> </p>
+      <dir>&nbsp; <br>
+        <font size="-1">1.2.1 Expression Evaluator?'s Binary Operators </font><a
+          href="#_Toc442157696">*</a>
+        <p><font size="-1">1.2.2 Expression Evaluator's Unary Operators
+            (functions) </font><a href="#_Toc442157697">*</a></p>
+      </dir>
+      <p><br>
+        <b><font size="+0">1.3 Pre-defined Functions of the Expression
+            Evaluator </font></b><a href="#_Toc442157698">*</a> </p>
+      <dir>&nbsp; <br>
+        <font size="-1">1.3.1 random<i> [ ]</i> </font><a
+          href="#_Toc442157699">*</a>
+        <p><font size="-1">1.3.2 If<i> [ cond, exp ]</i> </font><a
+            href="#_Toc442157700">*</a> </p>
+        <p><font size="-1">1.3.3 Else<i> [ cond, exp1, exp2 ]</i> </font><a
+            href="#_Toc442157701">*</a> </p>
+        <p><font size="-1">1.3.4 Case<i> [ ]</i> </font><a
+            href="#_Toc442157702">*</a> </p>
+        <p><font size="-1">1.3.5 Min<i> [ arg1, arg2, arg3, ... ]</i> </font><a
+            href="#_Toc442157703">*</a> </p>
+        <p><font size="-1">1.3.6 Max<i> [ arg1, arg2, arg3, ... ]</i> </font><a
+            href="#_Toc442157704">*</a> </p>
+        <p><font size="-1">1.3.7 Sum<i> [ arg1, arg2, arg3, ... ]</i> </font><a
+            href="#_Toc442157705">*</a> </p>
+        <p><font size="-1">1.3.8 Prod<i> [ arg1, arg2, arg3, ... ]</i> </font><a
+            href="#_Toc442157706">*</a> </p>
+        <p><font size="-1">1.3.9 Trapint<i> [ func[ 0.0 ], left, right,
+              numsteps ]</i> </font><a href="#_Toc442157707">*</a></p>
+      </dir>
+      <p><br>
+        <b><font size="+0">1.4 File Interpreter's Functions which Affect
+            the Expression Evaluator </font></b><a
+          href="#_Toc442157708">*</a> </p>
+      <dir>&nbsp; <br>
+        <font size="-1">1.4.1 =<i> { var : expr }</i> </font><a
+          href="#_Toc442157709">*</a>
+        <p><font size="-1">1.4.2 $<i> { var : expr }</i>, $ <i>{ func[
+              arg1, arg2, ... ] : expr }</i> </font><a
+            href="#_Toc442157710">*</a> </p>
+        <p><font size="-1">1.4.3 definefunction<i> { funcname [ defblock
+              ] }</i></font><a href="#_Toc442157711">*</a> </p>
+        <p><font size="-1">1.4.4 return<i> { expr }</i> </font><a
+            href="#_Toc442157712">*</a> </p>
+        <p><font size="-1">1.4.5 argument<i> [ num ]</i> </font><a
+            href="#_Toc442157713">*</a> </p>
+        <p><font size="-1">1.4.6 numargs<i> [ ]</i> </font><a
+            href="#_Toc442157714">*</a> <br>
+          &nbsp; <br>
+          &nbsp;</p>
+      </dir>
+    </dir>
+    <br>
+    &nbsp; <br>
+    &nbsp;
+    <ol>
+      <a name="_Toc442157693"></a>
+      <li> <b><font size="+2">Expression Evaluator</font></b></li>
+      <br>
+      &nbsp;
+      <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+        <tbody>
+          <tr nosave="" valign="TOP">
+            <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a
+                    href="../manlist/index.html#list">Manuals list &amp;
+                    contents</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a href="#contents">Table
+                    of contents&nbsp;</a></font></b></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      &nbsp;
+      <ol>
+        <a name="_Toc442157694"></a>
+        <li> <b><i><font size="+2">Basic Properties of the Expression
+                Evaluator</font></i></b></li>
+        <br>
+        &nbsp;
+        <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+          <tbody>
+            <tr nosave="" valign="TOP">
+              <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a
+                      href="../manlist/index.html#list">Manuals list
+                      &amp; contents</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a href="#contents">Table
+                      of contents&nbsp;</a></font></b></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>The expression evaluator, also referred to as calculator, is
+          a system which evaluate mathematical expressions. These
+          expressions consist of <i>numbers</i>, <i>operators</i>
+          (unary and binary), <i>parentheses</i>, and <i>symbols</i>.
+          Spaces are allowed between these expression parts, but they
+          have no meaning in expressions. Symbols can be <i>variable or
+            function names</i>. There are some pre-defined functions of
+          the expression evaluator, but its functions can be also
+          defined anew, either by the file interpreter or the expression
+          evaluator itself. There are no pre-defined variables. The
+          expression evaluator's variables differ from the user-defined
+          variables of the shell. </p>
+        <p>Expressions can be formed in conventional way. When there are
+          several binary operator in the expression, operators with
+          lower priority number take effect first. When there are
+          several binary operators with the same priority, the operators
+          which appear before take effect first. The order of operations
+          can be changed by round parentheses which group
+          sub-expressions. </p>
+        <p>Variable and function names consist of letters and numbers.
+          The first character of the name must be a letter. Difference
+          is made between capital and small letters. </p>
+        <p>The expression evaluator's functions can take one or more
+          arguments. They must be listed in square brackets which follow
+          the function name, and must be separated by commas. Arguments
+          can be expressions which can be evaluated in the expression
+          evaluator. Of course, these expressions can consist of a
+          single variable or number. </p>
+        <p>Some expression evaluator's functions can also take string
+          arguments. This feature was actually added to support
+          functions which access the shell's user defined variables. The
+          use of strings as arguments is limited due to the fact that
+          any mathematical expression evaluated in the expression
+          evaluator can evaluate only to a real number, not to a string.
+          Therefore, the expression evaluator's functions defined by the
+          <b>definefunction</b> command can not take string arguments. <br>
+          &nbsp; <br>
+          &nbsp; </p>
+        <p><a name="_Toc442157695"></a> </p>
+        <li> <b><i><font size="+2">Expression Evaluator's Operators</font></i></b></li>
+        <br>
+        &nbsp;
+        <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+          <tbody>
+            <tr nosave="" valign="TOP">
+              <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a
+                      href="../manlist/index.html#list">Manuals list
+                      &amp; contents</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a href="#contents">Table
+                      of contents&nbsp;</a></font></b></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        &nbsp;
+        <ol>
+          <a name="_Toc442157696"></a>
+          <li> <b><font size="+1">Expression Evaluator's Binary
+                Operators</font></b></li>
+          <br>
+          &nbsp;
+          <table width="484" cellpadding="9" border="">
+            <tbody>
+              <tr>
+                <td width="22%" valign="TOP">
+                  <center><b>Operator</b></center>
+                </td>
+                <td width="59%" valign="TOP">
+                  <center><b>Meaning</b></center>
+                </td>
+                <td width="20%" valign="TOP">
+                  <center><b>Priority number</b></center>
+                </td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b><font face="SL Dutch">+</font></b></td>
+                <td width="59%" valign="TOP">addition</td>
+                <td width="20%" valign="TOP"><font face="SL Dutch">4</font></td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b><font face="SL Dutch">-</font></b></td>
+                <td width="59%" valign="TOP">substraction</td>
+                <td width="20%" valign="TOP"><font face="SL Dutch">4</font></td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>*</b></td>
+                <td width="59%" valign="TOP">multiplication</td>
+                <td width="20%" valign="TOP">3</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>/</b></td>
+                <td width="59%" valign="TOP">division</td>
+                <td width="20%" valign="TOP">3</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>^</b></td>
+                <td width="59%" valign="TOP">power</td>
+                <td width="20%" valign="TOP">2</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>P</b></td>
+                <td width="59%" valign="TOP">power</td>
+                <td width="20%" valign="TOP">2</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>CP</b></td>
+                <td width="59%" valign="TOP">power with integer exponent</td>
+                <td width="20%" valign="TOP">2</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>LOG</b></td>
+                <td width="59%" valign="TOP">logarithm with arbitrary
+                  basis</td>
+                <td width="20%" valign="TOP">2</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>MIN</b></td>
+                <td width="59%" valign="TOP">lesser of both arguments</td>
+                <td width="20%" valign="TOP">2</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>MAX</b></td>
+                <td width="59%" valign="TOP">greater of both arguments</td>
+                <td width="20%" valign="TOP">2</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>&lt;</b></td>
+                <td width="59%" valign="TOP">is lesser than</td>
+                <td width="20%" valign="TOP">5</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>&gt;</b></td>
+                <td width="59%" valign="TOP">is greater than</td>
+                <td width="20%" valign="TOP">5</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>!=</b></td>
+                <td width="59%" valign="TOP">is not equal</td>
+                <td width="20%" valign="TOP">5</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>&lt;=</b></td>
+                <td width="59%" valign="TOP">is lesser or equal</td>
+                <td width="20%" valign="TOP">5</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>&gt;=</b></td>
+                <td width="59%" valign="TOP">is greater or qqual</td>
+                <td width="20%" valign="TOP">5</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>==</b></td>
+                <td width="59%" valign="TOP">is equal</td>
+                <td width="20%" valign="TOP">5</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>&amp;&amp;</b></td>
+                <td width="59%" valign="TOP">and</td>
+                <td width="20%" valign="TOP">6</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>||</b></td>
+                <td width="59%" valign="TOP">or</td>
+                <td width="20%" valign="TOP">6</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>:</b></td>
+                <td width="59%" valign="TOP">definition</td>
+                <td width="20%" valign="TOP">10</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>,</b></td>
+                <td width="59%" valign="TOP">enumeration</td>
+                <td width="20%" valign="TOP">9</td>
+              </tr>
+              <tr>
+                <td width="22%" valign="TOP"><b>=</b></td>
+                <td width="59%" valign="TOP">assignment</td>
+                <td width="20%" valign="TOP">10</td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          &nbsp;
+          <p><a name="_Toc442157697"></a> </p>
+          <li> <b><font size="+1">Expression Evaluator's Unary
+                Operators (functions)</font></b></li>
+        </ol>
+        <br>
+        &nbsp;
+        <ol>
+          &nbsp; All unary operators of the expression evaluator have
+          the priority 1.
+        </ol>
+        <ol>
+          &nbsp;
+          <table width="472" cellpadding="9" border="">
+            <tbody>
+              <tr>
+                <td width="40%" valign="TOP">
+                  <center><b>Operator name</b></center>
+                </td>
+                <td width="60%" valign="TOP">
+                  <center><b>Meaning</b></center>
+                </td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>EQ</b></td>
+                <td width="60%" valign="TOP">equality</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>-</b></td>
+                <td width="60%" valign="TOP">negative value</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>NEGV</b></td>
+                <td width="60%" valign="TOP">negative value</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>exp</b></td>
+                <td width="60%" valign="TOP">exponential function</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>ln</b></td>
+                <td width="60%" valign="TOP">natural logarithm</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>sqr</b></td>
+                <td width="60%" valign="TOP">square</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>sqrt</b></td>
+                <td width="60%" valign="TOP">square root</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>abs</b></td>
+                <td width="60%" valign="TOP">absolute value</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>sin</b></td>
+                <td width="60%" valign="TOP">sine</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>cos</b></td>
+                <td width="60%" valign="TOP">cosine</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>tg</b></td>
+                <td width="60%" valign="TOP">tangent</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>ctg</b></td>
+                <td width="60%" valign="TOP">cotangent</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>arcsin</b></td>
+                <td width="60%" valign="TOP">inverse sine</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>arccos</b></td>
+                <td width="60%" valign="TOP">inverse cosine</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>arctg</b></td>
+                <td width="60%" valign="TOP">inverse tangent</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>arcctg</b></td>
+                <td width="60%" valign="TOP">inverse cotangent</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>sh</b></td>
+                <td width="60%" valign="TOP">hyperbolic sine</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>ch</b></td>
+                <td width="60%" valign="TOP">hyperbolic cosine</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>th</b></td>
+                <td width="60%" valign="TOP">hyperbolic tangent</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>cth</b></td>
+                <td width="60%" valign="TOP">hyperbolic cotangent</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>arsh</b></td>
+                <td width="60%" valign="TOP">inverse hyperbolic sine</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>arch</b></td>
+                <td width="60%" valign="TOP">inverse hyperbolic cosine</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>arth</b></td>
+                <td width="60%" valign="TOP">inverse hyperbolic tangent</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>arcth</b></td>
+                <td width="60%" valign="TOP">inverse hyperbolic
+                  cotangent</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>st</b></td>
+                <td width="60%" valign="TOP">converts radians to degrees</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>deg</b></td>
+                <td width="60%" valign="TOP">converts radians to degrees</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>rad</b></td>
+                <td width="60%" valign="TOP">converts degrees to radians</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>round</b></td>
+                <td width="60%" valign="TOP">rounds its argument to the
+                  nearest integer</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>trunc</b></td>
+                <td width="60%" valign="TOP">truncates its argument to
+                  the nearest integer below</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>floor</b></td>
+                <td width="60%" valign="TOP">truncates its argument to
+                  the nearest integer below</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>int</b></td>
+                <td width="60%" valign="TOP">truncates its argument to
+                  the nearest integer below</td>
+              </tr>
+              <tr>
+                <td width="40%" valign="TOP"><b>frac</b></td>
+                <td width="60%" valign="TOP">returns the fractional part
+                  of the argument</td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          &nbsp; <br>
+          &nbsp;
+        </ol>
+        <a name="_Toc442157698"></a>
+        <li> <b><i><font size="+2">Pre-defined Functions of the
+                Expression Evaluator</font></i></b></li>
+        <br>
+        &nbsp;
+        <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+          <tbody>
+            <tr nosave="" valign="TOP">
+              <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a
+                      href="../manlist/index.html#list">Manuals list
+                      &amp; contents</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a href="#contents">Table
+                      of contents&nbsp;</a></font></b></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Expression evaluator functions can have more than one
+          argument. Their arguments must be in square brackets and
+          separated by commas. The expression evaluator has some basic
+          pre/defined functions: <br>
+          &nbsp; </p>
+        <ol>
+          <li> <a name="_Toc442157699"></a><b><font size="+1">random</font><i>
+                [ ]</i></b></li>
+          <br>
+          Returns a random number between 0 and 1. <br>
+          &nbsp; <br>
+          &nbsp;
+          <li> <a name="_Toc442157700"></a><b><font size="+1">If</font><i>
+                [ cond, exp ]</i></b></li>
+          <br>
+          Returns the value of <i>exp</i> if the value of <i>cond</i>
+          is not 0, else it returns 0. <br>
+          &nbsp; <br>
+          &nbsp;
+          <li> <a name="_Toc442157701"></a><b><font size="+1">Else</font><i>
+                [ cond, exp1, exp2 ]</i></b></li>
+          <br>
+          If the value of <i>cond</i> is not 0, it returns the value of
+          <i>exp1</i>, else it returns the value of <i>exp2</i>. <br>
+          &nbsp; <br>
+          &nbsp;
+          <li> <a name="_Toc442157702"></a><b><font size="+1">Case</font><i>
+                [ ]</i></b></li>
+          <br>
+          &nbsp;
+          <p>&nbsp; <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <li> <a name="_Toc442157703"></a><b><font size="+1">Min</font><i>
+                [ arg1, arg2, arg3, ... ]</i></b></li>
+          <br>
+          Returns the value of the least of its arguments <i>arg1</i>,
+          <i>arg2</i>, etc. It requires at least one argument and can
+          take unlimited number of arguments. <br>
+          &nbsp; <br>
+          &nbsp;
+          <li> <a name="_Toc442157704"></a><b><font size="+1">Max</font><i>
+                [ arg1, arg2, arg3, ... ]</i></b></li>
+          <br>
+          Returns the value of the least of its arguments <i>arg1</i>,
+          <i>arg2</i>, etc. It requires at least one argument and can
+          take unlimited number of arguments. <br>
+          &nbsp; <br>
+          &nbsp;
+          <li> <a name="_Toc442157705"></a><b><font size="+1">Sum</font><i>
+                [ arg1, arg2, arg3, ... ]</i></b></li>
+          <br>
+          Returns the sum of its arguments <i>arg1</i>, <i>arg2</i>,
+          etc. It requires at least one argument and can take unlimited
+          number of arguments. <br>
+          &nbsp; <br>
+          &nbsp;
+          <li> <a name="_Toc442157706"></a><b><font size="+1">Prod</font><i>
+                [ arg1, arg2, arg3, ... ]</i></b></li>
+          <br>
+          Returns the product of its arguments <i>arg1</i>, <i>arg2</i>,
+          etc. It requires at least one argument and can take unlimited
+          number of arguments. <br>
+          &nbsp; <br>
+          &nbsp;
+          <li> <a name="_Toc442157707"></a><b><font size="+1">Trapint</font><i>
+                [ func[ 0.0 ], left, right, numsteps ]</i></b></li>
+          <br>
+          Returns the integral of function <i>func</i> between <i>left</i>
+          and <i>right</i> calculated by the trapezoidal rule with <i>numsteps</i>
+          steps. The first argument must be a function call with an
+          argument which is a real number. Such arrangement speeds up
+          the calculation. <i>func</i> can be a pre-defined function of
+          one argument, a function defined with the expression
+          evaluator, or a function defined by the <b>definefunction</b>
+          command.
+          <p><b>Example of function use:</b> </p>
+          <p><font size="+0">= { b : Trapint[ sin[0.0 ], 0, 1, 100 }</font>
+          </p>
+          <p><font size="+0"><b>write</b> { "Integral of the sine
+              function between 0 and 1 is " $b ".\n\n" }</font> <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <p><a name="_Toc442157708"></a> </p>
+          <li> <b><i><font size="+2">File Interpreter's Functions which
+                  Affect the Expression Evaluator</font></i></b></li>
+          <br>
+          &nbsp;
+          <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+            <tbody>
+              <tr nosave="" valign="TOP">
+                <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+                <td nosave=""><b><font size="-1"><a
+                        href="../manlist/index.html#list">Manuals list
+                        &amp; contents</a></font></b></td>
+                <td nosave=""><b><font size="-1"><a href="#contents">Table
+
+                        of contents&nbsp;</a></font></b></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          &nbsp;
+          <ol>
+            <li> <a name="_Toc442157709"></a><b><font size="+1">=</font><i><font
+                    size="+0"> { var : expr }</font></i></b></li>
+            <br>
+            The <b>=</b> function assigns the value of the expression <i>expr</i>
+            to the expression evaluator's variable <i>var</i>. If a
+            variable named <i>var</i> does not yet exist, it is
+            created. <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp;
+            <li> <a name="_Toc442157710"></a><b><font size="+1">$</font><i>
+                  { var : expr }</i>, $ <i>{ func[ arg1, arg2, ... ] :
+                  expr }</i></b></li>
+            <br>
+            The <b>$</b> function assigns the expression <i>expr</i>
+            to the expression evaluator's variable <i>var</i>. After
+            the execution of this function, the value of variable named
+            <i>var</i> changes if the values of variables or definitions
+            of functions which are included in the expression <i>expr</i>
+            change. If a variable named <i>var</i> does not yet exist,
+            it is created.
+            <p>The <b>$</b> function can also be used for the
+              definition of new expression evaluator's functions. In
+              this case, <i>func</i> is the name of the newly defined
+              function, <i>arg1</i>, <i>arg2</i>, etc. are the names
+              of function arguments which must be listed in square
+              brackets and separated by commas, and <i>expr</i> is the
+              expression which defines how the newly defined function
+              will be evaluated. The expression <i>exp</i> usually
+              contains objects named as formal arguments listed in the
+              square brackets. At the function evaluation, these objects
+              are replaced by the actual arguments with which function
+              is called. </p>
+            <p>The expression <i>expr</i> can also contain other
+              variables and functions of the expression evaluator. If
+              the definitions of these variables or functions are
+              changed later, the definition of the variable or function
+              defined by the <b>$</b> function changes accordingly. </p>
+            <p><b>Example:</b> </p>
+            <p><b><font size="+0">$</font><i> { powsum[x,y,z]:x^[y*z] }</i></b>
+            </p>
+            <p>defines a new function of the expression evaluator named
+              <i>powsum</i>, which takes three arguments and returns the
+              first argument raised to the power of the sum of the
+              second and the third argument. <br>
+              &nbsp; <br>
+              &nbsp; <br>
+              &nbsp; </p>
+            <li> <a name="_Toc442157711"></a><b><font size="+1">definefunction</font><i>
+                  { funcname [ defblock ] }</i></b></li>
+            <br>
+            The file interpreter's function <b>definefunction</b>
+            defines a new expression evaluator's function. <i>funcname</i>
+            is the name of the function and the <i>defblock</i> is the
+            definition block of the function. At every evaluation of the
+            function after this definition, this block is interpreted.
+            <p>Calculator's functions defined by the <b>definefunction</b>
+              command can be called with arbitrary number of arguments.
+              These can be accessed by the expression evaluator's
+              function <b>argument</b>. This function returns the value
+              of a specific argument which was passed to the expression
+              evaluator's function defined by the <b>definefunction</b>
+              command. Therefore, the <b>argument</b> function can be
+              evaluated only within the definition block of an
+              expression evaluator function defined by the file
+              interpreter's command <b>definefunction</b>. The only
+              argument of the <b>argument</b> function is the
+              sequential number of argument the value of which should be
+              returned. Since expression evaluator's functions can only
+              return (i.e. evaluate to) real numbers, the expression
+              evaluator's functions defined by the <b>definefunction</b>
+              command can not take string arguments. Such arguments
+              could not be accessed in the <i>defblock</i> block
+              because the only way of accessing arguments in this block
+              is through the calculator's function <b>argument</b>.
+              Arguments must therefore be expressions which evaluate to
+              real numbers. </p>
+            <p>The number of arguments which have been passed to the
+              function defined by the <b>definefunction</b> command can
+              be accessed by the expression evaluator's function <b>numargs</b>.
+              This functin takes no arguments and and can also be
+              evaluated only within the definition block of the <b>definefunction</b>
+              command. </p>
+            <p>The value which is returned by a function defined by the
+              <b>definefunction</b> command must be specified by the
+              file interpreter's function <b>return</b>. The only
+              argument of this function must be a mathematical
+              expression which can be evaluated in the expression
+              evaluator. The value of this expression is what the
+              function defined by the <b>definefunction</b> command
+              returns. </p>
+            <p><b>Example:</b> </p>
+            <p>The following portion of code defines an expression
+              evaluator's function <i>Summation</i> which takes an
+              arbitrary number of arguments and returns their sum: </p>
+            <p><b><font size="+0">definefunction</font> { ( Summation )</b>
+            </p>
+            <p><b>[</b> </p>
+            <p><b>={retsum:0}</b> </p>
+            <p><b>={indsum:0}</b> </p>
+            <p><b>while { (isum&lt;=<u>numargs[ ]</u>)</b> </p>
+            <p><b>[</b> <br>
+              &nbsp; </p>
+            <ol>
+              <b>={retsum:retsum+<u>argument</u>[indsum]}</b>
+              <p><b>={indsum:indsum+1}</b></p>
+            </ol>
+            ] }
+            <p><b><u>return</u>{retsum}</b> </p>
+            <p><b>] }</b> </p>
+            <p>After the function is defined, it can be used in
+              mathematical expressions. For example, the expression
+              "Summation[3,2*4,5]" will evaluate to 16 (=3+2*4+5). </p>
+            <p><b>Warning:</b> </p>
+            <p>At the definition of new expression evaluator's functions
+              we must be careful at choosing names for auxiliary
+              variables used as counters or for carrying intermediate
+              results. A concept of local variables is not implemented
+              in the file interpreter, therefore all variables are
+              global. The variables used locally in the definition block
+              of the <b>definefunction</b> command can therefore
+              interfere with global variables if we accidentally chose
+              the same name for them. <br>
+              &nbsp; <br>
+              &nbsp; <br>
+              &nbsp; </p>
+            <li> <a name="_Toc442157712"></a><b><font size="+1">return</font><i>
+                  { expr }</i></b></li>
+            <br>
+            The file interpreter's function <b>return</b> is used for
+            setting the value which is returned by user defined
+            functions of the expression evaluator which are defined by
+            the <b>definefunction</b> command. <i>expr</i> is a
+            mathematical expression which defines the value which will
+            be returned by such function. The <b>return</b> function
+            can be used only in the definition block of the <b>definefunction</b>
+            command. <br>
+            &nbsp; <br>
+            &nbsp;
+            <li> <a name="_Toc442157713"></a><b><font size="+1">argument</font><i>
+                  [ num ]</i></b></li>
+            <br>
+            The expression evaluator-s function <b>argument</b> returns
+            the value of <i>num</i>-th argument passed to the
+            expression evaluator's function which is currently being
+            evaluated. Therefore, this function can be evaluated only
+            within the definition block of the <b>definefunction</b>
+            command. <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp;
+            <li> <a name="_Toc442157714"></a><b><font size="+1">numargs</font><i>
+                  [ ]</i></b></li>
+            <br>
+            The expression evaluator-s function <b>numargs</b> returns
+            the number of arguments that were passed to the expression
+            evaluator-s function which is currently being evaluated.
+            This function can therefore be evaluated only within the
+            definition block of the <b>definefunction</b> function.
+          </ol>
+        </ol>
+      </ol>
+    </ol>
+  </body>
 </html>

@@ -1,14 +1,16 @@
-<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
-<head>
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="Generator" content="Microsoft Word 97">
-   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; HP-UX B.10.20 9000/780) [Netscape]">
-   <title>1 NASLOV 1</title>
-   		
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+    <meta name="Generator" content="Microsoft Word 97">
+    <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; HP-UX
+      B.10.20 9000/780) [Netscape]">
+    <title>Inverse manual: A Short Guide to the Optimization Shell
+      Inverse</title>
     <!-- Google Analitics - account Documents, 
 	property Documents - all -->
-	<script>
+    <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -16,1005 +18,1083 @@
 	  ga('create', 'UA-96832295-1', 'auto');
 	  ga('send', 'pageview');
 	</script>
-	
-
-</head>
-<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FE0000">
-<a href="http://www.c3m.si/inverse/invhome.html"><img SRC="http://www.c3m.si/inverse/invlogo.gif" NOSAVE height=100 width=600></a>
-<br>&nbsp;
-<br>&nbsp;
-<table BORDER=3 BGCOLOR="#99FFCC" NOSAVE >
-<tr NOSAVE>
-<td NOSAVE><a NAME="list"></a><font size=-1><a href="../index.html">MANUALS:</a></font>
-<blockquote>
-<li>
-<b><font size=-1><a href="index.html">Short Guide to INVERSE</a></font></b></li>
-</blockquote>
-
-<blockquote>
-<blockquote>
-<li>
-<b><font size=-1><a href="#_Toc436572933">How to Use this Guide</a></font></b></li>
-
-<li>
-<b><font size=-1><a href="#_Toc436572934">About the History of Inverse</a></font></b></li>
-
-<li>
-<b><font size=-1><a href="#_Toc436572936">Basic Concepts</a></font></b></li>
-
-<li>
-<b><font size=-1><a href="#_Toc436572942">Running Direct Analysis</a></font></b></li>
-
-<li>
-<b><font size=-1><a href="#_Toc436572943">An Example of Running Inverse
-Analysis</a>&nbsp;</font></b></li>
-</blockquote>
-
-<li>
-<font size=-1><a href="../flow/index.html">Flow control</a></font></li>
-
-<li>
-<font size=-1><a href="../calc/index.html">Expression evaluator</a></font></li>
-
-<li>
-<font size=-1><a href="../var/index.html">User defined variables</a></font></li>
-
-<li>
-<font size=-1><a href="../int/index.html">General file interface</a></font></li>
-
-<li>
-<font size=-1><a href="../debug/index.html">Syntax checker &amp; debugger</a></font></li>
-
-<li>
-<font size=-1><a href="../sim/index.html">Interfaces with simulation programmes</a></font></li>
-</blockquote>
-</td>
-</tr>
-</table>
-
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<center>
-<p><b><i><font size=+2>A Short Guide to the</font></i></b>
-<p><b><i><font size=+2>Optimisation Shell Inverse</font></i></b>
-<p><b><font size=+1>Version 0.0</font></b>
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<p><i>Igor Gresovnik</i>
-<p><i><font size=-1>Ljubljana, the 20<sup> th</sup> of November 1998</font></i></center>
-
-<p><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<p><a NAME="contents"></a><b><font color="#CC0000"><font size=+1>Table
-of contents:</font></font></b>
-<br>&nbsp;
-<p><b><i>1 Introduction </i></b><a href="#_Toc436572932">*</a>
-<dir><b><font size=+0>1.1 How to Use this Guide </font></b><a href="#_Toc436572933">*</a>
-<p><b><font size=+0>1.2 About the History of Inverse </font></b><a href="#_Toc436572934">*</a></dir>
-<b><i>2 Short User's Guide </i></b><a href="#_Toc436572935">*</a>
-<dir><b><font size=+0>2.1 Basic Concepts </font></b><a href="#_Toc436572936">*</a>
-<br>&nbsp;
-<dir><font size=-1>2.1.1 Introduction </font><a href="#_Toc436572937">*</a></dir>
-
-<dir><font size=-1>2.1.2 File Interpreter </font><a href="#_Toc436572938">*</a>
-<p><font size=-1>2.1.3 Expression evaluator (calculator) </font><a href="#_Toc436572939">*</a>
-<p><font size=-1>2.1.4 User defined variables </font><a href="#_Toc436572940">*</a>
-<p><font size=-1>2.1.5 Conection with the Simulation Programme </font><a href="#_Toc436572941">*</a></dir>
-
-<p><br><b><font size=+0>2.2 Running Direct Analysis </font></b><a href="#_Toc436572942">*</a>
-<p><b><font size=+0>2.3 An Example of Running Inverse Analysis </font></b><a href="#_Toc436572943">*</a>
-<br>&nbsp;
-<dir><font size=-1>2.3.1 Problem description </font><a href="#_Toc436572944">*</a>
-<p><font size=-1>2.3.2 Command file for the optimisation shell </font><a href="#_Toc436572945">*</a></dir>
-</dir>
-
-<dir>&nbsp;</dir>
-
-<ol>
-<li>
-<a NAME="_Toc436572932"></a><b><font size=+2>Introduction</font></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<p><i>INVERSE</i> is a general-purpose programming shell for solving inverse
-and optimisation problems. In principle it is designed for use with other
-programmes which can perform simulations of what we want to optimaze. It
-can be used stand-alone for testing and training purposes and for numerical
-experimentation.
-<p>History of <i>INVERSE</i> began in spring 1994. It was created for solving
-inverse problems in continuum mechanics. It used a finite element method
-based programme <i>Elfen</i> developed in <i>Rockfield Software</i>, Swansea,
-for direct simulations. The first interface with the simulation programme
-was therefore made for <i>Elfen</i>. It used <i>Elfen'</i>s input and output
-files for accessing the data. It is believed that a direct interface with
-this programme will be available in a year or two. This interface will
-allow direct access to simulation input and output data and better control
-over simulation from the shell.
-<p>User of the shell is not bound by <i>Elfen</i> as a simulation programme
-because a <b>general file interface</b> is available in <i>INVERSE</i>.
-By this interface user can access and replace data in text files and can
-therefore use <i>Inverse</i> in connection with any simulation programme
-which uses text input and output files. However, for simplicity in many
-examples it will be assumed that user uses <i>Elfen</i> as a simulation
-programme. Sometimes in these examples functions for interfacing <i>Elfen</i>
-will be stated. User should know that he must replace these functions with
-appropriate code which will properly interface the simulation programme
-he uses.
-<p>Using the general file interface proved approximately as quick as using
-built-in routines for accessing data in simulation programme's input and
-output files. Therefore, the additional cost when using a simulation programme
-for which interfacing functions are not yet built in the shell, should
-be negligible. A direct interface would of course be much faster, but will
-be available only for a limited numbers of programmes (in the future we
-will try to build such interfaces for as many well known simulation programmes
-as possible). However, data exchange through files should typically take
-much less than a single simulation and therefore be acceptable. This especcially
-holds if user can control input and output of the simulation programme
-he uses well. In this case he can achieve that only the necessary data
-is transfered between the simulation programme, its input and output files
-and <i>Inverse</i>. Interfacing through files using the shell's general
-file interface becomes very quick this way and there is no need for a direct
-interface.
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<ul>
-<li>
-<a NAME="_Toc436572933"></a><b><i><font size=+1>How to Use this Guide</font></i></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc436572934"></a><b><i><font size=+1>About the History of Inverse</font></i></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-</ul>
-
-<p><br>Igor Gresovnik began to develop Inverse in spring 1998 while finishing
-his final degree at the University of Ljubljana. His idea was to gather
-various tools for solving optimization and inverse problems in an organized
-environment which would provide generalized methods for interaction with
-simulation programmes and a flexible user interface.
-<p>The first version of the programme was completed in May 1998. It included
-a small collection of optimization algorithms and a line file interpreter
-which served as an user interface. The programme communicated with simulation
-programme through simple files with pre-defined syntax. Rockfield Software's
-programme Elfen was used for simulations. It was adapted case-to-case for
-use with the shell so that it printed the required final data in a specified
-format to the interface file.
-<p>After finishing his final degree, Igor Gresovnik devoted most of his
-time to the development of the programme. In November 1998 version 1.0
-was finished. A system for evaluation of mathematical expressions (also
-referred to as "expression evaluator" or simply "calculator") was developed
-and line interpreter was replaced by more flexible command interpreter
-which allowed flow control. Initially awkward framework so developed into
-a programme which fitted the basic idea quite well.
-<p>In December 1998 Igor employed himself in C3M. He registered Ph.D. study
-at the Swansea University and continued to develop Inverse for needs of
-the C3M's research projects. In April 1995 version 2.0 was finished. This
-was an improved version 1.0 which included a general file interface with
-the simulation programme Elfen. From this version on there was no need
-any more to make changes in Elfen's code for every different case which
-was solved.
-<p>In October 1996 version 2.5 was finished Basic gain was a set of functions
-for accessing global pre-defined variables of the shell. Typical interlaced
-structure with unlimited data exchange between individual modules was emphasized.
-This structure became more obvious in version 2.7 (finished in July 1997)
-in which the concept of user-defined global variables (vectors and matrices
-at that time) was introduced. This was a great step because in previous
-only pre-defined variables and scalar variables of the expression evaluator
-were available for internal data handling, including storage and transfer
-between modules. In version 2.7 the user-defined functions of the interpreter
-and calculator through file interpreter were also enabled.
-<p>As can be seen, the development between versions 2.0 and 2.7 was relatively
-slow. On the other hand, this period was crucial for the development and
-of general concepts on which the shell is based. In this period an attempt
-was made to increase development capacity by training new developers, but
-has unfortunately failed completely. Igor Gresovnik remained the only developer
-of the shell till summer 1998. The reason for that were, beside extreme
-bad luck at the first attempt of getting new developers, also some fatal
-mistakes in the cadre policy committed both by Igor and by the C3M management.
-<p>Novelties have been introduced regularly since summer 1997. The basis
-for parallelization was built by October 1997. Syntax checker and debugger
-were developed by April 1998. The system of user-defined variables was
-changed so that every variable could hold a whole table of elements with
-arbitrary dimensions. Status of pre-defined variables has also changed.
-Their treatment became similar to the treatment of user-defined variables
-differing only in slightly different behaviour of some functions for handling
-global variables. Beside that, there are some functions which operate only
-on specific pre-defined variables. Scalar variables were added (before
-the expression evaluator variables accomplished their function). Treatment
-of files has also changed so that it unified with the treated of other
-user-defined global variables.
-<p>Summer 1998 was partially spent in adapting parts of the programme to
-conceptual changes which accumulated in the last year. Beside that, a general
-file interface was developed by July. This interface in principle enables
-connection of the shell with any simulation programme without adapting
-the shell's source code.
-<p>Summer 1998 is especially important for the shell because its developing
-team got a new member for the first time. Damjan Jelovsek entered the training
-period for an Inverse developer. His first assignment, done by August 1998,
-was construction of an interface for reading and replacing fields in Elfen's
-input and output files.
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc436572935"></a><b><font size=+2>Short User's Guide</font></b></li>
-
-<br>&nbsp;
-<p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<ol>
-<li>
-<a NAME="_Toc436572936"></a><b><i><font size=+1>Basic Concepts</font></i></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<br>&nbsp;
-<ol>
-<li>
-<a NAME="_Toc436572937"></a><b><font size=+1>Introduction</font></b></li>
-
-<br>&nbsp;
-<p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<p>Optimisation shell Inverse is designed for solving inverse and optimisation
-problems. Simulation programme, typically a finite element method (FEM)
-based programme is used for evaluation of the objective and constraint
-functions.
-<p>The solution scheme of tyuical problem solved by the shell is shown
-in Figure 1. Tasks on the left side of the figure are a part of the optimisation
-algorithm which minimises the objective function. The right part of the
-scheme is referred to as "direct analzsis" or "simulation". It represents
-the main part of the evaluation of the objective and constraint functions
-and is ususllz performed bz a separate programme or a separate module.
-<p>In the solution scheme of optimisation or inverse problems, the shell
-provides optimisation algorithms and an environment in which one can link
-these algorithms with the simulation programme which is used for evaluation
-of the objective and constraint functinons and possibly their gradients.
-Beside optimisation algorithms the shell also provides the user with other
-tools necessary to approach optimisation problems effectively, i.e. tabulating
-utilities, some basic mathematical tools, etc. Beside the tools which are
-dierctly sed for solving optimisatiion problems, the shell provides tools
-for manipulating the simulation environment which plays crucial role at
-the problem definition. At the end, the shell provides an environment in
-which the user can use both set of tools in order to properly define and
-solve various kinds of the optimisation problems.
-<br>&nbsp;
-<br>&nbsp;
-<br>
-<center>
-<p><img SRC="Image111.gif" height=365 width=492></center>
-
-<p><a NAME="_Ref432408911"></a><a NAME="_Ref432408932"></a><b>Figure 1<i>:
-A solution scheme for an optimisation problem.</i></b>
-<br>&nbsp;
-<p>Figure 2 shows how the shell is used in combination with a simulation
-programme to form a flexible optimisation system for solving inverse and
-optimisation problems. User of the system defines a skeleton of the direct
-problems that are successively solved during the optimisation process,
-by the simulation unitt's pre-processor.
-<p>The optimisation problem and the solution strategy are defined through
-the shell's command file. To ensure high flexibility at defining various
-problems, the command fille syntax resembles a high level programming language.
-All necessary supporting utilities like optimisation algorithms, function
-definition facilities, mathematical tools (function aproximation, matrix
-operations, etc.) and interfacing with the direct simulation, are provided
-through the pre-defined shell interpreter's functions. Data transfer between
-these utilities, implemented as separated modules of the shell, is provided
-through the shell's global variables.
-<p>In the solution procedure the shell interprets the command file. Everything
-what happens is either explicitly or implicitly defined in the command
-file. Typically, the core part of the solution procedure is a built-in
-optimisation algorithm, whose execution is triggered from the command file.
-The algorithm successively executes direct problems at different sets of
-the design parameters. Direct problems are defined in a special block of
-commands in the command file. The simulation interfacing functions are
-used to properly update the direct analysis definition according to the
-design parameters and to read and combine the analysis results to form
-the information needed by the optimisation algorithm (i.e. the objective
-and constraint functions values and theit derivatives with respect to the
-design parameters).
-<br>&nbsp;
-<br>&nbsp;
-<br>
-<center>
-<p><img SRC="Image112.gif" height=431 width=466></center>
-
-<p><a NAME="_Ref432414015"></a><b>Figure 2: </b><i>Scheme of the optimisation
-system which consists of the shell and an optimisation programme.</i>
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc436572938"></a><b><font size=+1>File Interpreter</font></b></li>
-
-<br>&nbsp;
-<p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<p>User of the optimisation system accesses all built-in tools of the optimisation
-shell through the file interpreter's functions. When the shell is run,
-its file interpreter interprets the command file written by the user and
-executes the appropriate actions.
-<p>Syntax of the command file is very simple. It consists of function names
-each of which is followed by an argument block in crly brackets. Curly
-brackets following function names are necessary even when functions take
-no arguments (in this case brackets are empty).
-<p>The order in which functions should be called is not defined in advance
-and is affected only by the logics of the procedure which is defined through
-the command file. For example, if we run commands which operate on files,
-we must take care about opening the appropriate files first. If we run
-an optimisation algorithm, we must previously define how the objective
-and constraint functions, etc., are evaluated.
-<p>The file interpreter does not enforce any rules how arguments should
-be passed to functions through the argument list. It is the matter of the
-interpreter's functions how they interpret arguments in their argument
-blocks. Some general rules are set about format of specific types of arguments,
-however functions can be written which don't obey these rules completely.
-These functions are exceptional and in the instructions for their use the
-formats of their argument lists are is always exactly described.
-<p>Beside functions which trigger pre-defined algorithms and built-in tools
-of the shell, there are also flow control functions, i.e. functions which
-enable branches and loops. The rules for these functions are the same as
-for the others. It is typical for them that their argument lists contain
-blocks of commands which are interpreted by the interpreter if certain
-conditions are flfilled. These conditions are specified by the user in
-the form of mathematical expressions which are evaluated by the shell's
-expression evaluator. Expression evaluator is a special module of the shell
-which enables evaluation of mathematical expressions.
-<p>Here is a simple example of the use of the <b>while</b> loop:
-<p><b><font size=-1>=</font>{i:1}</b>
-<br><b>while{ (i&lt;=10)</b>
-<br><b>[</b>
-<br><b>={i : i+1}</b>
-<br><b>write{" i = " $i \n}</b>
-<br><b>]}</b>
-<p>The first function (<b>=</b>) sets expression evaluator's variable <i>i</i>
-to 1. This variable is also created because it has not existed before.
-The <b>while</b> function which is an implementation of the <i>while</i>
-loop follows. The function takes two arguments: the first one is condition
-- a mathematical expression in round brackets. The second one is a block
-in square brackets which is successively executed (interpreted) while the
-condition is fulfilled, i.i. while the the expression in round bracket
-evaluates to a non-zero value. In the present example, we add 1 to variable
-i and write its value while it is not greater than 10.
-<p>Beside the <b>while</b> loop, the interpreter knows the <b>do</b> loop
-and the <b>if</b>/else<b> </b>branch. syntax is the following:
-<p><b>while</b> <i>{ (expression) [block] }</i>
-<br><b>do<i> </i>{ [block] (expression) }</b>
-<br><b>if<i> </i>{ (expression) [block1] &lt; else [block2] > }</b>
-<p>The <b>do</b> function executes the block in square brackets until the
-value of the expression in the round brackets becomes zero. The <b>if</b>
-function executes the block in the first square brackets if the expression
-in the round brackets evaluates to zero. Otherwise it executes the block
-in the second square brackets in the case it is given (this block is optional,
-which is indicated by angle brackets in the <b>if</b> command syntax definition).
-The word <i>else</i> is meaningless for the interpreter, but can be added
-for clearness of the code.
-<p>The user can define new interpreter functions by the interpreter. This
-can be done bz the interpreter-s function <b>function</b> with the following
-syntax:
-<p><b>function</b> <i>{name (arguments) [definition] }</i>
-<p><i>name</i> is the name of new interpreter-s function defined this way.
-<i>arguments</i>
-is the round brackets is a list of formal arguments where their names are
-separated bz spaces. The <i>definition</i> block follows in the square
-brackets. Every time the newly defined function is called in the command
-file, all appearences of formal parameters in the <i>definition</i> block
-are replaced by real parameters on the string bases and then the
-<i>defiition</i>
-block is intepreted. The appearences of formal parameters in the <i>definition</i>
-block are designated by argument names preceeded by the "$" sign.
-<p>Expression evaluator (also referred to as <i>calculator</i>) serves
-for evaluation of mathematical expressions given as string arguments of
-the file interpreter's functions. Its important use is in flow control
-functions for evaluation of conditions for loops and branches. Normally,
-mathematical expressions can also be used in place of numerical arguments
-of the file interpreter's functions (there are some rare exceptions).
-<p>There are two interpreter's functions which manipulate the expression
-evaluator's system, i.e. <b>=</b> and <b>$</b>. The <b>= </b>function assigns
-a numerical value to a calculator's variable and creates that variable
-if it has not been defined yet. The $ function assigns a definition to
-a calcularor's variable or function. This function also creates an object
-anew if it has not been defined yet.
-<p>Here is an example how these functions can be used:
-<p><b><font size=-1>=</font> { b : 3*4 }</b>
-<br><b>$ { c : b+2*a }</b>
-<br><b>= { a : b/3 }</b>
-<br><b>$ { f1[x,y] : a*f2[x] }</b>
-<br><b>$ { f2[t] : t*t }</b>
-<br><b>= { b : f2[a] }</b>
-<p>With the first <b>=</b> function we assign the value of expression "<i>3*4</i>",
-i.e. 12, to the expression evaluator's variable <i>b</i> which is also
-created since it has not existed before. With the <b>$</b> command which
-follows we define a new variable <i>c</i> so that it represents the expression
-"<i>b+2*a"</i>. This expression does not have a defined value since the
-variable <i>a</i> has not been defined yet. The definiton of <i>b</i> is
-symbolical and its value will not be defined untill we define <i>a</i>.
-This is done with the next <b>=</b> function which creates the variable
-a and assigns the value of the expression "<i>b/3</i>", i.e. 4, to it.
-With the next <b>$</b> function we define a new calculator's function named
-<i>f1</i>.
-It is defined the expression "<i>a*f2[x]</i>" where <i>a</i> referres to
-a expression evaluator's variable, <i>x</i> and <i>y</i> will be at function
-evaluation replaced by the arguments with which function is called, and
-<i>f2</i>
-is the expression evaluator's function named <i>f2</i> which is at this
-point not defined. The definition is again symbolical, so it will be able
-to use the newly defined function in expression evaluations as soon as
-the function <i>f2</i> is defined. This is done in the next line where
-we define function <i>f2</i> as square of its only argument. In the last
-line we assign the value of expression "<i>f2[a]</i>" to variable
-<i>b</i>.
-The value of <i>b</i> so becomes 16 instead of 12, since since the value
-of a is 4 and the function <i>f2</i> evaluates to square of its only argument
-by the definition made in previous line. Because the value of <i>b</i>
-has ben changed, the value of <i>c</i> in expressions also changes because
-<i>c</i>
-is defined through an expression which contains the variable <i>b</i>.
-The value of <i>a</i> does not change, because the present value of the
-expression "<i>b/3"</i> has been assigned to <i>a</i>, not the expression
-itself.
-<p>The expression evaluator has pre-installed some basic mathematical functions
-like trigonometric and hyperbolic functions, and it knows basic algebraic
-operators like +, *, -, etc. The user can arbitrarily combine these functions
-and operators to define new evaluator's variables and functions. Besides,
-new functions can also be defined through the shell's file interpreter
-by the function <b>definefunction</b>. At each evaluation of such function
-its definition block is interpreted.
-<p>Of special importance are the pre-defined expression evaluator's functions
-through which the user can access the global variables of the shell. All
-relevant data are stored in such variables during the shell's execution.
-Through the appropriate expression evaluator's functions these data can
-be used in the flow control conditions or as arguments to file interpreter's
-functios. This way, results of shell's algorithms can be used as input
-for another algorithms and unlimited data transfer between different modules
-and utilities of the shell is provided.
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc436572940"></a><b><font size=+1>User defined variables</font></b></li>
-
-<br>&nbsp;
-<p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<p>User defined variables are used for data storage and data exchange between
-modules and utilities of the shell. Different types of variables (i.e.
-scalar, vector, matrix or field variables) enable storage of different
-types of data. These variables are separated from the expression evaluator,
-but for most of their types there are pre-defined evaluator's functions
-which can access numerical data stored in them. Each variable type has
-its own set of interpreter's and evaluator's functions for handling variables
-of that type. This includes creating, copying and renaming variables and
-setting and accessing data stored in them.
-<p>Each user-defined variable can contain a multi-dimensional table of
-elements of a certain type. This enables grouping of pieces of data with
-similar meaning. Number of dimensions of such element table will be referred
-to as variable rank. Number of elements which a variable can hold equals
-products of its dimensions, or 1 if the variable rank is 0. Rank and dimensions
-of variables are specified by user when they are created by appropriate
-functions.
-<p>In argument blocks of file interpreter's functons specific data element
-are referred by variable element specifications. These consist of a variable
-name and an optional index specification. Index specification is a list
-of indeces in square brackets which specify the position of data element
-in the variable's element table. It must be given if the rank of the appropriate
-variable is different than zero. Let's say that the user has defined a
-vector variable named "<i>v1</i>" which holds a three-dimensional table
-of vectors with dimensons 2, 4 and 3. The last of its 34 elements is then
-referred to as "<i>v1[2,4,3]"</i> or "<i>v1[2 4 3]"</i>.
-<p>Some variables have a pre-defined meaning and are reserved for carrying
-exactly specified information. For example, a scalar variable named <i>objectivemom</i>
-holds the lastly evaluated objective function(s) during the execution of
-optimisation algorithms. Pre-defined variables serve for automatic storage
-of important intermediate or final results of algorithms and for transfer
-of data between direct analyses and optimisation algorithms.
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc436572941"></a><b><font size=+1>Conection with the Simulation
-Programme</font></b></li>
-
-<br>&nbsp;
-<p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<p>Optimisation algorithms consequently evaluate the objective and constraint
-functions (and possibly their derivatives), which are defined via the simulation.
-The optimisation shell must therefore provide a mechanism of definining
-how the constraint and objective functions are evaluated, take care for
-performing this evaluation in the optimisation algorithms and enable proper
-data transfer between optimisation algorithms and direct analysis.
-<p>Two concepts are crucial for providing this functionality. First, the
-evaluation of the objective and constraint function is performed via interpretation
-of a specific block of code in the command file in which the user exactly
-defines how these functions are evaluated, together with execution of the
-simulation programme and necessary interfacing with simulation input and
-results. By convention this is the argument block of the interpreter's
-function <b>analysis</b>.
-<p>Second, transfer of data between the shell's built-in algorithms or
-utilities and the direct analysis defined by the user through the argument
-block of the <b>analysis</b> function is implemented through the shell's
-variables with pre-defined meaning. When an optimisation algorithm requires
-evaluation of the objective and constraint functions, the parameters at
-which the direct analysis should be perfrmed are written to the vector
-variable <i>parammom</i> and then the argument block of the <b>analysis</b>
-function is interpreted. Within this block, which defines the direct analysis,
-parameter values can be accessed through vector variable <i>parammom</i>
-and used in interface functions to update the simulation input according
-to these parameter values. The file interpreter's and expression evaluator's
-functions are then used to run the simulation, collect its results relevant
-to the optimisation algorithm and to evaluate the necessary functions like
-the objective and constraint funcrions and their gradients. At the end
-of the <b>analysis</b> function argument block the evaluated data must
-be stored in the appropriate pre-defined variables where the optimisation
-algorithm can pick them. For example, the objective function values must
-be stored in the scalar variable <i>objectivemom</i>.
-<p>In fact there is another interface function between each optimisation
-algorithm and the direct analysis definition. This function is called in
-the algorithm's code when the evaluation of the objective or constraint
-function is required. It stores its input argument (vectore of parameters
-set by the optimisation algorithm) to the scalar variable <i>parammom</i>,
-interprets the argument block of function <b>analysis</b>, and returns
-data stored in the appropriate global variables to the optimisation algorithm.
-<br>&nbsp;</ol>
-
-<br>&nbsp;
-<li>
-<a NAME="_Toc436572942"></a><b><i><font size=+1>Running Direct Analysis</font></i></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<p>The simplest use of the shell is for parametric studies, i.e. for running
-direct analyses at diffrent sets of parameters. Even when an inverse or
-oprimisation problem needs to be solved it is recommended that direct analysis
-is run first to test if the problem was set correctly and there are no
-problems with the simulation.
-<p>In this chapter en example of how to prepare a command file for running
-a direct analysis at a specific set of parameters is shown. The file is
-prepared for inverse analysis with two parameters and four measurements.
-The meaning of specific commands is explained and some conceptual details
-are are discussed on the example.
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc436572943"></a><b><i><font size=+1>An Example of Running Inverse
-Analysis</font></i></b></li>
-
-<br>&nbsp;
-<table BORDER=3 CELLPADDING=3 BGCOLOR="#FFFFCC" NOSAVE >
-<tr VALIGN=TOP NOSAVE>
-<td><b><font size=-1><a href="#list">Manuals list</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="../manlist/index.html#list">Manuals
-list &amp; contents</a></font></b></td>
-
-<td NOSAVE><b><font size=-1><a href="#contents">Table of contents&nbsp;</a></font></b></td>
-</tr>
-</table>
-
-<p>An example code of how to run an inverse analysis is shown in this chapter.
-The parts of the command file are explained and some conceptual details
-are discussed.
-<br>&nbsp;
-<br>&nbsp;
-<ol>
-<li>
-<a NAME="_Toc436572944"></a><b><font size=+1>Problem description</font></b></li>
-
-<br>&nbsp;
-<p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<p>The example deals with inverse identification of hardening parameters
-of the potential law for the hardening curve. The identification is performed
-on the basis of experimental data obtained with the tension test where
-forces at different elongations of the specimen are measured (Figure 3).
-Model parameters <i>C</i> and <i>n</i> are obtained by minimising the function
-<p><img SRC="Image113.gif" height=74 width=217> , (1)
-<p>where&nbsp;<img SRC="Image114.gif" height=32 width=36> are measured
-forces at different elongations;&nbsp;<img SRC="Image115.gif" height=26 width=54>
-are the respective quantities calculated with the finite element model
-by assuming trial values of parameters <i>C</i> and <i>n</i>;&nbsp;<img SRC="Image116.gif" height=22 width=20>
-are the expected errors of the appropriate measurements and&nbsp;<img SRC="Image117.gif" height=17 width=18>
-is the number of measurements.
-<br>&nbsp;
-<br>&nbsp;
-<br>
-<br>
-<center>
-<p><img SRC="Image118.gif" height=452 width=408></center>
-
-<p><a NAME="_Ref433010979"></a><b>Figure 3:</b> <i>Inverse identification
-of hardening parameters from results of the tension test.</i>
-<br>&nbsp;
-<br>&nbsp;
-<li>
-<a NAME="_Toc436572945"></a><b><font size=+1>Command file for the optimisation
-shell</font></b></li>
-
-<br>&nbsp;
-<p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<p>The code in the shell's command file which solves the problem is given
-below. Line numbers are added because of easier referencing. Functions
-<b>comment</b>
-or <b>*</b> are used for comments. These functions do nothing, so what
-is in their argument blocks can be used for in-code comments.
-<ol>
-<li>
-<b><font size=-1>comment </font><i>{ beginning of the command file }</i></b></li>
-
-<li>
-<b>setfile{outfile "test.ct"} <i>*{output file of the shell}</i></b></li>
-
-<li>
-<b>setvector{ meas 4 {1:62200} {2:67800} {3:68900} {4:68000} } <i>*{ vector
-of measurements}</i></b></li>
-
-<li>
-<b>setvector{ sigma {1 1 1 1} } <i>*{ vector of measurement erors }</i></b></li>
-
-<li>
-<b><i>*{ Definition of a new function in expression evaluator: }</i></b></li>
-
-<li>
-<b>${force[inc]: nodreac[inc,4,1] +nodreac[inc,5,1] +nodreac[inc,6,1] +nodreac[inc,7,1]
-+nodreac[inc,8,1] }</b></li>
-
-<li>
-<b>analysis</b></li>
-
-<li>
-<b>{</b></li>
-
-<li>
-<b><i>*{ beginning of the "analysis" block }</i></b></li>
-
-<li>
-<b>setfile{aninfile "test.dat"} <i>*{ simulation programme's input file
-}</i></b></li>
-
-<li>
-<b>initinput{} <i>*{ initialization of interface }</i></b></li>
-
-<li>
-<b>setparam{} <i>*{ updating parameters in simulation programme's input
-data }</i></b></li>
-
-<li>
-<b>system{"elfen16 test"} <i>*{ running a simulation programme }</i></b></li>
-
-<li>
-<b>setfile{anoutfile "test.res"} <i>*{ simulation programme's output file
-}</i></b></li>
-
-<li>
-<b>initoutput{} <i>*{ initialization of interface }</i></b></li>
-
-<li>
-<b>meas{1 "force[1]"} <i>*{ setting components of simulated measuremets
-}</i></b></li>
-
-<li>
-<b>meas{2 "force[2]"}</b></li>
-
-<li>
-<b>meas{3 "force[3]"}</b></li>
-
-<li>
-<b>meas{4 "force[4]"}</b></li>
-
-<li>
-<b><i>* { end of the analysis block }</i></b></li>
-
-<li>
-<b>}</b></li>
-
-<li>
-<b>setoption {autochi2}</b></li>
-
-<li>
-<b>setvector{ parammom 2 {1276 0.1124} } <i>*{ setting vector of parameters
-}</i></b></li>
-
-<li>
-<b>analyse{} <i>*{ running analysis at given prameters }</i></b></li>
-
-<li>
-<b>setvector{parammom 2}</b></li>
-
-<li>
-<b>inverse <i>*{ running inverse analysis }</i></b></li>
-
-<li>
-<b>{</b></li>
-
-<li>
-<b>nd simplex 0.001 300</b></li>
-
-<li>
-<b>3 2</b></li>
-
-<li>
-<b>{</b></li>
-
-<li>
-<b>{1 1: 1000 }</b></li>
-
-<li>
-<b>{1 2: 0.1 }</b></li>
-
-<li>
-<b>{2 1: 1100 }</b></li>
-
-<li>
-<b>{2 3: 0.1 }</b></li>
-
-<li>
-<b>{3 1: 1000 }</b></li>
-
-<li>
-<b>{3 2: 0.11 }</b></li>
-
-<li>
-<b>}</b></li>
-
-<li>
-<b>}</b></li>
-
-<li>
-<b>comment<i>{ end of the command file }</i></b></li>
-</ol>
-With the <b>setfile</b> command in the second line the file <i>outfile</i>
-is open. The first argument of the command is the internal name of the
-file and the second argument is the name of physical file on the disk which
-is connected with this name. <i>outfile</i> is by convention a file into
-which results of shell's operations are written, so from this point on
-the output of shell's functions will be written to the file named <i>test.ct.</i>
-Functions also print their output to the standard output of the shell (usually
-the terminal window in which the shell was run). The <b>setfile</b> function
-can also take the third argument which specifies how the file is open.
-In this case the file is open only for writing which is a convention for
-the pre-defined file <i>outfile</i>. If the file exists before it is overwritten.
-<p>The <b>setvector</b> command in line 3 creates the vector variable <i>meas</i>
-and sets its only vector element as specified in its argument block. Vector
-dimension (4) is specified first, then the component values follow. <i>meas</i>
-is a vector variable with pre-defined meaning and holds the measurements
-for inverse analysis.
-<p>With the next <b>setvector</b> command vector <i>sigma</i> (vector of
-measurement errors) is set. <i>sigma</i> is also a vector variable with
-a pre-defined meaning which have by definition the same dimension as the
-vector <i>meas</i>. Since this dimension is already known because it was
-specified when vector <i>meas</i> was set, it does not need to be specified
-again and therefore only the four vector components are set. Vectors can
-be given in various different formats which will be discussed later.
-<p>A new expression evaluator's function <i>force</i> is defined by the
-<b>$</b>
-command in line 6. This function will return the simulated forces at increments
-specified by the only arguments. These forces will be extracted from the
-simulation output by the expression evaluator's built-in functions
-<b>nodreac</b>.
-These functions are a part of the shell-simulation interface and can extract
-nodal reactions from the output of the finite element simulation programme.
-this function is at the moment available only for the FEM programme Elfen
-and extract data only for programme's output file. The shell-simulation
-interface must be initialised before this function is evaluated. For some
-other simulation programmes interfaces will be available in the future.
-When the interface with a particular simulation programme is not implemented
-in the shell, the general file interface utilities can be used to extract
-the data from the simulation output file. With this utilities data can
-be obtained from any text output file with a known format, but this requires
-few additional lines in th command file. The user can also build teh whole
-set set of interfacing functions based on the general file interface utilities.
-<p>With the <b>analysis</b> command in line 7 it is specified how the direct
-analysis at specific parameter values is performed. The argument block
-of this commmand is interpreted by the shell's file interpreter every time
-the direct analysis is performed. Therefore interpretation of this block
-is a part of evaluation of the objectiv eand constraint functions and possibly
-their derivatives with respect to parameters. Execution of the <b>analysis</b>
-function itself does not do much, actually it only stores the position
-of its argument block so that it can be found and interpreted when the
-evaluation of the objective or constraint functions or their gradients
-is requested.
-<p>The first command in the argument block of the <b>analysis</b> command,
-<b>setfile</b>in
-line 10, connects the file variable <i>aninfile</i> with the file <i>test.dat</i>
-and opens that file. The file is open for writing since <i>aninfile</i>
-ia a pre-defined file variable used for the simulation input file. The
-next command, <b>initinput</b>, initialises the shell's interface with
-the simulation programme's input file. This command must be executed before
-using functions for setting input data for the simulation. This is the
-property of current interface with the finite element programme
-<i>Elfen</i>
-and is not in general valid for interfacing with other simulation programme
-(see references for interfaces with other programmes or the reference for
-the general file interface) Among the others, the <b>initinput</b> command
-sets the file on which the interface functions wil operate to the file
-connected with the file variable <i>anindile</i>.
-<p>The <b>setparam</b> function which is called next is a part of the file
-interface. This function sets the current values of input parameters in
-the simulation's input file. These values are fined in the vector variable
-<i>parammmom</i>,
-which by convention holds current parameter values. In the interface with
-<i>Elfen</i>,
-the user must designate the placer in
-<i>Elfen's</i> input file where the
-parameters must be updated, so that the <b>setparam</b> function can find
-these places and update the appropriate values. Again, different rules
-apply to other interfaces.
-<p>The <b>system</b> command in line 13 runs the simulation programme with
-the updated input data which is in this case read from file. At the rest
-of the <b>analysis</b> function's argument block, the necessary results
-are read and the appropriate function values (like the objective function)
-are evaluated.
-<p>The <b>setfile</b> function in line 14 sets connects the file variable
-<i>anoutfile</i>
-with the file <i>test.res</i> and opens that file for reading. <i>anoutfile</i>
-is also a pre-defined file variable which represents the analysis output
-file.
-<p>The <b>initoutput</b> command initialises the part of the interface
-which interact with the analysis output. It must be executed before the
-interface functions for extracting results are called or evaluated.
-<p>The next four calls of the <b>meas</b> function (lines 16 to 19) specify
-how the values of the vector <i>measmom</i> will be calculated. The first
-argument of each function is the number of component which is evaluated
-and the second argument is a mathematical expression i double quote, the
-value of which is assigned to that component. The function <b>meas</b>
-evaluates the expression by the expression evaluator and assigns its value
-to the appropriate component of vector <i>measmom</i>. In all four cases,
-expressions include the expression evaluator's function <i>force</i> which
-was defined in line 6. This function includes calls to the expression evaluator's
-function <b>nodreac</b> which is a part of the shell's interface with the
-simulation programme <i>Elfen</i>. This function evlauates to a specific
-component of the nodal reaction at a specific node after a specific increment.
-The increment number, node number and component are arguments of the function,
-while th ereturned information is extracted from the simulation output
-file which becomes known to the interface when the <b>initoutput</b> command
-is executed.
-<p>The value of the objective function is in this case calculated automatically
-in this case from measurements <i>meas</i>, measurement errors <i>sigma</i>
-and simulated measurements <i>measmom</i> according to formula (1). This
-value is writteen to the scalar variable <i>objectivemom</i> after the
-<b>analysis</b>
-function's argument block is interpreted. Automatic evaluation of the objective
-function is instructed by setting the <i>autochi2</i> option which can
-be used at inverse analyses. When optimisation is in question, we must
-always explicitly specify at the end of the <b>analysis</b> command's argument
-block how the objection function is calculated.
-<p>In lines 24 and 25 a direct analysis is run at specific values of parameters.
-First we set the currrent vector of parameters <i>parammom</i> and then
-run the direct analysis by the <b>analyse</b> command. This command triggers
-the interpretation of the <b>analysis</b> function's argument block and
-the prints the results of the analysis, i.e. prints the pre-defined variables
-in which results are stored by convention.
-<p>The <b>inverse</b> command in line 28 executes the inverse analysis,
-i.e. the algorithm which minimises the objective function. The first two
-parameters specify the algorithm which is used (the simplex method in this
-case), then a tolerance for function minimum and maximum allowed number
-of iteration are given and the last argument is a matrix of initial guesses.
-This matrix is given in a standard format in which matrices are specified
-in the shell. The simplex method requires one more initial guesses than
-the number of parameters. A <b>setvector</b> function is called before
-the call to <b>inverse</b>, but only the dimension of vector <i>parammom</i>
-was specified, not the components. These are set subsequently by the optimisation
-algorithm when it runs direct analyses.
-<p>Whenever the optimisation algorithm wants to evaluate the objective
-or constraint functions or their derivatives, it calls the appropriate
-shell's internal function for direct analysis. This function first copies
-the parameters, which are its input arguments set by the optimisation algorithms,
-to the vector variable <i>parammom</i>, and then triggers interpretation
-of the argument block of the <b>analysis</b> command. At the end it passes
-the appropriate pre-defined variables to the optimisation algorithm, according
-to what it has requested. In the <b>analysis</b> function's argument block
-the user defines the way how different functions requested by the optimisation
-algorithm are calculated at a specific set of parameters. The parameter
-values set by the algorithm can be accessed through the pre-defined vector
-variable <i>parammom</i>. The user must programme the way how the simulation
-input data is updated according to parameter values, how the simulation
-is performed and how the needed data is evaluated and written to the appropriate
-pre-defined variables. The shell's internal function for the direct analysis
-then passes the appropriate results to the optimisation algorithm.
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;</ol>
-</ol>
-</ol>
-
-</body>
+    <meta name="author" content="Igor Grešovnik">
+    <meta name="description" content="Inverse manual: A Short Guide to
+      the Optimization Shell Inverse">
+  </head>
+  <body vlink="#551A8B" text="#000000" link="#0000EE" bgcolor="#FFFFFF"
+    alink="#FE0000">
+    <a href="../../../invhome.html"><img src="../../../invlogo.gif"
+        nosave="" moz-do-not-send="true" title="Inverse Home"
+        alt="Inverse Logo" width="600" height="100" border="0"></a> <br>
+    &nbsp; <br>
+    &nbsp;
+    <table nosave="" border="3" bgcolor="#99FFCC">
+      <tbody>
+        <tr nosave="">
+          <td nosave=""><a name="list"></a><font size="-1"><a
+                href="../index.html">MANUALS:</a></font>
+            <blockquote>
+              <li> <b><font size="-1"><a href="index.html">Short Guide
+                      to INVERSE</a></font></b></li>
+            </blockquote>
+            <blockquote>
+              <blockquote>
+                <li> <b><font size="-1"><a href="#_Toc436572933">How to
+                        Use this Guide</a></font></b></li>
+                <li> <b><font size="-1"><a href="#_Toc436572934">About
+                        the History of Inverse</a></font></b></li>
+                <li> <b><font size="-1"><a href="#_Toc436572936">Basic
+                        Concepts</a></font></b></li>
+                <li> <b><font size="-1"><a href="#_Toc436572942">Running
+
+
+                        Direct Analysis</a></font></b></li>
+                <li> <b><font size="-1"><a href="#_Toc436572943">An
+                        Example of Running Inverse Analysis</a>&nbsp;</font></b></li>
+              </blockquote>
+              <li> <font size="-1"><a href="../flow/index.html">Flow
+                    control</a></font></li>
+              <li> <font size="-1"><a href="../calc/index.html">Expression
+
+
+                    evaluator</a></font></li>
+              <li> <font size="-1"><a href="../var/index.html">User
+                    defined variables</a></font></li>
+              <li> <font size="-1"><a href="../int/index.html">General
+                    file interface</a></font></li>
+              <li> <font size="-1"><a href="../debug/index.html">Syntax
+                    checker &amp; debugger</a></font></li>
+              <li> <font size="-1"><a href="../sim/index.html">Interfaces
+
+
+                    with simulation programmes</a></font></li>
+            </blockquote>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+      <tbody>
+        <tr nosave="" valign="TOP">
+          <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+          <td nosave=""><b><font size="-1"><a
+                  href="../manlist/index.html#list">Manuals list &amp;
+                  contents</a></font></b></td>
+          <td nosave=""><b><font size="-1"><a href="#contents">Table of
+                  contents&nbsp;</a></font></b></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp;
+    <center>
+      <p><b><i><font size="+2">A Short Guide to the</font></i></b> </p>
+      <p><b><i><font size="+2">Optimisation Shell Inverse</font></i></b>
+      </p>
+      <p><b><font size="+1">Version 0.0</font></b> <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <p><i>Igor Gresovnik</i> </p>
+      <p><i><font size="-1">Ljubljana, the 20<sup> th</sup> of November
+            1998</font></i></p>
+    </center>
+    <p><br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </p>
+    <p><a name="contents"></a><b><font color="#CC0000"><font size="+1">Table
+of
+
+
+            contents:</font></font></b> <br>
+      &nbsp; </p>
+    <p><b><i>1 Introduction </i></b><a href="#_Toc436572932">*</a> </p>
+    <dir><b><font size="+0">1.1 How to Use this Guide </font></b><a
+        href="#_Toc436572933">*</a>
+      <p><b><font size="+0">1.2 About the History of Inverse </font></b><a
+          href="#_Toc436572934">*</a></p>
+    </dir>
+    <b><i>2 Short User's Guide </i></b><a href="#_Toc436572935">*</a>
+    <dir><b><font size="+0">2.1 Basic Concepts </font></b><a
+        href="#_Toc436572936">*</a> <br>
+      &nbsp;
+      <dir><font size="-1">2.1.1 Introduction </font><a
+          href="#_Toc436572937">*</a></dir>
+      <dir><font size="-1">2.1.2 File Interpreter </font><a
+          href="#_Toc436572938">*</a>
+        <p><font size="-1">2.1.3 Expression evaluator (calculator) </font><a
+            href="#_Toc436572939">*</a> </p>
+        <p><font size="-1">2.1.4 User defined variables </font><a
+            href="#_Toc436572940">*</a> </p>
+        <p><font size="-1">2.1.5 Conection with the Simulation Programme
+          </font><a href="#_Toc436572941">*</a></p>
+      </dir>
+      <p><br>
+        <b><font size="+0">2.2 Running Direct Analysis </font></b><a
+          href="#_Toc436572942">*</a> </p>
+      <p><b><font size="+0">2.3 An Example of Running Inverse Analysis </font></b><a
+          href="#_Toc436572943">*</a> <br>
+        &nbsp; </p>
+      <dir><font size="-1">2.3.1 Problem description </font><a
+          href="#_Toc436572944">*</a>
+        <p><font size="-1">2.3.2 Command file for the optimisation shell
+          </font><a href="#_Toc436572945">*</a></p>
+      </dir>
+    </dir>
+    <dir>&nbsp;</dir>
+    <ol>
+      <li> <a name="_Toc436572932"></a><b><font size="+2">Introduction</font></b></li>
+      <br>
+      &nbsp;
+      <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+        <tbody>
+          <tr nosave="" valign="TOP">
+            <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a
+                    href="../manlist/index.html#list">Manuals list &amp;
+                    contents</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a href="#contents">Table
+                    of contents&nbsp;</a></font></b></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><i>INVERSE</i> is a general-purpose programming shell for
+        solving inverse and optimisation problems. In principle it is
+        designed for use with other programmes which can perform
+        simulations of what we want to optimaze. It can be used
+        stand-alone for testing and training purposes and for numerical
+        experimentation. </p>
+      <p>History of <i>INVERSE</i> began in spring 1994. It was created
+        for solving inverse problems in continuum mechanics. It used a
+        finite element method based programme <i>Elfen</i> developed in
+        <i>Rockfield Software</i>, Swansea, for direct simulations. The
+        first interface with the simulation programme was therefore made
+        for <i>Elfen</i>. It used <i>Elfen'</i>s input and output
+        files for accessing the data. It is believed that a direct
+        interface with this programme will be available in a year or
+        two. This interface will allow direct access to simulation input
+        and output data and better control over simulation from the
+        shell. </p>
+      <p>User of the shell is not bound by <i>Elfen</i> as a simulation
+        programme because a <b>general file interface</b> is available
+        in <i>INVERSE</i>. By this interface user can access and
+        replace data in text files and can therefore use <i>Inverse</i>
+        in connection with any simulation programme which uses text
+        input and output files. However, for simplicity in many examples
+        it will be assumed that user uses <i>Elfen</i> as a simulation
+        programme. Sometimes in these examples functions for interfacing
+        <i>Elfen</i> will be stated. User should know that he must
+        replace these functions with appropriate code which will
+        properly interface the simulation programme he uses. </p>
+      <p>Using the general file interface proved approximately as quick
+        as using built-in routines for accessing data in simulation
+        programme's input and output files. Therefore, the additional
+        cost when using a simulation programme for which interfacing
+        functions are not yet built in the shell, should be negligible.
+        A direct interface would of course be much faster, but will be
+        available only for a limited numbers of programmes (in the
+        future we will try to build such interfaces for as many well
+        known simulation programmes as possible). However, data exchange
+        through files should typically take much less than a single
+        simulation and therefore be acceptable. This especcially holds
+        if user can control input and output of the simulation programme
+        he uses well. In this case he can achieve that only the
+        necessary data is transfered between the simulation programme,
+        its input and output files and <i>Inverse</i>. Interfacing
+        through files using the shell's general file interface becomes
+        very quick this way and there is no need for a direct interface.
+        <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <ul>
+        <li> <a name="_Toc436572933"></a><b><i><font size="+1">How to
+                Use this Guide</font></i></b></li>
+        <br>
+        &nbsp;
+        <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+          <tbody>
+            <tr nosave="" valign="TOP">
+              <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a
+                      href="../manlist/index.html#list">Manuals list
+                      &amp; contents</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a href="#contents">Table
+                      of contents&nbsp;</a></font></b></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc436572934"></a><b><i><font size="+1">About
+                the History of Inverse</font></i></b></li>
+        <br>
+        &nbsp;
+        <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+          <tbody>
+            <tr nosave="" valign="TOP">
+              <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a
+                      href="../manlist/index.html#list">Manuals list
+                      &amp; contents</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a href="#contents">Table
+                      of contents&nbsp;</a></font></b></td>
+            </tr>
+          </tbody>
+        </table>
+      </ul>
+      <p><br>
+        Igor Gresovnik began to develop Inverse in spring 1998 while
+        finishing his final degree at the University of Ljubljana. His
+        idea was to gather various tools for solving optimization and
+        inverse problems in an organized environment which would provide
+        generalized methods for interaction with simulation programmes
+        and a flexible user interface. </p>
+      <p>The first version of the programme was completed in May 1998.
+        It included a small collection of optimization algorithms and a
+        line file interpreter which served as an user interface. The
+        programme communicated with simulation programme through simple
+        files with pre-defined syntax. Rockfield Software's programme
+        Elfen was used for simulations. It was adapted case-to-case for
+        use with the shell so that it printed the required final data in
+        a specified format to the interface file. </p>
+      <p>After finishing his final degree, Igor Gresovnik devoted most
+        of his time to the development of the programme. In November
+        1998 version 1.0 was finished. A system for evaluation of
+        mathematical expressions (also referred to as "expression
+        evaluator" or simply "calculator") was developed and line
+        interpreter was replaced by more flexible command interpreter
+        which allowed flow control. Initially awkward framework so
+        developed into a programme which fitted the basic idea quite
+        well. </p>
+      <p>In December 1998 Igor employed himself in C3M. He registered
+        Ph.D. study at the Swansea University and continued to develop
+        Inverse for needs of the C3M's research projects. In April 1995
+        version 2.0 was finished. This was an improved version 1.0 which
+        included a general file interface with the simulation programme
+        Elfen. From this version on there was no need any more to make
+        changes in Elfen's code for every different case which was
+        solved. </p>
+      <p>In October 1996 version 2.5 was finished Basic gain was a set
+        of functions for accessing global pre-defined variables of the
+        shell. Typical interlaced structure with unlimited data exchange
+        between individual modules was emphasized. This structure became
+        more obvious in version 2.7 (finished in July 1997) in which the
+        concept of user-defined global variables (vectors and matrices
+        at that time) was introduced. This was a great step because in
+        previous only pre-defined variables and scalar variables of the
+        expression evaluator were available for internal data handling,
+        including storage and transfer between modules. In version 2.7
+        the user-defined functions of the interpreter and calculator
+        through file interpreter were also enabled. </p>
+      <p>As can be seen, the development between versions 2.0 and 2.7
+        was relatively slow. On the other hand, this period was crucial
+        for the development and of general concepts on which the shell
+        is based. In this period an attempt was made to increase
+        development capacity by training new developers, but has
+        unfortunately failed completely. Igor Gresovnik remained the
+        only developer of the shell till summer 1998. The reason for
+        that were, beside extreme bad luck at the first attempt of
+        getting new developers, also some fatal mistakes in the cadre
+        policy committed both by Igor and by the C3M management. </p>
+      <p>Novelties have been introduced regularly since summer 1997. The
+        basis for parallelization was built by October 1997. Syntax
+        checker and debugger were developed by April 1998. The system of
+        user-defined variables was changed so that every variable could
+        hold a whole table of elements with arbitrary dimensions. Status
+        of pre-defined variables has also changed. Their treatment
+        became similar to the treatment of user-defined variables
+        differing only in slightly different behaviour of some functions
+        for handling global variables. Beside that, there are some
+        functions which operate only on specific pre-defined variables.
+        Scalar variables were added (before the expression evaluator
+        variables accomplished their function). Treatment of files has
+        also changed so that it unified with the treated of other
+        user-defined global variables. </p>
+      <p>Summer 1998 was partially spent in adapting parts of the
+        programme to conceptual changes which accumulated in the last
+        year. Beside that, a general file interface was developed by
+        July. This interface in principle enables connection of the
+        shell with any simulation programme without adapting the shell's
+        source code. </p>
+      <p>Summer 1998 is especially important for the shell because its
+        developing team got a new member for the first time. Damjan
+        Jelovsek entered the training period for an Inverse developer.
+        His first assignment, done by August 1998, was construction of
+        an interface for reading and replacing fields in Elfen's input
+        and output files. <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <li> <a name="_Toc436572935"></a><b><font size="+2">Short User's
+            Guide</font></b></li>
+      <br>
+      &nbsp;
+      <p>&nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <ol>
+        <li> <a name="_Toc436572936"></a><b><i><font size="+1">Basic
+                Concepts</font></i></b></li>
+        <br>
+        &nbsp;
+        <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+          <tbody>
+            <tr nosave="" valign="TOP">
+              <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a
+                      href="../manlist/index.html#list">Manuals list
+                      &amp; contents</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a href="#contents">Table
+                      of contents&nbsp;</a></font></b></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        &nbsp;
+        <ol>
+          <li> <a name="_Toc436572937"></a><b><font size="+1">Introduction</font></b></li>
+          <br>
+          &nbsp;
+          <p>&nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <p>Optimisation shell Inverse is designed for solving inverse
+            and optimisation problems. Simulation programme, typically a
+            finite element method (FEM) based programme is used for
+            evaluation of the objective and constraint functions. </p>
+          <p>The solution scheme of tyuical problem solved by the shell
+            is shown in Figure 1. Tasks on the left side of the figure
+            are a part of the optimisation algorithm which minimises the
+            objective function. The right part of the scheme is referred
+            to as "direct analzsis" or "simulation". It represents the
+            main part of the evaluation of the objective and constraint
+            functions and is ususllz performed bz a separate programme
+            or a separate module. </p>
+          <p>In the solution scheme of optimisation or inverse problems,
+            the shell provides optimisation algorithms and an
+            environment in which one can link these algorithms with the
+            simulation programme which is used for evaluation of the
+            objective and constraint functinons and possibly their
+            gradients. Beside optimisation algorithms the shell also
+            provides the user with other tools necessary to approach
+            optimisation problems effectively, i.e. tabulating
+            utilities, some basic mathematical tools, etc. Beside the
+            tools which are dierctly sed for solving optimisatiion
+            problems, the shell provides tools for manipulating the
+            simulation environment which plays crucial role at the
+            problem definition. At the end, the shell provides an
+            environment in which the user can use both set of tools in
+            order to properly define and solve various kinds of the
+            optimisation problems. <br>
+            &nbsp; <br>
+            &nbsp; <br>
+          </p>
+          <center>
+            <p><img src="Image111.gif" width="492" height="365"></p>
+          </center>
+          <p><a name="_Ref432408911"></a><a name="_Ref432408932"></a><b>Figure
+
+
+              1<i>: A solution scheme for an optimisation problem.</i></b>
+            <br>
+            &nbsp; </p>
+          <p>Figure 2 shows how the shell is used in combination with a
+            simulation programme to form a flexible optimisation system
+            for solving inverse and optimisation problems. User of the
+            system defines a skeleton of the direct problems that are
+            successively solved during the optimisation process, by the
+            simulation unitt's pre-processor. </p>
+          <p>The optimisation problem and the solution strategy are
+            defined through the shell's command file. To ensure high
+            flexibility at defining various problems, the command fille
+            syntax resembles a high level programming language. All
+            necessary supporting utilities like optimisation algorithms,
+            function definition facilities, mathematical tools (function
+            aproximation, matrix operations, etc.) and interfacing with
+            the direct simulation, are provided through the pre-defined
+            shell interpreter's functions. Data transfer between these
+            utilities, implemented as separated modules of the shell, is
+            provided through the shell's global variables. </p>
+          <p>In the solution procedure the shell interprets the command
+            file. Everything what happens is either explicitly or
+            implicitly defined in the command file. Typically, the core
+            part of the solution procedure is a built-in optimisation
+            algorithm, whose execution is triggered from the command
+            file. The algorithm successively executes direct problems at
+            different sets of the design parameters. Direct problems are
+            defined in a special block of commands in the command file.
+            The simulation interfacing functions are used to properly
+            update the direct analysis definition according to the
+            design parameters and to read and combine the analysis
+            results to form the information needed by the optimisation
+            algorithm (i.e. the objective and constraint functions
+            values and theit derivatives with respect to the design
+            parameters). <br>
+            &nbsp; <br>
+            &nbsp; <br>
+          </p>
+          <center>
+            <p><img src="Image112.gif" width="466" height="431"></p>
+          </center>
+          <p><a name="_Ref432414015"></a><b>Figure 2: </b><i>Scheme of
+              the optimisation system which consists of the shell and an
+              optimisation programme.</i> <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <li> <a name="_Toc436572938"></a><b><font size="+1">File
+                Interpreter</font></b></li>
+          <br>
+          &nbsp;
+          <p>&nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <p>User of the optimisation system accesses all built-in tools
+            of the optimisation shell through the file interpreter's
+            functions. When the shell is run, its file interpreter
+            interprets the command file written by the user and executes
+            the appropriate actions. </p>
+          <p>Syntax of the command file is very simple. It consists of
+            function names each of which is followed by an argument
+            block in crly brackets. Curly brackets following function
+            names are necessary even when functions take no arguments
+            (in this case brackets are empty). </p>
+          <p>The order in which functions should be called is not
+            defined in advance and is affected only by the logics of the
+            procedure which is defined through the command file. For
+            example, if we run commands which operate on files, we must
+            take care about opening the appropriate files first. If we
+            run an optimisation algorithm, we must previously define how
+            the objective and constraint functions, etc., are evaluated.
+          </p>
+          <p>The file interpreter does not enforce any rules how
+            arguments should be passed to functions through the argument
+            list. It is the matter of the interpreter's functions how
+            they interpret arguments in their argument blocks. Some
+            general rules are set about format of specific types of
+            arguments, however functions can be written which don't obey
+            these rules completely. These functions are exceptional and
+            in the instructions for their use the formats of their
+            argument lists are is always exactly described. </p>
+          <p>Beside functions which trigger pre-defined algorithms and
+            built-in tools of the shell, there are also flow control
+            functions, i.e. functions which enable branches and loops.
+            The rules for these functions are the same as for the
+            others. It is typical for them that their argument lists
+            contain blocks of commands which are interpreted by the
+            interpreter if certain conditions are flfilled. These
+            conditions are specified by the user in the form of
+            mathematical expressions which are evaluated by the shell's
+            expression evaluator. Expression evaluator is a special
+            module of the shell which enables evaluation of mathematical
+            expressions. </p>
+          <p>Here is a simple example of the use of the <b>while</b>
+            loop: </p>
+          <p><b><font size="-1">=</font>{i:1}</b> <br>
+            <b>while{ (i&lt;=10)</b> <br>
+            <b>[</b> <br>
+            <b>={i : i+1}</b> <br>
+            <b>write{" i = " $i \n}</b> <br>
+            <b>]}</b> </p>
+          <p>The first function (<b>=</b>) sets expression evaluator's
+            variable <i>i</i> to 1. This variable is also created
+            because it has not existed before. The <b>while</b>
+            function which is an implementation of the <i>while</i>
+            loop follows. The function takes two arguments: the first
+            one is condition - a mathematical expression in round
+            brackets. The second one is a block in square brackets which
+            is successively executed (interpreted) while the condition
+            is fulfilled, i.i. while the the expression in round bracket
+            evaluates to a non-zero value. In the present example, we
+            add 1 to variable i and write its value while it is not
+            greater than 10. </p>
+          <p>Beside the <b>while</b> loop, the interpreter knows the <b>do</b>
+            loop and the <b>if</b>/else<b> </b>branch. syntax is the
+            following: </p>
+          <p><b>while</b> <i>{ (expression) [block] }</i> <br>
+            <b>do<i> </i>{ [block] (expression) }</b> <br>
+            <b>if<i> </i>{ (expression) [block1] &lt; else [block2]
+              &gt; }</b> </p>
+          <p>The <b>do</b> function executes the block in square
+            brackets until the value of the expression in the round
+            brackets becomes zero. The <b>if</b> function executes the
+            block in the first square brackets if the expression in the
+            round brackets evaluates to zero. Otherwise it executes the
+            block in the second square brackets in the case it is given
+            (this block is optional, which is indicated by angle
+            brackets in the <b>if</b> command syntax definition). The
+            word <i>else</i> is meaningless for the interpreter, but
+            can be added for clearness of the code. </p>
+          <p>The user can define new interpreter functions by the
+            interpreter. This can be done bz the interpreter-s function
+            <b>function</b> with the following syntax: </p>
+          <p><b>function</b> <i>{name (arguments) [definition] }</i> </p>
+          <p><i>name</i> is the name of new interpreter-s function
+            defined this way. <i>arguments</i> is the round brackets is
+            a list of formal arguments where their names are separated
+            bz spaces. The <i>definition</i> block follows in the
+            square brackets. Every time the newly defined function is
+            called in the command file, all appearences of formal
+            parameters in the <i>definition</i> block are replaced by
+            real parameters on the string bases and then the <i>defiition</i>
+            block is intepreted. The appearences of formal parameters in
+            the <i>definition</i> block are designated by argument
+            names preceeded by the "$" sign. </p>
+          <p>Expression evaluator (also referred to as <i>calculator</i>)
+            serves for evaluation of mathematical expressions given as
+            string arguments of the file interpreter's functions. Its
+            important use is in flow control functions for evaluation of
+            conditions for loops and branches. Normally, mathematical
+            expressions can also be used in place of numerical arguments
+            of the file interpreter's functions (there are some rare
+            exceptions). </p>
+          <p>There are two interpreter's functions which manipulate the
+            expression evaluator's system, i.e. <b>=</b> and <b>$</b>.
+            The <b>= </b>function assigns a numerical value to a
+            calculator's variable and creates that variable if it has
+            not been defined yet. The $ function assigns a definition to
+            a calcularor's variable or function. This function also
+            creates an object anew if it has not been defined yet. </p>
+          <p>Here is an example how these functions can be used: </p>
+          <p><b><font size="-1">=</font> { b : 3*4 }</b> <br>
+            <b>$ { c : b+2*a }</b> <br>
+            <b>= { a : b/3 }</b> <br>
+            <b>$ { f1[x,y] : a*f2[x] }</b> <br>
+            <b>$ { f2[t] : t*t }</b> <br>
+            <b>= { b : f2[a] }</b> </p>
+          <p>With the first <b>=</b> function we assign the value of
+            expression "<i>3*4</i>", i.e. 12, to the expression
+            evaluator's variable <i>b</i> which is also created since
+            it has not existed before. With the <b>$</b> command which
+            follows we define a new variable <i>c</i> so that it
+            represents the expression "<i>b+2*a"</i>. This expression
+            does not have a defined value since the variable <i>a</i>
+            has not been defined yet. The definiton of <i>b</i> is
+            symbolical and its value will not be defined untill we
+            define <i>a</i>. This is done with the next <b>=</b>
+            function which creates the variable a and assigns the value
+            of the expression "<i>b/3</i>", i.e. 4, to it. With the next
+            <b>$</b> function we define a new calculator's function
+            named <i>f1</i>. It is defined the expression "<i>a*f2[x]</i>"
+            where <i>a</i> referres to a expression evaluator's
+            variable, <i>x</i> and <i>y</i> will be at function
+            evaluation replaced by the arguments with which function is
+            called, and <i>f2</i> is the expression evaluator's
+            function named <i>f2</i> which is at this point not
+            defined. The definition is again symbolical, so it will be
+            able to use the newly defined function in expression
+            evaluations as soon as the function <i>f2</i> is defined.
+            This is done in the next line where we define function <i>f2</i>
+            as square of its only argument. In the last line we assign
+            the value of expression "<i>f2[a]</i>" to variable <i>b</i>.
+            The value of <i>b</i> so becomes 16 instead of 12, since
+            since the value of a is 4 and the function <i>f2</i>
+            evaluates to square of its only argument by the definition
+            made in previous line. Because the value of <i>b</i> has
+            ben changed, the value of <i>c</i> in expressions also
+            changes because <i>c</i> is defined through an expression
+            which contains the variable <i>b</i>. The value of <i>a</i>
+            does not change, because the present value of the expression
+            "<i>b/3"</i> has been assigned to <i>a</i>, not the
+            expression itself. </p>
+          <p>The expression evaluator has pre-installed some basic
+            mathematical functions like trigonometric and hyperbolic
+            functions, and it knows basic algebraic operators like +, *,
+            -, etc. The user can arbitrarily combine these functions and
+            operators to define new evaluator's variables and functions.
+            Besides, new functions can also be defined through the
+            shell's file interpreter by the function <b>definefunction</b>.
+            At each evaluation of such function its definition block is
+            interpreted. </p>
+          <p>Of special importance are the pre-defined expression
+            evaluator's functions through which the user can access the
+            global variables of the shell. All relevant data are stored
+            in such variables during the shell's execution. Through the
+            appropriate expression evaluator's functions these data can
+            be used in the flow control conditions or as arguments to
+            file interpreter's functios. This way, results of shell's
+            algorithms can be used as input for another algorithms and
+            unlimited data transfer between different modules and
+            utilities of the shell is provided. <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <li> <a name="_Toc436572940"></a><b><font size="+1">User
+                defined variables</font></b></li>
+          <br>
+          &nbsp;
+          <p>&nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <p>User defined variables are used for data storage and data
+            exchange between modules and utilities of the shell.
+            Different types of variables (i.e. scalar, vector, matrix or
+            field variables) enable storage of different types of data.
+            These variables are separated from the expression evaluator,
+            but for most of their types there are pre-defined
+            evaluator's functions which can access numerical data stored
+            in them. Each variable type has its own set of interpreter's
+            and evaluator's functions for handling variables of that
+            type. This includes creating, copying and renaming variables
+            and setting and accessing data stored in them. </p>
+          <p>Each user-defined variable can contain a multi-dimensional
+            table of elements of a certain type. This enables grouping
+            of pieces of data with similar meaning. Number of dimensions
+            of such element table will be referred to as variable rank.
+            Number of elements which a variable can hold equals products
+            of its dimensions, or 1 if the variable rank is 0. Rank and
+            dimensions of variables are specified by user when they are
+            created by appropriate functions. </p>
+          <p>In argument blocks of file interpreter's functons specific
+            data element are referred by variable element
+            specifications. These consist of a variable name and an
+            optional index specification. Index specification is a list
+            of indeces in square brackets which specify the position of
+            data element in the variable's element table. It must be
+            given if the rank of the appropriate variable is different
+            than zero. Let's say that the user has defined a vector
+            variable named "<i>v1</i>" which holds a three-dimensional
+            table of vectors with dimensons 2, 4 and 3. The last of its
+            34 elements is then referred to as "<i>v1[2,4,3]"</i> or "<i>v1[2
+
+              4 3]"</i>. </p>
+          <p>Some variables have a pre-defined meaning and are reserved
+            for carrying exactly specified information. For example, a
+            scalar variable named <i>objectivemom</i> holds the lastly
+            evaluated objective function(s) during the execution of
+            optimisation algorithms. Pre-defined variables serve for
+            automatic storage of important intermediate or final results
+            of algorithms and for transfer of data between direct
+            analyses and optimisation algorithms. <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <li> <a name="_Toc436572941"></a><b><font size="+1">Conection
+                with the Simulation Programme</font></b></li>
+          <br>
+          &nbsp;
+          <p>&nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <p>Optimisation algorithms consequently evaluate the objective
+            and constraint functions (and possibly their derivatives),
+            which are defined via the simulation. The optimisation shell
+            must therefore provide a mechanism of definining how the
+            constraint and objective functions are evaluated, take care
+            for performing this evaluation in the optimisation
+            algorithms and enable proper data transfer between
+            optimisation algorithms and direct analysis. </p>
+          <p>Two concepts are crucial for providing this functionality.
+            First, the evaluation of the objective and constraint
+            function is performed via interpretation of a specific block
+            of code in the command file in which the user exactly
+            defines how these functions are evaluated, together with
+            execution of the simulation programme and necessary
+            interfacing with simulation input and results. By convention
+            this is the argument block of the interpreter's function <b>analysis</b>.
+          </p>
+          <p>Second, transfer of data between the shell's built-in
+            algorithms or utilities and the direct analysis defined by
+            the user through the argument block of the <b>analysis</b>
+            function is implemented through the shell's variables with
+            pre-defined meaning. When an optimisation algorithm requires
+            evaluation of the objective and constraint functions, the
+            parameters at which the direct analysis should be perfrmed
+            are written to the vector variable <i>parammom</i> and then
+            the argument block of the <b>analysis</b> function is
+            interpreted. Within this block, which defines the direct
+            analysis, parameter values can be accessed through vector
+            variable <i>parammom</i> and used in interface functions to
+            update the simulation input according to these parameter
+            values. The file interpreter's and expression evaluator's
+            functions are then used to run the simulation, collect its
+            results relevant to the optimisation algorithm and to
+            evaluate the necessary functions like the objective and
+            constraint funcrions and their gradients. At the end of the
+            <b>analysis</b> function argument block the evaluated data
+            must be stored in the appropriate pre-defined variables
+            where the optimisation algorithm can pick them. For example,
+            the objective function values must be stored in the scalar
+            variable <i>objectivemom</i>. </p>
+          <p>In fact there is another interface function between each
+            optimisation algorithm and the direct analysis definition.
+            This function is called in the algorithm's code when the
+            evaluation of the objective or constraint function is
+            required. It stores its input argument (vectore of
+            parameters set by the optimisation algorithm) to the scalar
+            variable <i>parammom</i>, interprets the argument block of
+            function <b>analysis</b>, and returns data stored in the
+            appropriate global variables to the optimisation algorithm.
+            <br>
+            &nbsp;</p>
+        </ol>
+        <br>
+        &nbsp;
+        <li> <a name="_Toc436572942"></a><b><i><font size="+1">Running
+                Direct Analysis</font></i></b></li>
+        <br>
+        &nbsp;
+        <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+          <tbody>
+            <tr nosave="" valign="TOP">
+              <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a
+                      href="../manlist/index.html#list">Manuals list
+                      &amp; contents</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a href="#contents">Table
+                      of contents&nbsp;</a></font></b></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>The simplest use of the shell is for parametric studies, i.e.
+          for running direct analyses at diffrent sets of parameters.
+          Even when an inverse or oprimisation problem needs to be
+          solved it is recommended that direct analysis is run first to
+          test if the problem was set correctly and there are no
+          problems with the simulation. </p>
+        <p>In this chapter en example of how to prepare a command file
+          for running a direct analysis at a specific set of parameters
+          is shown. The file is prepared for inverse analysis with two
+          parameters and four measurements. The meaning of specific
+          commands is explained and some conceptual details are are
+          discussed on the example. <br>
+          &nbsp; <br>
+          &nbsp; </p>
+        <li> <a name="_Toc436572943"></a><b><i><font size="+1">An
+                Example of Running Inverse Analysis</font></i></b></li>
+        <br>
+        &nbsp;
+        <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+          <tbody>
+            <tr nosave="" valign="TOP">
+              <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a
+                      href="../manlist/index.html#list">Manuals list
+                      &amp; contents</a></font></b></td>
+              <td nosave=""><b><font size="-1"><a href="#contents">Table
+                      of contents&nbsp;</a></font></b></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>An example code of how to run an inverse analysis is shown in
+          this chapter. The parts of the command file are explained and
+          some conceptual details are discussed. <br>
+          &nbsp; <br>
+          &nbsp; </p>
+        <ol>
+          <li> <a name="_Toc436572944"></a><b><font size="+1">Problem
+                description</font></b></li>
+          <br>
+          &nbsp;
+          <p>&nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <p>The example deals with inverse identification of hardening
+            parameters of the potential law for the hardening curve. The
+            identification is performed on the basis of experimental
+            data obtained with the tension test where forces at
+            different elongations of the specimen are measured (Figure
+            3). Model parameters <i>C</i> and <i>n</i> are obtained by
+            minimising the function </p>
+          <p><img src="Image113.gif" width="217" height="74"> , (1) </p>
+          <p>where&nbsp;<img src="Image114.gif" width="36" height="32">
+            are measured forces at different elongations;&nbsp;<img
+              src="Image115.gif" width="54" height="26"> are the
+            respective quantities calculated with the finite element
+            model by assuming trial values of parameters <i>C</i> and <i>n</i>;&nbsp;<img
+              src="Image116.gif" width="20" height="22"> are the
+            expected errors of the appropriate measurements and&nbsp;<img
+              src="Image117.gif" width="18" height="17"> is the number
+            of measurements. <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            <br>
+          </p>
+          <center>
+            <p><img src="Image118.gif" width="408" height="452"></p>
+          </center>
+          <p><a name="_Ref433010979"></a><b>Figure 3:</b> <i>Inverse
+              identification of hardening parameters from results of the
+              tension test.</i> <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <li> <a name="_Toc436572945"></a><b><font size="+1">Command
+                file for the optimisation shell</font></b></li>
+          <br>
+          &nbsp;
+          <p>&nbsp; <br>
+            &nbsp; <br>
+            &nbsp; </p>
+          <p>The code in the shell's command file which solves the
+            problem is given below. Line numbers are added because of
+            easier referencing. Functions <b>comment</b> or <b>*</b>
+            are used for comments. These functions do nothing, so what
+            is in their argument blocks can be used for in-code
+            comments. </p>
+          <ol>
+            <li> <b><font size="-1">comment </font><i>{ beginning of
+                  the command file }</i></b></li>
+            <li> <b>setfile{outfile "test.ct"} <i>*{output file of the
+                  shell}</i></b></li>
+            <li> <b>setvector{ meas 4 {1:62200} {2:67800} {3:68900}
+                {4:68000} } <i>*{ vector of measurements}</i></b></li>
+            <li> <b>setvector{ sigma {1 1 1 1} } <i>*{ vector of
+                  measurement erors }</i></b></li>
+            <li> <b><i>*{ Definition of a new function in expression
+                  evaluator: }</i></b></li>
+            <li> <b>${force[inc]: nodreac[inc,4,1] +nodreac[inc,5,1]
+                +nodreac[inc,6,1] +nodreac[inc,7,1] +nodreac[inc,8,1] }</b></li>
+            <li> <b>analysis</b></li>
+            <li> <b>{</b></li>
+            <li> <b><i>*{ beginning of the "analysis" block }</i></b></li>
+            <li> <b>setfile{aninfile "test.dat"} <i>*{ simulation
+                  programme's input file }</i></b></li>
+            <li> <b>initinput{} <i>*{ initialization of interface }</i></b></li>
+            <li> <b>setparam{} <i>*{ updating parameters in simulation
+                  programme's input data }</i></b></li>
+            <li> <b>system{"elfen16 test"} <i>*{ running a simulation
+                  programme }</i></b></li>
+            <li> <b>setfile{anoutfile "test.res"} <i>*{ simulation
+                  programme's output file }</i></b></li>
+            <li> <b>initoutput{} <i>*{ initialization of interface }</i></b></li>
+            <li> <b>meas{1 "force[1]"} <i>*{ setting components of
+                  simulated measuremets }</i></b></li>
+            <li> <b>meas{2 "force[2]"}</b></li>
+            <li> <b>meas{3 "force[3]"}</b></li>
+            <li> <b>meas{4 "force[4]"}</b></li>
+            <li> <b><i>* { end of the analysis block }</i></b></li>
+            <li> <b>}</b></li>
+            <li> <b>setoption {autochi2}</b></li>
+            <li> <b>setvector{ parammom 2 {1276 0.1124} } <i>*{
+                  setting vector of parameters }</i></b></li>
+            <li> <b>analyse{} <i>*{ running analysis at given
+                  prameters }</i></b></li>
+            <li> <b>setvector{parammom 2}</b></li>
+            <li> <b>inverse <i>*{ running inverse analysis }</i></b></li>
+            <li> <b>{</b></li>
+            <li> <b>nd simplex 0.001 300</b></li>
+            <li> <b>3 2</b></li>
+            <li> <b>{</b></li>
+            <li> <b>{1 1: 1000 }</b></li>
+            <li> <b>{1 2: 0.1 }</b></li>
+            <li> <b>{2 1: 1100 }</b></li>
+            <li> <b>{2 3: 0.1 }</b></li>
+            <li> <b>{3 1: 1000 }</b></li>
+            <li> <b>{3 2: 0.11 }</b></li>
+            <li> <b>}</b></li>
+            <li> <b>}</b></li>
+            <li> <b>comment<i>{ end of the command file }</i></b></li>
+          </ol>
+          With the <b>setfile</b> command in the second line the file <i>outfile</i>
+          is open. The first argument of the command is the internal
+          name of the file and the second argument is the name of
+          physical file on the disk which is connected with this name. <i>outfile</i>
+          is by convention a file into which results of shell's
+          operations are written, so from this point on the output of
+          shell's functions will be written to the file named <i>test.ct.</i>
+          Functions also print their output to the standard output of
+          the shell (usually the terminal window in which the shell was
+          run). The <b>setfile</b> function can also take the third
+          argument which specifies how the file is open. In this case
+          the file is open only for writing which is a convention for
+          the pre-defined file <i>outfile</i>. If the file exists
+          before it is overwritten.
+          <p>The <b>setvector</b> command in line 3 creates the vector
+            variable <i>meas</i> and sets its only vector element as
+            specified in its argument block. Vector dimension (4) is
+            specified first, then the component values follow. <i>meas</i>
+            is a vector variable with pre-defined meaning and holds the
+            measurements for inverse analysis. </p>
+          <p>With the next <b>setvector</b> command vector <i>sigma</i>
+            (vector of measurement errors) is set. <i>sigma</i> is also
+            a vector variable with a pre-defined meaning which have by
+            definition the same dimension as the vector <i>meas</i>.
+            Since this dimension is already known because it was
+            specified when vector <i>meas</i> was set, it does not need
+            to be specified again and therefore only the four vector
+            components are set. Vectors can be given in various
+            different formats which will be discussed later. </p>
+          <p>A new expression evaluator's function <i>force</i> is
+            defined by the <b>$</b> command in line 6. This function
+            will return the simulated forces at increments specified by
+            the only arguments. These forces will be extracted from the
+            simulation output by the expression evaluator's built-in
+            functions <b>nodreac</b>. These functions are a part of the
+            shell-simulation interface and can extract nodal reactions
+            from the output of the finite element simulation programme.
+            this function is at the moment available only for the FEM
+            programme Elfen and extract data only for programme's output
+            file. The shell-simulation interface must be initialised
+            before this function is evaluated. For some other simulation
+            programmes interfaces will be available in the future. When
+            the interface with a particular simulation programme is not
+            implemented in the shell, the general file interface
+            utilities can be used to extract the data from the
+            simulation output file. With this utilities data can be
+            obtained from any text output file with a known format, but
+            this requires few additional lines in th command file. The
+            user can also build teh whole set set of interfacing
+            functions based on the general file interface utilities. </p>
+          <p>With the <b>analysis</b> command in line 7 it is specified
+            how the direct analysis at specific parameter values is
+            performed. The argument block of this commmand is
+            interpreted by the shell's file interpreter every time the
+            direct analysis is performed. Therefore interpretation of
+            this block is a part of evaluation of the objectiv eand
+            constraint functions and possibly their derivatives with
+            respect to parameters. Execution of the <b>analysis</b>
+            function itself does not do much, actually it only stores
+            the position of its argument block so that it can be found
+            and interpreted when the evaluation of the objective or
+            constraint functions or their gradients is requested. </p>
+          <p>The first command in the argument block of the <b>analysis</b>
+            command, <b>setfile</b>in line 10, connects the file
+            variable <i>aninfile</i> with the file <i>test.dat</i> and
+            opens that file. The file is open for writing since <i>aninfile</i>
+            ia a pre-defined file variable used for the simulation input
+            file. The next command, <b>initinput</b>, initialises the
+            shell's interface with the simulation programme's input
+            file. This command must be executed before using functions
+            for setting input data for the simulation. This is the
+            property of current interface with the finite element
+            programme <i>Elfen</i> and is not in general valid for
+            interfacing with other simulation programme (see references
+            for interfaces with other programmes or the reference for
+            the general file interface) Among the others, the <b>initinput</b>
+            command sets the file on which the interface functions wil
+            operate to the file connected with the file variable <i>anindile</i>.
+          </p>
+          <p>The <b>setparam</b> function which is called next is a
+            part of the file interface. This function sets the current
+            values of input parameters in the simulation's input file.
+            These values are fined in the vector variable <i>parammmom</i>,
+            which by convention holds current parameter values. In the
+            interface with <i>Elfen</i>, the user must designate the
+            placer in <i>Elfen's</i> input file where the parameters
+            must be updated, so that the <b>setparam</b> function can
+            find these places and update the appropriate values. Again,
+            different rules apply to other interfaces. </p>
+          <p>The <b>system</b> command in line 13 runs the simulation
+            programme with the updated input data which is in this case
+            read from file. At the rest of the <b>analysis</b>
+            function's argument block, the necessary results are read
+            and the appropriate function values (like the objective
+            function) are evaluated. </p>
+          <p>The <b>setfile</b> function in line 14 sets connects the
+            file variable <i>anoutfile</i> with the file <i>test.res</i>
+            and opens that file for reading. <i>anoutfile</i> is also a
+            pre-defined file variable which represents the analysis
+            output file. </p>
+          <p>The <b>initoutput</b> command initialises the part of the
+            interface which interact with the analysis output. It must
+            be executed before the interface functions for extracting
+            results are called or evaluated. </p>
+          <p>The next four calls of the <b>meas</b> function (lines 16
+            to 19) specify how the values of the vector <i>measmom</i>
+            will be calculated. The first argument of each function is
+            the number of component which is evaluated and the second
+            argument is a mathematical expression i double quote, the
+            value of which is assigned to that component. The function <b>meas</b>
+            evaluates the expression by the expression evaluator and
+            assigns its value to the appropriate component of vector <i>measmom</i>.
+            In all four cases, expressions include the expression
+            evaluator's function <i>force</i> which was defined in line
+            6. This function includes calls to the expression
+            evaluator's function <b>nodreac</b> which is a part of the
+            shell's interface with the simulation programme <i>Elfen</i>.
+            This function evlauates to a specific component of the nodal
+            reaction at a specific node after a specific increment. The
+            increment number, node number and component are arguments of
+            the function, while th ereturned information is extracted
+            from the simulation output file which becomes known to the
+            interface when the <b>initoutput</b> command is executed. </p>
+          <p>The value of the objective function is in this case
+            calculated automatically in this case from measurements <i>meas</i>,
+            measurement errors <i>sigma</i> and simulated measurements
+            <i>measmom</i> according to formula (1). This value is
+            writteen to the scalar variable <i>objectivemom</i> after
+            the <b>analysis</b> function's argument block is
+            interpreted. Automatic evaluation of the objective function
+            is instructed by setting the <i>autochi2</i> option which
+            can be used at inverse analyses. When optimisation is in
+            question, we must always explicitly specify at the end of
+            the <b>analysis</b> command's argument block how the
+            objection function is calculated. </p>
+          <p>In lines 24 and 25 a direct analysis is run at specific
+            values of parameters. First we set the currrent vector of
+            parameters <i>parammom</i> and then run the direct analysis
+            by the <b>analyse</b> command. This command triggers the
+            interpretation of the <b>analysis</b> function's argument
+            block and the prints the results of the analysis, i.e.
+            prints the pre-defined variables in which results are stored
+            by convention. </p>
+          <p>The <b>inverse</b> command in line 28 executes the inverse
+            analysis, i.e. the algorithm which minimises the objective
+            function. The first two parameters specify the algorithm
+            which is used (the simplex method in this case), then a
+            tolerance for function minimum and maximum allowed number of
+            iteration are given and the last argument is a matrix of
+            initial guesses. This matrix is given in a standard format
+            in which matrices are specified in the shell. The simplex
+            method requires one more initial guesses than the number of
+            parameters. A <b>setvector</b> function is called before
+            the call to <b>inverse</b>, but only the dimension of
+            vector <i>parammom</i> was specified, not the components.
+            These are set subsequently by the optimisation algorithm
+            when it runs direct analyses. </p>
+          <p>Whenever the optimisation algorithm wants to evaluate the
+            objective or constraint functions or their derivatives, it
+            calls the appropriate shell's internal function for direct
+            analysis. This function first copies the parameters, which
+            are its input arguments set by the optimisation algorithms,
+            to the vector variable <i>parammom</i>, and then triggers
+            interpretation of the argument block of the <b>analysis</b>
+            command. At the end it passes the appropriate pre-defined
+            variables to the optimisation algorithm, according to what
+            it has requested. In the <b>analysis</b> function's
+            argument block the user defines the way how different
+            functions requested by the optimisation algorithm are
+            calculated at a specific set of parameters. The parameter
+            values set by the algorithm can be accessed through the
+            pre-defined vector variable <i>parammom</i>. The user must
+            programme the way how the simulation input data is updated
+            according to parameter values, how the simulation is
+            performed and how the needed data is evaluated and written
+            to the appropriate pre-defined variables. The shell's
+            internal function for the direct analysis then passes the
+            appropriate results to the optimisation algorithm. <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp; <br>
+            &nbsp;</p>
+        </ol>
+      </ol>
+    </ol>
+  </body>
 </html>
