@@ -1,0 +1,784 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+    <meta name="Generator" content="Microsoft Word 97">
+    <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; HP-UX
+      B.10.20 9000/780) [Netscape]">
+    <meta name="Author" content="Igor Gresovnik">
+    <meta name="Keywords" content="optimization, Inverse, shell, manual,
+      file interface">
+    <title>Inverse manual: Syntax Checker and Debugger</title>
+    <!-- Google Analitics - account Documents, 
+	property Documents - all -->
+    <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-96832295-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+    <meta name="author" content="Igor Grešovnik">
+    <meta name="description" content="Inverse manual: Syntax Checker and
+      Debugger">
+  </head>
+  <body vlink="#551A8B" text="#000000" link="#0000EE" bgcolor="#FFFFFF"
+    alink="#FE0000">
+    <a href="../../../invhome.html"><img src="../../../invlogo.gif"
+        nosave="" width="600" height="100"></a> <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp;
+    <table nosave="" border="3" bgcolor="#99FFCC">
+      <tbody>
+        <tr nosave="">
+          <td nosave=""><a name="list"></a><font size="-1"><a
+                href="../index.html">MANUALS:</a></font>
+            <blockquote>
+              <li> <font size="-1"><a href="../short/index.html">Short
+                    Guide to INVERSE</a>&nbsp;</font></li>
+              <li> <font size="-1"><a href="../flow/index.html">Flow
+                    control</a></font></li>
+              <li> <font size="-1"><a href="../calc/index.html">Expression
+
+                    evaluator</a></font></li>
+              <li> <font size="-1"><a href="../var/index.html">User
+                    defined variables</a></font></li>
+              <li> <font size="-1"><a href="../int/index.html">General
+                    file interface</a></font></li>
+              <li> <b><font size="-1"><a href="index.html">Syntax
+                      checker &amp; debugger</a></font></b></li>
+              <blockquote>
+                <li> <b><font size="-1"><a href="#_Toc428295520">Introduction
+
+                        - motivation and history</a>&nbsp;</font></b></li>
+                <li> <b><font size="-1"><a href="#_Toc428295521">Syntax
+                        checker</a>&nbsp;</font></b></li>
+                <li> <b><font size="-1"><a href="#_Toc428295522">Debugger</a>&nbsp;</font></b></li>
+                <li> <b><font size="-1"><a href="#_Toc428295527">List
+                        of Debugger's Commands</a>&nbsp;</font></b></li>
+              </blockquote>
+              <li> <font size="-1"><a href="../sim/index.html">Interfaces
+
+                    with simulation programmes</a></font></li>
+            </blockquote>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+      <tbody>
+        <tr nosave="" valign="TOP">
+          <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+          <td nosave=""><b><font size="-1"><a
+                  href="../manlist/index.html#list">Manuals list &amp;
+                  contents</a></font></b></td>
+          <td nosave=""><b><font size="-1"><a href="#contents">Table of
+                  contents&nbsp;</a></font></b></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    &nbsp;
+    <p><a name="contents"></a><b><font color="#FF0000"><font size="+2">Table
+of
+
+            Contents:</font></font></b> </p>
+    <p><b>1. Syntax Checker and Debugger for Programme <i>INVERSE</i> </b><a
+        href="#_Toc428295519">*</a> </p>
+    <p>1.1 Introduction - motivation and history <a
+        href="#_Toc428295520">**</a> </p>
+    <p>1.2 Syntax checker <a href="#_Toc428295521">**</a> </p>
+    <p>1.3 Debugger <a href="#_Toc428295522">**</a> </p>
+    <dir><i>1.3.1 Viewing portions of code </i><a href="#_Toc428295523">**</a>
+      <p><i>1.3.2 Controlling execution </i><a href="#_Toc428295524">**</a>
+      </p>
+      <p><i>1.3.3 Examination of the state </i><a href="#_Toc428295525">**</a>
+      </p>
+      <p><i>1.3.4 Some general instructions </i><a
+          href="#_Toc428295526">**</a></p>
+    </dir>
+    1.4 A List of Debugger's Commands <a href="#_Toc428295527">**</a>
+    <dir><i>1.4.1 ?, h </i><a href="#_Toc428295528">**</a>
+      <p><i>1.4.2 x, exit </i><a href="#_Toc428295529">**</a> </p>
+      <p><i>1.4.3 s, step </i><a href="#_Toc428295530">**</a> </p>
+      <p><i>1.4.4 S, stepover </i><a href="#_Toc428295531">**</a> </p>
+      <p><i>1.4.5 n, nstep num </i><a href="#_Toc428295532">**</a> </p>
+      <p><i>1.4.6 c, continue </i><a href="#_Toc428295533">**</a> </p>
+      <p><i>1.4.7 ab, actbreak id </i><a href="#_Toc428295534">**</a> </p>
+      <p><i>1.4.8 sb, suspbreak id </i><a href="#_Toc428295535">**</a>
+      </p>
+      <p><i>1.4.9 pb, prbreak </i><a href="#_Toc428295536">**</a> </p>
+      <p><i>1.4.10 tb, tellbreak id </i><a href="#_Toc428295537">**</a>
+      </p>
+      <p><i>1.4.11 v, view shift </i><a href="#_Toc428295538">**</a> </p>
+      <p><i>1.4.12 vr, viewrel shift </i><a href="#_Toc428295539">**</a>
+      </p>
+      <p><i>1.4.13 va, viewabs linenum </i><a href="#_Toc428295540">**</a>
+      </p>
+      <p><i>1.4.14 nv, nview num1 num2 </i><a href="#_Toc428295541">**</a>
+      </p>
+      <p><i>1.4.15 e, calc expr </i><a href="#_Toc428295542">**</a> </p>
+      <p><i>1.4.16 w, watch expr </i><a href="#_Toc428295543">**</a> </p>
+      <p><i>1.4.17 dw, delwatch num </i><a href="#_Toc428295544">**</a>
+      </p>
+      <p><i>1.4.18 aw, autwatch switch </i><a href="#_Toc428295545">**</a>
+      </p>
+      <p><i>1.4.19 pw, prwatch </i><a href="#_Toc428295546">**</a> </p>
+      <p><i>1.4.20 r, run comblock </i><a href="#_Toc428295547">**</a>
+      </p>
+      <p><i>1.4.21 rd, rundebug commands </i><a href="#_Toc428295548">**</a>
+      </p>
+      <p><i>1.4.22 rf, runfile filename </i><a href="#_Toc428295549">**</a>
+        <br>
+        &nbsp;</p>
+    </dir>
+    <ol>
+      <li> <a name="_Toc428295519"></a><b><font color="#990000"><font
+              size="+2">Syntax Checker and Debugger for Programme <i>INVERSE</i></font></font></b></li>
+    </ol>
+    <ol>
+      &nbsp;
+      <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+        <tbody>
+          <tr nosave="" valign="TOP">
+            <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a
+                    href="../manlist/index.html#list">Manuals list &amp;
+                    contents</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a href="#contents">Table
+                    of contents&nbsp;</a></font></b></td>
+          </tr>
+        </tbody>
+      </table>
+    </ol>
+    <ol>
+      <li> <a name="_Toc428295520"></a><b><i><font color="#990000"><font
+                size="+1">Introduction - motivation and history</font></font></i></b></li>
+    </ol>
+    <ol start="2">
+      &nbsp;
+      <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+        <tbody>
+          <tr nosave="" valign="TOP">
+            <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a
+                    href="../manlist/index.html#list">Manuals list &amp;
+                    contents</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a href="#contents">Table
+                    of contents&nbsp;</a></font></b></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Syntax checker and debugger arose to support quick and
+        efficient command file writing. Both tools support an user of
+        the system at discovering and eliminating errors which lead to
+        the behaviour of the system other than expected. </p>
+      <p>Syntax checker mainly serves for identification of errors which
+        are not a consequence of the user's insufficient understanding
+        of programme's functioning or the problem being solved or
+        logical deficiencies in solution procedure planning, but are
+        rather a result of typing errors or forgetting the exact command
+        names or syntax. Such errors usually don't cause termination of
+        the programme, but often corrupt the results without user's
+        awareness. Although they are almost always reported in the
+        shell's output file, the user can easily overlook these reports.
+        Besides, it is a waste of time if such errors are detected after
+        the program has used several hours of the CPU time. It is
+        therefore recommendable to run a syntax checker over every newly
+        created command file before you run it with a purpose of solving
+        a problem. A normally long command file is checked by the syntax
+        checker in a matter of moments if there are no errors. </p>
+      <p>When you suspect that you don't get right results or something
+        is going wrong in the solution procedure, but you can't detect
+        any errors in your work, you can run the command file in the
+        debugger. This tool enables you to examine the state of the
+        shell before and after the execution of any function in the
+        command file, so you can locate the points where the discrepancy
+        between the expected and actual state or behaviour of the
+        programme arise. The debugger gives you the power of controlling
+        or changing the values of any variable of the shell at any point
+        of execution, and enables you to execute additional commands
+        on-line, during the interpretation of the existing command file.
+        You can therefore check the behaviour of any functional part of
+        the shell in all situation that can appears during the
+        interpretation of the command file. <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <li> <a name="_Toc428295521"></a><b><i><font color="#990000"><font
+                size="+1">Syntax checker</font></font></i></b></li>
+      <br>
+      &nbsp;
+      <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+        <tbody>
+          <tr nosave="" valign="TOP">
+            <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a
+                    href="../manlist/index.html#list">Manuals list &amp;
+                    contents</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a href="#contents">Table
+                    of contents&nbsp;</a></font></b></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>The syntax checker is invoked by adding the "<b><i>-c</i></b>"
+        option in the command-line. If you want, for example, to check
+        the command file named "0.cm" and the shell is installed with
+        the name "invan" on your system, this command will do it: </p>
+      <p>The syntax checker will scan the command file and for every
+        syntax error it finds it will inform you by printing an error
+        message and wait until you press the &lt;Return&gt; key. It will
+        also print a portion of code around the place where the error is
+        located and denote the line which contains the error, and print
+        some additional information, e.g. the name of the file and the
+        number of the line in which error is located. </p>
+      <p>If you correct the reported errors simultaneously, you must run
+        the checker from the beginning each time you make a correction,
+        otherwise the checker can become confused because of the shift
+        of absolute positions in the file. You can also correct errors
+        after the checker checks the whole command file. In this case it
+        is recommendable that you check the command file again after you
+        make all corrections. You can also make errors when you are
+        making corrections, and new errors can become visible to the
+        checker when the old ones are eliminated. </p>
+      <p>If you intend to correct all errors after the checking is
+        complete, it can be helpful to make the checker to write error
+        reports also to a file, not only to standard output. You can do
+        it by specifying a file name immediately after the "<i>-c</i>"
+        option in the command line (the name must be separated from
+        option by a space). For example, the command </p>
+      <p><i>invan 0.cm -c report.dat</i> </p>
+      <p>will run the syntax checker over the command file named "0.cm"
+        and write all error reports in the file named "report.dat". <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <li> <a name="_Toc428295522"></a><b><i><font color="#990000"><font
+                size="+1">Debugger</font></font></i></b></li>
+      <br>
+      &nbsp;
+      <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+        <tbody>
+          <tr nosave="" valign="TOP">
+            <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a
+                    href="../manlist/index.html#list">Manuals list &amp;
+                    contents</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a href="#contents">Table
+                    of contents&nbsp;</a></font></b></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>The command files for the shell <i>INVERSE</i> are <b>interpreted</b>,
+        not compiled and run. This fact imposes some particularities to
+        the shell's debugger which make its functioning different from
+        the functioning of debuggers from programming languages. </p>
+      <p>None the less, the complete functionality offered to the user
+        is similar than with debuggers for programming languages, only
+        the principles are slightly different. The user can execute the
+        command file step by step, where he has the possibility of
+        stepping over or going into the block of commands or to execute
+        arbitrarily long portions of the command file without stopping.
+        During the breaks in execution, the user gains control through a
+        simple interpreter in which he can input his instructions and
+        requests. Here the user can view portions of code, print the
+        values of variables, executes additional commands understandable
+        to the file interpreter, launch further execution
+        (interpretation) of the command file and specify the position of
+        the next break. <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <ol>
+        <li> <a name="_Toc428295523"></a><b>Viewing portions of code</b></li>
+        <br>
+        Debugger automatically prints portions of code near the current
+        position when the control is transferred to the user. The line
+        of the code in which the current position is contained is marked
+        by the "<b>==&gt;</b>" sign. When the user views a part of code
+        in which the centerline does not contain the current position,
+        the centerline is marked by the "&gt;&gt;" sign. Centerline is a
+        line which is said to be a center of the printed code, although
+        the number of printed lines before and after the centerline may
+        not be equal. This line is marked and its number in the file is
+        printed when a code segment is viewed.
+        <p>The user can set the number of code lines which are printed
+          each time by the command <b><i>nv</i> </b>or <b><i>nview</i></b>.
+          This command takes one or two arguments which must be
+          integers. Negative or zero arguments set the number of printed
+          lines before the current position to their absolute value.
+          Positive arguments set the number of printed lines from the
+          current position of the interpretation. If the command is
+          input with no arguments, the user is requested to input both
+          values. </p>
+        <p>When the control is transferred to the user, he can view any
+          part of the interpreted file. The <b><i>v</i></b> or <b><i>view</i></b>
+          command, when input without arguments, shows a portion of code
+          <u>around the current position</u> (as have been told, the
+          number of lines printed before and after the current position
+          can be set by the <b><i>nv</i></b> command). When <b><i>v</i></b>
+          is called with a numerical argument, another segment of the
+          code is printed. Its centerline is shifted for the number of
+          lines specified by the command's argument which must be an
+          integer. It is <u>shifted according to the centerline of the
+            last viewed segment</u> of code. </p>
+        <p>With the <b><i>vr</i></b> or <b><i>viewrel</i></b> the user
+          prints a segment of code, in which the centerline is <u>shifted</u>
+          for a certain number of lines <u>with respect to the line of
+            current position</u>. The user must input the number of rows
+          as an argument of the command. </p>
+        <p>With the <b><i>va</i></b> or <b><i>vabs</i></b> command the
+          user can print a portion of code around the line specified by
+          an argument of this command. The argument must be a positive
+          integer. It means the successive number of the centerline in
+          the interpreted file. <br>
+          &nbsp; <br>
+          &nbsp; <br>
+          &nbsp; </p>
+        <li> <a name="_Toc428295524"></a><b>Controlling execution</b></li>
+        <br>
+        The user can execute single commands, commands with their
+        sub-blocks of commands, a certain number of commands or a
+        portion of code till a specific place in the command file at
+        once.
+        <p>At the beginning of debugging session, the debugger stops
+          interpretation immediately before the first command in the
+          command file and waits user's instructions. Further execution
+          depends on the commands which are input by the user. </p>
+        <p>With <b><i>s</i></b> or <b><i>step</i></b> command the user
+          executes the next function in the command file. If this
+          function executes one or more sub-blocks of functions, the
+          interpretation is stopped before the first function in the
+          first sub-block and the control is transferred back to the
+          user. If the user wants to execute at once the function's
+          sub-blocks together with the function, he must use the <b><i>S</i></b>
+          or <b><i>stepover</i></b> command. In this case the user
+          gains the control when the next function with all its
+          sub-blocks is executed. </p>
+        <p>The user can execute a certain number of functions at once.
+          This is done by the <b><i>n</i></b> or <b><i>nstep</i></b>
+          command. This command takes one argument which must be a
+          positive integer and specifies how many functions must be
+          executed before the control is transferred back to the user.
+          If any of the executed functions executes one or more
+          sub-blocks, its execution together with sub-blocks is not
+          regarded as an execution of a single function, but the
+          executions of the functions in its sub-blocks are also
+          counted. After as many functions as specified by command's
+          argument are executed, the control is transferred back to the
+          user who can input new commands. </p>
+        <p>With the <b><i>c</i></b> or <b><i>continue</i></b> command
+          the user triggers the execution of the remaining code. The
+          execution is interrupted only if an active break appears in
+          the interpreted code. </p>
+        <p>The user can execute a portion of code from the current
+          position till any desired position within the command file or
+          its included files. To do that, he must first set a <i>break</i>
+          in the interpreted file at the position when he would like to
+          interrupt execution and retrieve the control. The break is set
+          within the interpreted file with the <i>break</i> function.
+          This interpreter's function has the following syntax: </p>
+        <p><b>break</b> <i>{ id [block] }</i> </p>
+        <p><i>id</i> is an integer identification number and is
+          optional. This number enables user to activate or suspend
+          individual breaks. It can be given as a number, as a variable
+          defined in the expression evaluator (a name following the '$'
+          sign) or as an expression which can be evaluated in the
+          expression evaluator (in curled brackets following the '$'
+          sign). <i>block</i> is a block of commands which is also
+          optional. This block is executed right before the break
+          interrupts the interpretation and transfers the control to the
+          user (if it does). </p>
+        <p>Whenever the interpretation hits the <i>break</i> command,
+          the identification number <i>id</i> is read (evaluated if it
+          is given as a variable or expression) and the break status is
+          checked. If the identification number is not given, it is
+          regarded to be 0. More than one break can have the same
+          identification number. If it is established that breaks with
+          the given identification number are suspended, the
+          interpretation is carried on. Otherwise the <i>block</i>
+          block is executed, then the interpretation is interrupted and
+          the control is transferred to the user. </p>
+        <p>When control is transferred to the user, he can activate or
+          suspend (deactivate) breaks with specific identification
+          numbers. Breaks are activated by the <b><i>ab</i></b> or <b><i>actbreak</i></b>
+          and suspended by the <b><i>sb</i></b> or <b><i>suspbreak</i></b>
+          command. Both command require an integer argument which
+          specifies the identification number of breaks which are
+          activated or suspended. The number can be replaced by the '*'
+          character which means 'all breaks'. More than one number can
+          be input as parameters of both commands. </p>
+        <p>The user can at any time check which breaks are active. The <b><i>pb</i></b>
+          or <b><i>printbreak</i></b> command prints the information
+          about active and suspended breaks. The <b><i>tb</i></b> or <b><i>tellbreak</i></b>
+          command examines only breaks with a specific identification
+          number and tells the user if these breaks are active. The
+          command requires an integer argument which specifies which
+          identification numbers to examine. </p>
+        <p>The user can stop a debugging process by typing in the <b><i>x</i></b>
+          or <b><i>exit</i></b> command. <br>
+          &nbsp; <br>
+          &nbsp; <br>
+          &nbsp; </p>
+        <li> <a name="_Toc428295525"></a><b>Examination of the state</b></li>
+        <br>
+        The user can check or set the values of variables when he debugs
+        the command file, and he can also check the behaviour of
+        arbitrary interpreter's function at arbitrary point of
+        execution.
+        <p>The user can calculate the value of any expression which can
+          be evaluated by the expression evaluator at a specific point
+          of execution. This is done by the <b><i>e</i></b> or <b><i>calc</i></b>
+          command. This command requires as an argument the expression
+          which should be evaluated. With the same command the user can
+          also set values of expression evaluator's variables or define
+          new expression evaluator's variables and functions. An
+          expression evaluator's variable is defined by an argument
+          which consists of variable name, a colon and an expression
+          which defines the variable, for example: </p>
+        <p><b>e </b><i>a:(b+f[c])/2</i> </p>
+        <p>If the user wants to assign a numerical value to a variable,
+          he must just replace an expression by a number. The definition
+          of a function looks similar except that a list of formal
+          arguments follows the function name: </p>
+        <p><b>e </b><i>g[x,y]:sin[x]*sin[y]</i> </p>
+        <p>If the <b><i>e</i></b> or <b><i>calc</i></b> command is
+          input without arguments, a calculator which reads expressions
+          and evaluates them is run. For this calculator the same rules
+          as for the <b><i>e</i></b> or <b><i>calc</i></b> commands
+          apply. The only difference is that the user can input as many
+          expressions as you want. To exit the calculator, he must input
+          the string '\q'. </p>
+        <p>The user can use the <b><i>e</i></b> or <b><i>calc</i></b>
+          command not only for examination of the values of expression
+          evaluator's variables, but also for examination of other user
+          defined variables of the shell. This is possible because all
+          user defined variables are accessible through the pre-defined
+          functions of the expression evaluator. If the user wants to
+          know, for example, the current dimension of the user defined
+          vector 'vec', he can find out the value by the command </p>
+        <p><b>e </b><i>getvector['vec',0]</i> </p>
+        <p>The <b><i>e</i></b> or <b><i>calc</i></b> command can also
+          serve as an auxiliary pocket calculator. </p>
+        <p>The user can automatically observe values of a group of
+          expressions whenever he gains the control (a so called 'watch'
+          function). An expression is added to the group of the observed
+          expressions by the <b><i>w</i></b> or <b><i>watch</i></b>
+          commands. The expressions which he wants to observe among the
+          others is an argument of this command. If the command is input
+          without arguments, values of all expressions in this group are
+          printed. The users can list only expressions in the group
+          (without their values) by the <b><i>pw</i></b> or <b><i>prwatch</i></b>
+          command. </p>
+        <p>The user can remove expressions from the group of observed
+          expressions by the <b><i>dw</i></b> or <b><i>delwatch</i></b>
+          command. A serial number of the expression which will be
+          removed from the group must be an argument of the command. The
+          user can determine the expression's serial number if he inputs
+          the <b><i>pw</i></b> or <b><i>prwatch</i></b> command. </p>
+        <p>Values of all expressions in the group of observed
+          expressions can be automatically printed each time the user
+          gains control. This can be achieved by the <b><i>aw</i></b>
+          or <b><i>autwatch</i></b> command. This command requires an
+          integer argument. If the argument is 0, automatic printing of
+          expression is switched off, otherwise it is switched on. </p>
+        <p>The most powerful commands for examination of the state of
+          the shell is the <b><i>r</i></b> or <b><i>run</i></b>
+          command. This command runs additional commands in the file
+          interpreter. Commands which should be run can be an argument
+          of the <b><i>r</i></b> or <b><i>run</i></b> command. If the
+          commands with their argument blocks are too long, the user can
+          input the <b><i>r</i></b> or <b><i>run</i></b> command
+          without arguments. Then he can input several lines of commands
+          which he wants to execute by the file interpreter. At the end
+          he inserts an empty line and the commands which he has input
+          are interpreted. </p>
+        <p>The user can use any function installed in the file
+          interpreter by the <b><i>r</i></b> or <b><i>run</i></b>
+          command. This way he has a total control over the state in
+          which the shell is in a given moment. This command can replace
+          examination of the shell's user defined variables using the <b><i>e</i></b>
+          or <b><i>calc</i></b> command because the file interpreter's
+          <i>write</i> command can be used for printing expression
+          values and <i>=</i> or <i>$</i> commands can be used to
+          define variables or functions of the expression evaluator or
+          to assign values to its variables. For example, the command </p>
+        <p><b>r </b><i>write {'a+b = ' ${a+b} \n}</i> </p>
+        <p>does the same as the command </p>
+        <p><b>e </b><i>a+b</i> </p>
+        <p>In many cases printing values of the user defined variables
+          using the <b><i>r</i></b> or <b><i>run</i></b> command is
+          more comfortable than using the <b><i>e</i></b> or <b><i>calc</i></b>
+          command because the user can use the file interpreter's
+          functions which are specially designed for printing variables
+          of complex types. For example, the user can print a whole
+          vector <i>vec</i> simply by </p>
+        <p><b>r </b><i>printvector{vec}</i> </p>
+        <p>Of course, the user can also set all types of user defined
+          variables by using the <b><i>r</i></b> or <b><i>run</i></b>
+          command since he has access to all file interpreter's
+          functions and can do by typing in commands during the
+          debugging whatever he could do by writing commands into the
+          command file. This way the user can check how everything would
+          look like if the values of specific variables would be
+          different than they are, which can sometimes be very useful.
+          The user can also examine how different file interpreter's
+          functions would behave if they were called at a specific point
+          of interpretation or even how the whole system would behave if
+          whole segments of code would be different. </p>
+        <p>Command <b><i>rd</i></b> or <b><i>rundebug</i></b> is
+          similar to <b><i>r</i></b> or <b><i>run</i></b>, except that
+          the code which is input by the user is not only run, but also
+          debugged. </p>
+        <p>Commands which are input by user with the <b><i>r</i></b>
+          and <b><i>rd</i></b> are written to a file. The user can
+          specify its name by the <b><i>rf</i></b> or <b><i>runfile</i></b>
+          command, otherwise the default file '<i>0debug.cm</i>' is
+          used. </p>
+        <p>During the debugging procedure, the user can not only examine
+          the state within the shell, but also the state in the system
+          in which the shell is run. By the <b><i>!</i></b> or <b><i>system</i></b>
+          command, the user can run any command known to the system in
+          which the shell is run. The system command which the user
+          wants to run, together with its arguments, should be input as
+          an argument of the <b><i>!</i></b> or <b><i>system</i></b>
+          command. If the command is input without arguments, a simple
+          shell is invoked in which the user can input system commands
+          one by one until he exits the shell. He exits this shell by
+          inserting '<i>x</i>' or '<i>q</i>'. <br>
+          &nbsp; <br>
+          &nbsp; <br>
+          &nbsp; </p>
+        <li> <a name="_Toc428295526"></a><b>Some general instructions</b></li>
+        <br>
+        Debugging of a shell's command file consists of two main types
+        of events: interpretation of code segments by the file
+        interpreter and execution of user's commands. Between
+        interpretation of the code segments the control is passed to the
+        user so that he can input his instructions for the debugger. At
+        these points a simple command interpreter is run which waits for
+        user's commands and executes them. Some of these commands cause
+        exiting the debugger's command interpreter and interpretation of
+        another segment of code in the command file, the length of which
+        depends on user's instructions.
+      </ol>
+      <ol>
+        The user must only remember the main concepts of the debugging
+        because he can obtain a list of command by the <b><i>'</i></b>
+        or <b><i>h</i></b> command. The arguments required by
+        individual commands are briefly described along the command
+        names.
+      </ol>
+      <ol>
+        Most of the debugger's (line interpreter) commands require some
+        arguments. If they are input without them, the user is usually
+        prompted to insert these arguments separately. In this case, at
+        the commands which set the values of something, the user is also
+        informed about the current state of what should be set by the
+        specific command. The user therefore doesn't need to remember
+        for each commands what kind of arguments it requires.
+      </ol>
+      <ol>
+        Some commands (<b><i>e</i></b> or <b><i>calc</i></b>, <b><i>!</i></b>
+        or <b><i>system</i></b> and <b><i>r</i></b> or <b><i>run</i></b>)
+        invoke a simple interpreter. In this case the user is informed
+        what he is supposed to do.
+      </ol>
+      <ol>
+        A useful feature is remembering the last command. If the user
+        inserts an empty line in the debugger's line interpreter, the
+        last command is repeated. <br>
+        &nbsp; <br>
+        &nbsp; <br>
+        &nbsp;
+      </ol>
+      <li> <a name="_Toc428295527"></a><b><i><font color="#990000"><font
+                size="+1">A List of Debugger's Commands</font></font></i></b></li>
+      <br>
+      &nbsp;
+      <table nosave="" cellpadding="3" border="3" bgcolor="#FFFFCC">
+        <tbody>
+          <tr nosave="" valign="TOP">
+            <td><b><font size="-1"><a href="#list">Manuals list</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a
+                    href="../manlist/index.html#list">Manuals list &amp;
+                    contents</a></font></b></td>
+            <td nosave=""><b><font size="-1"><a href="#contents">Table
+                    of contents&nbsp;</a></font></b></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Debugger's commands are listed in this chapter. Their
+        descriptions follow in a logical order according to their
+        function. All the command names are listed in an appropriate
+        title, separated by commas. Argument lists of commands follow
+        their names. Short descriptions of what the commands do follow
+        the titles. <br>
+        &nbsp; <br>
+        &nbsp; </p>
+      <ol>
+        <li> <a name="_Toc428295528"></a><b>?, h</b></li>
+        <br>
+        Prints a short help. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295529"></a><b>x, exit</b></li>
+        <br>
+        Finishes the debugging process. The interpretation stops at the
+        point where this command is invoked. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295530"></a><b>s, step</b></li>
+        <br>
+        Executes the next file interpreter's command. If this command
+        contains sub-blocks of commands, the interpretation is
+        interrupted before the first command of the first sub-block
+        which will be executed. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295531"></a><b>S, stepover</b></li>
+        <br>
+        Executes the next file interpreter's command. Interpretation is
+        not interrupted in a sub-block of the command unless it contains
+        the <b>break</b> function. If this is the case, the <b><i>c</i></b>
+        or <b><i>continue</i></b> command will launch interpretation
+        until the end of the function containing this sub-block. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295532"></a><b>n, nstep </b><i>num</i></li>
+        <br>
+        Executes the next <i>num</i> commands in the command file.
+        Functions which contain one or more executable blocks are not
+        treated as single functions, therefore the interpretation can
+        also break within a block of such function. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295533"></a><b>c, continue</b></li>
+        <br>
+        Executes the code till the next active <b>break</b> command in
+        the command file or till the end of interpretation. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295534"></a><b>ab, actbreak </b><i>id</i></li>
+        <br>
+        Activates all breaks with the identification number <i>id</i>.
+        If <i>id</i> is '*' instead of a number, it activates all
+        breaks. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295535"></a><b>sb, suspbreak</b><i> id</i></li>
+        <br>
+        Suspends all breaks with the identification number <i>id</i>.
+        If <i>id</i> is '*' instead of a number, it suspends all
+        breaks. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295536"></a><b>pb, prbreak</b></li>
+        <br>
+        Prints information about active breaks. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295537"></a><b>tb, tellbreak </b><i>id</i></li>
+        <br>
+        Prints if breaks with identification number <i>id</i> are
+        active or not. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295538"></a><b>v, view<i> </i>shift</b></li>
+        <br>
+        Views s segment of code around the current position of
+        interpretation. If the command is input by an argument (<i>shift</i>),
+        it first shifts the current position in the code which is viewed
+        for <i>shift</i> lines and prints few lines of code around this
+        position. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295539"></a><b>vr, viewrel </b><i>shift</i></li>
+        <br>
+        Print a segment of code in the currently interpreted file around
+        the line shifted for <i>shift</i> lines from the current
+        position. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295540"></a><b>va, viewabs</b> <i>linenum</i></li>
+        <br>
+        Prints a segment of code in the interpreted file around the line
+        <i>linenum</i>. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295541"></a><b>nv, nview </b><i>num1 num2</i></li>
+        <br>
+        Sets the number of lines before the centerline which are printed
+        when the code is viewed. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295542"></a><b>e, calc</b><i> expr</i></li>
+        <br>
+        Evaluates the expression <i>exp</i> in the expression
+        evaluator. If the argument is missing, it runs an interpreter
+        which reads and evaluates expressions one by one. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295543"></a><b>w, watch </b><i>expr</i></li>
+        <br>
+        Adds expression e<i>xpr</i> to the watch table. If the command
+        is input without arguments, values of all expressions in the
+        watch table are printed. This is also done every time the
+        control is passed to the user if the option for automatic
+        watching is set (see the <b>aw</b> or <b>autwatch</b>
+        command). <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295544"></a><b>dw, delwatch </b><i>num</i></li>
+        <br>
+        Removes the expression with serial number <i>num</i> from watch
+        table. Serial numbers of expressions can be seen by invoking the
+        <b><i>pw</i></b> or <b><i>prwatch</i></b> command. The user
+        should be careful when checking serial numbers of expressions in
+        the watch table because serial numbers can change when
+        expressions are added to or deleted from the watch table. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295545"></a><b>aw, autwatch</b> <i>switch</i></li>
+        <br>
+        If <i>switch</i> is zero, it turns automatic watching off,
+        otherwise it turns it on. When automatic watching is turned on,
+        values of all expressions in the watch table are printed
+        whenever the control is passed to the user. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295546"></a><b>pw, prwatch</b></li>
+        <br>
+        Prints all expressions from the watch table. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295547"></a><b>r, run </b><i>comblock</i></li>
+        <br>
+        Interprets commands <i>comblock</i> by the file interpreter. If
+        <i>comblock</i> is not specified, it runs a simple shell where
+        the user can input the commands one by one. These commands are
+        then interpreted. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295548"></a><b>rd, rundebug </b><i>commands</i></li>
+        <br>
+        The same as <b><i>r</i></b> or <b><i>run</i></b>, except that
+        the code input by the user is also debugged, not only run. <br>
+        &nbsp; <br>
+        &nbsp;
+        <li> <a name="_Toc428295549"></a><b>rf, runfile </b><i>filename</i></li>
+        <br>
+        Sets the name of the file into which the user's commands will be
+        written, to <i>filename</i>. The default file name is '<i>0debug.cm</i>',
+
+        so that user's commands for the file interpreter are written to
+        this file, if not specified differently by the <b><i>rf</i></b>
+        or <b><i>runfile</i></b> command.
+      </ol>
+    </ol>
+    <div align="right"><i>Igor G., 13th. Apr.. 1998</i></div>
+  </body>
+</html>
